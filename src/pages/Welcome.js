@@ -25,10 +25,11 @@ function Welcome() {
     opacity: 1,
     from: { opacity: 0 },
     transition: "0.8s",
-    transitionDelay: "1.75s",
+    transitionDelay: "1.45s",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   });
 
   return (
