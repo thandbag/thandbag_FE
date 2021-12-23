@@ -21,15 +21,16 @@ const initialState = {
 
 // **** Middleware **** //
 
-const joinDB = (email, password, fullname, nickname) => {
+const joinDB = (email, password, nickname) => {
   return async function (dispatch, getState, { history }) {
+    console.log(email, password, nickname)
    
   }
 }
 
 const logInDB = (email, password) => {
   return async function (dispatch, getState, { history }) {
-    
+    console.log(email, password)
   }
 }
 
