@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+
 // images
 import test_a from "../static/images/test_a.gif";
 import test_b from "../static/images/test_b.jpg";
@@ -74,7 +75,7 @@ function WelcomeTwo() {
       <ButtonBox>
         <Button
           onClick={() => {
-            history.push("/main");
+            history.push("/login");
           }}
         >
           시작하기
