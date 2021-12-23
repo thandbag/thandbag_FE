@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import "./App.css";
 import { Route } from "react-router-dom";
+import Wlecome from "../pages/Welcome";
 import Main from "../pages/Main";
 import Login from "../pages/Login";
 import Join from "../pages/Join";
@@ -24,7 +25,8 @@ function App() {
       <Container>
         <div className="wrap">
           <ConnectedRouter history={history}>
-            <Route path={"/"} exact component={Main} />
+            <Route path={"/"} exact component={Wlecome} />
+            <Route path={"/main"} exact component={Main} />
             <Route path={"/login"} exact component={Login} />
             <Route path={"/join"} exact component={Join} />
             <Route path={"/TbSelect"} exact component={TbSelect} />
@@ -61,7 +63,7 @@ const Container = styled.div`
     margin: 0 auto;
     padding: 0 auto;
     box-sizing: border-box;
-    background-color: #efefef;
+    background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
     @media screen and (min-width: 1024px) {
