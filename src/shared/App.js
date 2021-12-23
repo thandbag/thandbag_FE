@@ -53,7 +53,7 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  background-color: black;
+  background-color: #eeee;
   overflow: hidden;
   .wrap {
     
@@ -64,7 +64,7 @@ const Container = styled.div`
     margin: 0 auto;
     padding: 0 auto;
     box-sizing: border-box;
-    background-color: gray;
+    background-color: #ffff;
 
     @media screen and (min-width: 1024px){
     position: relative;
