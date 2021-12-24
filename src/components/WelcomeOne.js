@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSpring, animated } from "@react-spring/web";
+import ThandBagImg from "../static/images/thandbag.png";
 
 function WelcomeOne() {
   const logoImg = useSpring({
@@ -13,7 +14,6 @@ function WelcomeOne() {
   const logoText = useSpring({
     fontSize: "50px",
     fontWeight: "bold",
-    marginTop: "25px",
     color: "#fff",
     opacity: 1,
     from: { opacity: 0 },
@@ -22,19 +22,40 @@ function WelcomeOne() {
 
   return (
     <LogoBox>
-      <animated.h1 style={logoImg}>🍟</animated.h1>
-      <animated.h1 style={logoText}>Thand Bag .</animated.h1>
+      <TopBox>
+        <animated.h1 style={logoImg}>
+          🍔
+        </animated.h1>
+      </TopBox>
+      <BottomBox>
+        <animated.h1 style={logoText}>Thand Bag .</animated.h1>
+      </BottomBox>
     </LogoBox>
   );
 }
 
 const LogoBox = styled.div`
   width: 100%;
-  height: auto;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+`;
+
+const TopBox = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BottomBox = styled.div`
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-top: 30px;
 `;
 
 export default WelcomeOne;

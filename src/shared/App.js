@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Wlecome from "../pages/Welcome";
 import Main from "../pages/Main";
 import Login from "../pages/Login";
@@ -16,6 +16,7 @@ import TbChatList from "../pages/TbChatList";
 import TbChatDetail from "../pages/TbChatDetail";
 import MyPage from "../pages/MyPage";
 import MyEdit from "../pages/MyEdit";
+import Navigation from "../components/Navigation";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
@@ -25,20 +26,23 @@ function App() {
       <Container>
         <div className="wrap">
           <ConnectedRouter history={history}>
-            <Route path={"/"} exact component={Wlecome} />
-            <Route path={"/main"} exact component={Main} />
-            <Route path={"/login"} exact component={Login} />
-            <Route path={"/join"} exact component={Join} />
-            <Route path={"/TbSelect"} exact component={TbSelect} />
-            <Route path={"/TbWrite"} exact component={TbWrite} />
-            <Route path={"/TbList"} exact component={TbList} />
-            <Route path={"/TbOneDetail"} exact component={TbOneDetail} />
-            <Route path={"/TbTwoDetail"} exact component={TbTwoDetail} />
-            <Route path={"/TbNotice"} exact component={TbNotice} />
-            <Route path={"/TbChatList"} exact component={TbChatList} />
-            <Route path={"/TbChatDetail"} exact component={TbChatDetail} />
-            <Route path={"/MyPage"} exact component={MyPage} />
-            <Route path={"/MyEdit"} exact component={MyEdit} />
+            <Navigation />
+            <Switch>
+                <Route path={"/"} exact component={Wlecome} />
+                <Route path={"/login"} exact component={Login} />
+                <Route path={"/join"} exact component={Join} />
+                <Route path={"/main"} exact component={Main} />
+                <Route path={"/TbSelect"} exact component={TbSelect} />
+                <Route path={"/TbWrite"} exact component={TbWrite} />
+                <Route path={"/TbList"} exact component={TbList} />
+                <Route path={"/TbOneDetail"} exact component={TbOneDetail} />
+                <Route path={"/TbTwoDetail"} exact component={TbTwoDetail} />
+                <Route path={"/TbNotice"} exact component={TbNotice} />
+                <Route path={"/TbChatList"} exact component={TbChatList} />
+                <Route path={"/TbChatDetail"} exact component={TbChatDetail} />
+                <Route path={"/MyPage"} exact component={MyPage} />
+                <Route path={"/MyEdit"} exact component={MyEdit} />
+            </Switch>
           </ConnectedRouter>
         </div>
       </Container>
@@ -53,7 +57,6 @@ const Container = styled.div`
   align-items: center;
   height: 100%;
   background-color: #e5e5e5;
-
   overflow: hidden;
 
   .wrap {
@@ -66,7 +69,7 @@ const Container = styled.div`
     box-sizing: border-box;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-
+    position: relative;
 
     @media screen and (min-width: 1024px) {
       position: relative;
