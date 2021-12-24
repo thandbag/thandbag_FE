@@ -29,7 +29,7 @@ TbButton.defaultProps = {
 }
 
 const BtnBasic = styled.button`
-    position: ${(props)=> props.position ? `${props.position}`: " "};
+    position: ${(props)=> props.position};
     width: ${(props)=> props.width};
     margin:${(props)=> props.margin};
     background:#c4c4c4;

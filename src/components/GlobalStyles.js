@@ -15,17 +15,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Open Sans', sans-serif;
         overflow: hidden;
     }
-    button{
-        display: flex;
-        cursor: pointer;
-        outline: none;
-        border-radius: 3px;
-    };
-    input{
-        display: flex;
-        outline: none;
-        padding-left: 10px;
-    }
+    
 `;
 
 export default GlobalStyles;
