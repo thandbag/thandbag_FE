@@ -1,10 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 
 const TbOneDetail = (props) => {
     return (
-        <>
-        혼자 터트리기 디테일
-        </>
+        <React.Fragment>
+        </React.Fragment>
     )
 }
 

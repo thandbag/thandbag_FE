@@ -2,12 +2,13 @@ import React from "react";
 import WelcomeOne from "../components/WelcomeOne.js";
 import WelcomeTwo from "../components/WelcomeTwo.js";
 import { useSpring, animated } from "@react-spring/web";
+import styled from "styled-components";
 
 function Welcome() {
   const fadeOut = useSpring({
     width: "100%",
     height: "100vh",
-    backgroundColor: "#0095ED",
+    backgroundColor: "#FF5454",
     position: "absolute",
     opacity: 0,
     from: { opacity: 1 },
@@ -34,14 +35,25 @@ function Welcome() {
 
   return (
     <React.Fragment>
-      <animated.div style={fadeOut}>
-        <WelcomeOne />
-      </animated.div>
-      <animated.div style={fadeIn}>
-        <WelcomeTwo />
-      </animated.div>
+      <WelcomeBox>
+        <animated.div style={fadeOut}>
+          <WelcomeOne />
+        </animated.div>
+        <animated.div style={fadeIn}>
+          <WelcomeTwo />
+        </animated.div>
+      </WelcomeBox>
     </React.Fragment>
   );
 }
+
+const WelcomeBox = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+`;
 
 export default Welcome;

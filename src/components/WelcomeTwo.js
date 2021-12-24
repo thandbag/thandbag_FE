@@ -109,7 +109,7 @@ const Button = styled.button`
   width: 150px;
   height: 50px;
   color: #fff;
-  background-color: #0095ED;
+  background-color: #FF5454;
   border: none;
   font-size: 15px;
   border-radius: 12px;

@@ -5,7 +5,7 @@ const TbText = (props) => {
 
     const {bold, color, size, align, margin,children} = props;
 
-    const styles = {margin:margin, bold: bold, color: color, 
+    const styles = {margin:margin, bold: bold, color: color,
         size:size, align:align};
 
     return (
@@ -22,7 +22,6 @@ TbText.defaultProps = {
     size: '18px',
     align:false,
     margin:false,
-    
 };
 
 const P = styled.p`
