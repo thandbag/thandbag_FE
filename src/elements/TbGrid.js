@@ -15,7 +15,6 @@ const TbGrid = (props) => {
     align: align,
 }
 
-
     return (
         <GridBox {...styles}>
         {children}

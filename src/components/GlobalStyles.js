@@ -13,9 +13,9 @@ const GlobalStyles = createGlobalStyle`
     }
     body {
         font-family: 'Open Sans', sans-serif;
+        color: #333333
         overflow: hidden;
     }
-    
 `;
 
 export default GlobalStyles;
