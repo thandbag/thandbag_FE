@@ -51,6 +51,9 @@ const InputBox = styled.input`
   padding: ${(props) => props.padding};
   box-sizing: ${(props) => props.boxSizing};
   font-size: 17px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  
 `;
 
 export default TbInput;

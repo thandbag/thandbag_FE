@@ -26,6 +26,11 @@ const GlobalStyles = createGlobalStyle`
       -ms-user-select: auto;
       user-select: auto;
     }
+    input:focus {
+      outline: none;
+      border-bottom: 1.5px solid #FF5454;
+      transition: 1s;
+    }
 `;
 
 export default GlobalStyles;

@@ -81,7 +81,7 @@ const FilterMbit = styled.div`
 const CommentsInputBox = styled.div`
   width: 100%;
   max-width: 420px;
-  background: #ccc;
+  background-color: #fff;
   height: 60px;
   position: fixed;
   left: 50%;

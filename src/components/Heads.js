@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Image } from "../elements/TbIndex";
+import { Grid, Text } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import Arrow from "../static/icons/arrow.svg";
 

@@ -12,7 +12,7 @@ const TbOneDetail = (props) => {
         {/* 헤드 */}
         <Heads is_anoter text="상세 페이지" />
         {/* 게시글 내용 */}
-        <Grid width="100%" height="auto" margin="70px 0 0 0" padding="10px 0">
+        <Grid width="100%" height="auto" margin="70px 0 0 0" padding="20px 0 15px 0">
           <ThandDetail />
         </Grid>
       </Grid>
@@ -52,6 +52,7 @@ const TbOneDetail = (props) => {
 
       {/*입력한 댓글*/}
       <CommentsBox>
+        {/* 맵 돌리자! */}
         <Comments is_Comment />
         <Comments is_Comment />
         <Comments is_Comment />
