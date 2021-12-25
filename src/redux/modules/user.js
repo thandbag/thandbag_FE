@@ -16,7 +16,6 @@ const userCard = createAction(USER_CARD, (user_card_list) => ({ user_card_list }
 // **** Initial data **** //
 const initialState = {
   user: null,
-  
 }
 
 // **** Middleware **** //
@@ -24,7 +23,6 @@ const initialState = {
 const joinDB = (email, password, nickname) => {
   return async function (dispatch, getState, { history }) {
     console.log(email, password, nickname)
-   
   }
 }
 

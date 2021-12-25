@@ -8,19 +8,17 @@ import icon4 from "../static/icons/icon4.svg";
 import { history } from "../redux/configureStore";
 
 const Navgation = (props) => {
-
-  if(props.location.pathname === '/') {
+  if (props.location.pathname === "/") {
     return null;
   }
 
-  if(props.location.pathname === '/login' ) {
+  if (props.location.pathname === "/login") {
     return null;
   }
 
-  if(props.location.pathname === '/join' ) {
+  if (props.location.pathname === "/join") {
     return null;
   }
-
 
   return (
     <React.Fragment>
@@ -56,22 +54,30 @@ const Navgation = (props) => {
       </NavBox>
     </React.Fragment>
   );
-}
+};
 
 const NavBox = styled.div`
   width: 100%;
-  height: 80px;
-  position: absolute;
+  max-width: 420px;
+  margin: 0 auto;
+  height: 70px;
+  position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
+
+  @media screen and (min-width: 1024px) {
+      margin-left: 11%;
+  }
 `;
 
 const Nav1 = styled.div`
   width: 25%;
-  height: 80px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

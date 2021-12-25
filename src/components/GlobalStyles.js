@@ -15,6 +15,16 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Open Sans', sans-serif;
         color: #333333
         overflow: hidden;
+        -ms-overflow-style: none; 
+    } 
+    ::-webkit-scrollbar { 
+      display: none;
+    }
+    input, textarea { 
+      -moz-user-select: auto;
+      -webkit-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
     }
 `;
 
