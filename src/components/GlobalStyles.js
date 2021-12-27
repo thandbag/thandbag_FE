@@ -12,11 +12,15 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     body {
-        font-family: 'Open Sans', sans-serif;
-        color: #333333
+        font-family: 'KOTRAHOPE', 'NotoSansCJK', sans-serif;
         overflow: hidden;
         -ms-overflow-style: none; 
+        letter-spacing: 0.8px;
     } 
+    p, h1, h2, h3, h4, h5, h6, span {
+      color: #333;
+      font-weight: 100;
+    }
     ::-webkit-scrollbar { 
       display: none;
     }
@@ -28,10 +32,7 @@ const GlobalStyles = createGlobalStyle`
     }
     input:focus {
       outline: none;
-      border-bottom: 1.5px solid #FF5454;
-      transition: 1s;
     }
-    
 `;
 
 export default GlobalStyles;

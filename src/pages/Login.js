@@ -96,7 +96,6 @@ const FormGroup = styled.div`
     font-family: 'KOTRAHOPE';
     outline: none;
     padding: 10px 5px 10px 5px;
-    
   }
   .has-error {
     border: 1px solid #e25c3d;

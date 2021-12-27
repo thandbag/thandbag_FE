@@ -3,11 +3,11 @@ import styled from "styled-components";
 import state_img from "../static/images/state_img.png";
 
 const TbImage = (props) => {
-  const { shape, src, size, thandbag_state } = props;
+  const { shape, src, Isize, thandbag_state } = props;
 
   const styles = {
     src: src,
-    size: size,
+    Isize: Isize,
     thandbag_state: thandbag_state,
   };
 
@@ -26,18 +26,19 @@ const TbImage = (props) => {
 
 TbImage.defaultProps = {
   shape: "circle",
-  src: "https://i.ytimg.com/vi/9J67amvesFg/maxresdefault.jpg",
+  src: "https://kpopsource.com/data/avatars/h/2/2834.jpg?1612192799",
   size: 36,
 };
 
 const ImageCircle = styled.div`
-  --size: ${(props) => props.size}px;
+  --size: ${(props) => props.Isize}px;
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
+  background-position: center;
   background-image: url("${(props) => props.src}");
   background-size: cover;
-  margin: 4px;
+  border: 0.1px solid #efefef;
 `;
 
 const StateImage = styled.div`

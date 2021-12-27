@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useSpring, animated } from "@react-spring/web";
-import ThandBagImg from "../static/images/thandbag.png";
 
 function WelcomeOne() {
   const logoImg = useSpring({
