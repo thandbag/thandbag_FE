@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
         color: #333333
         overflow: hidden;
     }
+    
 `;
 
 export default GlobalStyles;

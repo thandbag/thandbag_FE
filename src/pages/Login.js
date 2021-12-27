@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+
 const Login = (props) => {
   const dispatch = useDispatch();
 
@@ -87,12 +88,15 @@ const Login = (props) => {
 };
 
 const FormGroup = styled.div`
+
   .success {
     box-sizing: border-box;
     width: 300px;
     font-size: 17px;
+    font-family: 'KOTRAHOPE';
     outline: none;
     padding: 10px 5px 10px 5px;
+    
   }
   .has-error {
     border: 1px solid #e25c3d;
@@ -100,6 +104,7 @@ const FormGroup = styled.div`
     box-sizing: border-box;
     width: 300px;
     font-size: 17px;
+    font-family: 'KOTRAHOPE';
     outline: none;
     padding: 10px 5px 10px 5px;
 
@@ -109,6 +114,7 @@ const FormGroup = styled.div`
       box-sizing: border-box;
       width: 300px;
       font-size: 17px;
+      font-family: 'KOTRAHOPE';
       outline: none;
       padding: 10px 5px 10px 5px;
     }
