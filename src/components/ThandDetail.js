@@ -36,6 +36,7 @@ const TextBox = styled.div`
   height: 280px;
   max-height: 280px;
   overflow-y: scroll;
+  background-color: #fff;
   padding: 20px;
 `;
 

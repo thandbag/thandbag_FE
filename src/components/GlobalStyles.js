@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     body {
-        font-family: 'KOTRAHOPE', 'NotoSansCJK', sans-serif;
+        font-family: 'KOTRAHOPE', 'NotoSansCJK', -apple-system, sans-serif;
         overflow: hidden;
         -ms-overflow-style: none; 
         letter-spacing: 0.8px;
