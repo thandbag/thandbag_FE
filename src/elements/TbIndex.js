@@ -4,4 +4,4 @@ import Text from "./TbText";
 import Input from "./TbInput";
 import Button from "./TbButton";
 
-export {Grid, Image, Text, Input, Button};
+export { Grid, Image, Text, Input, Button };

@@ -28,20 +28,20 @@ function App() {
           <ConnectedRouter history={history}>
             <Navigation />
             <Switch>
-                <Route path={"/"} exact component={Wlecome} />
-                <Route path={"/login"} exact component={Login} />
-                <Route path={"/join"} exact component={Join} />
-                <Route path={"/main"} exact component={Main} />
-                <Route path={"/TbSelect"} exact component={TbSelect} />
-                <Route path={"/TbWrite"} exact component={TbWrite} />
-                <Route path={"/TbList"} exact component={TbList} />
-                <Route path={"/TbOneDetail"} exact component={TbOneDetail} />
-                <Route path={"/TbTwoDetail"} exact component={TbTwoDetail} />
-                <Route path={"/TbNotice"} exact component={TbNotice} />
-                <Route path={"/TbChatList"} exact component={TbChatList} />
-                <Route path={"/TbChatDetail"} exact component={TbChatDetail} />
-                <Route path={"/MyPage"} exact component={MyPage} />
-                <Route path={"/MyEdit"} exact component={MyEdit} />
+              <Route path={"/"} exact component={Wlecome} />
+              <Route path={"/login"} exact component={Login} />
+              <Route path={"/join"} exact component={Join} />
+              <Route path={"/main"} exact component={Main} />
+              <Route path={"/TbSelect"} exact component={TbSelect} />
+              <Route path={"/TbWrite"} exact component={TbWrite} />
+              <Route path={"/TbList"} exact component={TbList} />
+              <Route path={"/TbOneDetail"} exact component={TbOneDetail} />
+              <Route path={"/TbTwoDetail"} exact component={TbTwoDetail} />
+              <Route path={"/TbNotice"} exact component={TbNotice} />
+              <Route path={"/TbChatList"} exact component={TbChatList} />
+              <Route path={"/TbChatDetail"} exact component={TbChatDetail} />
+              <Route path={"/MyPage"} exact component={MyPage} />
+              <Route path={"/MyEdit"} exact component={MyEdit} />
             </Switch>
           </ConnectedRouter>
         </div>
@@ -61,8 +61,8 @@ const Container = styled.div`
 
   .wrap {
     width: 100%;
-    height: 100%;
     max-width: 420px;
+    height: 100%;
     min-height: 100vh;
     margin: 0 auto;
     padding: 0 auto;

@@ -17,7 +17,6 @@ const logOut = createAction(LOG_OUT, (user) => ({ user }))
 // **** Initial data **** //
 const initialState = {
   user: null,
-  
 }
 
 // **** Middleware **** //
@@ -41,10 +40,10 @@ const joinDB = (email, password, nickname, mbti) => {
       console.log(err.response)
       window.alert('회원가입에 문제가 생겼습니다')
     })
-    
    
   };
 };
+
 
 const logInDB = (email, password) => {
   return async function (dispatch, getState, { history }) {
