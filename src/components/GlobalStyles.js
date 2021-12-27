@@ -31,6 +31,7 @@ const GlobalStyles = createGlobalStyle`
       border-bottom: 1.5px solid #FF5454;
       transition: 1s;
     }
+    
 `;
 
 export default GlobalStyles;

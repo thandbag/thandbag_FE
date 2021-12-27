@@ -9,11 +9,32 @@ const Join = (props) => {
 
     const dispatch = useDispatch();
 
+    const option_list = [
+        'MBTI 선택',
+        'ENFJ',
+        'ENFP',
+        'ENTJ',
+        'ENTP',
+        'ESFJ',
+        'ESFP',
+        'ESTJ',
+        'ESTP',
+        'INFJ',
+        'INFP',
+        'INTJ',
+        'INTP',
+        'ISFJ',
+        'ISFP',
+        'ISTJ',
+        'ISTP'
+      ]
+
     // 이메일, 비밀번호, 닉네임 상태관리//
     const [email, setEmail] = React.useState('');
     const [nickname, setNickname] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passcheck, setPasscheck] = React.useState('');
+    const [mbti, setMbti] = React.useState(0)
 
     // 유효성검사 체크//
     const [isEmail, setIsEmail] = React.useState(false);
@@ -68,12 +89,17 @@ const Join = (props) => {
         }
     }
 
+    const handleClick = (e) => {
+        setMbti(e.target.value)
+      }
+      
+
     const clickJoin = () => {
-        if (email == '' || password === '' || passcheck === '' || nickname == '') {
+        if (email == '' || password === '' || passcheck === '' || nickname == '' || mbti === 0) {
             window.alert('Please fill in all blanks')
             return
         } else {
-            dispatch(userActions.joinDB(email, password, nickname))
+            dispatch(userActions.joinDB(email, password, nickname, option_list[mbti]))
         }
     }
 
@@ -86,21 +112,21 @@ const Join = (props) => {
                     <input  className={`${email.length > 0 && !isEmail ? 'has-error' : 'success'}`} value={email} onChange={onChangeEmail} placeholder="ID"></input>
                     {email.length > 0 && !isEmail && <p className="validation">올바른 이메일 형식을 입력해주세요.</p>}
                 </Grid>
-            <Grid margin="20px 0px 0px 0px">
+                <Grid margin="20px 0px 0px 0px">
+                    <input className={`${nickname.length > 0 && !isNickname ? 'has-error' : 'success'}`} value={nickname} onChange={onChangeNick} placeholder="Nickname"></input>
+                    {nickname.length > 0 && !isNickname && <p className="validation">올바른 닉네임 형식을 입력해주세요.</p>}
+                </Grid>
+                <Grid margin="20px 0px 0px 0px">
                     <input type="password" className={`${password.length > 0 && !isPassword ? 'has-error' : 'success'}`} value={password} onChange={onChangePassword} placeholder="Password"></input>
                     {password.length > 0 && !isPassword && <p className="validation">8자 이상의 영문과 숫자 조합을 입력해주세요.</p>}
-            </Grid>
+                </Grid>
                 <Grid margin="20px 0px 0px 0px">
                     <input type="password" className={`${passcheck.length > 0 && !isPasscheck ? 'has-error' : 'success'}`} value={passcheck} onChange={onChangePasscheck} placeholder="PasswordCheck"></input>
                     {passcheck.length > 0 && !isPasscheck && <p className="validation">비밀번호가 다릅니다.</p>}
 
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
-                    <input className={`${nickname.length > 0 && !isNickname ? 'has-error' : 'success'}`} value={nickname} onChange={onChangeNick} placeholder="Nickname"></input>
-                    {nickname.length > 0 && !isNickname && <p className="validation">올바른 닉네임 형식을 입력해주세요.</p>}
-                </Grid>
-                <Grid margin="20px 0px 0px 0px">
-                <select className="dropdown">
+                <select onClick={handleClick} className="dropdown">
                     <option value="0">MBTI 선택</option>
                     <option value="1">ENFJ</option>
                     <option value="2">ENFP</option>

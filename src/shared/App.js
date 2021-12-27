@@ -22,7 +22,7 @@ import { history } from "../redux/configureStore";
 
 function App() {
   return (
-    <>
+    <div className='App'>
       <Container>
         <div className="wrap">
           <ConnectedRouter history={history}>
@@ -46,7 +46,7 @@ function App() {
           </ConnectedRouter>
         </div>
       </Container>
-    </>
+    </div>
   );
 }
 
