@@ -17,7 +17,7 @@ const ThandStateImg = (props) => {
           is_align="flex-end"
           direction="column"
         >
-          <Text color="#fff" size="1.2rem" margin="0 0 10px 0">
+          <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
             🔥 현재{" "}
             <span
               style={{

@@ -106,7 +106,7 @@ const Join = (props) => {
     return (
         <>
         <Grid margin="70px 0 0 0" flex="flex; align-items:center; flex-direction: column">
-            <Image shape="circle" size="300"></Image>
+            <Image shape="circle" Isize="300"></Image>
             <FormGroup>
                 <Grid margin="30px 0px 0px 0px">
                     <input  className={`${email.length > 0 && !isEmail ? 'has-error' : 'success'}`} value={email} onChange={onChangeEmail} placeholder="ID"></input>

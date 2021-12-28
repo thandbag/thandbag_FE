@@ -18,8 +18,8 @@ const Comments = (props) => {
             <Text margin="0 0 0 5px">999</Text>
           </Grid>
           <Grid width="40%" padding="16px 0" flex="flex" justify="flex-end">
-            <Text margin="0 10px 0 0">같은 MBTI만 보기</Text>
-            <CheckBox width="20" height="20" />
+            <Button margin="0 10px 0 0" text="같은 MBTI만 보기" bg="transparent" width="auto" />
+              <CheckBox width="20" height="20" />
           </Grid>
         </Grid>
       </React.Fragment>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const TbText = (props) => {
-  const { bold, color, size, align, margin, children, LHeight, family } = props;
+  const { bold, color, size, align, margin, children, LHeight, family, padding } = props;
 
   const styles = {
     margin: margin,
@@ -12,6 +12,7 @@ const TbText = (props) => {
     align: align,
     LHeight: LHeight,
     family: family,
+    padding: padding,
   };
 
   return (
@@ -28,6 +29,7 @@ TbText.defaultProps = {
   size: "18px",
   align: false,
   margin: false,
+  padding: false,
   family: "",
 };
 
@@ -39,6 +41,7 @@ const P = styled.p`
     text-align:${(props) => (props.align ? `${props.align}` : "")};
     line-height: ${(props) => (props.LHeight ? `${props.LHeight}` : "")};
     margin: ${(props) => (props.margin ? `${props.margin}` : "")};
+    padding: ${(props) => (props.padding ? `${props.padding}` : "")};
     word-break:break-all;
 `;
 
