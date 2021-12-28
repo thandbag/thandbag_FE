@@ -8,8 +8,10 @@ const TbInput = (props) => {
     placeholder,
     margin,
     _onChange,
+    _className,
     padding,
     width,
+    border,
     height,
     value,
   } = props;
@@ -20,6 +22,7 @@ const TbInput = (props) => {
     boxSizing: boxSizing,
     height: height,
     width: width,
+    border: border,
   };
 
   return (
@@ -28,14 +31,17 @@ const TbInput = (props) => {
         {...styles}
         type={type}
         placeholder={placeholder}
+        value={value}
         onChange={_onChange}
+        className={_className}
       />
     </>
   );
 };
 
 TbInput.defaultProps = {
-  border: false,
+  _className: '',
+  border: "none",
   placeholder: "",
   type: "text",
   padding: "6px 12px",
@@ -48,11 +54,21 @@ const InputBox = styled.input`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
-  padding: ${(props) => props.padding};
-  box-sizing: ${(props) => props.boxSizing};
+  box-sizing: border-box;
   font-size: 17px;
-  border: none;
-  border-bottom: 1px solid #ccc;
+  font-family: 'KOTRAHOPE';
+  background: #FBF7F7;
+  color: #FF5454;
+  outline: none;
+  border-radius: 10px;
+  border: ${(props) => (props.border ? `${props.border}` : 'none')};
+  /* border:none; */
+  padding: 10px 5px 10px 5px;
+  ::placeholder{
+    color: #F7C8C8;
+  }
+  
+  
   
 `;
 

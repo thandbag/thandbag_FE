@@ -33,6 +33,7 @@ const P = styled.p`
     margin:${(props)=> props.margin ? `${props.margin}`:""};
     word-break:break-all;
     letter-spacing:-0.5px;
+    font-family: 'KOTRAHOPE';
 `;
 
 export default TbText;
