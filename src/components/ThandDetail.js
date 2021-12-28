@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Image } from "../elements/TbIndex";
+import { Grid, Text } from "../elements/TbIndex";
 
 const ThandDetail = (props) => {
   return (
@@ -8,66 +8,43 @@ const ThandDetail = (props) => {
     <React.Fragment>
       <DetailBox>
         <Grid
-            width="100%"
-            height="130px"
-            bg="red"
-            flex="flex"
-            justify="flex-start"
-          >
-            <Image thandbag_state />
-          </Grid>
-        <Grid
           width="100%"
           height="50px"
+          bg="#333"
           flex="flex"
           justify="flex-start"
-          padding="0 0 0 10px"
+          padding="12px 20px 16px 20px"
         >
-          <Text bold="600">제목</Text>
-        </Grid>
-        <Grid
-          width="100%"
-          height="45px"
-          flex="flex"
-          justify="flex-start"
-          padding=" 0 0 0 5px"
-          margin="5px 0"
-        >
-          <Image />
-          <Text bold="600" margin="0 15px 0">
-            닉네임
+          <Text bold="400" color="#fff" size="28px">
+            제목입니다
           </Text>
-          <Text bold="600" margin="0 15px">
-            MBTI
-          </Text>
-          <Text margin="0 0 0 10px">10분전..</Text>
         </Grid>
         <TextBox>
-          <Text bold="600">내용</Text>
+          <Text bold="100" size="20px" LHeight="28px">
+            내용 텍스트 부분입니다.
+            <br />
+            행간: 28
+          </Text>
         </TextBox>
       </DetailBox>
-      <Grid width="90%" flex="flex" justify="flex-end" margin="20px 0 0 0">
-        <Text bold="600" size="1rem">😡 현재 467대 맞음!</Text>
-      </Grid>
     </React.Fragment>
   );
 };
 
 const TextBox = styled.div`
   width: 100%;
-  height: 300px;
-  max-height: 300px;
+  height: 280px;
+  max-height: 280px;
   overflow-y: scroll;
-  padding: 10px;
+  background-color: #fff;
+  padding: 20px;
 `;
 
 const DetailBox = styled.div`
-  width: 90%;
+  width: 100%;
   height: auto;
-  border-radius: 20px;
   overflow: hidden;
   margin: 0 auto;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
 `;
 
 export default ThandDetail;

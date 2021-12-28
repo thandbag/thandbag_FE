@@ -6,7 +6,6 @@ import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import kakao from "../static/icons/kakao.svg";
 
-
 const Login = (props) => {
   const dispatch = useDispatch();
 
@@ -57,7 +56,7 @@ const Login = (props) => {
   return (
     <>
       <Grid margin="70px 0 0 0" flex="flex; align-items:center; flex-direction: column">
-        <Image shape="circle" size="250"></Image>
+        <Image shape="circle" Isize="250"></Image>
 
         <FormGroup>
             <Grid margin="30px 0px 20px 0px">
@@ -81,7 +80,6 @@ const Login = (props) => {
                     }}>
                     회원가입
                 </JoinLink>
-
         </Grid>
       </Grid>
     </>
@@ -89,18 +87,19 @@ const Login = (props) => {
 };
 
 const FormGroup = styled.div`
-
   .validation {
-    margin-top:5px;
+    margin-top: 5px;
     font-size: 12px;
     font-family: 'NotoSansCJK';
     color: #e25c3d;
   }
 `;
 
+
 const JoinLink = styled.p`
   color: #767676;
-  transition: color 0.1s ease-in-out, fill 0.1s ease-in-out, opacity 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out, fill 0.1s ease-in-out,
+    opacity 0.1s ease-in-out;
   text-decoration: underline;
   font-family: 'KOTRAHOPE';
   margin-left: 5px;

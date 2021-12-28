@@ -19,10 +19,12 @@ import MyEdit from "../pages/MyEdit";
 import Navigation from "../components/Navigation";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
+import GlobalStyles from "../components/GlobalStyles";
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
+      <GlobalStyles />
       <Container>
         <div className="wrap">
           <ConnectedRouter history={history}>
