@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { Button } from "../elements/TbIndex";
 
 // images
 import test_a from "../static/images/test_a.gif";
@@ -74,12 +75,17 @@ function WelcomeTwo() {
       </SlideBox>
       <ButtonBox>
         <Button
-          onClick={() => {
+          width="150px"
+          height="50px"
+          radius="12px"
+          bg="#FF5454"
+          color="#fff"
+          size="1.2rem"
+          text="시작하기"
+          _onClick={() => {
             history.push("/login");
           }}
-        >
-          시작하기
-        </Button>
+        />
       </ButtonBox>
     </React.Fragment>
   );
@@ -105,20 +111,6 @@ const ButtonBox = styled.div`
   z-index: 9999;
 `;
 
-const Button = styled.button`
-  width: 150px;
-  height: 50px;
-  color: #fff;
-  background-color: #FF5454;
-  border: none;
-  font-size: 15px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
-`;
 
 const ImgBox1 = styled.div`
   width: 100%;
@@ -151,7 +143,7 @@ const TextBox = styled.div`
   justify-content: flex-end;
   line-height: 30px;
   padding: 0 20px 40px 0;
-  font-weight: bold;
+  font-weight: 400;
 `;
 
 export default WelcomeTwo;

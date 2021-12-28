@@ -57,7 +57,7 @@ const Login = (props) => {
   return (
     <>
       <Grid margin="70px 0 0 0" flex="flex; align-items:center; flex-direction: column">
-        <Image shape="circle" size="300"></Image>
+        <Image shape="circle" Isize="300"></Image>
 
         <FormGroup>
             <Grid margin="30px 0px 20px 0px">
@@ -96,7 +96,6 @@ const FormGroup = styled.div`
     font-family: 'KOTRAHOPE';
     outline: none;
     padding: 10px 5px 10px 5px;
-    
   }
   .has-error {
     border: 1px solid #e25c3d;

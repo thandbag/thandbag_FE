@@ -57,7 +57,7 @@ TbGrid.defaultProps = {
   children: null,
   flex: false,
   width: "100%",
-  height: "false",
+  height: "",
   padding: false,
   margin: false,
   align: false,
