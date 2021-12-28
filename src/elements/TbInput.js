@@ -11,6 +11,11 @@ const TbInput = (props) => {
     padding,
     width,
     height,
+    radius,
+    border,
+    bg,
+    size,
+    color,
     value,
   } = props;
 
@@ -20,6 +25,11 @@ const TbInput = (props) => {
     boxSizing: boxSizing,
     height: height,
     width: width,
+    radius: radius,
+    border: border,
+    bg: bg,
+    size: size,
+    color: color,
   };
 
   return (
@@ -37,23 +47,31 @@ const TbInput = (props) => {
 TbInput.defaultProps = {
   border: false,
   placeholder: "",
+  bg: "",
   type: "text",
   padding: "6px 12px",
   margin: "0px",
   value: "",
+  color: "",
   _onChange: () => {},
 };
 
 const InputBox = styled.input`
+  font-family: "KOTRAHOPE";
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   box-sizing: ${(props) => props.boxSizing};
-  font-size: 17px;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  
+  font-size: ${(props) => props.size};
+  border: ${(props) => props.border};
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
+  ${(props) => (props.color ? `color: ${props.color};` : "")};
+
+  &::placeholder {
+    color: #F7C8C8;
+  }
 `;
 
 export default TbInput;

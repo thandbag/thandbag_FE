@@ -1,9 +1,10 @@
 import React from "react";
+import TbOneEnd from "../components/TbOneEnd";
 
 const TbChatDetail = (props) => {
     return (
         <>
-        채팅 디테일
+          <TbOneEnd />
         </>
     )
 }

@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { useSpring, animated } from "@react-spring/web";
-import ThandBagImg from "../static/images/thandbag.png";
 
 function WelcomeOne() {
   const logoImg = useSpring({
-    fontSize: "110px",
+    fontSize: "100px",
     scale: 1,
     from: { scale: 0 },
-    transition: "0.12s",
+    transition: "0.2s",
   });
 
   const logoText = useSpring({
@@ -49,13 +48,14 @@ const TopBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: -apple-system;
 `;
 
 const BottomBox = styled.div`
   width: 100%;
   height: auto;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 8px;
 `;
 
 export default WelcomeOne;
