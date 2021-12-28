@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Input, Image,Button } from "../elements/TbIndex";
+import { Grid, Text, Input, Image,Button, Select } from "../elements/TbIndex";
 import {useDispatch} from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -107,58 +107,42 @@ const Join = (props) => {
         <>
         <Grid margin="70px 0 0 0" flex="flex; align-items:center; flex-direction: column">
             <Image shape="circle" Isize="300"></Image>
+
             <FormGroup>
                 <Grid margin="30px 0px 0px 0px">
-                    <input  className={`${email.length > 0 && !isEmail ? 'has-error' : 'success'}`} value={email} onChange={onChangeEmail} placeholder="ID"></input>
+                    <Input value={email} _onChange={onChangeEmail} height="47px" width="300px" placeholder="아이디"></Input>
                     {email.length > 0 && !isEmail && <p className="validation">올바른 이메일 형식을 입력해주세요.</p>}
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
-                    <input className={`${nickname.length > 0 && !isNickname ? 'has-error' : 'success'}`} value={nickname} onChange={onChangeNick} placeholder="Nickname"></input>
+                    <Input value={nickname} _onChange={onChangeNick} height="47px" width="300px" placeholder="닉네임"></Input>
                     {nickname.length > 0 && !isNickname && <p className="validation">올바른 닉네임 형식을 입력해주세요.</p>}
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
-                    <input type="password" className={`${password.length > 0 && !isPassword ? 'has-error' : 'success'}`} value={password} onChange={onChangePassword} placeholder="Password"></input>
+                    <Input type="password" value={password} _onChange={onChangePassword} height="47px" width="300px" placeholder="비밀번호"></Input>
                     {password.length > 0 && !isPassword && <p className="validation">8자 이상의 영문과 숫자 조합을 입력해주세요.</p>}
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
-                    <input type="password" className={`${passcheck.length > 0 && !isPasscheck ? 'has-error' : 'success'}`} value={passcheck} onChange={onChangePasscheck} placeholder="PasswordCheck"></input>
+                    <Input type="password" value={passcheck} _onChange={onChangePasscheck} height="47px" width="300px" placeholder="비밀번호 확인"></Input>
                     {passcheck.length > 0 && !isPasscheck && <p className="validation">비밀번호가 다릅니다.</p>}
 
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
-                <select onClick={handleClick} className="dropdown">
-                    <option value="0">MBTI 선택</option>
-                    <option value="1">ENFJ</option>
-                    <option value="2">ENFP</option>
-                    <option value="3">ENTJ</option>
-                    <option value="4">ENTP</option>
-                    <option value="5">ESFJ</option>
-                    <option value="6">ESFP</option>
-                    <option value="7">ESTJ</option>
-                    <option value="8">ESTP</option>
-                    <option value="9">INFJ</option>
-                    <option value="10">INFP</option>
-                    <option value="11">INTJ</option>
-                    <option value="12">INTP</option>
-                    <option value="13">ISFJ</option>
-                    <option value="14">ISFP</option>
-                    <option value="15">ISTJ</option>
-                    <option value="16">ISTP</option>
-                </select>
+                
+                    <Select _onChange={handleClick} height="47px" width="300px"></Select>
                 </Grid>
                 
             </FormGroup>
             <Grid  margin="50px 0 0 0" align="center">
-                <Button _onClick={clickJoin} width="300px" text="회원가입"></Button>
+                <Button login _onClick={clickJoin} width="220px" height="60px" text="회원가입 완료"></Button>
             </Grid>
-            <Grid align="center" margin="10px 0 0 0">
-            <Question>이미 계정이 있으신가요?&nbsp;</Question>
+            <Grid flex="flex;" align="center" margin="10px 0 0 0">
+            <Text color="#C4C4C4" >이미 계정이 있으신가요?</Text>
                 <JoinLink onClick={() => {
                       history.push('/login')
                     }}>
                     로그인
                 </JoinLink>
-        </Grid>
+            </Grid>
         
         </Grid>
         </>
@@ -166,32 +150,7 @@ const Join = (props) => {
 }
 
 const FormGroup = styled.div`
-    
-    .success {
-        box-sizing: border-box;
-        width: 300px;
-        font-size: 17px;
-        outline: none;
-        padding: 10px 5px 10px 5px;
-    }
-    .has-error {
-        border: 1px solid #e25c3d;
-        outline: none;
-        box-sizing: border-box;
-        width: 300px;
-        font-size: 17px;
-        outline: none;
-        padding: 10px 5px 10px 5px;
-        &:focus {
-            border: 1px solid #e25c3d;
-            outline: none;
-            box-sizing: border-box;
-            width: 300px;
-            font-size: 17px;
-            outline: none;
-            padding: 10px 5px 10px 5px;
-        }
-    }
+
     .dropdown {
         width: 300px;
         height: 44px;
@@ -200,18 +159,17 @@ const FormGroup = styled.div`
         margin-top:5px;
         font-size: 12px;
         color: #e25c3d;
+        font-family: 'NotoSansCJK';
     }
 `;
 
-const Question = styled.p`
-  display: inline-block;
-  margin: 0;
-`;
-
-const JoinLink = styled.a`
+const JoinLink = styled.p`
   color: #767676;
   transition: color 0.1s ease-in-out, fill 0.1s ease-in-out, opacity 0.1s ease-in-out;
   text-decoration: underline;
+  font-family: 'KOTRAHOPE';
+  margin-left: 5px;
+  cursor: pointer;
 
   &:hover {
     color: #111111;

@@ -30,7 +30,7 @@ const joinDB = (email, password, nickname, mbti) => {
       mbti: mbti
 
     }
-  
+    console.log(user)
     await api.post('/api/user/signup',user).then(function(response){
       console.log(response)
       history.push('/login')
@@ -59,7 +59,7 @@ const logInDB = (email, password) => {
       sessionStorage.setItem('token', response.headers.authorization)
       dispatch(logIn({user_email:email, user_id: response.data.userId,
          nickname:response.data.nickname}))
-      history.push('/')
+      history.push('/main')
 
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ export default handleActions(
   {
     [LOG_IN]: (state, action) =>
       produce(state, (draft) => {
-        
+        draft.user = action.payload.user
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {

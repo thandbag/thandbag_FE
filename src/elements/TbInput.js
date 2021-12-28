@@ -8,8 +8,10 @@ const TbInput = (props) => {
     placeholder,
     margin,
     _onChange,
+    _className,
     padding,
     width,
+    border,
     height,
     radius,
     border,
@@ -30,6 +32,7 @@ const TbInput = (props) => {
     bg: bg,
     size: size,
     color: color,
+
   };
 
   return (
@@ -38,14 +41,17 @@ const TbInput = (props) => {
         {...styles}
         type={type}
         placeholder={placeholder}
+        value={value}
         onChange={_onChange}
+        className={_className}
       />
     </>
   );
 };
 
 TbInput.defaultProps = {
-  border: false,
+  _className: '',
+  border: "none",
   placeholder: "",
   bg: "",
   type: "text",
@@ -68,10 +74,14 @@ const InputBox = styled.input`
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.color ? `color: ${props.color};` : "")};
+  font-family: 'KOTRAHOPE';
+  outline: none;
+  border-radius: 10px;
 
   &::placeholder {
     color: #F7C8C8;
   }
+
 `;
 
 export default TbInput;

@@ -2,10 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const TbButton = (props) => {
+
   const {
     position,
+    login,
+    social,
     width,
     height,
+    children,
     text,
     _onClick,
     margin,
@@ -14,6 +18,7 @@ const TbButton = (props) => {
     color,
     radius,
     display,
+    padding
   } = props;
 
   const styles = {
@@ -21,11 +26,28 @@ const TbButton = (props) => {
     width: width,
     height: height,
     margin: margin,
+    padding: padding,
     bg: bg,
     color: color,
     size: size,
     radius: radius,
     display: display,
+  };
+
+  if(social){
+    return (
+      <BtnSocial {...styles} onClick={_onClick}>
+        {children}
+      </BtnSocial>
+    );
+  };
+
+  if(login){
+    return (
+      <BtnLogin {...styles} onClick={_onClick}>
+        {text}
+      </BtnLogin>
+    );
   };
 
   return (
@@ -39,8 +61,8 @@ TbButton.defaultProps = {
   position: false,
   width: "100%",
   height: "false",
-  text: "텍스트",
   margin: "",
+  padding: "",
   bg: false,
   color: "#555",
   size: "1rem",
@@ -64,5 +86,40 @@ const BtnBasic = styled.button`
   ${(props) => (props.size ? `font-size: ${props.size};` : "")};
   ${(props) => (props.display ? `display: ${props.display};` : "")};
 `;
+
+const BtnLogin = styled.button`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  font-size: 22px;
+  font-family: 'KOTRAHOPE';
+  background: #333333;
+  color: #FFFFFF;
+  outline: none;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  &:hover{
+    color: #FFFFFF;
+    background: #FF5454;
+  }
+`;
+
+const BtnSocial = styled.button`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  font-size: 22px;
+  font-family: 'KOTRAHOPE';
+  background: #F6E24C;
+  color: #381E1F;
+  outline: none;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+`;
+
 
 export default TbButton;
