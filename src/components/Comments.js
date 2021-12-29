@@ -38,7 +38,7 @@ const Comments = (props) => {
           justify="flex-start"
           direction="column"
           bg="#fff"
-          margin="0 0 20px 0"
+          borderB="1px solid #efefef"
         >
           <Grid width="100%" height="auto" padding="5px 0">
             <UserProfile size="1rem" Isize="38" />
@@ -81,9 +81,9 @@ const Comments = (props) => {
             radius="12px"
             border="1px solid #fbf7f7"
             width="100%"
-            height="60%"
+            height="43px"
             bg="#fbf7f7"
-            padding="10.5px 10px"
+            padding="10px 10px"
           />
         </Grid>
         <Grid width="20%" height="100%" flex="flex">
@@ -105,13 +105,14 @@ const Comments = (props) => {
 const CommentsInputBox = styled.div`
   width: 100%;
   max-width: 420px;
-  height: auto;
+  height: 93px;
+  border-top: 1px solid #efefef;
   background-color: #fff;
-  padding: 20px 20px;
+  padding: 20px 20px 30px 20px;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 70px;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;

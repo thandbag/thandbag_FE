@@ -18,13 +18,13 @@ const ThandStateImg = (props) => {
           direction="column"
         >
           <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
-            🔥 현재{" "}
+            현재{" "}
             <span
               style={{
                 color: "#fff",
                 padding: "0 3px",
                 background:
-                  "linear-gradient(to top, #333 50%, transparent 50%)",
+                  "linear-gradient(to top, rgba(0,0,0,0.45) 50%, transparent 50%)",
               }}
             >
               999대

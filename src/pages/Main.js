@@ -1,5 +1,5 @@
 import React from "react";
-
+import Navigation  from "../components/Navigation";
 import TbText from "../elements/TbText";
 
 import styled from "styled-components";
@@ -22,7 +22,9 @@ const Main = (props) => {
         </Button>
       </MainBodyBottom>
       <Footer />
+      <Navigation />
     </Container>
+    
   );
 };
 

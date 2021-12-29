@@ -14,7 +14,6 @@ const TbInput = (props) => {
     border,
     height,
     radius,
-    border,
     bg,
     size,
     color,

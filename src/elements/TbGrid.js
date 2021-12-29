@@ -24,6 +24,7 @@ const TbGrid = (props) => {
     radius,
     borderT,
     borderB,
+    zIndex,
   } = props;
 
   const styles = {
@@ -47,6 +48,7 @@ const TbGrid = (props) => {
     radius: radius,
     borderT: borderT,
     borderB: borderB,
+    zIndex: zIndex,
   };
 
   return <GridBox {...styles}>{children}</GridBox>;
@@ -98,6 +100,7 @@ const GridBox = styled.div`
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
   ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
 `;
 
 export default TbGrid;
