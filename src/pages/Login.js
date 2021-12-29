@@ -99,7 +99,7 @@ const FormGroup = styled.div`
 const JoinLink = styled.p`
   color: #767676;
   transition: color 0.1s ease-in-out, fill 0.1s ease-in-out,
-    opacity 0.1s ease-in-out;
+  opacity 0.1s ease-in-out;
   text-decoration: underline;
   font-family: 'KOTRAHOPE';
   margin-left: 5px;
