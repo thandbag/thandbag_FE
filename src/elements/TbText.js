@@ -12,6 +12,7 @@ const TbText = (props) => {
     LHeight,
     family,
     padding,
+    _onClick,
     deco,
     decoP,
     cursor,
@@ -33,7 +34,9 @@ const TbText = (props) => {
 
   return (
     <>
-      <P {...styles}>{children}</P>
+      <P {...styles} onClick={_onClick}>
+        {children}
+      </P>
     </>
   );
 };
@@ -47,6 +50,8 @@ TbText.defaultProps = {
   margin: false,
   padding: false,
   family: "",
+  cursor: false,
+  _onClick: () => {},
 };
 
 const P = styled.p`
@@ -58,6 +63,9 @@ const P = styled.p`
   line-height: ${(props) => (props.LHeight ? `${props.LHeight}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
+  word-break: break-all;
+  letter-spacing: -0.5px;
+  font-family: "KOTRAHOPE";
   word-break: break-all;
   letter-spacing: -0.5px;
   font-family: "KOTRAHOPE";

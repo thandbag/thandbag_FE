@@ -1,35 +1,90 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "styled-components";
 
 import TbText from "../elements/TbText";
-import TbCard from "../components/TbCard";
+import TbSelect from "../elements/TbSelect";
+
+import TbCardAll from "../components/TbCardAll";
+import Heads from "../components/Heads";
 
 const TbList = (props) => {
+  let [modal, modalChange] = useState(false);
+
   return (
     <Container>
       <Header>
-        <TbText bold>전체 생드백 리스트</TbText>
+        <Heads
+          is_anoter
+          text="생드백 만들기"
+          stroke="white"
+          bg="#333333"
+          color="white"
+        ></Heads>
       </Header>
       <Category>
-        <select className="CategoryDropdown">
-          <option value="0">카테고리 선택</option>
-          <option value="1">사회생활</option>
-          <option value="2">공부</option>
-          <option value="3">진로고민</option>
-          <option value="4">대인관계</option>
-          <option value="5">가정문제</option>
-          <option value="6">연애</option>
-          <option value="7">기타</option>
-        </select>
+        <Categorys>
+          <TbText size="15px" color="white" cursor="pointer">
+            사화생활
+          </TbText>
+        </Categorys>
+        <Categorys>
+          <TbText size="15px" color="white" cursor="pointer">
+            공부
+          </TbText>
+        </Categorys>
+        <Categorys>
+          <TbText size="15px" color="white" cursor="pointer">
+            진로고민
+          </TbText>
+        </Categorys>
+        <Categorys>
+          <TbText size="15px" color="white" cursor="pointer">
+            대인관계
+          </TbText>
+        </Categorys>
+        <Categorys>
+          <TbText size="15px" color="white" cursor="pointer">
+            가정문제
+          </TbText>
+        </Categorys>
+        <Categorys>
+          <TbText size="15px" color="white" cursor="pointer">
+            연애
+          </TbText>
+        </Categorys>
+        <Categorys>
+          <TbText size="15px" color="white" cursor="pointer">
+            기타
+          </TbText>
+        </Categorys>
       </Category>
       <FilterArea>
-        <TbText bold>필요한 영역인지 잘 모르겠음</TbText>
+        <FilterTextArea>
+          <TbText bold margin="0px 10px 0px 0px" cursor="pointer">
+            전체
+          </TbText>
+          <TbText
+            bold
+            cursor="pointer"
+            _onClick={() => {
+              modalChange(!modal);
+            }}
+          >
+            필터
+          </TbText>
+        </FilterTextArea>
       </FilterArea>
+      {modal === true ? (
+        <TbSelect tblist margin="0px 0px 0px 300px"></TbSelect>
+      ) : null}
       <CardArea>
-        <TbCard />
-        <TbCard />
-        <TbCard />
+        <TbCardAll></TbCardAll>
+        <TbCardAll></TbCardAll>
+        <TbCardAll></TbCardAll>
+        <TbCardAll></TbCardAll>
+        <TbCardAll></TbCardAll>
+        <TbCardAll></TbCardAll>
       </CardArea>
       <Footer />
     </Container>
@@ -39,7 +94,7 @@ const TbList = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: skyblue;
+  background-color: #fbf7f7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +103,7 @@ const Container = styled.div`
 
 const Header = styled.div`
   width: 100%;
-  height: 5vh;
+  height: 70px;
   background-color: #fbf7f7;
   display: flex;
   justify-content: center;
@@ -57,17 +112,38 @@ const Header = styled.div`
 
 const Category = styled.div`
   width: 100%;
-  height: 5vh;
-  background-color: #fbf7f7;
+  height: 50px;
+  background-color: #333333;
   display: flex;
-  justify-content: center;
+  flex-flow: row wrap;
+  overflow-x: scroll;
+  justify-content: flex-start;
   align-items: center;
+`;
+
+const Categorys = styled.div`
+  width: 90px;
+  height: 25px;
+  background-color: #ff5454;
+  text-align: center;
+  border-radius: 25px;
+  margin: 0px 10px 0px 0px;
+  padding: 5px 5px 5px 5px;
 `;
 
 const FilterArea = styled.div`
   width: 100%;
   height: 5vh;
-  background-color: #fbf7f7;
+  background-color: #fff;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+`;
+
+const FilterTextArea = styled.div`
+  width: 40%;
+  height: 100%;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,10 +153,13 @@ const CardArea = styled.div`
   width: 100%;
   height: 75vh;
   background-color: #fbf7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  overflow: scroll;
+`;
+
+const SelectArea = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: blue;
 `;
 
 const Footer = styled.div`

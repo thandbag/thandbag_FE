@@ -19,7 +19,12 @@ const Heads = (props) => {
     return (
       <React.Fragment>
         <HeadBox {...styles}>
-          <Grid width="10%" height="70px" flex="flex" padding="20px 0 20px 20px">
+          <Grid
+            width="10%"
+            height="70px"
+            flex="flex"
+            padding="20px 0 20px 20px"
+          >
             <BackIcon
               onClick={() => {
                 history.push("/main");
@@ -28,6 +33,7 @@ const Heads = (props) => {
               <Arrow {...styles} width="20" height="20" />
             </BackIcon>
           </Grid>
+
           <Grid width="90%" height="70px" flex="flex" padding="20px 0">
             <Text size="1.4rem" {...styles}>
               {props.text}
