@@ -1,10 +1,10 @@
 import React from "react";
 
 const TbNotice = (props) => {
-    return (
-        <>
-        </>
-    )
-}
+  return (
+    <>
+    </>
+  );
+};
 
 export default TbNotice;

@@ -78,6 +78,7 @@ const BtnBasic = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
   border: none;
   cursor: pointer;
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
@@ -85,6 +86,16 @@ const BtnBasic = styled.button`
   ${(props) => (props.color ? `color: ${props.color};` : "")};
   ${(props) => (props.size ? `font-size: ${props.size};` : "")};
   ${(props) => (props.display ? `display: ${props.display};` : "")};
+  &:hover{
+    color: #FFFFFF;
+    background: #FF5454;
+    transition: 0.35s;
+  }
+  &:not(hover) {
+    color: #333;
+    background: #fff;
+    transition: 0.35s;
+  }
 `;
 
 const BtnLogin = styled.button`
@@ -103,6 +114,12 @@ const BtnLogin = styled.button`
   &:hover{
     color: #FFFFFF;
     background: #FF5454;
+    transition: 0.55s;
+  }
+  &:not(hover) {
+    color: #fff;
+    background: #333;
+    transition: 0.555s;
   }
 `;
 

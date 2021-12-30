@@ -62,7 +62,7 @@ const UserProfile = (props) => {
 
   return (
     <React.Fragment>
-      <Grid width="auto" {...styles} flex="flex">
+      <Grid width="auto" {...styles} flex="flex" bg="fff">
         {/* 유저 프로필 사진 */}
         <Grid {...styles} width="auto" height="auto" flex="flex">
           <Image {...styles} />

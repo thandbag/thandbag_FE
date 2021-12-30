@@ -29,7 +29,6 @@ const TbText = (props) => {
     padding: padding,
     deco: deco,
     decoP: decoP,
-    cursor: cursor,
   };
 
   return (
@@ -49,14 +48,14 @@ TbText.defaultProps = {
   align: false,
   margin: false,
   padding: false,
-  family: "",
+  family: "KOTRAHOPE",
   cursor: false,
   _onClick: () => {},
 };
 
 const P = styled.p`
   color: ${(props) => props.color};
-  font-family: ${(props) => (props.family ? `${props.family}` : "KOTRAHOPE")};
+  font-family: ${(props) => (props.family ? `${props.family}` : "")};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? `${props.bold}` : "")};
   text-align: ${(props) => (props.align ? `${props.align}` : "")};
@@ -65,10 +64,8 @@ const P = styled.p`
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
   word-break: break-all;
   letter-spacing: -0.5px;
-  font-family: "KOTRAHOPE";
   word-break: break-all;
   letter-spacing: -0.5px;
-  font-family: "KOTRAHOPE";
   text-decoration: ${(props) => (props.deco ? `${props.deco}` : "")};
   text-underline-position: ${(props) => (props.decoP ? `${props.decoP}` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};

@@ -34,7 +34,7 @@ const Heads = (props) => {
             </BackIcon>
           </Grid>
 
-          <Grid width="90%" height="70px" flex="flex" padding="20px 0">
+          <Grid width="90%" height="70px" flex="flex">
             <Text size="1.4rem" {...styles}>
               {props.text}
             </Text>
@@ -58,24 +58,18 @@ const Heads = (props) => {
 };
 
 const HeadBox = styled.div`
-  width: 100%;
-  max-width: 375px;
+  width: 375px;
   margin: 0 auto;
   height: auto;
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9;
   ${(props) => (props.color ? `color: ${props.color};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
-
-  @media screen and (min-width: 1024px) {
-    margin-left: 11%;
-  }
 `;
 
 const BackIcon = styled.div`

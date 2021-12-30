@@ -12,14 +12,19 @@ const Comments = (props) => {
   if (is_mbtiFilter) {
     return (
       <React.Fragment>
-        <Grid width="100%" flex="flex" borderB padding="0 20px">
+        <Grid width="100%" flex="flex" borderB bg="#fff" padding="0 20px">
           <Grid width="60%" padding="16px 0" flex="flex" justify="flex-start">
             <Comment width="20" height="20" />
             <Text margin="0 0 0 5px">999</Text>
           </Grid>
           <Grid width="40%" padding="16px 0" flex="flex" justify="flex-end">
-            <Button margin="0 10px 0 0" text="같은 MBTI만 보기" bg="transparent" width="auto" />
-              <CheckBox width="20" height="20" />
+            <Button
+              margin="0 10px 0 0"
+              text="같은 MBTI만 보기"
+              bg="transparent"
+              width="auto"
+            />
+            <CheckBox width="20" height="20" />
           </Grid>
         </Grid>
       </React.Fragment>
@@ -53,12 +58,17 @@ const Comments = (props) => {
               margin="0 5px 0 0"
             >
               <Comment width="28" height="28" />
-              <Text margin="1px 0 0 0" size="0.9rem">
+              <Text
+                margin="1px 0 0 0"
+                color="#F7C8C8"
+                family="NotoSansCJK"
+                size="0.5rem"
+              >
                 999
               </Text>
             </Grid>
             <Grid width="87%" height="auto">
-              <Text size="1.1rem" LHeight="1.3rem" family="NotosansCjk">
+              <Text size="1.1rem" LHeight="1.3rem" family="NotoSansCJK">
                 댓글 영역입니다.
               </Text>
             </Grid>
@@ -109,17 +119,12 @@ const CommentsInputBox = styled.div`
   border-top: 1px solid #efefef;
   background-color: #fff;
   padding: 20px 20px 30px 20px;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  position: absolute;
+  left: 0;
   bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media screen and (min-width: 1024px) {
-    margin-left: 11%;
-  }
 `;
 
 export default Comments;

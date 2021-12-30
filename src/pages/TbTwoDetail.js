@@ -12,7 +12,13 @@ const TbTwoDetail = (props) => {
     <React.Fragment>
       <DetailsBox>
         {/* 헤드 */}
-        <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="디테일 페이지 - 전체공개" />
+        <Heads
+          is_anoter
+          bg="#333"
+          stroke="#fff"
+          color="#fff"
+          text="디테일 페이지 - 전체공개"
+        />
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
           <ThandDetail />
@@ -25,6 +31,7 @@ const TbTwoDetail = (props) => {
           flex="flex"
           padding="16px 20px"
           justify="space-between"
+          bg="#fff"
         >
           <UserProfile size="1.3rem" Isize="50" />
           <Grid width="20%" flex="flex" justify="flex-end" padding="20px 0 0 0">
@@ -56,7 +63,7 @@ const DetailsBox = styled.div`
   height: auto;
   max-height: 100vh;
   overflow-y: scroll;
-  background-color: #fff;
+  background-color: #fbf7f7;
 `;
 
 const CommentsBox = styled.div`

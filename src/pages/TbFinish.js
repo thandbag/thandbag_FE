@@ -32,49 +32,31 @@ const TbFinish = (props) => {
 
 const FinishBox = styled.div`
   width: 100%;
-  max-width: 375px;
-  height: 100%;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 auto;
-  box-sizing: border-box;
+  height: 100vh;
   background-color: #fbf7f7;
-  position: relative;
-  z-index: 0;
-
-  @media screen and (min-width: 1024px) {
-    position: relative;
-    left: 0%;
-    top: 0%;
-    overflow: auto;
-  }
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const ChatBox = styled.div`
   width: 100%;
-  max-width: 375px;
   height: auto;
   max-height: 266.43px;
-  margin: 0 auto;
-  position: fixed;
-  bottom: 93px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   overflow-y: scroll;
-  z-index: 9;
-
-  @media screen and (min-width: 1024px) {
-    margin-left: 11%;
-  }
 `;
 
-const ButtonBox = styled(ChatBox)`
+const ButtonBox = styled.div`
+  width: 100%;
   height: auto;
-  bottom: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export default TbFinish;

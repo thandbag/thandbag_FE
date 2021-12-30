@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import TbText from "../elements/TbText";
 import TbSelect from "../elements/TbSelect";
-
+import SwipeCategory from "../components/SwipeCategory";
 import TbCardAll from "../components/TbCardAll";
 import Heads from "../components/Heads";
 
@@ -22,43 +22,7 @@ const TbList = (props) => {
           color="white"
         ></Heads>
       </Header>
-      <Category>
-        <Categorys>
-          <TbText size="15px" color="white" cursor="pointer">
-            사화생활
-          </TbText>
-        </Categorys>
-        <Categorys>
-          <TbText size="15px" color="white" cursor="pointer">
-            공부
-          </TbText>
-        </Categorys>
-        <Categorys>
-          <TbText size="15px" color="white" cursor="pointer">
-            진로고민
-          </TbText>
-        </Categorys>
-        <Categorys>
-          <TbText size="15px" color="white" cursor="pointer">
-            대인관계
-          </TbText>
-        </Categorys>
-        <Categorys>
-          <TbText size="15px" color="white" cursor="pointer">
-            가정문제
-          </TbText>
-        </Categorys>
-        <Categorys>
-          <TbText size="15px" color="white" cursor="pointer">
-            연애
-          </TbText>
-        </Categorys>
-        <Categorys>
-          <TbText size="15px" color="white" cursor="pointer">
-            기타
-          </TbText>
-        </Categorys>
-      </Category>
+      <SwipeCategory />
       <FilterArea>
         <FilterTextArea>
           <TbText bold margin="0px 10px 0px 0px" cursor="pointer">
@@ -79,12 +43,12 @@ const TbList = (props) => {
         <TbSelect tblist margin="0px 0px 0px 300px"></TbSelect>
       ) : null}
       <CardArea>
-        <TbCardAll></TbCardAll>
-        <TbCardAll></TbCardAll>
-        <TbCardAll></TbCardAll>
-        <TbCardAll></TbCardAll>
-        <TbCardAll></TbCardAll>
-        <TbCardAll></TbCardAll>
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
       </CardArea>
       <Footer />
     </Container>
@@ -108,27 +72,6 @@ const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Category = styled.div`
-  width: 100%;
-  height: 50px;
-  background-color: #333333;
-  display: flex;
-  flex-flow: row wrap;
-  overflow-x: scroll;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const Categorys = styled.div`
-  width: 90px;
-  height: 25px;
-  background-color: #ff5454;
-  text-align: center;
-  border-radius: 25px;
-  margin: 0px 10px 0px 0px;
-  padding: 5px 5px 5px 5px;
 `;
 
 const FilterArea = styled.div`

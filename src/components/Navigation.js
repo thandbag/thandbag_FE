@@ -50,20 +50,15 @@ const NavBox = styled.div`
   max-width: 375px;
   margin: 0 auto;
   height: 70px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #fff;
   z-index: 9;
   border-top: 1px solid #efefef;
-
-  @media screen and (min-width: 1024px) {
-      margin-left: 11%;
-  }
 `;
 
 const Nav1 = styled.div`

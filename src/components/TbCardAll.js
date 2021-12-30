@@ -55,7 +55,7 @@ const CardWrap = styled.div`
   background-color: #eeeeee;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 2px 5px 11px -1px rgba(0, 0, 0, 0.62);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   margin: 20px auto 40px auto;
 `;
 
