@@ -26,7 +26,7 @@ const TbTwoEnd = (props) => {
 
 const EndBox = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   height: 100%;
   min-height: 100vh;
   margin: 0 auto;

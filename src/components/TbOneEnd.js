@@ -31,7 +31,7 @@ const TbOneEnd = (props) => {
 
 const EndBox = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   height: 100%;
   margin: 0 auto;
   padding: 0 auto;

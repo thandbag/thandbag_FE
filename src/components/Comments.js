@@ -104,7 +104,7 @@ const Comments = (props) => {
 
 const CommentsInputBox = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   height: 93px;
   border-top: 1px solid #efefef;
   background-color: #fff;
