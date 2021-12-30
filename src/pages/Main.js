@@ -1,25 +1,40 @@
 import React from "react";
 
 import TbText from "../elements/TbText";
+import Heads from "../components/Heads";
+import TbButton from "../elements/TbButton";
+
+import thandbag from "../static/images/thandbag.png";
 
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 const Main = (props) => {
   return (
     <Container>
       <Header>
-        <Logo>로고가 들어갈 거에용</Logo>
+        <Heads></Heads>
       </Header>
       <MainBodyTop>
-        <MainImage>메인 이미지가 들어갈 거에용</MainImage>
+        <MainImage></MainImage>
       </MainBodyTop>
       <MainBodyBottom>
-        <Button>
-          <TbText bold>버튼을 눌러보아용</TbText>
-        </Button>
-        <Button>
-          <TbText bold>어서 눌러보아욘</TbText>
-        </Button>
+        <TbButton
+          login
+          width="220px"
+          height="60px"
+          text="생드백만들기"
+          margin="0px 0px 40px 0px"
+          _onClick={() => {
+            history.push("/tbWrite");
+          }}
+        ></TbButton>
+        <TbButton
+          login
+          width="220px"
+          height="60px"
+          text="다른 사람의 생드백 보기"
+        ></TbButton>
       </MainBodyBottom>
       <Footer />
     </Container>
@@ -29,7 +44,7 @@ const Main = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: skyblue;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,12 +61,6 @@ const Header = styled.div`
   flex-direction: column;
 `;
 
-const Logo = styled.div`
-  width: 50%;
-  height: 100%;
-  background-color: midnightblue;
-`;
-
 const MainBodyTop = styled.div`
   width: 100%;
   height: 40vh;
@@ -62,9 +71,12 @@ const MainBodyTop = styled.div`
 `;
 
 const MainImage = styled.div`
-  width: 70%;
+  width: 100%;
   height: 100%;
-  background-color: green;
+  background-image: url(${thandbag});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const MainBodyBottom = styled.div`
@@ -75,15 +87,6 @@ const MainBodyBottom = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-const Button = styled.button`
-  width: 70%;
-  height: 20%;
-  background-color: dargreen;
-  border-radius: 15px;
-  margin: 10px 0px;
-  background-color: orange;
 `;
 
 const Footer = styled.div`

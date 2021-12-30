@@ -1,6 +1,11 @@
 import React from "react";
 
 import TbText from "../elements/TbText";
+import TbSelect from "../elements/TbSelect";
+import TbInput from "../elements/TbInput";
+import TbButton from "../elements/TbButton";
+
+import Heads from "../components/Heads";
 
 import styled from "styled-components";
 
@@ -8,28 +13,40 @@ const TbWrite = (props) => {
   return (
     <Container>
       <Header>
-        <TbText color="white" bold>
-          생드백 만들기
-        </TbText>
+        <Heads is_anoter text="생드백 만들기" stroke="#333"></Heads>
       </Header>
-      <Category></Category>
+      <Category>
+        <TbSelect tbwrite height="100%" width="100%"></TbSelect>
+      </Category>
       <NameInputWrap>
-        <NameInput placeholder="제목을 입력하세요"></NameInput>
+        <TbInput
+          height="100%"
+          width="100%"
+          radius="0px"
+          placeholder="제목"
+        ></TbInput>
       </NameInputWrap>
       <CheckBoxArea>
         <InputCheckBox type="checkbox" id="check"></InputCheckBox>
         <CheckBoxLabel for="check">나만 볼래요</CheckBoxLabel>
       </CheckBoxArea>
       <ContentsWrap>
-        <Contents placeholder="내용을 입력하세요"></Contents>
+        <TbInput
+          width="100%"
+          height="95%"
+          placeholder="내용을 입력하세요"
+        ></TbInput>
       </ContentsWrap>
+      <Space />
       <ContentsBottom>
-        <Button>
-          <TbText bold>취소</TbText>
-        </Button>
-        <Button>
-          <TbText bold>저장</TbText>
-        </Button>
+        <TbButton
+          login
+          width="190px"
+          height="60px"
+          text="취소"
+          margin="0px 10px 0px 0px"
+        ></TbButton>
+        <TbButton login width="190px" height="60px" text="저장"></TbButton>
       </ContentsBottom>
       <Footer />
     </Container>
@@ -39,7 +56,7 @@ const TbWrite = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: skyblue;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +66,7 @@ const Container = styled.div`
 const Header = styled.div`
   width: 100%;
   height: 5vh;
-  background-color: darkred;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +76,8 @@ const Header = styled.div`
 const Category = styled.div`
   width: 100%;
   height: 5vh;
-  background-color: blue;
+  background-color: #fff;
+  margin: 26px 0px 0px 0px;
 `;
 
 const NameInputWrap = styled.div`
@@ -71,18 +89,15 @@ const NameInputWrap = styled.div`
   background-color: yellow;
 `;
 
-const NameInput = styled.input`
-  width: 95%;
-  height: 80%;
-`;
-
 const CheckBoxArea = styled.div`
   width: 100%;
   height: 5vh;
-  background-color: darkgreen;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
 `;
 
 const InputCheckBox = styled.input`
@@ -91,39 +106,32 @@ const InputCheckBox = styled.input`
 `;
 
 const CheckBoxLabel = styled.label`
-  color: white;
+  color: black;
 `;
 
 const ContentsWrap = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 45vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: purple;
+  background-color: #fff;
 `;
 
-const Contents = styled.input`
-  width: 95%;
-  height: 95%;
+const Space = styled.div`
+  width: 100%;
+  height: 3vh;
+  background-color: #fbf7f7;
 `;
 
 const ContentsBottom = styled.div`
   width: 100%;
   height: 20vh;
-  background-color: skyblue;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Button = styled.button`
-  width: 150px;
-  height: 25%;
-  background-color: dargreen;
-  border-radius: 10px;
-  margin: 0px 10px;
-  background-color: orange;
+  padding: 50px 0px 0px 0px;
 `;
 
 const Footer = styled.div`
