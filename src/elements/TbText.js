@@ -49,7 +49,6 @@ TbText.defaultProps = {
   margin: false,
   padding: false,
   family: "KOTRAHOPE",
-  cursor: false,
   _onClick: () => {},
 };
 
