@@ -50,7 +50,6 @@ TbText.defaultProps = {
   margin: false,
   padding: false,
   family: "",
-  cursor: false,
   _onClick: () => {},
 };
 
