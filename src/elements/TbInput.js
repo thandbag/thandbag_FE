@@ -72,7 +72,6 @@ const InputBox = styled.input`
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.color ? `color: ${props.color};` : "")};
-  font-family: "KOTRAHOPE";
   outline: none;
 
   &::placeholder {

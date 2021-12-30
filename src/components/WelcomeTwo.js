@@ -38,36 +38,44 @@ function WelcomeTwo() {
           <SwiperSlide>
             <ImgBox1 />
             <TextBox>
-              오늘 하루 힘들었던 일이 있었다면<br />
+              오늘 하루 힘들었던 일이 있었다면
+              <br />
               나에게 이야기해 줄래? <br />
-              내가 들어주고 비슷한 성향의<br />
+              내가 들어주고 비슷한 성향의
+              <br />
               친구도 소개 시켜줄게!!
             </TextBox>
           </SwiperSlide>
           <SwiperSlide>
             <ImgBox2 />
             <TextBox>
-              오늘 하루 힘들었던 일이 있었다면<br />
+              오늘 하루 힘들었던 일이 있었다면
+              <br />
               나에게 이야기해 줄래? <br />
-              내가 들어주고 비슷한 성향의<br />
+              내가 들어주고 비슷한 성향의
+              <br />
               친구도 소개 시켜줄게!!
             </TextBox>
           </SwiperSlide>
           <SwiperSlide>
             <ImgBox3 />
             <TextBox>
-              오늘 하루 힘들었던 일이 있었다면<br />
+              오늘 하루 힘들었던 일이 있었다면
+              <br />
               나에게 이야기해 줄래? <br />
-              내가 들어주고 비슷한 성향의<br />
+              내가 들어주고 비슷한 성향의
+              <br />
               친구도 소개 시켜줄게!!
             </TextBox>
           </SwiperSlide>
           <SwiperSlide>
             <ImgBox4 />
             <TextBox>
-              오늘 하루 힘들었던 일이 있었다면<br />
+              오늘 하루 힘들었던 일이 있었다면
+              <br />
               나에게 이야기해 줄래? <br />
-              내가 들어주고 비슷한 성향의<br />
+              내가 들어주고 비슷한 성향의
+              <br />
               친구도 소개 시켜줄게!!
             </TextBox>
           </SwiperSlide>
@@ -111,7 +119,6 @@ const ButtonBox = styled.div`
   z-index: 9999;
 `;
 
-
 const ImgBox1 = styled.div`
   width: 100%;
   height: 65%;
@@ -132,7 +139,6 @@ const ImgBox3 = styled(ImgBox1)`
 const ImgBox4 = styled(ImgBox1)`
   background-image: url(${test_a});
 `;
-
 
 const TextBox = styled.div`
   width: 100%;
