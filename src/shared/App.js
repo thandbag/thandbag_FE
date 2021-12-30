@@ -16,7 +16,8 @@ import TbChatList from "../pages/TbChatList";
 import TbChatDetail from "../pages/TbChatDetail";
 import MyPage from "../pages/MyPage";
 import MyEdit from "../pages/MyEdit";
-import Navigation from "../components/Navigation";
+import TbComplate from "../pages/TbComplete";
+import TbFinish from "../pages/TbFinish";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import GlobalStyles from "../components/GlobalStyles";
@@ -28,7 +29,6 @@ function App() {
       <Container>
         <div className="wrap">
           <ConnectedRouter history={history}>
-            <Navigation />
             <Switch>
               <Route path={"/"} exact component={Wlecome} />
               <Route path={"/login"} exact component={Login} />
@@ -44,6 +44,8 @@ function App() {
               <Route path={"/TbChatDetail"} exact component={TbChatDetail} />
               <Route path={"/MyPage"} exact component={MyPage} />
               <Route path={"/MyEdit"} exact component={MyEdit} />
+              <Route path={"/tbfinish"} exact component={TbFinish} />
+              <Route path={"/TbComplate"} exact component={TbComplate} />
             </Switch>
           </ConnectedRouter>
         </div>
@@ -63,7 +65,7 @@ const Container = styled.div`
 
   .wrap {
     width: 100%;
-    max-width: 420px;
+    max-width: 375px;
     height: 100%;
     min-height: 100vh;
     margin: 0 auto;

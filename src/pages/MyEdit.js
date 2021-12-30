@@ -1,44 +1,42 @@
 import React from "react";
-import styled from "styled-components";
-import { Grid, Text, Image, Button } from "../elements/TbIndex";
+import Heads from "../components/Heads";
+import { Grid, Text, Image } from "../elements/TbIndex";
 
 const MyEdit = (props) => {
-    return (
-        <>
-        <Grid padding="90px 20px 0px 20px">
-            <Grid flex="flex; justify-content:space-around; align-items: center; flex-direction:column">
-                <Image shape="circle" size="100"></Image>
-                <Grid margin="10px 0 0 0" align="center">
-                    <Text>프로필 이미지 변경</Text>
-                </Grid>
-                
-            </Grid>
-            <Grid margin="30px 0 0 0" align="center">
-                <EditInput></EditInput>
-                <EditInput></EditInput>
-                <EditInput></EditInput>
-                <EditInput></EditInput>
-            </Grid>
-            <Grid margin="100px 0 0 0" align="center">
-                <Button width="200px" text="저장"></Button>
-            </Grid>
-
+  return (
+    <React.Fragment>
+      <Heads is_anoter bg="#FBF7F7" stroke="#333" color="#333" />
+      <Grid
+        width="100%"
+        height="100vh"
+        bg="#FBF7F7"
+        flex="flex"
+        justify="flex-start"
+        direction="column"
+        padding="70px 0 0 0"
+      >
+        <Grid
+          width="100%"
+          height="auto"
+          flex="flex"
+          direction="column"
+          padding="40px 0"
+        >
+          <Image Isize="150" />
+          <Text
+            size="20px"
+            bold="400"
+            deco="underline"
+            decoP="under"
+            margin="36px 0 0 0"
+            cursor="pointer"
+          >
+            프로필 이미지 변경
+          </Text>
         </Grid>
-        </>
-    )
+      </Grid>
+    </React.Fragment>
+  );
 };
-
-const EditInput = styled.input`
-    margin-top: 10px;
-    width: 300px;
-    height: 44px;
-    box-sizing: border-box;
-    font-size: 17px;
-    border: none;
-    border-bottom: solid;
-    outline: none;
-    
-
-`;
 
 export default MyEdit;

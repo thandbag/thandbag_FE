@@ -127,7 +127,6 @@ const Join = (props) => {
 
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
-                
                     <Select _onChange={handleClick} height="47px" width="300px"></Select>
                 </Grid>
                 

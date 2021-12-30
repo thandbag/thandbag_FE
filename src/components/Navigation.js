@@ -1,24 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
 import icon1 from "../static/icons/icon1.svg";
 import icon2 from "../static/icons/icon2.svg";
 import icon3 from "../static/icons/icon3.svg";
 import icon4 from "../static/icons/icon4.svg";
+import { withRouter } from "react-router-dom";
 import { history } from "../redux/configureStore";
 
 const Navgation = (props) => {
-  if (props.location.pathname === "/") {
-    return null;
-  }
-
-  if (props.location.pathname === "/login") {
-    return null;
-  }
-
-  if (props.location.pathname === "/join") {
-    return null;
-  }
 
   return (
     <React.Fragment>
@@ -58,7 +47,7 @@ const Navgation = (props) => {
 
 const NavBox = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   margin: 0 auto;
   height: 70px;
   position: fixed;
@@ -69,6 +58,8 @@ const NavBox = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  z-index: 9;
+  border-top: 1px solid #efefef;
 
   @media screen and (min-width: 1024px) {
       margin-left: 11%;
@@ -78,15 +69,16 @@ const NavBox = styled.div`
 const Nav1 = styled.div`
   width: 25%;
   height: 100%;
+  padding-top: 12px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 `;
 
 const Icon1 = styled.div`
-  width: 27px;
-  height: 27px;
+  width: 25px;
+  height: 25px;
   background-image: url(${icon1});
   background-repeat: no-repeat;
   background-position: center;

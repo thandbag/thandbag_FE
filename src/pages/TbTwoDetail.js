@@ -43,11 +43,6 @@ const TbTwoDetail = (props) => {
         <CommentsBox>
           {/* 맵 돌리자! */}
           <Comments is_Comment />
-          <Comments is_Comment />
-          <Comments is_Comment />
-          <Comments is_Comment />
-          <Comments is_Comment />
-          <Comments is_Comment />
         </CommentsBox>
       </DetailsBox>
       {/*댓글 입력 창*/}
@@ -72,7 +67,8 @@ const CommentsBox = styled.div`
   display: flex;
   background-color: #fbf7f7;
   flex-direction: column;
-  margin-bottom: 156px;
+  margin-bottom: 93px;
+  padding-bottom: 20px;
 `;
 
 export default TbTwoDetail;

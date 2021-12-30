@@ -13,6 +13,8 @@ const TbText = (props) => {
     family,
     padding,
     _onClick,
+    deco,
+    decoP,
     cursor,
   } = props;
 
@@ -25,6 +27,8 @@ const TbText = (props) => {
     LHeight: LHeight,
     family: family,
     padding: padding,
+    deco: deco,
+    decoP: decoP,
     cursor: cursor,
   };
 
@@ -59,10 +63,15 @@ const P = styled.p`
   line-height: ${(props) => (props.LHeight ? `${props.LHeight}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
-  cursor: ${(props) => props.cursor};
   word-break: break-all;
   letter-spacing: -0.5px;
   font-family: "KOTRAHOPE";
+  word-break: break-all;
+  letter-spacing: -0.5px;
+  font-family: "KOTRAHOPE";
+  text-decoration: ${(props) => (props.deco ? `${props.deco}` : "")};
+  text-underline-position: ${(props) => (props.decoP ? `${props.decoP}` : "")};
+  cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
 `;
 
 export default TbText;
