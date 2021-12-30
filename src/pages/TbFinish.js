@@ -32,7 +32,7 @@ const TbFinish = (props) => {
 
 const FinishBox = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   height: 100%;
   min-height: 100vh;
   margin: 0 auto;
@@ -52,7 +52,7 @@ const FinishBox = styled.div`
 
 const ChatBox = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   height: auto;
   max-height: 266.43px;
   margin: 0 auto;
