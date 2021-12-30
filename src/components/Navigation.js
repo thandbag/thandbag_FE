@@ -47,7 +47,7 @@ const Navgation = (props) => {
 
 const NavBox = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   margin: 0 auto;
   height: 70px;
   position: fixed;
