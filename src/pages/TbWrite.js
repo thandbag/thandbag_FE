@@ -7,6 +7,7 @@ import TbButton from "../elements/TbButton";
 
 import Heads from "../components/Heads";
 import TbWriteSelect from "../components/TbWriteSelect";
+import Editor from "../components/Editor";
 
 import styled from "styled-components";
 
@@ -30,6 +31,7 @@ const TbWrite = (props) => {
       <CheckBoxArea>
         <InputCheckBox type="checkbox" id="check"></InputCheckBox>
         <CheckBoxLabel htmlfor="check">나만 볼래요</CheckBoxLabel>
+        <Editor></Editor>
       </CheckBoxArea>
       <ContentsWrap>
         <TbInput

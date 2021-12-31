@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
+import { useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
+import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
+  const dispatch = useDispatch();
+
+  const [comment, setComment] = useState("");
+
   const { is_Comment, is_mbtiFilter } = props;
+
+  const sendBtnHandler = () => {
+    console.log(comment);
+    const accessToken = sessionStorage.getItem("token");
+    setAccessToken(accessToken);
+    dispatch(commentActions.sendCommentDB(comment, 0));
+  };
 
   // mbti 필터
   if (is_mbtiFilter) {
@@ -84,6 +98,10 @@ const Comments = (props) => {
       <CommentsInputBox>
         <Grid width="80%" height="100%" flex="flex" margin="0 16px 0 0">
           <Input
+            _onChange={(e) => {
+              setComment(e.target.value);
+            }}
+            value={comment}
             type="text"
             size="1.2rem"
             color="#F7C8C8"
@@ -98,6 +116,7 @@ const Comments = (props) => {
         </Grid>
         <Grid width="20%" height="100%" flex="flex">
           <Button
+            _onClick={sendBtnHandler}
             width="68px"
             height="45px"
             bg="#333"

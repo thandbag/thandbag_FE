@@ -1,8 +1,11 @@
 import axios from "axios";
 
-const Api =  axios.create({
-    baseURL: "http://52.78.54.60"
-    
-})
+const Api = axios.create({
+  baseURL: "http://52.78.54.60",
+});
+
+export const setAccessToken = (accessToken) => {
+  Api.defaults.headers.Authorization = accessToken;
+};
 
 export default Api;
