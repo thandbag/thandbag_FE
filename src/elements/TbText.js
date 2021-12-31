@@ -29,6 +29,7 @@ const TbText = (props) => {
     padding: padding,
     deco: deco,
     decoP: decoP,
+    cursor: cursor,
   };
 
   return (
