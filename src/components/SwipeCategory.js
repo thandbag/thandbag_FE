@@ -16,7 +16,7 @@ export default function App() {
           className="mySwiper2"
         >
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
@@ -26,7 +26,7 @@ export default function App() {
             />
           </SwiperSlide>
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
@@ -36,7 +36,7 @@ export default function App() {
             />
           </SwiperSlide>
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
@@ -46,7 +46,7 @@ export default function App() {
             />
           </SwiperSlide>
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
@@ -56,7 +56,7 @@ export default function App() {
             />
           </SwiperSlide>
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
@@ -66,7 +66,7 @@ export default function App() {
             />
           </SwiperSlide>
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
@@ -76,7 +76,7 @@ export default function App() {
             />
           </SwiperSlide>
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
@@ -86,7 +86,7 @@ export default function App() {
             />
           </SwiperSlide>
           <SwiperSlide className="swiper-slide2">
-            <Button
+            <Button category
               width="auto"
               height="36px"
               bg="#fff"
