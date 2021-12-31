@@ -10,7 +10,6 @@ body {
 .dropdown {
   width: 100%;
   text-align: center;
-  margin: 30px 0px 0px 0px;
 }
 
 .dropdown .dropdown-btn {
@@ -28,13 +27,14 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
-  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.06);
   font-weight: 500;
   color: #333;
   width: 90%;
   border-radius: 20px;
   overflow: hidden;
   position: absolute;
+  z-index: 9999;
 }
 
 .dropdown .dropdown-content .dropdown-item {
@@ -47,7 +47,37 @@ body {
   background: #ff5454;
   color: #fff;
 }
-.ck-editor__editable {
-  min-height: 100px;
-  max-width: 100px;
+
+.ql-toolbar.ql-snow  {
+  width: auto !important;
+  border: none !important;
+}
+
+.ql-container {
+  font-family: 'KOTRAHOPE' !important;
+  border: none !important;
+}
+.ql-editor {
+  padding: 20px !important;
+  height: 54vh !important;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ql-editor.ql-blank::before{
+  color: #ccc !important;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ql-formats {
+  margin: 0 !important;
+}
+
+.ql-fill {
+  fill: #909792 !important ;
+}
+
+.ql-stroke {
+  stroke: #909792 !important ;
 }
