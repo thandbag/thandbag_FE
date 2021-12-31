@@ -22,19 +22,21 @@ const Heads = (props) => {
           <Grid
             width="10%"
             height="70px"
+            position="absolute"
+            top="0"
+            left="20px"
             flex="flex"
-            padding="20px 0 20px 20px"
           >
             <BackIcon
               onClick={() => {
                 history.push("/main");
               }}
             >
-              <Arrow {...styles} width="20" height="20" />
+              <Arrow {...styles} width="19" height="19" />
             </BackIcon>
           </Grid>
 
-          <Grid width="90%" height="70px" flex="flex">
+          <Grid width="100%" height="70px" flex="flex">
             <Text size="1.4rem" {...styles}>
               {props.text}
             </Text>
