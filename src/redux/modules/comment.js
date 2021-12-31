@@ -1,46 +1,43 @@
-import { createAction, handleActions } from 'redux-actions'
-import { produce } from 'immer'
+import { createAction, handleActions } from "redux-actions";
+import { produce } from "immer";
 
+import api from "../../shared/Api";
 
 // **** Action type **** //
-const LOG_IN = 'LOG_IN'
-
-
+const SEND_COMMENT = "SEND_COMMENT";
 
 // **** Action creator **** //
-const logIn = createAction(LOG_IN, (user) => ({ user }))
-
+const sendComment = createAction(SEND_COMMENT, (comment) => ({ comment }));
 
 // **** Initial data **** //
 const initialState = {
-  user: null,
-  
-}
+  comment: null,
+};
 
 // **** Middleware **** //
 
-const joinDB = (email, password, fullname, nickname) => {
+const sendCommentDB = (comment, postId) => {
   return async function (dispatch, getState, { history }) {
-   
-  }
-}
-
+    try {
+      await api.post(`/api/${postId}/newComment`);
+    } catch (err) {
+      console.log(err.response);
+      window.alert("댓글전송에 문제가 생겼습니다");
+    }
+  };
+};
 
 // **** Reducer **** //
 export default handleActions(
   {
-    [LOG_IN]: (state, action) =>
-      produce(state, (draft) => {
-        
-      })
-    
+    [SEND_COMMENT]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
-)
+);
 
 // **** Export **** //
 const actionCreators = {
-  joinDB,
-}
+  sendCommentDB,
+};
 
-export { actionCreators }
+export { actionCreators };

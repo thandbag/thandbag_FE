@@ -47,3 +47,7 @@ body {
   background: #ff5454;
   color: #fff;
 }
+.ck-editor__editable {
+  min-height: 100px;
+  max-width: 100px;
+}
