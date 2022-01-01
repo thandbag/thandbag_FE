@@ -96,7 +96,20 @@ const InputBox = styled.input`
   }
 `;
 
-const InputTitle = styled(InputBox)`
+const InputTitle = styled.input`
+  font-family: "KOTRAHOPE";
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  box-sizing: ${(props) => props.boxSizing};
+  font-size: ${(props) => props.size};
+  border: ${(props) => props.border};
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
+  ${(props) => (props.color ? `color: ${props.color};` : "")};
+  outline: none;
+
   &::placeholder {
     color: #ccc;
   }
