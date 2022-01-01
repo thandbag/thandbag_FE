@@ -14,7 +14,7 @@ const TbWrite = (props) => {
         stroke="#333"
         color="#333"
         text="생드백 만들기"
-      />{" "}
+      />
       <Grid width="100%" height="auto" margin="70px 0 0 0">
         <TbWriteSelect />
       </Grid>

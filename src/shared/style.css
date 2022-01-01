@@ -81,3 +81,40 @@ body {
 .ql-stroke {
   stroke: #909792 !important ;
 }
+
+/* 전체 생드백 리스트 모달 스타일 - TbListFilterModal */
+#ListFilter{
+  width: 100%;
+}
+
+#ListFilter-btn {
+  width: 100%;
+  height: 41px;
+  font-size: 1rem;
+  padding: 0;
+  color: #333;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ListFilter-content {
+  width: 95px;
+  height: auto;
+  left: 70%;
+  transform: none;
+  top: 166px;
+}
+
+#ListFilter-item {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+}
+
+#ListFilter-item:nth-child(2) {
+  border-top: 1px solid #eee;
+  border-Bottom: 1px solid #eee;
+}

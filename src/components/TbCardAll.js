@@ -7,47 +7,58 @@ import TbText from "../elements/TbText";
 
 const TbCardAll = (props) => {
   return (
-    <CardWrap>
-      <CardTop>
-        <TbText bold>#카테고리</TbText>
-      </CardTop>
-      <CardMiddle>
-        <CardContent>
-          <CardContentTop>
-            <TbText bold size="20px">
-              제목입니다
-            </TbText>
-          </CardContentTop>
-          <CardContentBottom>
-            <TbText size="15px">
-              내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
-            </TbText>
-          </CardContentBottom>
-        </CardContent>
-      </CardMiddle>
-      <CardBottom>
-        <CardBottomNameArea>
-          <TbText margin="0px 15px 0px 0px;">서윤님</TbText>
-        </CardBottomNameArea>
-        <CardBottomLvArea>
-          <CardMbti>
-            <TbText color="white">mbti</TbText>
-          </CardMbti>
-          <CardLv>
-            <TbText color="white">LV 2</TbText>
-          </CardLv>
-        </CardBottomLvArea>
-        <CardBottomCommentArea>
-          <Comment width="20" height="20"></Comment>
-          <TbText margin="0px 0px 0px 5px">999</TbText>
-        </CardBottomCommentArea>
-        <CardBottomTimeArea>
-          <TbText>12분전</TbText>
-        </CardBottomTimeArea>
-      </CardBottom>
-    </CardWrap>
+    <ListBox>
+      <CardWrap>
+        <CardTop>
+          <TbText bold>#카테고리</TbText>
+        </CardTop>
+        <CardMiddle>
+          <CardContent>
+            <CardContentTop>
+              <TbText bold size="20px">
+                제목입니다
+              </TbText>
+            </CardContentTop>
+            <CardContentBottom>
+              <TbText size="15px">
+                내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+              </TbText>
+            </CardContentBottom>
+          </CardContent>
+        </CardMiddle>
+        <CardBottom>
+          <CardBottomNameArea>
+            <TbText margin="0px 15px 0px 0px;">서윤님</TbText>
+          </CardBottomNameArea>
+          <CardBottomLvArea>
+            <CardMbti>
+              <TbText color="white" size="13px">
+                mbti
+              </TbText>
+            </CardMbti>
+            <CardLv>
+              <TbText color="white" size="13px">
+                LV 2
+              </TbText>
+            </CardLv>
+          </CardBottomLvArea>
+          <CardBottomCommentArea>
+            <Comment width="20" height="20"></Comment>
+            <TbText margin="0px 0px 0px 5px">999</TbText>
+          </CardBottomCommentArea>
+          <CardBottomTimeArea>
+            <TbText>12분전</TbText>
+          </CardBottomTimeArea>
+        </CardBottom>
+      </CardWrap>
+    </ListBox>
   );
 };
+
+const ListBox = styled.div`
+  width: 100%;
+  height: auto;
+`;
 
 const CardWrap = styled.div`
   width: 85%;
@@ -56,7 +67,8 @@ const CardWrap = styled.div`
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto 40px auto;
+  margin: 20px auto;
+  margin-bottom: 40px;
 `;
 
 const CardTop = styled.div`
@@ -149,6 +161,7 @@ const CardBottomTimeArea = styled.div`
 const CardMbti = styled.div`
   width: 40px;
   height: 18px;
+  line-height: 18px;
   background-color: #ff5454;
   text-align: center;
   border-radius: 25px;
@@ -158,6 +171,7 @@ const CardMbti = styled.div`
 const CardLv = styled.div`
   width: 40px;
   height: 18px;
+  line-height: 18px;
   background-color: #333333;
   text-align: center;
   border-radius: 25px;
