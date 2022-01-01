@@ -26,6 +26,8 @@ const TbGrid = (props) => {
     borderB,
     zIndex,
     cursor,
+    shadow,
+    _onClick,
   } = props;
 
   const styles = {
@@ -51,9 +53,10 @@ const TbGrid = (props) => {
     borderB: borderB,
     zIndex: zIndex,
     cursor: cursor,
+    shadow: shadow,
   };
 
-  return <GridBox {...styles}>{children}</GridBox>;
+  return <GridBox {...styles} onClick={_onClick}>{children}</GridBox>;
 };
 
 TbGrid.defaultProps = {
@@ -78,6 +81,7 @@ TbGrid.defaultProps = {
   radius: "",
   borderT: false,
   borderB: false,
+  _onClick: () => {},
 };
 
 const GridBox = styled.div`
@@ -103,6 +107,7 @@ const GridBox = styled.div`
   ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
   ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
+  ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
 `;
 

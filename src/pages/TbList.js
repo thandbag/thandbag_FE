@@ -1,56 +1,79 @@
 import React, { useState } from "react";
-
-import styled from "styled-components";
-
-import TbText from "../elements/TbText";
-import TbSelect from "../elements/TbSelect";
-import SwipeCategory from "../components/SwipeCategory";
-import TbCardAll from "../components/TbCardAll";
+import { history } from "../redux/configureStore";
 import Heads from "../components/Heads";
+import SwipeCategory from "../components/SwipeCategory";
+import { Grid, Button } from "../elements/TbIndex";
+import styled from "styled-components";
+import TbListModal from "../components/TbListModal";
+import TbCardAll from "../components/TbCardAll";
+import { ReactComponent as Write } from "../static/icons/write.svg";
 
 const TbList = (props) => {
-  let [modal, modalChange] = useState(false);
-
   return (
     <Container>
-      <Header>
-        <Heads
-          is_anoter
-          text="생드백 만들기"
-          stroke="white"
-          bg="#333333"
-          color="white"
-        ></Heads>
-      </Header>
-      <SwipeCategory />
-      <FilterArea>
-        <FilterTextArea>
-          <TbText bold margin="0px 10px 0px 0px" cursor="pointer">
-            전체
-          </TbText>
-          <TbText
-            bold
-            cursor="pointer"
-            _onClick={() => {
-              modalChange(!modal);
-            }}
-          >
-            필터
-          </TbText>
-        </FilterTextArea>
-      </FilterArea>
-      {modal === true ? (
-        <TbSelect tblist margin="0px 0px 0px 300px"></TbSelect>
-      ) : null}
-      <CardArea>
+      <Heads
+        is_anoter
+        text="전체 생드백 리스트"
+        stroke="white"
+        bg="#333333"
+        color="white"
+      />
+      <Grid width="100%" height="auto" margin="70px 0 0 0">
+        <SwipeCategory />
+      </Grid>
+      <Grid
+        width="100%"
+        height="42px"
+        bg="#fff"
+        borderB
+        flex="flex"
+        justify="flex-end"
+      >
+        <Grid flex="flex" width="auto" height="100%" bg="blue">
+          <Button
+            width="100%"
+            height="100%"
+            text="전체"
+            bg="#fff"
+            color="#333"
+          />
+        </Grid>
+        <Grid flex="flex" width="5%" height="100%" bg="#fff">
+          <Line />
+        </Grid>
+        <Grid flex="flex" width="auto" height="100%" padding="0 20px 0 0">
+          <TbListModal />
+        </Grid>
+      </Grid>
+      {/* 카드 리스트 맵돌리자 */}
+      <CardList>
         <TbCardAll />
         <TbCardAll />
         <TbCardAll />
         <TbCardAll />
         <TbCardAll />
         <TbCardAll />
-      </CardArea>
-      <Footer />
+        <TbCardAll />
+        <TbCardAll />
+      </CardList>
+      <Grid
+        width="60px"
+        height="60px"
+        radius="100%"
+        bg="#fff"
+        shadow="0px 5px 10px rgb(0, 0, 0, 0.1)"
+        position="absolute"
+        right="20px"
+        bottom="60px"
+        flex="flex"
+        cursor="pointer"
+        zIndex="7"
+        _onClick={() => {
+          history.push("/TbWrite");
+        }}
+      >
+        <Write width="27" height="27" />
+      </Grid>
     </Container>
   );
 };
@@ -60,55 +83,22 @@ const Container = styled.div`
   height: 100vh;
   background-color: #fbf7f7;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 `;
 
-const Header = styled.div`
+const Line = styled.div`
+  width: 2px;
+  height: 16px;
+  background: #eee;
+`;
+
+const CardList = styled.div`
   width: 100%;
-  height: 70px;
-  background-color: #fbf7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FilterArea = styled.div`
-  width: 100%;
-  height: 5vh;
-  background-color: #fff;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-`;
-
-const FilterTextArea = styled.div`
-  width: 40%;
-  height: 100%;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const CardArea = styled.div`
-  width: 100%;
-  height: 75vh;
-  background-color: #fbf7f7;
-  overflow: scroll;
-`;
-
-const SelectArea = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: blue;
-`;
-
-const Footer = styled.div`
-  width: 100%;
-  height: 10vh;
-  background-color: #fff;
+  height: auto;
+  max-height: 100vh;
+  overflow-y: scroll;
 `;
 
 export default TbList;
