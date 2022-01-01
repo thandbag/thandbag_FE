@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Grid, Button } from "../elements/TbIndex";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import "./SwipeCategory.css";
+import "../shared/style.css";
 
 export default function App() {
   return (
