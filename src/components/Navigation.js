@@ -65,32 +65,30 @@ const NavBox = styled.div`
   max-width: 420px;
   margin: 0 auto;
   height: 70px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #fff;
-
-  @media screen and (min-width: 1024px) {
-      margin-left: 11%;
-  }
+  z-index: 9;
+  border-top: 1px solid #efefef;
 `;
 
 const Nav1 = styled.div`
   width: 25%;
   height: 100%;
+  padding-top: 12px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 `;
 
 const Icon1 = styled.div`
-  width: 27px;
-  height: 27px;
+  width: 25px;
+  height: 25px;
   background-image: url(${icon1});
   background-repeat: no-repeat;
   background-position: center;

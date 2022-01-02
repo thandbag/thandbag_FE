@@ -1,37 +1,79 @@
 import React from "react";
-
+import { history } from "../redux/configureStore";
+import Heads from "../components/Heads";
+import SwipeCategory from "../components/SwipeCategory";
+import { Grid, Button } from "../elements/TbIndex";
 import styled from "styled-components";
-
-import TbText from "../elements/TbText";
-import TbCard from "../components/TbCard";
+import TbListModal from "../components/TbListModal";
+import TbCardAll from "../components/TbCardAll";
+import { ReactComponent as Write } from "../static/icons/write.svg";
 
 const TbList = (props) => {
   return (
     <Container>
-      <Header>
-        <TbText bold>전체 생드백 리스트</TbText>
-      </Header>
-      <Category>
-        <select className="CategoryDropdown">
-          <option value="0">카테고리 선택</option>
-          <option value="1">사회생활</option>
-          <option value="2">공부</option>
-          <option value="3">진로고민</option>
-          <option value="4">대인관계</option>
-          <option value="5">가정문제</option>
-          <option value="6">연애</option>
-          <option value="7">기타</option>
-        </select>
-      </Category>
-      <FilterArea>
-        <TbText bold>필요한 영역인지 잘 모르겠음</TbText>
-      </FilterArea>
-      <CardArea>
-        <TbCard />
-        <TbCard />
-        <TbCard />
-      </CardArea>
-      <Footer />
+      <Heads
+        is_anoter
+        text="전체 생드백 리스트"
+        stroke="white"
+        bg="#333333"
+        color="white"
+      />
+      <Grid width="100%" height="auto" margin="70px 0 0 0">
+        <SwipeCategory />
+      </Grid>
+      <Grid
+        width="100%"
+        height="42px"
+        bg="#fff"
+        borderB
+        flex="flex"
+        justify="flex-end"
+      >
+        <Grid flex="flex" width="auto" height="100%" bg="blue">
+          <Button
+            width="100%"
+            height="100%"
+            text="전체"
+            bg="#fff"
+            color="#333"
+          />
+        </Grid>
+        <Grid flex="flex" width="5%" height="100%" bg="#fff">
+          <Line />
+        </Grid>
+        <Grid flex="flex" width="auto" height="100%" padding="0 20px 0 0">
+          <TbListModal />
+        </Grid>
+      </Grid>
+      {/* 카드 리스트 맵돌리자 */}
+      <CardList>
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+        <TbCardAll />
+      </CardList>
+      <Grid
+        width="60px"
+        height="60px"
+        radius="100%"
+        bg="#fff"
+        shadow="0px 4px 10px rgb(0, 0, 0, 0.3)"
+        position="absolute"
+        right="20px"
+        bottom="60px"
+        flex="flex"
+        cursor="pointer"
+        zIndex="7"
+        _onClick={() => {
+          history.push("/TbWrite");
+        }}
+      >
+        <Write width="27" height="27" />
+      </Grid>
     </Container>
   );
 };
@@ -39,54 +81,24 @@ const TbList = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: skyblue;
+  background-color: #fbf7f7;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 `;
 
-const Header = styled.div`
-  width: 100%;
-  height: 5vh;
-  background-color: #fbf7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Line = styled.div`
+  width: 2px;
+  height: 16px;
+  background: #eee;
 `;
 
-const Category = styled.div`
+const CardList = styled.div`
   width: 100%;
-  height: 5vh;
-  background-color: #fbf7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FilterArea = styled.div`
-  width: 100%;
-  height: 5vh;
-  background-color: #fbf7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const CardArea = styled.div`
-  width: 100%;
-  height: 75vh;
-  background-color: #fbf7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const Footer = styled.div`
-  width: 100%;
-  height: 10vh;
-  background-color: #fff;
+  height: auto;
+  max-height: 100vh;
+  overflow-y: scroll;
 `;
 
 export default TbList;

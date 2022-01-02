@@ -9,15 +9,15 @@ import { Grid, Text } from "../elements/TbIndex";
 const TbOneDetail = (props) => {
   return (
     <React.Fragment>
+      {/* 헤드 */}
+      <Heads
+        is_anoter
+        bg="#333"
+        stroke="#fff"
+        color="#fff"
+        text=""
+      />
       <DetailsBox>
-        {/* 헤드 */}
-        <Heads
-          is_anoter
-          bg="#333"
-          stroke="#fff"
-          color="#fff"
-          text="디테일 페이지 - 나만보기"
-        />
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
           <ThandDetail />

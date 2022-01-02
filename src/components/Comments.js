@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
+import { ReactComponent as Like } from "../static/icons/like.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
+import { useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
+import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
+  const dispatch = useDispatch();
+
   const { is_Comment, is_mbtiFilter } = props;
 
   // mbti 필터
   if (is_mbtiFilter) {
     return (
       <React.Fragment>
-        <Grid width="100%" flex="flex" borderB padding="0 20px">
+        <Grid width="100%" flex="flex" borderB bg="#fff" padding="0 20px">
           <Grid width="60%" padding="16px 0" flex="flex" justify="flex-start">
             <Comment width="20" height="20" />
             <Text margin="0 0 0 5px">999</Text>
           </Grid>
           <Grid width="40%" padding="16px 0" flex="flex" justify="flex-end">
-            <Button margin="0 10px 0 0" text="같은 MBTI만 보기" bg="transparent" width="auto" />
-              <CheckBox width="20" height="20" />
+            <Button
+              margin="0 10px 0 0"
+              text="같은 MBTI만 보기"
+              bg="transparent"
+              width="auto"
+            />
+            <CheckBox width="20" height="20" />
           </Grid>
         </Grid>
       </React.Fragment>
@@ -38,7 +49,7 @@ const Comments = (props) => {
           justify="flex-start"
           direction="column"
           bg="#fff"
-          margin="0 0 20px 0"
+          borderB="1px solid #efefef"
         >
           <Grid width="100%" height="auto" padding="5px 0">
             <UserProfile size="1rem" Isize="38" />
@@ -52,13 +63,26 @@ const Comments = (props) => {
               direction="column"
               margin="0 5px 0 0"
             >
-              <Comment width="28" height="28" />
-              <Text margin="1px 0 0 0" size="0.9rem">
+              <Like width="15" height="15" />
+              <Text
+                margin="1px 0 0 0"
+                color="#F7C8C8"
+                family="NotoSansCJK"
+                size="0.5rem"
+              >
                 999
               </Text>
             </Grid>
-            <Grid width="87%" height="auto">
-              <Text size="1.1rem" LHeight="1.3rem" family="NotosansCjk">
+            <Grid
+              width="87%"
+              height="auto"
+              maXheight="40px"
+              overFlowY="scroll"
+              flex="flex"
+              justify="flex-start"
+              is_align="flex-start"
+            >
+              <Text size="13px" family="NotoSansCJK">
                 댓글 영역입니다.
               </Text>
             </Grid>
@@ -76,14 +100,14 @@ const Comments = (props) => {
           <Input
             type="text"
             size="1.2rem"
-            color="#F7C8C8"
+            color="#333"
             placeholder="댓글을 남겨주세요"
             radius="12px"
             border="1px solid #fbf7f7"
             width="100%"
-            height="60%"
+            height="43px"
             bg="#fbf7f7"
-            padding="10.5px 10px"
+            padding="10px 10px"
           />
         </Grid>
         <Grid width="20%" height="100%" flex="flex">
@@ -104,21 +128,17 @@ const Comments = (props) => {
 
 const CommentsInputBox = styled.div`
   width: 100%;
-  max-width: 420px;
-  height: auto;
+  max-width: 375px;
+  height: 93px;
+  border-top: 1px solid #efefef;
   background-color: #fff;
-  padding: 20px 20px;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 70px;
+  padding: 20px 20px 30px 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media screen and (min-width: 1024px) {
-    margin-left: 11%;
-  }
 `;
 
 export default Comments;

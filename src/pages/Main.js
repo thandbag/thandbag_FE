@@ -6,35 +6,32 @@ import StompJs from "stompjs";
 import { useDispatch } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 
-
 const Main = (props) => {
   const dispatch = useDispatch();
   const sock = new SockJs("http://52.78.54.60/ws-stompAlarm");
   const stomp = StompJs.over(sock);
-  const userId = sessionStorage.getItem('userId')
+  const userId = sessionStorage.getItem("userId");
   const token = {
-        Authorization: sessionStorage.getItem('token')
-       };
-    
+    Authorization: sessionStorage.getItem("token"),
+  };
 
   React.useEffect(() => {
-    try{
-        stomp.connect(
-            token,
-            () => {
-            stomp.subscribe(`/sub/alarm/${userId}`, (data)=>{
-                const newData = JSON.parse(data.body)
-                console.log(newData);
-                dispatch(chatActions.getNotice(newData))
-            }, token);
-            }
+    try {
+      stomp.connect(token, () => {
+        stomp.subscribe(
+          `/sub/alarm/${userId}`,
+          (data) => {
+            const newData = JSON.parse(data.body);
+            console.log(newData);
+            dispatch(chatActions.getNotice(newData));
+          },
+          token
         );
-
+      });
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-    
-},[dispatch])
+  }, [dispatch]);
 
   return (
     <Container>
@@ -60,7 +57,7 @@ const Main = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: skyblue;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,9 +90,11 @@ const MainBodyTop = styled.div`
 `;
 
 const MainImage = styled.div`
-  width: 70%;
+  width: 100%;
   height: 100%;
-  background-color: green;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const MainBodyBottom = styled.div`

@@ -19,7 +19,14 @@ const Heads = (props) => {
     return (
       <React.Fragment>
         <HeadBox {...styles}>
-          <Grid width="10%" height="70px" flex="flex" padding="20px 0 20px 20px">
+          <Grid
+            width="10%"
+            height="70px"
+            position="absolute"
+            top="0"
+            left="20px"
+            flex="flex"
+          >
             <BackIcon
               onClick={() => {
                 history.push("/main");
@@ -76,41 +83,34 @@ const Heads = (props) => {
         </HeadBox>
       </React.Fragment>
     );
-
   }
 
   return (
     // default 헤드
     <React.Fragment>
       <HeadBox>
-        <Grid width="20%" height="70px" bg="green" flex="flex">
+        <Grid width="20%" height="70px" bg="#fff" flex="flex">
           <Text size="2.8rem">🍔</Text>
         </Grid>
-        <Grid width="80%" height="70px" bg="blue" flex="flex" />
+        <Grid width="80%" height="70px" bg="#fff" flex="flex" />
       </HeadBox>
     </React.Fragment>
   );
 };
 
 const HeadBox = styled.div`
-  width: 100%;
-  max-width: 420px;
+  width: 420px;
   margin: 0 auto;
   height: auto;
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9;
   ${(props) => (props.color ? `color: ${props.color};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
-  /* box-shadow: 0px 2px 10px rgba(120, 120, 120, 0.1); */
-
-  @media screen and (min-width: 1024px) {
-    margin-left: 11%;
-  }
 `;
 
 const BackIcon = styled.div`

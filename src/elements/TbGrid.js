@@ -13,6 +13,7 @@ const TbGrid = (props) => {
     marginT,
     marginB,
     height,
+    maXheight,
     left,
     right,
     top,
@@ -26,7 +27,11 @@ const TbGrid = (props) => {
     radius,
     borderT,
     borderB,
+    zIndex,
+    cursor,
+    shadow,
     _onClick,
+    overFlowY,
   } = props;
 
   const styles = {
@@ -38,6 +43,7 @@ const TbGrid = (props) => {
     margin: margin,
     marginT: marginT,
     marginB: marginB,
+    maXheight: maXheight,
     align: align,
     left: left,
     right: right,
@@ -52,6 +58,10 @@ const TbGrid = (props) => {
     radius: radius,
     borderT: borderT,
     borderB: borderB,
+    zIndex: zIndex,
+    cursor: cursor,
+    shadow: shadow,
+    overFlowY: overFlowY,
   };
 
   return <GridBox {...styles} onClick={_onClick}>{children}</GridBox>;
@@ -63,6 +73,7 @@ TbGrid.defaultProps = {
   flex: false,
   width: "100%",
   height: "",
+  maXheight: "",
   padding: false,
   margin: false,
   align: false,
@@ -91,6 +102,7 @@ const GridBox = styled.div`
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
   margin-top: ${(props) => (props.marginT ? `${props.marginT}` : "")};
   margin-bottom: ${(props) => (props.marginB ? `${props.marginB}` : "")};
+  max-height: ${(props) => props.maXheight};
   position: ${(props) => (props.position ? `${props.position}` : "")};
   left: ${(props) => (props.left ? `${props.left}` : "")};
   right: ${(props) => (props.right ? `${props.right}` : "")};
@@ -106,7 +118,10 @@ const GridBox = styled.div`
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
   ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
-  
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
+  ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
+  ${(props) => (props.overFlowY ? `overflow-y: ${props.overFlowY};` : "")};
+  cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
 `;
 
 export default TbGrid;

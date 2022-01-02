@@ -2,10 +2,23 @@ import React from "react";
 import styled from "styled-components";
 
 const TbText = (props) => {
-  const { bold, width, color, size, align, margin, children, LHeight, family, padding } = props;
+  const {
+    bold,
+    color,
+    size,
+    align,
+    margin,
+    children,
+    LHeight,
+    family,
+    padding,
+    _onClick,
+    deco,
+    decoP,
+    cursor,
+  } = props;
 
   const styles = {
-    width: width,
     margin: margin,
     bold: bold,
     color: color,
@@ -14,11 +27,16 @@ const TbText = (props) => {
     LHeight: LHeight,
     family: family,
     padding: padding,
+    deco: deco,
+    decoP: decoP,
+    cursor: cursor,
   };
 
   return (
     <>
-      <P {...styles}>{children}</P>
+      <P {...styles} onClick={_onClick}>
+        {children}
+      </P>
     </>
   );
 };
@@ -31,22 +49,26 @@ TbText.defaultProps = {
   align: false,
   margin: false,
   padding: false,
-  family: "",
+  family: "KOTRAHOPE",
+  _onClick: () => {},
 };
 
 const P = styled.p`
-    width: ${(props) => (props.width ? `${props.width}` : "")};
-    color: ${(props) => props.color};
-    font-family: ${(props) => (props.family ? `${props.family}` : "KOTRAHOPE")};
-    font-size: ${(props) => props.size};
-    font-weight: ${(props) => (props.bold ? `${props.bold}` : "")};
-    text-align:${(props) => (props.align ? `${props.align}` : "")};
-    line-height: ${(props) => (props.LHeight ? `${props.LHeight}` : "")};
-    margin: ${(props) => (props.margin ? `${props.margin}` : "")};
-    padding: ${(props) => (props.padding ? `${props.padding}` : "")};
-    word-break:break-all;
-    letter-spacing:-0.5px;
-
+  color: ${(props) => props.color};
+  font-family: ${(props) => (props.family ? `${props.family}` : "")};
+  font-size: ${(props) => props.size};
+  font-weight: ${(props) => (props.bold ? `${props.bold}` : "")};
+  text-align: ${(props) => (props.align ? `${props.align}` : "")};
+  line-height: ${(props) => (props.LHeight ? `${props.LHeight}` : "")};
+  margin: ${(props) => (props.margin ? `${props.margin}` : "")};
+  padding: ${(props) => (props.padding ? `${props.padding}` : "")};
+  word-break: break-all;
+  letter-spacing: -0.5px;
+  word-break: break-all;
+  letter-spacing: -0.5px;
+  text-decoration: ${(props) => (props.deco ? `${props.deco}` : "")};
+  text-underline-position: ${(props) => (props.decoP ? `${props.decoP}` : "")};
+  cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
 `;
 
 export default TbText;

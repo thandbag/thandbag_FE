@@ -39,8 +39,7 @@ const joinDB = (email, password, nickname, mbti) => {
       console.log(err.response)
       window.alert('회원가입에 문제가 생겼습니다')
     })
-   
-  };
+    };
 };
 
 

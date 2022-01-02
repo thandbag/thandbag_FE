@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const TbButton = (props) => {
-
   const {
     position,
     login,
@@ -18,7 +17,8 @@ const TbButton = (props) => {
     color,
     radius,
     display,
-    padding
+    padding,
+    category,
   } = props;
 
   const styles = {
@@ -32,23 +32,32 @@ const TbButton = (props) => {
     size: size,
     radius: radius,
     display: display,
+    category: category,
   };
 
-  if(social){
+  if (category) {
+    return (
+      <CategoryBtn {...styles} onClick={_onClick}>
+        {text}
+      </CategoryBtn>
+    );
+  }
+
+  if (social) {
     return (
       <BtnSocial {...styles} onClick={_onClick}>
         {children}
       </BtnSocial>
     );
-  };
+  }
 
-  if(login){
+  if (login) {
     return (
       <BtnLogin {...styles} onClick={_onClick}>
         {text}
       </BtnLogin>
     );
-  };
+  }
 
   return (
     <BtnBasic {...styles} onClick={_onClick}>
@@ -78,6 +87,7 @@ const BtnBasic = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
   border: none;
   cursor: pointer;
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
@@ -87,22 +97,41 @@ const BtnBasic = styled.button`
   ${(props) => (props.display ? `display: ${props.display};` : "")};
 `;
 
+const CategoryBtn = styled(BtnBasic)`
+  &:hover {
+    color: #ffffff;
+    background: #ff5454;
+    transition: 0.35s;
+  }
+  &:not(hover) {
+    color: #333;
+    background: #fff;
+    transition: 0.35s;
+  }
+`;
+
 const BtnLogin = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   font-size: 22px;
-  font-family: 'KOTRAHOPE';
+  font-family: "KOTRAHOPE";
   background: #333333;
-  color: #FFFFFF;
+  color: #ffffff;
   outline: none;
   border-radius: 15px;
   border: none;
   cursor: pointer;
-  &:hover{
-    color: #FFFFFF;
-    background: #FF5454;
+  &:hover {
+    color: #ffffff;
+    background: #ff5454;
+    transition: 0.55s;
+  }
+  &:not(hover) {
+    color: #fff;
+    background: #333;
+    transition: 0.555s;
   }
 `;
 
@@ -112,14 +141,14 @@ const BtnSocial = styled.button`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   font-size: 22px;
-  font-family: 'KOTRAHOPE';
-  background: #F6E24C;
-  color: #381E1F;
+  font-family: "KOTRAHOPE";
+  background: #f6e24c;
+  color: #381e1f;
+>>>>>>> view_test
   outline: none;
   border-radius: 15px;
   border: none;
   cursor: pointer;
 `;
-
 
 export default TbButton;
