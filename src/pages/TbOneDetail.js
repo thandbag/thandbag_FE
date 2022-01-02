@@ -15,7 +15,7 @@ const TbOneDetail = (props) => {
         bg="#333"
         stroke="#fff"
         color="#fff"
-        text="디테일 페이지 - 나만보기"
+        text=""
       />
       <DetailsBox>
         {/* 게시글 내용 */}

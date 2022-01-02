@@ -16,7 +16,6 @@ const Login = (props) => {
   // 유효성검사 체크//
   const [isEmail, setIsEmail] = React.useState(false);
   const [isPassword, setIsPassword] = React.useState(false);
-  
 
   const onChangeEmail = (e) => {
     const emailRegex =
@@ -71,7 +70,6 @@ const Login = (props) => {
         <Grid  margin="100px 0 0 0" align="center">
             <Button login _onClick={clickLogin} height="60px" width="220px" text="로그인하기"></Button>
             <Button social _onClick={clickLogin} margin="20px 0 0 0" height="60px" width="220px"><Icon/>&nbsp;카카오톡으로 로그인</Button>
-            
         </Grid>
         <Grid flex="flex" align="center" margin="10px 0 0 0">
             <Text color="#C4C4C4" >생드백 회원이 아니신가요?&nbsp;</Text>
@@ -121,6 +119,5 @@ const Icon = styled.div`
   background-position: center;
   background-size: cover;
 `;
-
 
 export default Login;

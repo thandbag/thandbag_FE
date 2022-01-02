@@ -11,6 +11,7 @@ const TbGrid = (props) => {
     padding,
     margin,
     height,
+    maXheight,
     left,
     right,
     top,
@@ -26,6 +27,9 @@ const TbGrid = (props) => {
     borderB,
     zIndex,
     cursor,
+    shadow,
+    _onClick,
+    overFlowY,
   } = props;
 
   const styles = {
@@ -33,6 +37,7 @@ const TbGrid = (props) => {
     position: position,
     width: width,
     height: height,
+    maXheight: maXheight,
     padding: padding,
     margin: margin,
     align: align,
@@ -51,9 +56,11 @@ const TbGrid = (props) => {
     borderB: borderB,
     zIndex: zIndex,
     cursor: cursor,
+    shadow: shadow,
+    overFlowY: overFlowY,
   };
 
-  return <GridBox {...styles}>{children}</GridBox>;
+  return <GridBox {...styles} onClick={_onClick}>{children}</GridBox>;
 };
 
 TbGrid.defaultProps = {
@@ -62,6 +69,7 @@ TbGrid.defaultProps = {
   flex: false,
   width: "100%",
   height: "",
+  maXheight: "",
   padding: false,
   margin: false,
   align: false,
@@ -78,12 +86,14 @@ TbGrid.defaultProps = {
   radius: "",
   borderT: false,
   borderB: false,
+  _onClick: () => {},
 };
 
 const GridBox = styled.div`
   box-sizing: border-box;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  max-height: ${(props) => props.maXheight};
   text-align: ${(props) => props.align};
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
@@ -103,6 +113,8 @@ const GridBox = styled.div`
   ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
   ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
+  ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
+  ${(props) => (props.overFlowY ? `overflow-y: ${props.overFlowY};` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
 `;
 

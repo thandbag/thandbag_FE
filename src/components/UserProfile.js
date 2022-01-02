@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
 const UserProfile = (props) => {
-  const { size, Isize, height, margin, chat_user, mypage_user } = props;
+  const { size, Isize, height, margin, chat_user, mypage_user } =
+    props;
 
   const styles = {
     size: size,

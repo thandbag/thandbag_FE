@@ -10,7 +10,6 @@ body {
 .dropdown {
   width: 100%;
   text-align: center;
-  margin: 30px 0px 0px 0px;
 }
 
 .dropdown .dropdown-btn {
@@ -28,13 +27,14 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
-  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 6px 7px rgba(0, 0, 0, 0.2);
   font-weight: 500;
   color: #333;
   width: 90%;
   border-radius: 20px;
   overflow: hidden;
   position: absolute;
+  z-index: 9999;
 }
 
 .dropdown .dropdown-content .dropdown-item {
@@ -47,7 +47,148 @@ body {
   background: #ff5454;
   color: #fff;
 }
-.ck-editor__editable {
-  min-height: 100px;
-  max-width: 100px;
+
+
+/* 글 작성 텍스트 에디터 스타일 */
+.ql-toolbar.ql-snow  {
+  width: auto !important;
+  border: none !important;
+}
+
+.ql-container {
+  font-family: 'KOTRAHOPE' !important;
+  border: none !important;
+}
+.ql-editor {
+  padding: 20px !important;
+  height: 54vh !important;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ql-editor.ql-blank::before{
+  color: #ccc !important;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ql-formats {
+  margin: 0 !important;
+}
+
+.ql-fill {
+  fill: #909792 !important ;
+}
+
+.ql-stroke {
+  stroke: #909792 !important ;
+}
+
+/* 전체 생드백 리스트 모달 스타일 - TbListFilterModal */
+#ListFilter{
+  width: 100%;
+}
+
+#ListFilter-btn {
+  width: 100%;
+  height: 41px;
+  font-size: 1rem;
+  padding: 0;
+  color: #333;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ListFilter-content {
+  width: 95px;
+  height: auto;
+  left: 70%;
+  transform: none;
+  top: 166px;
+}
+
+#ListFilter-item {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+}
+
+#ListFilter-item:nth-child(2) {
+  border-top: 1px solid #eee;
+  border-Bottom: 1px solid #eee;
+}
+
+/* 웰컴페이지 스와이프 스타일 */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: 0;
+  left: inherit;
+  right: 20px !important;
+  width: 20%;
+}
+
+.swiper-pagination-bullet {
+  background-color: #ccc !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #FF5454 !important;
+}
+
+/* 카테고리 스와이프 스타일 */
+.mySwiper2 {
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+}
+
+.swiper-slide2 {
+  background-color:transparent;
+  width: auto !important;
+  padding: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }

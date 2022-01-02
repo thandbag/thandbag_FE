@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Button, Text } from "../elements/TbIndex";
-import state_img from "../static/images/state_img.png";
+import Lv1 from "../static/images/lv_1.jpg";
 
 const ThandStateImg = (props) => {
   const { display } = props;
@@ -51,7 +51,7 @@ const BackgroundState = styled.div`
   width: 100%;
   height: 110px;
   display: flex;
-  background-image: url(${state_img});
+  background-image: url(${Lv1});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
