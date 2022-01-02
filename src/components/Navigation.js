@@ -8,7 +8,6 @@ import { withRouter } from "react-router-dom";
 import { history } from "../redux/configureStore";
 
 const Navgation = (props) => {
-
   return (
     <React.Fragment>
       <NavBox>
@@ -47,7 +46,7 @@ const Navgation = (props) => {
 
 const NavBox = styled.div`
   width: 100%;
-  max-width: 375px;
+  max-width: 420px;
   margin: 0 auto;
   height: 70px;
   position: absolute;

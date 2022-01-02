@@ -4,7 +4,8 @@ const Api = axios.create({
   baseURL: "http://52.78.54.60",
 });
 
-export const setAccessToken = (accessToken) => {
+export const setAccessToken = () => {
+  const accessToken = sessionStorage.getItem("token");
   Api.defaults.headers.Authorization = accessToken;
 };
 
