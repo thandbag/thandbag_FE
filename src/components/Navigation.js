@@ -8,7 +8,6 @@ import { withRouter } from "react-router-dom";
 import { history } from "../redux/configureStore";
 
 const Navgation = (props) => {
-
   return (
     <React.Fragment>
       <NavBox>

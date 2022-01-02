@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Heads from "../components/Heads";
 import TbWriteSelect from "../components/TbWriteSelect";
@@ -6,6 +7,29 @@ import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
 
 const TbWrite = (props) => {
+  const dispatch = useDispatch();
+
+  //제목, 내용, 카테고리 상태관리
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [category, setCategory] = useState("카테고리를 선택하세요");
+  const sharedCheckBoxRef = useRef(null);
+
+  //제목 내용 가져오기
+  const getTitle = (e) => {
+    const currentTitle = e.target.value;
+    setTitle(currentTitle);
+    console.log(title);
+    console.log(category);
+    console.log(sharedCheckBoxRef.current.checked);
+  };
+
+  const getContent = (e) => {
+    const currentContent = e.target.value;
+    setContent(currentContent);
+    console.log(content);
+  };
+
   return (
     <Container>
       <Heads
