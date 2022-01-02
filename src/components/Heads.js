@@ -60,7 +60,7 @@ const Heads = (props) => {
 };
 
 const HeadBox = styled.div`
-  width: 375px;
+  width: 420px;
   margin: 0 auto;
   height: auto;
   position: absolute;

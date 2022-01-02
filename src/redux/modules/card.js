@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
-
+import api from "../../shared/Api";
 
 const SEARCH_CARD = 'SEARCH_CARD'
 const LOAD_CARD = 'LOAD_CARD'
@@ -24,7 +24,13 @@ const initialState = {
 //미들웨어
 const addCardDB = (img, tag, location, content, size) => {
   return async function (dispatch, getState, { history }) {
-    
+    await api
+      .cards()
+      .then(res => {
+        dispatch(getCard(res.data.result));
+      }).catch(err => {
+        console.log('')
+      })
   }
 }
 
