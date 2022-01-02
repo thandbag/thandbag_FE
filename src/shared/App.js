@@ -65,7 +65,7 @@ const Container = styled.div`
 
   .wrap {
     width: 100%;
-    max-width: 375px;
+    max-width: 420px;
     height: 100%;
     min-height: 100vh;
     margin: 0 auto;
