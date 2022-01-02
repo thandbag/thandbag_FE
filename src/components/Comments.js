@@ -3,6 +3,7 @@ import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
+import { ReactComponent as Like } from "../static/icons/like.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
 import { useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
@@ -13,14 +14,14 @@ const Comments = (props) => {
 
   const [comment, setComment] = useState("");
 
-  const { is_Comment, is_mbtiFilter } = props;
-
   const sendBtnHandler = () => {
     console.log(comment);
     const accessToken = sessionStorage.getItem("token");
     setAccessToken(accessToken);
     dispatch(commentActions.sendCommentDB(comment, 0));
   };
+
+  const { is_Comment, is_mbtiFilter } = props;
 
   // mbti 필터
   if (is_mbtiFilter) {
@@ -71,7 +72,7 @@ const Comments = (props) => {
               direction="column"
               margin="0 5px 0 0"
             >
-              <Comment width="28" height="28" />
+              <Like width="15" height="15" />
               <Text
                 margin="1px 0 0 0"
                 color="#F7C8C8"
@@ -81,8 +82,16 @@ const Comments = (props) => {
                 999
               </Text>
             </Grid>
-            <Grid width="87%" height="auto">
-              <Text size="1.1rem" LHeight="1.3rem" family="NotoSansCJK">
+            <Grid
+              width="87%"
+              height="auto"
+              maXheight="40px"
+              overFlowY="scroll"
+              flex="flex"
+              justify="flex-start"
+              is_align="flex-start"
+            >
+              <Text size="13px" family="NotoSansCJK">
                 댓글 영역입니다.
               </Text>
             </Grid>
@@ -98,13 +107,9 @@ const Comments = (props) => {
       <CommentsInputBox>
         <Grid width="80%" height="100%" flex="flex" margin="0 16px 0 0">
           <Input
-            _onChange={(e) => {
-              setComment(e.target.value);
-            }}
-            value={comment}
             type="text"
             size="1.2rem"
-            color="#F7C8C8"
+            color="#333"
             placeholder="댓글을 남겨주세요"
             radius="12px"
             border="1px solid #fbf7f7"
@@ -112,11 +117,14 @@ const Comments = (props) => {
             height="43px"
             bg="#fbf7f7"
             padding="10px 10px"
+            _onChange={(e) => {
+              setComment(e.target.value);
+            }}
+            value={comment}
           />
         </Grid>
         <Grid width="20%" height="100%" flex="flex">
           <Button
-            _onClick={sendBtnHandler}
             width="68px"
             height="45px"
             bg="#333"
@@ -124,6 +132,7 @@ const Comments = (props) => {
             color="#fff"
             text="완료"
             size="1.2rem"
+            _onClick={sendBtnHandler}
           />
         </Grid>
       </CommentsInputBox>

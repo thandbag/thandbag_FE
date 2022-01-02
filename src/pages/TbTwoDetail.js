@@ -12,18 +12,11 @@ const TbTwoDetail = (props) => {
     <React.Fragment>
       <DetailsBox>
         {/* 헤드 */}
-        <Heads
-          is_anoter
-          bg="#333"
-          stroke="#fff"
-          color="#fff"
-          text="디테일 페이지 - 전체공개"
-        />
+        <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
           <ThandDetail />
         </Grid>
-
         {/* 유저 프로필 // 시간 */}
         <Grid
           width="100%"
@@ -40,10 +33,8 @@ const TbTwoDetail = (props) => {
             </Text>
           </Grid>
         </Grid>
-
         {/*생드백 때리러가기 버튼*/}
         <ThandStateImg />
-
         {/*댓글 수 // mbti 필터*/}
         <Comments is_mbtiFilter />
         {/*입력한 댓글*/}

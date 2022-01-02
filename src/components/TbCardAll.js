@@ -1,8 +1,8 @@
 import React from "react";
-
 import styled from "styled-components";
+import { ReactComponent as Bomb } from "../static/images/bomb.svg";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
-
+import { Grid } from "../elements/TbIndex";
 import TbText from "../elements/TbText";
 
 const TbCardAll = (props) => {
@@ -12,6 +12,9 @@ const TbCardAll = (props) => {
         <CardTop>
           <TbText bold>#카테고리</TbText>
         </CardTop>
+        <Grid width="66px" height="63px" position="absolute" top="5px" right="10px">
+          <Bomb />
+        </Grid>
         <CardMiddle>
           <CardContent>
             <CardContentTop>
@@ -47,7 +50,7 @@ const TbCardAll = (props) => {
             <TbText margin="0px 0px 0px 5px">999</TbText>
           </CardBottomCommentArea>
           <CardBottomTimeArea>
-            <TbText>12분전</TbText>
+            <TbText color="#F7C8C8" bold="600" size="12px" family="NotoSansCJK">12분전</TbText>
           </CardBottomTimeArea>
         </CardBottom>
       </CardWrap>
@@ -69,6 +72,7 @@ const CardWrap = styled.div`
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   margin: 20px auto;
   margin-bottom: 40px;
+  position: relative;
 `;
 
 const CardTop = styled.div`
@@ -76,11 +80,13 @@ const CardTop = styled.div`
   height: 20%;
   background-color: #eeeeee;
   padding: 15px 0px 0px 20px;
+  position: absolute;
 `;
 
 const CardMiddle = styled.div`
   width: 100%;
   height: 60%;
+  margin-top: 46px;
   background-color: #fff;
   border-bottom: 2px solid #eeeeee;
   display: flex;
@@ -125,15 +131,16 @@ const CardBottom = styled.div`
 const CardBottomNameArea = styled.div`
   height: 100%;
   background-color: #fff;
-  padding: 3px 0px 0px 0px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CardBottomLvArea = styled.div`
   width: 25%;
   height: 100%;
   background-color: #fff;
-  padding: 3px 0px 0px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,7 +151,6 @@ const CardBottomCommentArea = styled.div`
   width: 25%;
   height: 100%;
   background-color: #fff;
-  padding: 5px 0px 0px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,8 +160,11 @@ const CardBottomCommentArea = styled.div`
 const CardBottomTimeArea = styled.div`
   width: 25%;
   height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   background-color: #fff;
-  padding: 5px 0px 0px 30px;
+  margin-left: 10px;
 `;
 
 const CardMbti = styled.div`

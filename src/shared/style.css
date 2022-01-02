@@ -131,7 +131,6 @@ body {
   text-align: center;
   font-size: 18px;
   background: #fff;
-
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -161,14 +160,13 @@ body {
   width: 20%;
 }
 
-.swiper-pagination-bullet { 
-  background-color: #ccc !important; 
-} 
-
-.swiper-pagination-bullet-active { 
-  background: #FF5454 !important; 
+.swiper-pagination-bullet {
+  background-color: #ccc !important;
 }
 
+.swiper-pagination-bullet-active {
+  background: #FF5454 !important;
+}
 
 /* 카테고리 스와이프 스타일 */
 .mySwiper2 {
