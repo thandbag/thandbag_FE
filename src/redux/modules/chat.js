@@ -37,7 +37,8 @@ const createChatRoomDB = (myId, youId) => {
             headers: {Authorization:token}
         }).then(function(response){
             console.log(response)
-            //채팅방생성 알림?
+            window.alert('채팅방이 생성되었습니다')
+            //채팅방생성 알림
         })
         .catch((err) => {
           window.alert(err.response.data)

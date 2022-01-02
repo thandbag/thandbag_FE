@@ -32,7 +32,6 @@ const joinDB = (email, password, nickname, mbti) => {
     }
     console.log(user)
     await api.post('/api/user/signup',user).then(function(response){
-      console.log(response)
       history.push('/login')
       window.alert('회원가입 성공!')
     })
@@ -53,7 +52,6 @@ const logInDB = (email, password) => {
       
     }
     await api.post('/api/user/login',user).then(function(response){
-      console.log(response)
       sessionStorage.setItem('userId', response.data.userId)
       sessionStorage.setItem('nickname', response.data.nickname)
       sessionStorage.setItem('token', response.headers.authorization)
@@ -77,17 +75,14 @@ const logOutDB = () => {
 
 const kakaoLogin = (code) => {
   return async function(dispatch, getState, { history }){
-    console.log(code)
-    // return;
     await api.get(`/user/kakao/callback?code=${code}`).then(function(response){
-      console.log(response)
-      const Access_Token = response.data
-
-      // sessionStorage.setItem("kakao_token", Access_Token);
-      // history.replace('/main')
+      sessionStorage.setItem('userId', response.data.userId)
+      sessionStorage.setItem('nickname', response.data.nickname)
+      sessionStorage.setItem("token", response.headers.authorization);
+      history.replace('/main')
     })
     .catch((err) => {
-      console.log('소셜로그인 에러', err);
+      window.alert('소셜로그인 에러', err);
       history.replace('/login');
     })
   };
