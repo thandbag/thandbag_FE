@@ -1,10 +1,11 @@
-
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Heads from "../components/Heads";
 import TbWriteSelect from "../components/TbWriteSelect";
 import TbTextEditor from "../components/TbTextEditor";
 import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
+
+import { useDispatch } from "react-redux";
 
 const TbWrite = (props) => {
   const dispatch = useDispatch();
