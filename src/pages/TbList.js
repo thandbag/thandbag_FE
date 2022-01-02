@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { history } from "../redux/configureStore";
 import Heads from "../components/Heads";
 import SwipeCategory from "../components/SwipeCategory";
@@ -61,7 +61,7 @@ const TbList = (props) => {
         height="60px"
         radius="100%"
         bg="#fff"
-        shadow="0px 5px 10px rgb(0, 0, 0, 0.1)"
+        shadow="0px 4px 10px rgb(0, 0, 0, 0.3)"
         position="absolute"
         right="20px"
         bottom="60px"

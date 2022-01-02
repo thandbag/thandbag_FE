@@ -1,13 +1,13 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import { createBrowserHistory } from 'history'
-import { connectRouter } from 'connected-react-router'
-import User from './modules/user'
-import Card from './modules/card'
-import Comment from './modules/comment'
-import Likes from './modules/likes'
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import { createBrowserHistory } from "history";
+import { connectRouter } from "connected-react-router";
+import User from "./modules/user";
+import Card from "./modules/card";
+import Comment from "./modules/comment";
+import Likes from "./modules/likes";
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   user: User,
@@ -15,26 +15,26 @@ const rootReducer = combineReducers({
   likes: Likes,
   comment: Comment,
   router: connectRouter(history),
-})
+});
 
-const middlewares = [thunk.withExtraArgument({ history: history })]
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
-const env = process.env.NODE_ENV
+const env = process.env.NODE_ENV;
 
-if (env === 'development') {
-  const { logger } = require('redux-logger')
-  middlewares.push(logger)
+if (env === "development") {
+  const { logger } = require("redux-logger");
+  middlewares.push(logger);
 }
 
 const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
       })
-    : compose
+    : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(...middlewares))
+const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
-let store = (initialStore) => createStore(rootReducer, enhancer)
+let store = (initialStore) => createStore(rootReducer, enhancer);
 
-export default store()
+export default store();
