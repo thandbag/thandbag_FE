@@ -16,6 +16,7 @@ import TbChatList from "../pages/TbChatList";
 import TbChatDetail from "../pages/TbChatDetail";
 import MyPage from "../pages/MyPage";
 import MyEdit from "../pages/MyEdit";
+import AuthRedirect from "../pages/AuthRedirect";
 import Navigation from "../components/Navigation";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
@@ -32,6 +33,7 @@ function App() {
             <Switch>
               <Route path={"/"} exact component={Wlecome} />
               <Route path={"/login"} exact component={Login} />
+              <Route path={"/user/kakao/callback"} exact component={AuthRedirect}/>
               <Route path={"/join"} exact component={Join} />
               <Route path={"/main"} exact component={Main} />
               <Route path={"/TbSelect"} exact component={TbSelect} />
@@ -41,7 +43,7 @@ function App() {
               <Route path={"/TbTwoDetail"} exact component={TbTwoDetail} />
               <Route path={"/TbNotice"} exact component={TbNotice} />
               <Route path={"/TbChatList"} exact component={TbChatList} />
-              <Route path={"/TbChatDetail"} exact component={TbChatDetail} />
+              <Route path={"/TbChatDetail/:roomid"} exact component={TbChatDetail} />
               <Route path={"/MyPage"} exact component={MyPage} />
               <Route path={"/MyEdit"} exact component={MyEdit} />
             </Switch>

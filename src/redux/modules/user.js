@@ -75,6 +75,24 @@ const logOutDB = () => {
   };
 };
 
+const kakaoLogin = (code) => {
+  return async function(dispatch, getState, { history }){
+    console.log(code)
+    // return;
+    await api.get(`/user/kakao/callback?code=${code}`).then(function(response){
+      console.log(response)
+      const Access_Token = response.data
+
+      // sessionStorage.setItem("kakao_token", Access_Token);
+      // history.replace('/main')
+    })
+    .catch((err) => {
+      console.log('소셜로그인 에러', err);
+      history.replace('/login');
+    })
+  };
+};
+
 
 // **** Reducer **** //
 export default handleActions(
@@ -98,6 +116,7 @@ const actionCreators = {
   logOutDB,
   logOut,
   logIn,
+  kakaoLogin,
 }
 
 export { actionCreators }

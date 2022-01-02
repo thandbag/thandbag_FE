@@ -5,7 +5,7 @@ import { history } from "../redux/configureStore";
 import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 
 const Heads = (props) => {
-  const { is_anoter, none, bg, color, fill, stroke } = props;
+  const { is_anoter, chat, stompDisConnect ,none, bg, color, fill, stroke } = props;
 
   const styles = {
     bg: bg,
@@ -38,12 +38,37 @@ const Heads = (props) => {
     );
   }
 
+  if (chat) {
+    return (
+      <React.Fragment>
+        <HeadBox {...styles}>
+          <Grid width="10%" height="70px" flex="flex" padding="20px 0 20px 20px">
+            <BackIcon
+              onClick={() => {
+                history.push("/TbChatList");
+                stompDisConnect()
+              }}
+            >
+              <Arrow {...styles} width="20" height="20" />
+            </BackIcon>
+          </Grid>
+          <Grid width="90%" height="70px" flex="flex" padding="20px 52px 20px 0">
+            <Text size="1.4rem" {...styles}>
+              {props.text}
+            </Text>
+          </Grid>
+        </HeadBox>
+      </React.Fragment>
+    )
+  }
+
+
   if (none) {
 
     return (
       <React.Fragment>
         <HeadBox {...styles}>
-          <Grid width="90%" height="70px" flex="flex" padding="20px 52px 20px 0">
+          <Grid width="90%" height="70px" flex="flex" padding="20px 0px 20px 0">
             <Text size="1.4rem" {...styles}>
               {props.text}
             </Text>

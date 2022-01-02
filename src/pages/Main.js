@@ -1,10 +1,41 @@
 import React from "react";
-
 import TbText from "../elements/TbText";
-
 import styled from "styled-components";
+import SockJs from "sockjs-client";
+import StompJs from "stompjs";
+import { useDispatch } from "react-redux";
+import { actionCreators as chatActions } from "../redux/modules/chat";
+
 
 const Main = (props) => {
+  const dispatch = useDispatch();
+  const sock = new SockJs("http://52.78.54.60/ws-stompAlarm");
+  const stomp = StompJs.over(sock);
+  const userId = sessionStorage.getItem('userId')
+  const token = {
+        Authorization: sessionStorage.getItem('token')
+       };
+    
+
+  React.useEffect(() => {
+    try{
+        stomp.connect(
+            token,
+            () => {
+            stomp.subscribe(`/sub/alarm/${userId}`, (data)=>{
+                const newData = JSON.parse(data.body)
+                console.log(newData);
+                dispatch(chatActions.getNotice(newData))
+            }, token);
+            }
+        );
+
+    } catch (e) {
+        console.log(e)
+    }
+    
+},[dispatch])
+
   return (
     <Container>
       <Header>

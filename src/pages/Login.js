@@ -8,6 +8,9 @@ import kakao from "../static/icons/kakao.svg";
 
 const Login = (props) => {
   const dispatch = useDispatch();
+  const API_key = '2bbe979f5fff3c4ab9f79ad6a7be6729';
+  const Redirect_URI = 'http://localhost:3000/user/kakao/callback';
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_key}&redirect_uri=${Redirect_URI}&response_type=code`;
 
   // 이메일, 비밀번호 상태관리//
   const [email, setEmail] = React.useState("");
@@ -53,6 +56,10 @@ const Login = (props) => {
     }
   };
 
+  const clickSocial = () => {
+    return window.location.href= KAKAO_AUTH_URL
+  };
+
   return (
     <>
       <Grid margin="70px 0 0 0" flex="flex; align-items:center; flex-direction: column">
@@ -70,7 +77,7 @@ const Login = (props) => {
         </FormGroup>
         <Grid  margin="100px 0 0 0" align="center">
             <Button login _onClick={clickLogin} height="60px" width="220px" text="로그인하기"></Button>
-            <Button social _onClick={clickLogin} margin="20px 0 0 0" height="60px" width="220px"><Icon/>&nbsp;카카오톡으로 로그인</Button>
+            <Button social _onClick={clickSocial} margin="20px 0 0 0" height="60px" width="220px"><Icon/>&nbsp;카카오톡으로 로그인</Button>
             
         </Grid>
         <Grid flex="flex" align="center" margin="10px 0 0 0">

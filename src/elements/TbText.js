@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const TbText = (props) => {
-  const { bold, color, size, align, margin, children, LHeight, family, padding } = props;
+  const { bold, width, color, size, align, margin, children, LHeight, family, padding } = props;
 
   const styles = {
+    width: width,
     margin: margin,
     bold: bold,
     color: color,
@@ -34,6 +35,7 @@ TbText.defaultProps = {
 };
 
 const P = styled.p`
+    width: ${(props) => (props.width ? `${props.width}` : "")};
     color: ${(props) => props.color};
     font-family: ${(props) => (props.family ? `${props.family}` : "KOTRAHOPE")};
     font-size: ${(props) => props.size};
@@ -44,7 +46,6 @@ const P = styled.p`
     padding: ${(props) => (props.padding ? `${props.padding}` : "")};
     word-break:break-all;
     letter-spacing:-0.5px;
-    font-family: 'KOTRAHOPE';
 
 `;
 

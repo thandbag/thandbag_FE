@@ -12,6 +12,10 @@ const Navgation = (props) => {
     return null;
   }
 
+  if (props.location.pathname === history.location.pathname) {
+    return null;
+  }
+
   if (props.location.pathname === "/login") {
     return null;
   }

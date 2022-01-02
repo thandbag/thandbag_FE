@@ -10,6 +10,8 @@ const TbGrid = (props) => {
     width,
     padding,
     margin,
+    marginT,
+    marginB,
     height,
     left,
     right,
@@ -24,6 +26,7 @@ const TbGrid = (props) => {
     radius,
     borderT,
     borderB,
+    _onClick,
   } = props;
 
   const styles = {
@@ -33,6 +36,8 @@ const TbGrid = (props) => {
     height: height,
     padding: padding,
     margin: margin,
+    marginT: marginT,
+    marginB: marginB,
     align: align,
     left: left,
     right: right,
@@ -49,7 +54,7 @@ const TbGrid = (props) => {
     borderB: borderB,
   };
 
-  return <GridBox {...styles}>{children}</GridBox>;
+  return <GridBox {...styles} onClick={_onClick}>{children}</GridBox>;
 };
 
 TbGrid.defaultProps = {
@@ -74,6 +79,7 @@ TbGrid.defaultProps = {
   radius: "",
   borderT: false,
   borderB: false,
+  _onClick: () => {},
 };
 
 const GridBox = styled.div`
@@ -83,6 +89,8 @@ const GridBox = styled.div`
   text-align: ${(props) => props.align};
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
+  margin-top: ${(props) => (props.marginT ? `${props.marginT}` : "")};
+  margin-bottom: ${(props) => (props.marginB ? `${props.marginB}` : "")};
   position: ${(props) => (props.position ? `${props.position}` : "")};
   left: ${(props) => (props.left ? `${props.left}` : "")};
   right: ${(props) => (props.right ? `${props.right}` : "")};
@@ -98,6 +106,7 @@ const GridBox = styled.div`
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
   ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
+  
 `;
 
 export default TbGrid;
