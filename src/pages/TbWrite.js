@@ -6,6 +6,7 @@ import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
 
 import { useDispatch } from "react-redux";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 const TbWrite = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const TbWrite = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("카테고리를 선택하세요");
-  const sharedCheckBoxRef = useRef(null);
+  const [checkState, setCheckState] = useState(false);
 
   //제목 내용 가져오기
   const getTitle = (e) => {
@@ -22,7 +23,11 @@ const TbWrite = (props) => {
     setTitle(currentTitle);
     console.log(title);
     console.log(category);
-    console.log(sharedCheckBoxRef.current.checked);
+    let contentb = String(content.split("<p>"));
+    let contentc = contentb.split("</p>");
+    let contentd = contentc[0].split(",");
+    let Acontent = contentd[1];
+    console.log(Acontent);
   };
 
   const getContent = (e) => {
@@ -41,11 +46,12 @@ const TbWrite = (props) => {
         text="생드백 만들기"
       />
       <Grid width="100%" height="auto" margin="70px 0 0 0">
-        <TbWriteSelect />
+        <TbWriteSelect category={category} setCategory={setCategory} />
       </Grid>
       <Grid width="100%" height="59px">
         <Input
-          title
+          _onChange={getTitle}
+          value={title}
           width="100%"
           height="100%"
           placeholder="제목"
@@ -54,7 +60,12 @@ const TbWrite = (props) => {
         />
       </Grid>
       <Grid width="100%" height="auto">
-        <TbTextEditor />
+        <TbTextEditor
+          checkState={checkState}
+          setCheckState={setCheckState}
+          content={content}
+          setContent={setContent}
+        />
       </Grid>
       <Grid
         width="100%"
@@ -84,6 +95,11 @@ const TbWrite = (props) => {
           radius="12px"
           size="24px"
           color="#fff"
+          _onClick={() => {
+            dispatch(
+              cardActions.sendCardDB(category, title, content, null, checkState)
+            );
+          }}
         />
       </Grid>
     </Container>

@@ -48,7 +48,6 @@ body {
   color: #fff;
 }
 
-
 /* 글 작성 텍스트 에디터 스타일 */
 .ql-toolbar.ql-snow  {
   width: 100% !important;
@@ -57,7 +56,7 @@ body {
 }
 
 .ql-container {
-  font-family: 'KOTRAHOPE' !important;
+  font-family: "KOTRAHOPE" !important;
   border: none !important;
 }
 .ql-editor {
@@ -67,7 +66,7 @@ body {
   font-weight: 400;
 }
 
-.ql-editor.ql-blank::before{
+.ql-editor.ql-blank::before {
   color: #ccc !important;
   font-size: 20px;
   font-weight: 400;
@@ -90,7 +89,7 @@ body {
 }
 
 /* 전체 생드백 리스트 모달 스타일 - TbListFilterModal */
-#ListFilter{
+#ListFilter {
   width: 100%;
 }
 
@@ -123,7 +122,7 @@ body {
 
 #ListFilter-item:nth-child(2) {
   border-top: 1px solid #eee;
-  border-Bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 /* 웰컴페이지 스와이프 스타일 */
@@ -158,7 +157,10 @@ body {
   object-fit: cover;
 }
 
-.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
   bottom: 0;
   left: inherit;
   right: 20px !important;
@@ -170,7 +172,7 @@ body {
 }
 
 .swiper-pagination-bullet-active {
-  background: #FF5454 !important;
+  background: #ff5454 !important;
 }
 
 /* 카테고리 스와이프 스타일 */
@@ -181,7 +183,7 @@ body {
 }
 
 .swiper-slide2 {
-  background-color:transparent;
+  background-color: transparent;
   width: auto !important;
   padding: 0px;
   display: -webkit-box;
@@ -196,4 +198,31 @@ body {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+
+.checkcss {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+  background-color: #d5d5d5;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.labelcss {
+  cursor: pointer;
+}
+
+.test:hover {
+  fill: red;
+}
+
+.checkcss:hover {
+  background-color: #a5a5a5;
+}
+
+.checkcss:checked {
+  background-color: #ff5454;
 }
