@@ -20,9 +20,7 @@ const TbWrite = (props) => {
   const getTitle = (e) => {
     const currentTitle = e.target.value;
     setTitle(currentTitle);
-    console.log(title);
-    console.log(category);
-    console.log(sharedCheckBoxRef.current.checked);
+    
   };
 
   const getContent = (e) => {
@@ -51,6 +49,8 @@ const TbWrite = (props) => {
           placeholder="제목"
           size="24px"
           padding=" 0 20px"
+          value={title}
+          _onChange={getTitle}
         />
       </Grid>
       <Grid width="100%" height="auto">

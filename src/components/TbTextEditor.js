@@ -10,12 +10,13 @@ export const TbTextEditor = () => {
   const [state, setState] = React.useState({ value: null });
   const handleChange = (value) => {
     setState({ value });
+    console.log(state)
   };
   return (
     <div className="text-editor">
       <Box>
         <EboxOne>
-          <CheckBox width="23" height="23" />
+          <CheckBox width="23" height="23"/>
           <Button
             margin="0 0 0 5px"
             text="나만 볼래요"

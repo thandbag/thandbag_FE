@@ -3,11 +3,13 @@ import TbText from "../elements/TbText";
 import styled from "styled-components";
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
+import TbNavgation from "../components/TbNavigation";
 
 const Main = (props) => {
   const dispatch = useDispatch();
+  const alarm = useSelector((state) => (state.chat.alarm));
   const sock = new SockJs("http://52.78.54.60/ws-stompAlarm");
   const stomp = StompJs.over(sock);
   const userId = sessionStorage.getItem("userId");
@@ -23,7 +25,7 @@ const Main = (props) => {
           (data) => {
             const newData = JSON.parse(data.body);
             console.log(newData);
-            dispatch(chatActions.getNotice(newData));
+            dispatch(chatActions.getAlarm(newData));
           },
           token
         );
@@ -31,7 +33,7 @@ const Main = (props) => {
     } catch (e) {
       console.log(e);
     }
-  }, [dispatch]);
+  }, [dispatch, alarm]);
 
   return (
     <Container>
@@ -50,6 +52,7 @@ const Main = (props) => {
         </Button>
       </MainBodyBottom>
       <Footer />
+      <TbNavgation/>
     </Container>
   );
 };

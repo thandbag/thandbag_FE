@@ -1,29 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
 import icon1 from "../static/icons/icon1.svg";
 import icon2 from "../static/icons/icon2.svg";
 import icon3 from "../static/icons/icon3.svg";
 import icon4 from "../static/icons/icon4.svg";
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { Grid, Image } from "../elements/TbIndex";
+import { actionCreators as chatActions } from "../redux/modules/chat";
 
-const Navgation = (props) => {
-  if (props.location.pathname === "/") {
-    return null;
-  }
+const TbNavgation = (props) => {
+  const dispatch = useDispatch();
+  const alarm = useSelector((state) => (state.chat.alarm));
+  const [newRing, setNewRings] = React.useState(false);
+  console.log(alarm)
 
-  if (props.location.pathname === history.location.pathname) {
-    return null;
-  }
-
-  if (props.location.pathname === "/login") {
-    return null;
-  }
-
-  if (props.location.pathname === "/join") {
-    return null;
-  }
-
+  React.useEffect(() => {
+    if(alarm.length !== 0){
+      setNewRings(true)
+    }
+  },[alarm])
   return (
     <React.Fragment>
       <NavBox>
@@ -42,9 +38,12 @@ const Navgation = (props) => {
           />
         </Nav1>
         <Nav1>
+          {newRing === true && <Image position="absolute" right="137px" shape="alarm" Isize="10"/>}
           <Icon3
             onClick={() => {
               history.push("/TbNotice");
+              dispatch(chatActions.deleteAlarm())
+              setNewRings(false)
             }}
           />
         </Nav1>
@@ -108,4 +107,4 @@ const Icon4 = styled(Icon1)`
   background-image: url(${icon4});
 `;
 
-export default withRouter(Navgation);
+export default TbNavgation;

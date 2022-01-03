@@ -1,15 +1,19 @@
 import React from "react";
 import { Button, Grid, Text, Image } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
 import Heads from "../components/Heads";
-import { useSelector } from "react-redux";
+import { actionCreators as chatActions } from "../redux/modules/chat";
+import TbNavgation from "../components/TbNavigation";
 
 const TbNotice = (props) => {
-    const notice = useSelector((state) => (state.chat.notice))
-
+    const dispatch = useDispatch();
+    const notice = useSelector((state) => (state.chat.notice));
+    console.log(notice)
+    
     React.useEffect(() => {
-        
-    },[])
+        dispatch(chatActions.getNoticeDB())
+    },[dispatch])
 
     return (
         <>
@@ -24,9 +28,7 @@ const TbNotice = (props) => {
             flex="flex"
             justify="space-between"
             bg="#FBF7F7"
-            _onClick={()=>{
-                // history.push(`/`)
-            }}
+            
             >
             <Image shape="circle" Isize="30" />
             <Grid align="center" width="60%">
@@ -59,17 +61,19 @@ const TbNotice = (props) => {
                     flex="flex"
                     justify="space-between"
                     bg="#FFF"
-                    // _onClick={()=>{
+                    _onClick={()=>{
                         // history.push(`/`)
-                    // }}
+                        dispatch(chatActions.postNoticeDB(n.alarmId))
+                    }}
                     >
                     <Image shape="circle" Isize="50" />
                     <Grid width="60%">
                         <Text padding="0 0 10px 0" size="20px">
-                        내 생드백에 새로운 잽 등록
+                        {n.message}
                         </Text>
                     </Grid>
                     <Grid flex="flex" direction="column" align="center" width="20%">
+                    {n.isRead == false &&
                         <Grid
                         width="23px"
                         height="23px"
@@ -81,11 +85,12 @@ const TbNotice = (props) => {
                             N
                         </Text>
                         </Grid>
+                        }
                     </Grid>
                     </Grid>
                 )
             })}
-            
+            <TbNavgation/>
         </Grid>
         
         </>
