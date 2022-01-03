@@ -17,7 +17,6 @@ import TbChatDetail from "../pages/TbChatDetail";
 import MyPage from "../pages/MyPage";
 import MyEdit from "../pages/MyEdit";
 import AuthRedirect from "../pages/AuthRedirect";
-import Navigation from "../components/Navigation";
 import TbComplate from "../pages/TbComplete";
 import TbFinish from "../pages/TbFinish";
 import { ConnectedRouter } from "connected-react-router";
@@ -31,7 +30,6 @@ function App() {
       <Container>
         <div className="wrap">
           <ConnectedRouter history={history}>
-            <Navigation />
             <Switch>
               <Route path={"/"} exact component={Wlecome} />
               <Route path={"/login"} exact component={Login} />
@@ -45,7 +43,7 @@ function App() {
               <Route path={"/TbTwoDetail"} exact component={TbTwoDetail} />
               <Route path={"/TbNotice"} exact component={TbNotice} />
               <Route path={"/TbChatList"} exact component={TbChatList} />
-              <Route path={"/TbChatDetail"} exact component={TbChatDetail} />
+              <Route path={"/TbChatDetail/:roomid"} exact component={TbChatDetail} />
               <Route path={"/MyPage"} exact component={MyPage} />
               <Route path={"/MyEdit"} exact component={MyEdit} />
               <Route path={"/tbfinish"} exact component={TbFinish} />
