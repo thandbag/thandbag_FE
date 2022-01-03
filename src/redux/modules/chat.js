@@ -1,4 +1,4 @@
-import {createAction, createActions, handleActions } from "redux-actions";
+import {createAction, handleActions } from "redux-actions";
 import { produce } from 'immer';
 import api from "../../shared/Api";
 
@@ -8,6 +8,9 @@ const SET_CHAT_LIST = 'SET_CHAT_LIST';
 const SET_CHAT_MSG = 'SET_CHAT_MSG';
 const ADD_CHAT_MSG = 'ADD_CHAT_MSG';
 const GET_NOTICE = 'GET_NOTICE';
+const EDIT_NOTICE = 'EDIT_NOTICE';
+const GET_ALARM = 'GET_ALARM';
+const DELETE_ALARM = 'DELETE_ALARM';
 
 
 
@@ -15,13 +18,17 @@ const GET_NOTICE = 'GET_NOTICE';
 const setChatList = createAction(SET_CHAT_LIST, (myChatList) => ({ myChatList }))
 const setMessage = createAction(SET_CHAT_MSG, (chats) => ({chats}))
 const addMessage = createAction(ADD_CHAT_MSG, (chat) => ({chat}))
-const getNotice = createAction(GET_NOTICE, (alarm) => ({alarm}))
+const getNotice = createAction(GET_NOTICE, (notice) => ({notice}))
+const editNotice = createAction(EDIT_NOTICE, (notice) => ({notice}))
+const getAlarm = createAction(GET_ALARM, (alarm) => ({alarm}));
+const deleteAlarm = createAction(DELETE_ALARM, () => ({}))
 
 // **** Initial data **** //
 const initialState = {
   chatListInfo: [],
   message: [],
   notice: [],
+  alarm: [null],
   
 }
 
@@ -75,7 +82,35 @@ const getChatMessageDB = (roomId) => {
   }
 };
 
+const getNoticeDB = () => {
+  return async function (dispatch, getState, { history }){
+    const token = sessionStorage.getItem('token')
+    await api.get('/api/alarm',{
+      headers : {Authorization:token}
+  }).then(function(response) {
+    console.log(response)
+    dispatch(getNotice(response.data))
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  }
+};
 
+const postNoticeDB = (Id) => {
+  return async function (dispatch, getState, { history }){
+    const token = sessionStorage.getItem('token')
+    await api.post(`/api/alarm/${Id}`, {alarmId:Id},{
+      headers : {Authorization:token}
+  }).then(function(response) {
+    console.log(response)
+    dispatch(editNotice(response.data))
+  })
+  .catch((err) => {
+    console.log(err.response)
+  })
+  }
+};
 
 
 // **** Reducer **** //
@@ -96,8 +131,21 @@ export default handleActions(
       }),
     [GET_NOTICE]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.alarm)
-        draft.notice.push(action.payload.alarm)
+        draft.notice = action.payload.notice
+      }),
+    [EDIT_NOTICE]: (state, action) => 
+      produce(state, (draft) => {
+        let idx = draft.notice.findIndex(
+          (n) => n.alarmId === action.payload.notice.alarmId)
+        draft.notice[idx] = {...draft.notice[idx], ...action.payload.notice}
+      }),
+    [GET_ALARM]: (state, action) =>
+      produce(state, (draft) => {
+        draft.alarm.push(action.payload.alarm)
+      }),
+    [DELETE_ALARM]: (state, action) =>
+      produce(state, (draft) => {
+        draft.alarm = []
       })
     
   },
@@ -109,8 +157,12 @@ const actionCreators = {
   getChatListDB,
   getChatMessageDB,
   createChatRoomDB,
+  getNoticeDB,
+  postNoticeDB,
   addMessage,
   getNotice,
+  getAlarm,
+  deleteAlarm,
 }
 
 export { actionCreators }

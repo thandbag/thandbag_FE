@@ -47,7 +47,6 @@ function App() {
               <Route path={"/TbTwoDetail"} exact component={TbTwoDetail} />
               <Route path={"/TbNotice"} exact component={TbNotice} />
               <Route path={"/TbChatList"} exact component={TbChatList} />
-
               <Route path={"/TbChatDetail/:roomid"} exact component={TbChatDetail} />
               <Route path={"/MyPage"} exact component={MyPage} />
               <Route path={"/MyEdit"} exact component={MyEdit} />

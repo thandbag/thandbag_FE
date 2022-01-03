@@ -57,6 +57,8 @@ const TbWrite = (props) => {
           placeholder="제목"
           size="24px"
           padding=" 0 20px"
+          value={title}
+          _onChange={getTitle}
         />
       </Grid>
       <Grid width="100%" height="auto">

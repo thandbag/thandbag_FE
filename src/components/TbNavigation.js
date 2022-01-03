@@ -5,8 +5,21 @@ import icon2 from "../static/icons/icon2.svg";
 import icon3 from "../static/icons/icon3.svg";
 import icon4 from "../static/icons/icon4.svg";
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { Grid, Image } from "../elements/TbIndex";
+import { actionCreators as chatActions } from "../redux/modules/chat";
 
 const TbNavgation = (props) => {
+  const dispatch = useDispatch();
+  const alarm = useSelector((state) => (state.chat.alarm));
+  const [newRing, setNewRings] = React.useState(false);
+  console.log(alarm)
+
+  React.useEffect(() => {
+    if(alarm.length !== 0){
+      setNewRings(true)
+    }
+  },[alarm])
 
   return (
     <React.Fragment>
@@ -26,9 +39,12 @@ const TbNavgation = (props) => {
           />
         </Nav1>
         <Nav1>
+          {newRing === true && <Image position="absolute" right="137px" shape="alarm" Isize="10"/>}
           <Icon3
             onClick={() => {
               history.push("/TbNotice");
+              dispatch(chatActions.deleteAlarm())
+              setNewRings(false)
             }}
           />
         </Nav1>
