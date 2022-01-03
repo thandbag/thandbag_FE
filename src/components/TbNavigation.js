@@ -1,28 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
 import icon1 from "../static/icons/icon1.svg";
 import icon2 from "../static/icons/icon2.svg";
 import icon3 from "../static/icons/icon3.svg";
 import icon4 from "../static/icons/icon4.svg";
 import { history } from "../redux/configureStore";
 
-const Navgation = (props) => {
-  if (props.location.pathname === "/") {
-    return null;
-  }
-
-  if (props.location.pathname === history.location.pathname) {
-    return null;
-  }
-
-  if (props.location.pathname === "/login") {
-    return null;
-  }
-
-  if (props.location.pathname === "/join") {
-    return null;
-  }
+const TbNavgation = (props) => {
 
   return (
     <React.Fragment>
@@ -108,4 +92,4 @@ const Icon4 = styled(Icon1)`
   background-image: url(${icon4});
 `;
 
-export default withRouter(Navgation);
+export default TbNavgation;

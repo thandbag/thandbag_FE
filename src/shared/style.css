@@ -51,8 +51,9 @@ body {
 
 /* 글 작성 텍스트 에디터 스타일 */
 .ql-toolbar.ql-snow  {
-  width: auto !important;
+  width: 100% !important;
   border: none !important;
+  padding: 0 !important;
 }
 
 .ql-container {
@@ -73,7 +74,11 @@ body {
 }
 
 .ql-formats {
-  margin: 0 !important;
+  width: 90%;
+  margin: 0 5% !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
 }
 
 .ql-fill {

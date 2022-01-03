@@ -4,6 +4,7 @@ import { Grid, Image, Text, Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
+import TbNavgation from "../components/TbNavigation";
 
 const TbChatList = (props) => {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const TbChatList = (props) => {
           text="채팅방생성"
         ></Button>
       </Grid>
+      <TbNavgation />
     </>
   );
 };
