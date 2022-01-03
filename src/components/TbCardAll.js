@@ -5,52 +5,67 @@ import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { Grid } from "../elements/TbIndex";
 import TbText from "../elements/TbText";
 
-const TbCardAll = (props) => {
+const TbCardAll = ({
+  category,
+  title,
+  content,
+  nickname,
+  mbti,
+  level,
+  commentCount,
+  createdAt,
+}) => {
   return (
     <ListBox>
       <CardWrap>
         <CardTop>
-          <TbText bold>#카테고리</TbText>
+          <TbText bold>{category}</TbText>
         </CardTop>
-        <Grid width="66px" height="63px" position="absolute" top="5px" right="10px">
+        <Grid
+          width="66px"
+          height="63px"
+          position="absolute"
+          top="5px"
+          right="10px"
+        >
           <Bomb />
         </Grid>
         <CardMiddle>
           <CardContent>
             <CardContentTop>
               <TbText bold size="20px">
-                제목입니다
+                {title}
               </TbText>
             </CardContentTop>
             <CardContentBottom>
-              <TbText size="15px">
-                내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
-              </TbText>
+              <TbText size="15px">{content}</TbText>
             </CardContentBottom>
           </CardContent>
         </CardMiddle>
         <CardBottom>
           <CardBottomNameArea>
-            <TbText margin="0px 15px 0px 0px;">서윤님</TbText>
+            <TbText margin="0px 15px 0px 0px;">{nickname}님</TbText>
           </CardBottomNameArea>
           <CardBottomLvArea>
             <CardMbti>
               <TbText color="white" size="13px">
-                mbti
+                {mbti}
               </TbText>
             </CardMbti>
             <CardLv>
               <TbText color="white" size="13px">
-                LV 2
+                LV {level}
               </TbText>
             </CardLv>
           </CardBottomLvArea>
           <CardBottomCommentArea>
             <Comment width="20" height="20"></Comment>
-            <TbText margin="0px 0px 0px 5px">999</TbText>
+            <TbText margin="0px 0px 0px 5px">{commentCount}</TbText>
           </CardBottomCommentArea>
           <CardBottomTimeArea>
-            <TbText color="#F7C8C8" bold="600" size="12px" family="NotoSansCJK">12분전</TbText>
+            <TbText color="#F7C8C8" bold="600" size="12px" family="NotoSansCJK">
+              {createdAt}
+            </TbText>
           </CardBottomTimeArea>
         </CardBottom>
       </CardWrap>
