@@ -10,6 +10,11 @@ const TbNotice = (props) => {
     const dispatch = useDispatch();
     const notice = useSelector((state) => (state.chat.notice));
     console.log(notice)
+
+    // INVITEDCHAT = "/TbChatDetail/:roomId"
+    // REPLY = "/TbTwoDetail/:postid"
+    // PICKED = "/TbTwoDetail/:postid"
+    // LEVELCHANGE = "/MyPage"
     
     React.useEffect(() => {
         dispatch(chatActions.getNoticeDB())
@@ -62,7 +67,19 @@ const TbNotice = (props) => {
                     justify="space-between"
                     bg="#FFF"
                     _onClick={()=>{
-                        // history.push(`/`)
+                        // INVITEDCHAT = "/TbChatDetail/:roomId"
+                        // REPLY = "/TbTwoDetail/:postid"
+                        // PICKED = "/TbTwoDetail/:postid"
+                        // LEVELCHANGE = "/MyPage"
+                        if(n.type === "INVITEDCHAT"){
+                            history.push(`/TbChatDetail/${n.chatRoomId}`)
+                        } else if(n.type === "REPLY"){
+                            history.push(`/TbTwoDetail/${n.postId}`)
+                        } else if(n.type === "PICKED"){
+                            history.push(`/TbTwoDetail/${n.postId}`)
+                        } else if(n.type === "LEVELCHANGE"){
+                            history.push(`/MyPage`)
+                        }
                         dispatch(chatActions.postNoticeDB(n.alarmId))
                     }}
                     >

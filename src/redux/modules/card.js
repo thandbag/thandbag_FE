@@ -52,8 +52,8 @@ const addCardDB = (img, tag, location, content, size) => {
 const getCardListDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
-    const pageNo = 1;
-    const sizeNo = 3;
+    const pageNo = 0;
+    const sizeNo = 20;
     try {
       const response = await api.get(
         `/api/thandbagList?page=${pageNo}&size=${sizeNo}`,

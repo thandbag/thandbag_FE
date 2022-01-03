@@ -74,7 +74,7 @@ const TbChatList = (props) => {
           text="채팅방생성"
         ></Button>
       </Grid>
-      <TbNavgation/>
+      <TbNavigation/>
     </>
   );
 };
