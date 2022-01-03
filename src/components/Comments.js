@@ -1,19 +1,33 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import UserProfile from "./UserProfile";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { ReactComponent as Like } from "../static/icons/like.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
-import { useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { setAccessToken } from "../shared/Api";
+import styled from "styled-components";
+import UserProfile from "./UserProfile";
 
 const Comments = (props) => {
   const dispatch = useDispatch();
+  const params = useParams();
+  const postId = params.postId;
+
+  const commentInfo = useSelector((state) => state);
+  console.log(commentInfo);
+
+  // 댓글 입력 //
+  const [comment, setComment] = useState("");
+
+   // 댓글 게시 추가 기능
+   const sendComment = () => {
+    dispatch(commentActions.sendCommentDB(postId, comment));
+    console.log('test')
+  };
 
   const { is_Comment, is_mbtiFilter } = props;
-
   // mbti 필터
   if (is_mbtiFilter) {
     return (
@@ -76,7 +90,6 @@ const Comments = (props) => {
             <Grid
               width="87%"
               height="auto"
-              maXheight="40px"
               overFlowY="scroll"
               flex="flex"
               justify="flex-start"
@@ -108,6 +121,10 @@ const Comments = (props) => {
             height="43px"
             bg="#fbf7f7"
             padding="10px 10px"
+            value={comment}
+            _onChange={(e) => {
+              setComment(e.target.value);
+            }}
           />
         </Grid>
         <Grid width="20%" height="100%" flex="flex">
@@ -119,6 +136,7 @@ const Comments = (props) => {
             color="#fff"
             text="완료"
             size="1.2rem"
+            _onClick={sendComment}
           />
         </Grid>
       </CommentsInputBox>
@@ -128,7 +146,7 @@ const Comments = (props) => {
 
 const CommentsInputBox = styled.div`
   width: 100%;
-  max-width: 375px;
+  max-width: 420px;
   height: 93px;
   border-top: 1px solid #efefef;
   background-color: #fff;

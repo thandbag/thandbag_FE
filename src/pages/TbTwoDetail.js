@@ -6,8 +6,12 @@ import Comments from "../components/Comments";
 import UserProfile from "../components/UserProfile";
 import ThandStateImg from "../components/ThandStateImg";
 import { Grid, Text } from "../elements/TbIndex";
+import { useDispatch, useSelector } from "react-redux";
 
 const TbTwoDetail = (props) => {
+  const dispatch = useDispatch();
+  const comment_list = useSelector(state => state.comment.list);
+
   return (
     <React.Fragment>
       <DetailsBox>

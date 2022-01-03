@@ -35,7 +35,7 @@ const Heads = (props) => {
               <Arrow {...styles} width="20" height="20" />
             </BackIcon>
           </Grid>
-          <Grid width="90%" height="70px" flex="flex" padding="20px 52px 20px 0">
+          <Grid width="100%" height="70px" flex="flex">
             <Text size="1.4rem" {...styles}>
               {props.text}
             </Text>
@@ -49,7 +49,14 @@ const Heads = (props) => {
     return (
       <React.Fragment>
         <HeadBox {...styles}>
-          <Grid width="10%" height="70px" flex="flex" padding="20px 0 20px 20px">
+          <Grid 
+            width="10%"
+            height="70px"
+            position="absolute"
+            top="0"
+            left="20px"
+            flex="flex"
+          >
             <BackIcon
               onClick={() => {
                 history.push("/TbChatList");
@@ -59,7 +66,7 @@ const Heads = (props) => {
               <Arrow {...styles} width="20" height="20" />
             </BackIcon>
           </Grid>
-          <Grid width="90%" height="70px" flex="flex" padding="20px 52px 20px 0">
+          <Grid width="100%" height="70px" flex="flex">
             <Text size="1.4rem" {...styles}>
               {props.text}
             </Text>
@@ -71,11 +78,10 @@ const Heads = (props) => {
 
 
   if (none) {
-
     return (
       <React.Fragment>
         <HeadBox {...styles}>
-          <Grid width="90%" height="70px" flex="flex" padding="20px 0px 20px 0">
+          <Grid width="100%" height="70px" flex="flex">
             <Text size="1.4rem" {...styles}>
               {props.text}
             </Text>

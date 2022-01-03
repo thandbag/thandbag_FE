@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "../components/Navigation";
+import TbNavigation from "../components/TbNavigation";
 import UserProfile from "../components/UserProfile";
 import NoThandBag from "../static/images/no_thnadbag.png";
 import { Grid, Text, Image } from "../elements/TbIndex";
@@ -39,7 +39,7 @@ const MyPage = (props) => {
           </Text>
         </Grid>
       </Grid>
-      <Navigation />
+      <TbNavigation />
     </React.Fragment>
   );
 };
