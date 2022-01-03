@@ -5,7 +5,7 @@ import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import TbNavigation from "../components/TbNavigation";
-import TbNavgation from "../components/TbNavigation";
+
 
 const TbChatList = (props) => {
   const dispatch = useDispatch();

@@ -20,6 +20,7 @@ const TbNavgation = (props) => {
       setNewRings(true)
     }
   },[alarm])
+
   return (
     <React.Fragment>
       <NavBox>

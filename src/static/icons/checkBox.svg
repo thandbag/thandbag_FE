@@ -4,13 +4,13 @@
 	 y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
 <style type="text/css">
 	.st0{
-    fill:#FBF7F7;
+    fill:current;
     stroke-width: 0;
   }
 	.st1{
     fill-rule:evenodd;
     clip-rule:evenodd;
-    fill: #333333;
+    fill: current;
   }
 </style>
 <path class="st0" d="M24,12c0,6.6-5.4,12-12,12C5.4,24,0,18.6,0,12C0,5.4,5.4,0,12,0C18.6,0,24,5.4,24,12z"/>

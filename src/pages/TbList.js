@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { history } from "../redux/configureStore";
 import Heads from "../components/Heads";
 import SwipeCategory from "../components/SwipeCategory";
@@ -7,8 +7,17 @@ import styled from "styled-components";
 import TbListModal from "../components/TbListModal";
 import TbCardAll from "../components/TbCardAll";
 import { ReactComponent as Write } from "../static/icons/write.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 const TbList = (props) => {
+  const cardList = useSelector((state) => state.card.card_list);
+  const dispatch = useDispatch();
+  console.log(cardList);
+  useEffect(() => {
+    console.log("abc");
+    dispatch(cardActions.getCardListDB());
+  }, []);
   return (
     <Container>
       <Heads
@@ -47,14 +56,20 @@ const TbList = (props) => {
       </Grid>
       {/* 카드 리스트 맵돌리자 */}
       <CardList>
-        <TbCardAll />
-        <TbCardAll />
-        <TbCardAll />
-        <TbCardAll />
-        <TbCardAll />
-        <TbCardAll />
-        <TbCardAll />
-        <TbCardAll />
+        {cardList.map((card) => {
+          return (
+            <TbCardAll
+              category={card.category}
+              title={card.title}
+              content={card.content}
+              nickname={card.nickname}
+              mbti={card.mbti}
+              level={card.level}
+              commentCount={card.commentCount}
+              createdAt={card.createdAt}
+            ></TbCardAll>
+          );
+        })}
       </CardList>
       <Grid
         width="60px"

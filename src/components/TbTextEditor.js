@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import ReactQuill from "react-quill";
 import TbEditorToolbar, { modules, formats } from "./TbEditorToolbar";
 import "react-quill/dist/quill.snow.css";
@@ -6,23 +6,44 @@ import styled from "styled-components";
 import { Button } from "../elements/TbIndex";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
 
-export const TbTextEditor = () => {
-  const [state, setState] = React.useState({ value: null });
+import "../shared/style.css";
+
+export const TbTextEditor = ({
+  checkState,
+  setCheckState,
+  setContent,
+  content,
+}) => {
   const handleChange = (value) => {
-    setState({ value });
-    console.log(state)
+    setContent(value);
+    console.log(checkState);
+    console.log(content);
   };
+
   return (
     <div className="text-editor">
       <Box>
         <EboxOne>
-          <CheckBox width="23" height="23"/>
+          {/* 룡태님 버전 */}
+          {/* <CheckBox width="23" height="23" />
           <Button
             margin="0 0 0 5px"
             text="나만 볼래요"
             bg="transparent"
             width="auto"
-          />
+            ref={sharedCheckBoxRef}
+          /> */}
+          <input
+            onChange={(e) => {
+              setCheckState(e.target.checked);
+            }}
+            type="checkbox"
+            id="check"
+            className="checkcss"
+          ></input>
+          <label htmlFor="check" className="labelcss">
+            나만 볼래요
+          </label>
         </EboxOne>
         <EboxTwo>
           <TbEditorToolbar />
@@ -31,7 +52,7 @@ export const TbTextEditor = () => {
       <Box2>
         <ReactQuill
           theme="snow"
-          value={state.value}
+          value={content}
           onChange={handleChange}
           placeholder={"텍스트를 입력하세요"}
           modules={modules}

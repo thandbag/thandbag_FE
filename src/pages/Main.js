@@ -3,9 +3,10 @@ import TbText from "../elements/TbText";
 import styled from "styled-components";
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
+import TbNavgation from "../components/TbNavigation";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
-import TbNavgation from "../components/TbNavigation";
+import { Navigation } from "swiper";
 
 const Main = (props) => {
   const dispatch = useDispatch();

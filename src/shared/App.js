@@ -33,7 +33,11 @@ function App() {
             <Switch>
               <Route path={"/"} exact component={Wlecome} />
               <Route path={"/login"} exact component={Login} />
-              <Route path={"/user/kakao/callback"} exact component={AuthRedirect}/>
+              <Route
+                path={"/user/kakao/callback"}
+                exact
+                component={AuthRedirect}
+              />
               <Route path={"/join"} exact component={Join} />
               <Route path={"/main"} exact component={Main} />
               <Route path={"/TbSelect"} exact component={TbSelect} />
