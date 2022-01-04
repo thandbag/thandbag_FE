@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { history } from "../redux/configureStore";
 import Heads from "../components/Heads";
 import SwipeCategory from "../components/SwipeCategory";
@@ -11,13 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 
 const TbList = (props) => {
-  const cardList = useSelector((state) => state.card.card_list);
-  const dispatch = useDispatch();
-  console.log(cardList);
-  useEffect(() => {
-    console.log("abc");
-    dispatch(cardActions.getCardListDB());
-  }, []);
   return (
     <Container>
       <Heads
@@ -54,22 +47,8 @@ const TbList = (props) => {
           <TbListModal />
         </Grid>
       </Grid>
-      {/* 카드 리스트 맵돌리자 */}
       <CardList>
-        {cardList.map((card) => {
-          return (
-            <TbCardAll
-              category={card.category}
-              title={card.title}
-              content={card.content}
-              nickname={card.nickname}
-              mbti={card.mbti}
-              level={card.level}
-              commentCount={card.commentCount}
-              createdAt={card.createdAt}
-            ></TbCardAll>
-          );
-        })}
+       <TbCardAll></TbCardAll>
       </CardList>
       <Grid
         width="60px"
@@ -85,8 +64,7 @@ const TbList = (props) => {
         zIndex="7"
         _onClick={() => {
           history.push("/TbWrite");
-        }}
-      >
+        }}>
         <Write width="27" height="27" />
       </Grid>
     </Container>

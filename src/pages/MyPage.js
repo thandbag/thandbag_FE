@@ -1,8 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import TbNavigation from "../components/TbNavigation";
 import UserProfile from "../components/UserProfile";
-import NoThandBag from "../static/images/no_thnadbag.png";
 import { Grid, Text, Image } from "../elements/TbIndex";
+import TbCardMy from "../components/TbCardMy";
 
 const MyPage = (props) => {
   return (
@@ -14,7 +15,7 @@ const MyPage = (props) => {
         flex="flex"
         direction="column"
         justify="flex-start"
-      >
+        >
         <Grid
           width="100%"
           height="182px"
@@ -28,20 +29,29 @@ const MyPage = (props) => {
         {/* 기본 리스트 없는 초기상태 */}
         <Grid
           width="100%"
-          height="76%"
+          height="82%"
           flex="flex"
           direction="column"
-          padding="0 0 100px 0"
-        >
-          <Image no_thand />
+          padding="0 0 70px 0">
+            <CardList>
+              <TbCardMy/>
+            </CardList>
+          {/* <Image no_thand />
           <Text color="#F7C8C8" size="24px" margin="40px 0 0 0">
             아직 생드백이 없어요!
-          </Text>
+          </Text> */}
         </Grid>
       </Grid>
       <TbNavigation />
     </React.Fragment>
   );
 };
+
+const CardList = styled.div`
+  width: 100%;
+  height: auto;
+  max-height: 100vh;
+  overflow-y: scroll;
+`;
 
 export default MyPage;

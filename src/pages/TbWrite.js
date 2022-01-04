@@ -15,25 +15,18 @@ const TbWrite = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("카테고리를 선택하세요");
-  const [checkState, setCheckState] = useState(false);
+  const [checkState, setCheckState] = useState(true);
 
   //제목 내용 가져오기
   const getTitle = (e) => {
     const currentTitle = e.target.value;
     setTitle(currentTitle);
-    console.log(title);
-    console.log(category);
-    let contentb = String(content.split("<p>"));
-    let contentc = contentb.split("</p>");
-    let contentd = contentc[0].split(",");
-    let Acontent = contentd[1];
-    console.log(Acontent);
+    
   };
 
   const getContent = (e) => {
     const currentContent = e.target.value;
     setContent(currentContent);
-    console.log(content);
   };
 
   return (
@@ -57,8 +50,6 @@ const TbWrite = (props) => {
           placeholder="제목"
           size="24px"
           padding=" 0 20px"
-          value={title}
-          _onChange={getTitle}
         />
       </Grid>
       <Grid width="100%" height="auto">

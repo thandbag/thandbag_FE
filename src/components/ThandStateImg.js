@@ -4,8 +4,50 @@ import { Grid, Button, Text } from "../elements/TbIndex";
 import Lv1 from "../static/images/lv_1.jpg";
 
 const ThandStateImg = (props) => {
-  const { display } = props;
+  const { display, two_hit, one_hit, not_share } = props;
   const styles = { display: display };
+  if(not_share){
+    return(
+      <React.Fragment>
+      <BackgroundState>
+        <Grid
+          width="100%"
+          padding="16px 20px"
+          flex="flex"
+          justify="flex-end"
+          is_align="flex-end"
+          direction="column"
+        >
+          <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
+            현재{" "}
+            <span
+              style={{
+                color: "#fff",
+                padding: "0 3px",
+                background:
+                  "linear-gradient(to top, rgba(0,0,0,0.45) 50%, transparent 50%)",
+              }}
+            >
+              {one_hit}
+            </span>{" "}
+            맞음!!
+          </Text>
+          <Button
+            {...styles}
+            width="176px"
+            height="43px"
+            color="#fff"
+            radius="12px"
+            bg="#333"
+            size="1.2rem"
+            text="생드백 때리러가기 >"
+          />
+        </Grid>
+      </BackgroundState>
+    </React.Fragment>
+
+    )
+  }
   return (
     <React.Fragment>
       <BackgroundState>
@@ -27,7 +69,7 @@ const ThandStateImg = (props) => {
                   "linear-gradient(to top, rgba(0,0,0,0.45) 50%, transparent 50%)",
               }}
             >
-              999대
+              {two_hit}
             </span>{" "}
             맞음!!
           </Text>

@@ -37,7 +37,7 @@ const TbButton = (props) => {
 
   if (category) {
     return (
-      <CategoryBtn {...styles} onClick={_onClick}>
+      <CategoryBtn  {...styles} onClick={_onClick}>
         {text}
       </CategoryBtn>
     );
@@ -78,6 +78,7 @@ TbButton.defaultProps = {
   radius: "",
   display: "",
   _onClick: () => {},
+  _onChange: () => {},
   _disabled: () => {},
 };
 

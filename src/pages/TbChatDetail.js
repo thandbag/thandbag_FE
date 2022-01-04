@@ -14,7 +14,7 @@ import { actionCreators as chatActions } from "../redux/modules/chat";
 const TbChatDetail = (props) => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => (state.chat.message))
-  const sock = new SockJs("http://52.78.54.60/ws-stomp");
+  const sock = new SockJs("http://3.38.7.220/ws-stomp");
   const stomp = StompJs.over(sock);
   const token = {
     Authorization: sessionStorage.getItem('token')

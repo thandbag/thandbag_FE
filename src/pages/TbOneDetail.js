@@ -5,8 +5,19 @@ import ThandDetail from "../components/ThandDetail";
 import UserProfile from "../components/UserProfile";
 import ThandStateImg from "../components/ThandStateImg";
 import { Grid, Text } from "../elements/TbIndex";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 const TbOneDetail = (props) => {
+  const dispatch = useDispatch();
+  const card = useSelector((state) => state.card.not_shared_card) 
+  const post_id = props.match.params.postid
+  console.log(card)
+
+  React.useEffect(() => {
+    dispatch(cardActions.getCardOneDetailDB(post_id))
+  }, [])
+
   return (
     <React.Fragment>
       {/* 헤드 */}
@@ -20,7 +31,7 @@ const TbOneDetail = (props) => {
       <DetailsBox>
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
-          <ThandDetail />
+          <ThandDetail one={card} />
         </Grid>
 
         {/* 유저 프로필 // 시간 */}
@@ -32,16 +43,16 @@ const TbOneDetail = (props) => {
           padding="16px 20px"
           justify="space-between"
         >
-          <UserProfile size="1.3rem" Isize="50" />
+          <UserProfile one_user={card} not_share size="1.3rem" Isize="50" />
           <Grid width="20%" flex="flex" justify="flex-end" padding="20px 0 0 0">
             <Text size="12px" color="#FF5454" family="NotoSansCJK">
-              12분 전
+              {card.createdAt}
             </Text>
           </Grid>
         </Grid>
 
         {/*생드백 때리러가기 버튼*/}
-        <ThandStateImg />
+        <ThandStateImg one_hit={card.hitCount} not_share />
       </DetailsBox>
     </React.Fragment>
   );
