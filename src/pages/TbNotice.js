@@ -10,11 +10,6 @@ const TbNotice = (props) => {
     const dispatch = useDispatch();
     const notice = useSelector((state) => (state.chat.notice));
     console.log(notice)
-
-    // INVITEDCHAT = "/TbChatDetail/:roomId"
-    // REPLY = "/TbTwoDetail/:postid"
-    // PICKED = "/TbTwoDetail/:postid"
-    // LEVELCHANGE = "/MyPage"
     
     React.useEffect(() => {
         dispatch(chatActions.getNoticeDB())

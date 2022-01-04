@@ -8,14 +8,13 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 import { Grid } from "../elements/TbIndex";
 import TbText from "../elements/TbText";
 
-const TbCardAll = (props) => {
+const TbCardMy = (props) => {
   const dispatch = useDispatch();
   const cardList = useSelector((state) => state.card.search_list);
 
   React.useEffect(() => {
     dispatch(cardActions.getCardListDB());
   }, []);
-
   return (
     <>
     {cardList.map((c) => {
@@ -214,4 +213,4 @@ const CardLv = styled.div`
   border-radius: 25px;
 `;
 
-export default TbCardAll;
+export default TbCardMy;

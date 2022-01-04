@@ -11,7 +11,7 @@ import { Navigation } from "swiper";
 const Main = (props) => {
   const dispatch = useDispatch();
   const alarm = useSelector((state) => (state.chat.alarm));
-  const sock = new SockJs("http://52.78.54.60/ws-stompAlarm");
+  const sock = new SockJs("http://3.38.7.220/ws-stompAlarm");
   const stomp = StompJs.over(sock);
   const userId = sessionStorage.getItem("userId");
   const token = {

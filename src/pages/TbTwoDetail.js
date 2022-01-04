@@ -7,10 +7,18 @@ import UserProfile from "../components/UserProfile";
 import ThandStateImg from "../components/ThandStateImg";
 import { Grid, Text } from "../elements/TbIndex";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 const TbTwoDetail = (props) => {
   const dispatch = useDispatch();
+  const card = useSelector((state) => state.card.shared_card) 
   const comment_list = useSelector(state => state.comment.list);
+  const post_id = props.match.params.postid
+
+  console.log(card)
+  React.useEffect(() => {
+    dispatch(cardActions.getCardTwoDetailDB(post_id))
+  }, [])
 
   return (
     <React.Fragment>
@@ -19,7 +27,7 @@ const TbTwoDetail = (props) => {
         <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
-          <ThandDetail />
+          <ThandDetail share contents={card} />
         </Grid>
         {/* 유저 프로필 // 시간 */}
         <Grid
@@ -30,21 +38,21 @@ const TbTwoDetail = (props) => {
           justify="space-between"
           bg="#fff"
         >
-          <UserProfile size="1.3rem" Isize="50" />
+          <UserProfile two_user={card} share size="1.3rem" Isize="50" />
           <Grid width="20%" flex="flex" justify="flex-end" padding="20px 0 0 0">
             <Text size="12px" color="#FF5454" family="NotoSansCJK">
-              12분 전
+              {card.createdAt}
             </Text>
           </Grid>
         </Grid>
         {/*생드백 때리러가기 버튼*/}
-        <ThandStateImg />
+        <ThandStateImg two_hit={card.hitCount} />
         {/*댓글 수 // mbti 필터*/}
-        <Comments is_mbtiFilter />
+        <Comments count={card.commentCount} is_mbtiFilter />
         {/*입력한 댓글*/}
         <CommentsBox>
           {/* 맵 돌리자! */}
-          <Comments is_Comment />
+          <Comments  is_Comment />
         </CommentsBox>
       </DetailsBox>
       {/*댓글 입력 창*/}

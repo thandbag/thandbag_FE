@@ -13,9 +13,9 @@ import api from "../../shared/Api";
 
 // **** Action type **** //
 const SEARCH_CARD = "SEARCH_CARD";
-const LOAD_CARD = "LOAD_CARD";
 const ADD_CARD = "ADD_CARD";
-const ONE_CARD = "ONE_CARD";
+const TWO_DETAIL_CARD = "TWO_DETAIL_CARD";
+const ONE_DETAIL_CARD = "ONE_DETAIL_CARD";
 const EDIT_CARD = "EDIT_CARD";
 const DELETE_CARD = "DELETE_CARD";
 const SEND_CARD = "SEND_CARD";
@@ -23,12 +23,12 @@ const SET_CARD_LIST = "SET_CARD_LIST";
 const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
 
 // **** Action creator **** //
-const searchCard = createAction(SEARCH_CARD, (search_list) => ({
-  search_list,
+const searchCard = createAction(SEARCH_CARD, (search) => ({
+  search,
 }));
-const getCard = createAction(LOAD_CARD, (card_list) => ({ card_list }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
-const getOneCard = createAction(ONE_CARD, (card) => ({ card }));
+const getTwoDetailCard = createAction(TWO_DETAIL_CARD, (card) => ({ card }));
+const getOneDetailCard = createAction(ONE_DETAIL_CARD, (card) => ({ card }));
 const editCard = createAction(EDIT_CARD, (card) => ({ card }));
 const deleteCard = createAction(DELETE_CARD, (id) => ({ id }));
 const sendCard = createAction(SEND_CARD, (card) => ({ card }));
@@ -40,7 +40,10 @@ const cardDetailOne = createAction(CARD_DETAIL_ONE, (card_detail) => ({
 // **** Initial data **** //
 const initialState = {
   card_list: [],
-  card_detail: {},
+  search_list: [],
+  shared_card: "",
+  not_shared_card: ""
+
 };
 
 // **** Middleware **** //
@@ -59,18 +62,62 @@ const getCardListDB = () => {
     const token = sessionStorage.getItem("token");
     const pageNo = 0;
     const sizeNo = 1000;
-    try {
-      const response = await api.get(
-        `/api/thandbagList?page=${pageNo}&size=${sizeNo}`,
+    await api.get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`,
         {
           headers: { Authorization: token },
-        }
-      );
-      console.log("getCardListDB_response :", response.data);
-      dispatch(setCardList(response.data));
-    } catch (err) {
-      console.log(err);
-    }
+        }).then(function(response){
+        dispatch(setCardList(response.data));
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+  };
+};
+
+const getMyCardListDB = () => {
+  return async function (dispatch, getState, {history}) {
+    const token = sessionStorage.getItem("token");
+    const pageNo = 0;
+    const sizeNo = 1000;
+    await api.get( `/api/myThandbag?page=${pageNo}&size=${sizeNo}`,
+    {
+      headers: { Authorization: token },
+    }).then(function(response){
+      console.log(response)
+    })
+    .catch((err) => {
+      console.log(err.response)
+    })
+  }
+}
+
+const getCardTwoDetailDB = (postid) => {
+  return async function (dispatch, getState, { history }){
+    const token = sessionStorage.getItem("token");
+    await api.get(`api/thandbag/${postid}`, { 
+      headers : { Authorization: token}
+    }).then(function(response){
+      console.log(response)
+      dispatch(getTwoDetailCard(response.data))
+    })
+    .catch((err) => {
+      console.log(err.response)
+    })
+  };
+};
+
+const getCardOneDetailDB = (postid) => {
+  return async function ( dispatch, getState, { history }){
+    const token = sessionStorage.getItem("token");
+    await api.get(`api/thandbag/${postid}`, {
+      headers : { Authorization: token}
+    }).then(function(response){
+      console.log(response)
+      dispatch(getOneDetailCard(response.data))
+    })
+    .catch((err) => {
+      console.log(err.response)
+    })
   };
 };
 
@@ -162,14 +209,19 @@ const sendCardDB = (category, title, content, img, share) => {
 
 export default handleActions(
   {
-    [LOAD_CARD]: (state, action) =>
+    [SET_CARD_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.card_list = action.payload.card_list;
+        draft.search_list = action.payload.card_list;
       }),
 
-    [ONE_CARD]: (state, action) =>
+    [TWO_DETAIL_CARD]: (state, action) =>
       produce(state, (draft) => {
-        draft.one_card = action.payload.card;
+        draft.shared_card = action.payload.card;
+      }),
+    [ONE_DETAIL_CARD]: (state, action) =>
+      produce(state, (draft) => {
+        draft.not_shared_card = action.payload.card;
       }),
 
     [EDIT_CARD]: (state, action) =>
@@ -195,7 +247,19 @@ export default handleActions(
 
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
-        draft.search_list = action.payload.search_list;
+        const all_search = draft.card_list.filter((c) => {
+          return c.share == true
+        })
+        const new_search = draft.card_list.filter((c) => {
+          return c.category == action.payload.search
+          })
+
+        if(action.payload.search == '전체'){
+          draft.search_list = all_search
+        }else {
+          draft.search_list = new_search;
+        }
+        
       }),
 
     [ADD_CARD]: (state, action) =>
@@ -203,15 +267,6 @@ export default handleActions(
         draft.card_list.unshift(action.payload.card);
       }),
 
-    [SET_CARD_LIST]: (state, action) =>
-      produce(state, (draft) => {
-        draft.card_list = action.payload.card_list;
-      }),
-
-    [CARD_DETAIL_ONE]: (state, action) =>
-      produce(state, (draft) => {
-        draft.card_detail = action.payload.card_detail;
-      }),
   },
   initialState
 );
@@ -224,11 +279,12 @@ const actionCreators = {
   editCardDB,
   deleteCardDB,
   searchCard,
-  getCard,
   addCard,
-  getOneCard,
   sendCardDB,
-  cardDetailOneDB,
+  getCardTwoDetailDB,
+  getCardOneDetailDB,
+  getMyCardListDB,
+
 };
 
 export { actionCreators };

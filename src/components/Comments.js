@@ -13,12 +13,13 @@ import TbModal from "./TbModal";
 import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
+  const {count, is_Comment, is_mbtiFilter } = props;
   const dispatch = useDispatch();
   const params = useParams();
   const postId = params.postId;
+  console.log(props)
 
   const commentInfo = useSelector((state) => state);
-  console.log(commentInfo);
 
   // 댓글 입력 //
   const [comment, setComment] = useState("");
@@ -43,6 +44,7 @@ const Comments = (props) => {
   })
 
   const { is_Comment, is_mbtiFilter } = props;
+  
   // mbti 필터
   if (is_mbtiFilter) {
     return (
@@ -50,7 +52,7 @@ const Comments = (props) => {
         <Grid width="100%" flex="flex" borderB bg="#fff" padding="0 20px">
           <Grid width="60%" padding="16px 0" flex="flex" justify="flex-start">
             <Comment width="20" height="20" />
-            <Text margin="0 0 0 5px">999</Text>
+            <Text margin="0 0 0 5px">{count}</Text>
           </Grid>
           <Grid width="40%" padding="16px 0" flex="flex" justify="flex-end">
             <Button
@@ -83,7 +85,7 @@ const Comments = (props) => {
         >
           <Grid width="100%" height="auto" flex="flex">
             <Grid width="85%" height="auto" padding="5px 0">
-              <UserProfile size="1rem" Isize="38" />
+              <UserProfile comment size="1rem" Isize="38" />
             </Grid>
             <Grid width="15%" height="auto" flex="flex">
               <Delete width="17" onClick={openModal}/>

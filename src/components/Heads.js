@@ -29,7 +29,7 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
-                history.push("/main");
+                history.goBack();
               }}
             >
               <Arrow {...styles} width="20" height="20" />
