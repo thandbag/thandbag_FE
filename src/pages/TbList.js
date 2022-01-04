@@ -56,7 +56,7 @@ const TbList = (props) => {
       </Grid>
       {/* 카드 리스트 맵돌리자 */}
       <CardList>
-        {cardList.map((card) => {
+        {cardList.map((card, idx) => {
           return (
             <TbCardAll
               category={card.category}
