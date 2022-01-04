@@ -20,6 +20,7 @@ const EDIT_CARD = "EDIT_CARD";
 const DELETE_CARD = "DELETE_CARD";
 const SEND_CARD = "SEND_CARD";
 const SET_CARD_LIST = "SET_CARD_LIST";
+const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
 
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search_list) => ({
@@ -32,10 +33,14 @@ const editCard = createAction(EDIT_CARD, (card) => ({ card }));
 const deleteCard = createAction(DELETE_CARD, (id) => ({ id }));
 const sendCard = createAction(SEND_CARD, (card) => ({ card }));
 const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
+const cardDetailOne = createAction(CARD_DETAIL_ONE, (card_detail) => ({
+  card_detail,
+}));
 
 // **** Initial data **** //
 const initialState = {
   card_list: [],
+  card_detail: {},
 };
 
 // **** Middleware **** //
@@ -53,7 +58,7 @@ const getCardListDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     const pageNo = 0;
-    const sizeNo = 20;
+    const sizeNo = 1000;
     try {
       const response = await api.get(
         `/api/thandbagList?page=${pageNo}&size=${sizeNo}`,
@@ -66,6 +71,39 @@ const getCardListDB = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+
+// const cardDetailOneDB = () => {
+//   return async function (dispatch, getState, { history }) {
+//     const token = sessionStorage.getItem("token");
+//     const postId = 5;
+//     try {
+//       const response = await api.get(`/api/thandbag/${postId}`, {
+//         headers: { Authorization: token },
+//       });
+//       console.log("cardDetailOneDB_response :", response.data);
+//       dispatch(cardDetailOne(response.data));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
+
+const cardDetailOneDB = () => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    const postId = 1;
+    await api
+      .get(`/api/thandbag/${postId}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        dispatch(cardDetailOne(response.data));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 };
 
@@ -169,6 +207,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list = action.payload.card_list;
       }),
+
+    [CARD_DETAIL_ONE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.card_detail = action.payload.card_detail;
+      }),
   },
   initialState
 );
@@ -185,6 +228,7 @@ const actionCreators = {
   addCard,
   getOneCard,
   sendCardDB,
+  cardDetailOneDB,
 };
 
 export { actionCreators };

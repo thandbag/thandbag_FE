@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/TbIndex";
+import { useDispatch, useSelector } from "react-redux";
+import card, { actionCreators as cardActions } from "../redux/modules/card";
 
 const ThandDetail = (props) => {
+  const cardDetail = useSelector((state) => state.card.card_detail);
+  const dispatch = useDispatch();
+  console.log(cardDetail);
+
+  useEffect(() => {
+    dispatch(cardActions.cardDetailOneDB());
+  }, []);
   return (
     // 글작성
     <React.Fragment>
@@ -16,14 +25,14 @@ const ThandDetail = (props) => {
           padding="12px 20px 16px 20px"
         >
           <Text bold="400" color="#fff" size="28px">
-            제목입니다
+            {cardDetail.title}
           </Text>
         </Grid>
         <TextBox>
           <Text bold="100" size="20px" LHeight="28px">
-            내용 텍스트 부분입니다.
+            {cardDetail.content}
             <br />
-            행간: 28
+            {/* 행간: 28 */}
           </Text>
         </TextBox>
       </DetailBox>

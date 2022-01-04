@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Text, Image, Button } from "../elements/TbIndex";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import card, { actionCreators as cardActions } from "../redux/modules/card";
 
 const UserProfile = (props) => {
-  const { size, Isize, height, margin, chat_user, mypage_user } =
-    props;
+  const cardDetail = useSelector((state) => state.card.card_detail);
+  const dispatch = useDispatch();
+  console.log(cardDetail);
+
+  useEffect(() => {
+    dispatch(cardActions.cardDetailOneDB());
+  }, []);
+
+  const { size, Isize, height, margin, chat_user, mypage_user } = props;
 
   const styles = {
     size: size,
@@ -78,7 +87,7 @@ const UserProfile = (props) => {
         >
           <Grid width="100%" height="50%" flex="flex" justify="flex-start">
             <Grid
-              width="43px"
+              width="50px"
               padding="3px"
               bg="#FF5454"
               flex="flex"
@@ -86,7 +95,7 @@ const UserProfile = (props) => {
               margin="0 4px 0 0"
             >
               <Text color="#fff" size="0.9rem" bold="400">
-                mbti
+                {cardDetail.mbti}
               </Text>
             </Grid>
             <Grid
@@ -97,12 +106,12 @@ const UserProfile = (props) => {
               radius="20px"
             >
               <Text color="#fff" size="0.9rem" bold="400">
-                Lv.1
+                Lv {cardDetail.level}
               </Text>
             </Grid>
           </Grid>
           <Grid width="100%" height="50%" margin="5px 0 0 0">
-            <Text {...styles}>닉네임 영역 입니다</Text>
+            <Text {...styles}>{cardDetail.nickname}</Text>
           </Grid>
         </Grid>
       </Grid>

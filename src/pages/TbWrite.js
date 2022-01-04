@@ -15,7 +15,7 @@ const TbWrite = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("카테고리를 선택하세요");
-  const [checkState, setCheckState] = useState(false);
+  const [checkState, setCheckState] = useState(true);
 
   //제목 내용 가져오기
   const getTitle = (e) => {

@@ -15,7 +15,6 @@ const TbCardAll = ({
   commentCount,
   createdAt,
 }) => {
-
   return (
     <ListBox>
       <CardWrap>
@@ -39,7 +38,7 @@ const TbCardAll = ({
               </TbText>
             </CardContentTop>
             <CardContentBottom>
-              <div dangerouslySetInnerHTML={{ __html : content}}></div>
+              <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </CardContentBottom>
           </CardContent>
         </CardMiddle>
