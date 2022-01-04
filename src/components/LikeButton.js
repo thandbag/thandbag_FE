@@ -24,7 +24,7 @@ export default function LikeButton() {
               />
               <circle
                 id="main-circ"
-                fill="#E2264D"
+                fill="#FF5454"
                 opacity="0"
                 cx="29.5"
                 cy="29.5"

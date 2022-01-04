@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, Text, Image, Button } from "../elements/TbIndex";
-import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
 const UserProfile = (props) => {
@@ -78,8 +77,8 @@ const UserProfile = (props) => {
         >
           <Grid width="100%" height="50%" flex="flex" justify="flex-start">
             <Grid
-              width="43px"
-              padding="3px"
+              width="auto"
+              padding="3px 8px"
               bg="#FF5454"
               flex="flex"
               radius="20px"
@@ -90,8 +89,8 @@ const UserProfile = (props) => {
               </Text>
             </Grid>
             <Grid
-              width="43px"
-              padding="3px"
+              width="auto"
+              padding="3px 8px"
               bg="#333"
               flex="flex"
               radius="20px"

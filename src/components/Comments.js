@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
+import { ReactComponent as Delete } from "../static/icons/delete.svg";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import LikeButton from "./LikeButton";
+import TbModal from "./TbModal";
 import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
@@ -21,11 +23,24 @@ const Comments = (props) => {
   // 댓글 입력 //
   const [comment, setComment] = useState("");
 
-   // 댓글 게시 추가 기능
-   const sendComment = () => {
+  // 댓글 게시 추가 기능
+  const sendComment = () => {
     dispatch(commentActions.sendCommentDB(postId, comment));
-    console.log('test')
+    console.log("test");
   };
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const openModal = () => {
+    setModalOpen(true)
+  }
+  const closeModal = () => {
+    setModalOpen(false)
+  }
+  window.addEventListener('keyup', (e) => {
+    if (setModalOpen(false) && e.key === 'Escape') {
+      setModalOpen(true)
+    }
+  })
 
   const { is_Comment, is_mbtiFilter } = props;
   // mbti 필터
@@ -60,22 +75,29 @@ const Comments = (props) => {
           height="auto"
           flex="flex"
           padding="16px 20px"
+          is_align="flex-start"
           justify="flex-start"
           direction="column"
           bg="#fff"
           borderB="1px solid #efefef"
         >
-          <Grid width="100%" height="auto" padding="5px 0">
-            <UserProfile size="1rem" Isize="38" />
+          <Grid width="100%" height="auto" flex="flex">
+            <Grid width="85%" height="auto" padding="5px 0">
+              <UserProfile size="1rem" Isize="38" />
+            </Grid>
+            <Grid width="15%" height="auto" flex="flex">
+              <Delete width="17" onClick={openModal}/>
+            </Grid>
           </Grid>
           <Grid width="100%" height="56px" flex="flex" justify="flex-start">
             <Grid
-              width="13%"
+              width="10%"
               height="100%"
               flex="flex"
               justify="center"
               direction="column"
-              margin="0 5px 0 0"
+              padding="0 0 0 2px"
+              margin="0 8px 0 0"
             >
               <LikeButton />
               <Text
@@ -103,6 +125,7 @@ const Comments = (props) => {
             </Grid>
           </Grid>
         </Grid>
+        <TbModal open={modalOpen} close={closeModal} />
       </React.Fragment>
     );
   }
