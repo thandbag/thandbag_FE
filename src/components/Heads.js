@@ -49,7 +49,7 @@ const Heads = (props) => {
     return (
       <React.Fragment>
         <HeadBox {...styles}>
-          <Grid 
+          <Grid
             width="10%"
             height="70px"
             position="absolute"
