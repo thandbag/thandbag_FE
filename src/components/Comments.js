@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
-import { ReactComponent as Like } from "../static/icons/like.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { setAccessToken } from "../shared/Api";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
+import LikeButton from "./LikeButton";
+import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ const Comments = (props) => {
               bg="transparent"
               width="auto"
             />
-            <CheckBox width="20" height="20" />
+            <CheckBox width="20" height="20" fill="#FBF7F7" />
           </Grid>
         </Grid>
       </React.Fragment>
@@ -68,35 +68,37 @@ const Comments = (props) => {
           <Grid width="100%" height="auto" padding="5px 0">
             <UserProfile size="1rem" Isize="38" />
           </Grid>
-          <Grid width="100%" height="auto" flex="flex" justify="flex-start">
+          <Grid width="100%" height="56px" flex="flex" justify="flex-start">
             <Grid
               width="13%"
-              height="auto"
+              height="100%"
               flex="flex"
               justify="center"
               direction="column"
               margin="0 5px 0 0"
             >
-              <Like width="15" height="15" />
+              <LikeButton />
               <Text
-                margin="1px 0 0 0"
                 color="#F7C8C8"
                 family="NotoSansCJK"
-                size="0.5rem"
+                size="0.8rem"
+                bold="bold"
               >
-                999
+                22
               </Text>
             </Grid>
             <Grid
               width="87%"
               height="auto"
+              maXheight="56px"
               overFlowY="scroll"
               flex="flex"
               justify="flex-start"
               is_align="flex-start"
+              padding="6px 0 0 0"
             >
               <Text size="13px" family="NotoSansCJK">
-                댓글 영역입니다.
+                댓글 영역입니다
               </Text>
             </Grid>
           </Grid>
@@ -120,7 +122,7 @@ const Comments = (props) => {
             width="100%"
             height="43px"
             bg="#fbf7f7"
-            padding="10px 10px"
+            padding="10px 20px"
             value={comment}
             _onChange={(e) => {
               setComment(e.target.value);
