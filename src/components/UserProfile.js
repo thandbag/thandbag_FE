@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Text, Image, Button } from "../elements/TbIndex";
-import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector } from "react-redux";
 
@@ -20,6 +19,7 @@ const UserProfile = (props) => {
     mypage_user,
   } = props;
   
+
   const styles = {
     size: size,
     Isize: Isize,
@@ -289,20 +289,20 @@ const UserProfile = (props) => {
         >
           <Grid width="100%" height="50%" flex="flex" justify="flex-start">
             <Grid
-              width="43px"
-              padding="3px"
+              width="auto"
+              padding="3px 8px"
               bg="#FF5454"
               flex="flex"
               radius="20px"
               margin="0 4px 0 0"
             >
               <Text color="#fff" size="0.9rem" bold="400">
-                mbti
+                {cardDetail.mbti}
               </Text>
             </Grid>
             <Grid
-              width="43px"
-              padding="3px"
+              width="auto"
+              padding="3px 8px"
               bg="#333"
               flex="flex"
               radius="20px"

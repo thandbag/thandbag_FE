@@ -20,6 +20,7 @@ const EDIT_CARD = "EDIT_CARD";
 const DELETE_CARD = "DELETE_CARD";
 const SEND_CARD = "SEND_CARD";
 const SET_CARD_LIST = "SET_CARD_LIST";
+const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
 
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({
@@ -32,6 +33,9 @@ const editCard = createAction(EDIT_CARD, (card) => ({ card }));
 const deleteCard = createAction(DELETE_CARD, (id) => ({ id }));
 const sendCard = createAction(SEND_CARD, (card) => ({ card }));
 const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
+const cardDetailOne = createAction(CARD_DETAIL_ONE, (card_detail) => ({
+  card_detail,
+}));
 
 // **** Initial data **** //
 const initialState = {
@@ -39,6 +43,7 @@ const initialState = {
   search_list: [],
   shared_card: "",
   not_shared_card: ""
+
 };
 
 // **** Middleware **** //
@@ -113,6 +118,39 @@ const getCardOneDetailDB = (postid) => {
     .catch((err) => {
       console.log(err.response)
     })
+  };
+};
+
+// const cardDetailOneDB = () => {
+//   return async function (dispatch, getState, { history }) {
+//     const token = sessionStorage.getItem("token");
+//     const postId = 5;
+//     try {
+//       const response = await api.get(`/api/thandbag/${postId}`, {
+//         headers: { Authorization: token },
+//       });
+//       console.log("cardDetailOneDB_response :", response.data);
+//       dispatch(cardDetailOne(response.data));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
+
+const cardDetailOneDB = () => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    const postId = 1;
+    await api
+      .get(`/api/thandbag/${postId}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        dispatch(cardDetailOne(response.data));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 };
 
@@ -246,6 +284,7 @@ const actionCreators = {
   getCardTwoDetailDB,
   getCardOneDetailDB,
   getMyCardListDB,
+
 };
 
 export { actionCreators };

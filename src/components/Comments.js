@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
-import { ReactComponent as Like } from "../static/icons/like.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
+import { ReactComponent as Delete } from "../static/icons/delete.svg";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { setAccessToken } from "../shared/Api";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
+import LikeButton from "./LikeButton";
+import TbModal from "./TbModal";
+import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
   const {count, is_Comment, is_mbtiFilter } = props;
@@ -22,12 +24,26 @@ const Comments = (props) => {
   // 댓글 입력 //
   const [comment, setComment] = useState("");
 
-   // 댓글 게시 추가 기능
-   const sendComment = () => {
+  // 댓글 게시 추가 기능
+  const sendComment = () => {
     dispatch(commentActions.sendCommentDB(postId, comment));
-    console.log('test')
+    console.log("test");
   };
 
+  const [modalOpen, setModalOpen] = useState(false)
+  const openModal = () => {
+    setModalOpen(true)
+  }
+  const closeModal = () => {
+    setModalOpen(false)
+  }
+  window.addEventListener('keyup', (e) => {
+    if (setModalOpen(false) && e.key === 'Escape') {
+      setModalOpen(true)
+    }
+  })
+
+  const { is_Comment, is_mbtiFilter } = props;
   
   // mbti 필터
   if (is_mbtiFilter) {
@@ -45,7 +61,7 @@ const Comments = (props) => {
               bg="transparent"
               width="auto"
             />
-            <CheckBox width="20" height="20" />
+            <CheckBox width="20" height="20" fill="#FBF7F7" />
           </Grid>
         </Grid>
       </React.Fragment>
@@ -61,47 +77,57 @@ const Comments = (props) => {
           height="auto"
           flex="flex"
           padding="16px 20px"
+          is_align="flex-start"
           justify="flex-start"
           direction="column"
           bg="#fff"
           borderB="1px solid #efefef"
         >
-          <Grid width="100%" height="auto" padding="5px 0">
-            <UserProfile comment size="1rem" Isize="38" />
+          <Grid width="100%" height="auto" flex="flex">
+            <Grid width="85%" height="auto" padding="5px 0">
+              <UserProfile comment size="1rem" Isize="38" />
+            </Grid>
+            <Grid width="15%" height="auto" flex="flex">
+              <Delete width="17" onClick={openModal}/>
+            </Grid>
           </Grid>
-          <Grid width="100%" height="auto" flex="flex" justify="flex-start">
+          <Grid width="100%" height="56px" flex="flex" justify="flex-start">
             <Grid
-              width="13%"
-              height="auto"
+              width="10%"
+              height="100%"
               flex="flex"
               justify="center"
               direction="column"
-              margin="0 5px 0 0"
+              padding="0 0 0 2px"
+              margin="0 8px 0 0"
             >
-              <Like width="15" height="15" />
+              <LikeButton />
               <Text
-                margin="1px 0 0 0"
                 color="#F7C8C8"
                 family="NotoSansCJK"
-                size="0.5rem"
+                size="0.8rem"
+                bold="bold"
               >
-                999
+                22
               </Text>
             </Grid>
             <Grid
               width="87%"
               height="auto"
+              maXheight="56px"
               overFlowY="scroll"
               flex="flex"
               justify="flex-start"
               is_align="flex-start"
+              padding="6px 0 0 0"
             >
               <Text size="13px" family="NotoSansCJK">
-                댓글 영역입니다.
+                댓글 영역입니다
               </Text>
             </Grid>
           </Grid>
         </Grid>
+        <TbModal open={modalOpen} close={closeModal} />
       </React.Fragment>
     );
   }
@@ -121,7 +147,7 @@ const Comments = (props) => {
             width="100%"
             height="43px"
             bg="#fbf7f7"
-            padding="10px 10px"
+            padding="10px 20px"
             value={comment}
             _onChange={(e) => {
               setComment(e.target.value);

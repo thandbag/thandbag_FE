@@ -15,6 +15,7 @@ const TbCardAll = (props) => {
   React.useEffect(() => {
     dispatch(cardActions.getCardListDB());
   }, []);
+
   return (
     <>
     {cardList.map((c) => {

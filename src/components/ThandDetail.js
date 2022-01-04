@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/TbIndex";
+import { useDispatch, useSelector } from "react-redux";
+import card, { actionCreators as cardActions } from "../redux/modules/card";
 
 const ThandDetail = (props) => {
   const {one, share, contents} = props
@@ -30,6 +32,7 @@ const ThandDetail = (props) => {
   }
   
   return(
+
     <React.Fragment>
       <DetailBox>
         <Grid

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Heads from "../components/Heads";
 import ThandDetail from "../components/ThandDetail";
@@ -18,16 +18,11 @@ const TbOneDetail = (props) => {
     dispatch(cardActions.getCardOneDetailDB(post_id))
   }, [])
 
+
   return (
     <React.Fragment>
       {/* 헤드 */}
-      <Heads
-        is_anoter
-        bg="#333"
-        stroke="#fff"
-        color="#fff"
-        text=""
-      />
+      <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />
       <DetailsBox>
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
