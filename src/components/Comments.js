@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
@@ -29,7 +29,6 @@ const Comments = (props) => {
     dispatch(commentActions.sendCommentDB(postid, comment));
   };
   console.log(sendComment);
-
 
   // 댓글 삭제 모달 (팝업)
   const [modalOpen, setModalOpen] = useState(false);

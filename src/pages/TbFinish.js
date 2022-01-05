@@ -3,6 +3,7 @@ import UserProfile from "../components/UserProfile";
 import { Button } from "../elements/TbIndex";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import TbModalTwo from "../components/TbModalTwo";
 
 const TbFinish = (props) => {
   return (
