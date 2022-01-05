@@ -8,16 +8,20 @@ import ThandStateImg from "../components/ThandStateImg";
 import { Grid, Text } from "../elements/TbIndex";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
+import { useParams } from "react-router-dom";
 
 const TbTwoDetail = (props) => {
   const dispatch = useDispatch();
-  const card = useSelector((state) => state.card.shared_card) 
-  const comment_list = useSelector(state => state.comment.list);
-  const post_id = props.match.params.postid
+  const card = useSelector((state) => state.card.shared_card)
+  const comment_list = useSelector(state => state.comment.comment);
+  console.log(comment_list);
 
+  const {postid} = useParams();
+  console.log(postid);
   console.log(card)
+
   React.useEffect(() => {
-    dispatch(cardActions.getCardTwoDetailDB(post_id))
+    dispatch(cardActions.getCardTwoDetailDB(postid))
   }, [])
 
   return (
@@ -51,8 +55,9 @@ const TbTwoDetail = (props) => {
         <Comments count={card.commentCount} is_mbtiFilter />
         {/*입력한 댓글*/}
         <CommentsBox>
-          {/* 맵 돌리자! */}
-          <Comments  is_Comment />
+          {comment_list.map((cList, idx) => {
+            return <Comments is_Comment key={idx} cList={cList} />
+          })}
         </CommentsBox>
       </DetailsBox>
       {/*댓글 입력 창*/}

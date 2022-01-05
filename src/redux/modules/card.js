@@ -21,6 +21,8 @@ const DELETE_CARD = "DELETE_CARD";
 const SEND_CARD = "SEND_CARD";
 const SET_CARD_LIST = "SET_CARD_LIST";
 const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
+// 댓글 추가
+const SEND_COMMENT = "SEND_COMMENT";
 
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({
@@ -36,26 +38,33 @@ const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
 const cardDetailOne = createAction(CARD_DETAIL_ONE, (card_detail) => ({
   card_detail,
 }));
+// 댓글 추가
+const sendComment = createAction(SEND_COMMENT, (comment) => ({
+  comment,
+}));
 
 // **** Initial data **** //
 const initialState = {
   card_list: [],
   search_list: [],
   shared_card: "",
-  not_shared_card: ""
-
+  not_shared_card: "",
+  // 댓글 추가
+  comment: [
+    {
+      userId: "",
+      nickname: "",
+      comment: "",
+      createdAt: "",
+      totalCount: null,
+    },
+  ],
 };
 
 // **** Middleware **** //
 const addCardDB = (img, tag, location, content, size) => {
   return async function (dispatch, getState, { history }) {};
 };
-
-// await가 뭘까? 비동기 통신을 방지해주는 것임, 값이 제대로 들어오지도 않았는데 다음단계로 넘어가서 코드를 실행하면 안되니까 await를 사용해서
-// 비동기 통신을 방지해줌. 즉 값을 정상적으로 받아올때까지 기다려준다는 것임.
-
-// try는? 정상적으로 통신이 일어났을때 발생할 동작들을 try안에 넣어줌
-// catch는 오류났을때
 
 const getCardListDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -170,6 +179,24 @@ const deleteCardDB = (id) => {
   return async function (dispatch, getState, { history }) {};
 };
 
+// **** 댓글추가 **** /
+const sendCommentDB = (postId, comment) => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    await api
+      .post(`/api/${postId}/newComment`, {comment:comment},{
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response)
+        dispatch(sendComment(response.data));
+      })
+      .catch((err) => {
+        window.alert(err.response);
+      });
+  };
+};
+
 const categoryMapper = {
   사회생활: "SOCIAL",
   공부: "STUDY",
@@ -267,6 +294,12 @@ export default handleActions(
         draft.card_list.unshift(action.payload.card);
       }),
 
+      //댓글 추가
+      [SEND_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.comment = state.comment.push(action.payload.comment);
+      }),
+
   },
   initialState
 );
@@ -284,7 +317,7 @@ const actionCreators = {
   getCardTwoDetailDB,
   getCardOneDetailDB,
   getMyCardListDB,
-
+  sendCommentDB,
 };
 
 export { actionCreators };

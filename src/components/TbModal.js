@@ -3,25 +3,7 @@ import styled from "styled-components";
 import "../shared/style.css";
 
 const TbModal = (props) => {
-  const { open, close, modalTwo } = props;
-
-  if (modalTwo) {
-    return (
-      <>
-        <div className={open ? "openModal modal" : "modal"}>
-          {open ? (
-            <section>
-              <main>
-                <ModalboxT>정말 댓글을 삭제하시겠어요??</ModalboxT>
-                <ModalboxR>댓글 삭제</ModalboxR>
-                <Modalbox onClick={close}>취소 </Modalbox>
-              </main>
-            </section>
-          ) : null}
-        </div>
-      </>
-    );
-  }
+  const { open, close } = props;
 
   return (
     <>
