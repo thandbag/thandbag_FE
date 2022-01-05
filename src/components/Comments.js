@@ -30,6 +30,7 @@ const Comments = (props) => {
   };
   console.log(sendComment);
 
+
   // 댓글 삭제 모달 (팝업)
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {

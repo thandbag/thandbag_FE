@@ -19,6 +19,7 @@ const TbList = (props) => {
         stroke="white"
         bg="#333333"
         color="white"
+        cursor="pointer"
       />
       <Grid width="100%" height="auto" margin="70px 0 0 0">
         <SwipeCategory />
@@ -48,7 +49,7 @@ const TbList = (props) => {
         </Grid>
       </Grid>
       <CardList>
-       <TbCardAll></TbCardAll>
+        <TbCardAll></TbCardAll>
       </CardList>
       <Grid
         width="60px"
@@ -64,7 +65,8 @@ const TbList = (props) => {
         zIndex="7"
         _onClick={() => {
           history.push("/TbWrite");
-        }}>
+        }}
+      >
         <Write width="27" height="27" />
       </Grid>
     </Container>
