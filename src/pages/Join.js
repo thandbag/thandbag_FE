@@ -4,6 +4,7 @@ import { Grid, Text, Input, Image,Button, Select } from "../elements/TbIndex";
 import {useDispatch} from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
+import thandbag_logo from "../static/icons/thandbag_logo.svg";
 
 const Join = (props) => {
 
@@ -105,9 +106,10 @@ const Join = (props) => {
 
     return (
         <>
-        <Grid margin="70px 0 0 0" flex="flex; align-items:center; flex-direction: column">
-            <Image shape="circle" Isize="300"></Image>
-
+        <Grid height="100vh" flex="flex" justify="center" direction="column">
+            <Grid margin="50px 0" align="center">
+            <Image shape="logo" width="200px" height="87px" src={thandbag_logo}></Image>
+            </Grid>
             <FormGroup>
                 <Grid margin="30px 0px 0px 0px">
                     <Input boxSizing="border-box" size="17px" bg="#FBF7F7" color="#FF5454" radius="10px" padding="10px" value={email} _onChange={onChangeEmail} height="47px" width="300px" placeholder="아이디"></Input>

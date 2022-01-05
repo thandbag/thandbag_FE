@@ -9,7 +9,8 @@ import hit from "../static/images/Hit.svg";
 
 const TbHitDetail = (props) => {
     const [state, toggle] = React.useState(true);
-    const [count, setCounts] =React.useState(0);
+    const [count, setCounts] = React.useState(0);
+    const [test, setTests] = React.useState('');
     const clickCount = () => {
         setCounts(count + 1);
     }
@@ -18,18 +19,24 @@ const TbHitDetail = (props) => {
         x: state ? 1 : 0,
         config: { mass: 1, tension: 120, friction: 100 ,duration: 500},
     })
+    const clickTarget = (e) => {
+        setTests(e)
+        console.log(e)
+    }
 
     return (
         <>
+        
         <Heads hit bg="#fff" stroke="#333" color="#333"></Heads>
+        
         <Grid cursor="pointer" flex="flex" position="relative">
             <Container  onClick={() => {
                 toggle(!state)
                 clickCount()
                 }}>
                 <animated.img src={thandbag2}
+                onClick={clickTarget}
                 style={{
-                    // opacity: x.to({ range: [0,1], output: [0.3, 1] }),
                     width: "300px",
                     height: "600px",
                     scale: x.to({
@@ -39,17 +46,26 @@ const TbHitDetail = (props) => {
                 }}>
                 </animated.img>
             </Container>
+            {x.immediate ? <>요이루</> : <>하이루</>}
             <Grid _onClick={() => {
                 toggle(!state) 
                 clickCount()}} 
                 top="488px" left="90px" position="absolute">
-                <Grid position="relative" flex="flex" >
-                    <img style={{width: "250px"}} src={hit}/>
-                    <Grid width="auto" position="absolute">
-                    <Text size="50px" bold>Hit!</Text>
-                    <Text align="center" size="50px" bold>{count}</Text>
+                <animated.div
+                     style={{
+                        scale: x.to({
+                            range: [0, 0.15 ,0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+                            output: [1, 0.87, 0.9, 1.1, 0.8, 1.2, 1.03, 1],
+                     }), }}
+                    >
+                    <Grid position="relative" flex="flex" >
+                        <img style={{width: "250px"}} src={hit}/>
+                        <Grid width="auto" position="absolute">
+                        <Text size="50px" bold>Hit!</Text>
+                        <Text align="center" size="50px" bold>{count}</Text>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </animated.div>
             </Grid>
         </Grid>
         

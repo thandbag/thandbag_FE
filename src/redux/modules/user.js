@@ -90,13 +90,11 @@ const kakaoLogin = (code) => {
   };
 };
 
-const editDB = (nickname, password, newpassword, mbti) => {
+const editDB = (nickname, mbti) => {
   return async function(dispatch, getState, { history }){
     const token = sessionStorage.getItem('token')
     const user_info = {
       nickname: nickname,
-      currentPassword: password,
-      newPassword: newpassword,
       mbti: mbti
     }
     console.log(user_info)
@@ -105,6 +103,9 @@ const editDB = (nickname, password, newpassword, mbti) => {
       headers : {Authorization:token}
     }).then(function(response){
       console.log(response)
+      return;
+      sessionStorage.removeItem('nickname')
+      sessionStorage.setItem('nickname', response.data.nickname)
       history.push('/MyPage')
     })
     .catch((err) => {

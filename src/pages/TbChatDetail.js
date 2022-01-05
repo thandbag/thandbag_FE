@@ -67,7 +67,7 @@ const TbChatDetail = (props) => {
       console.log(err.response)
       
     }
-  }
+  };
  
   const stompDisConnect = () => {
     try {
@@ -81,7 +81,7 @@ const TbChatDetail = (props) => {
     } catch (err) {
       console.log(err.response)
     }
-  }
+  };
 
   const waitForConnect = (stomp, callback) => {
     setTimeout(() => {
@@ -96,12 +96,7 @@ const TbChatDetail = (props) => {
   const addMessage = (e) => {
     setMessage(e.target.value)
   }
-
-  // const AllMessage = (data) => {
-  //   setContents((pre) => [...pre, data]);
-  // }
   
-
   const SendMessage = () => {
     const data = {
       type: 'TALK',

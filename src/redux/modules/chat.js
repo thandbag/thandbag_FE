@@ -13,7 +13,6 @@ const GET_ALARM = 'GET_ALARM';
 const DELETE_ALARM = 'DELETE_ALARM';
 
 
-
 // **** Action creator **** //
 const setChatList = createAction(SET_CHAT_LIST, (myChatList) => ({ myChatList }))
 const setMessage = createAction(SET_CHAT_MSG, (chats) => ({chats}))
@@ -62,7 +61,7 @@ const getChatListDB = () => {
         dispatch(setChatList(response.data))
     })
     .catch((err) => {
-      window.alert(err.response)
+      window.alert(err)
     })
   }
 };
