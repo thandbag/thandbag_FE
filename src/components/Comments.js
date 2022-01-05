@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
@@ -13,37 +13,38 @@ import TbModal from "./TbModal";
 import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
-  const {count, is_Comment, is_mbtiFilter } = props;
+  const { count, is_Comment, is_mbtiFilter, cList } = props;
   const dispatch = useDispatch();
-  const params = useParams();
-  const postId = params.postId;
-  console.log(props)
+  const { postid } = useParams();
+  console.log(cList);
 
-  const commentInfo = useSelector((state) => state);
+  const commentInfo = useSelector((state) => state.comment);
+  console.log(commentInfo);
 
   // 댓글 입력 //
   const [comment, setComment] = useState("");
 
   // 댓글 게시 추가 기능
   const sendComment = () => {
-    dispatch(commentActions.sendCommentDB(postId, comment));
-    console.log("test");
+    dispatch(commentActions.sendCommentDB(postid, comment));
   };
+  console.log(sendComment);
 
-  const [modalOpen, setModalOpen] = useState(false)
+
+  // 댓글 삭제 모달 (팝업)
+  const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
-    setModalOpen(true)
-  }
+    setModalOpen(true);
+  };
   const closeModal = () => {
-    setModalOpen(false)
-  }
-  window.addEventListener('keyup', (e) => {
-    if (setModalOpen(false) && e.key === 'Escape') {
-      setModalOpen(true)
+    setModalOpen(false);
+  };
+  window.addEventListener("keyup", (e) => {
+    if (setModalOpen(false) && e.key === "Escape") {
+      setModalOpen(true);
     }
-  })
+  });
 
-  
   // mbti 필터
   if (is_mbtiFilter) {
     return (
@@ -87,7 +88,7 @@ const Comments = (props) => {
               <UserProfile comment size="1rem" Isize="38" />
             </Grid>
             <Grid width="15%" height="auto" flex="flex">
-              <Delete width="17" onClick={openModal}/>
+              <Delete width="17" onClick={openModal} />
             </Grid>
           </Grid>
           <Grid width="100%" height="56px" flex="flex" justify="flex-start">
@@ -100,7 +101,7 @@ const Comments = (props) => {
               padding="0 0 0 2px"
               margin="0 8px 0 0"
             >
-              <LikeButton />
+              <LikeButton key={props.key} />
               <Text
                 color="#F7C8C8"
                 family="NotoSansCJK"
@@ -112,16 +113,15 @@ const Comments = (props) => {
             </Grid>
             <Grid
               width="87%"
-              height="auto"
+              height="100%"
               maXheight="56px"
               overFlowY="scroll"
               flex="flex"
               justify="flex-start"
-              is_align="flex-start"
-              padding="6px 0 0 0"
+              is_align="center"
             >
               <Text size="13px" family="NotoSansCJK">
-                댓글 영역입니다
+                {cList.comment}
               </Text>
             </Grid>
           </Grid>

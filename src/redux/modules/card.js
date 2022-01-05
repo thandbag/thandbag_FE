@@ -13,9 +13,12 @@ const DELETE_CARD = "DELETE_CARD";
 const SEND_CARD = "SEND_CARD";
 const SET_CARD_LIST = "SET_CARD_LIST";
 const SET_MY_LIST = "SET_MY_LIST";
+const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
+const FIND_CARD = "FIND_CARD";
 
 // **** Action creator **** //
-const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
+const searchCard = createAction(SEARCH_CARD, (search) => ({search}));
+const findCard = createAction(FIND_CARD, (find_card) => ({ find_card }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
 const getTwoDetailCard = createAction(TWO_DETAIL_CARD, (card) => ({ card }));
 const getOneDetailCard = createAction(ONE_DETAIL_CARD, (card) => ({ card }));
@@ -32,32 +35,33 @@ const initialState = {
   search_list: [],
   my_list: [],
   shared_card: "",
-  not_shared_card: ""
+  not_shared_card: "",
+  find_card: [],
 
 };
 
 // **** Middleware **** //
-
 
 const getCardListDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     const pageNo = 0;
     const sizeNo = 1000;
-    await api.get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`,
-        {
-          headers: { Authorization: token },
-        }).then(function(response){
+    await api
+      .get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
-        console.log(err.response)
-      })
+        console.log(err.response);
+      });
   };
 };
 
 const getMyCardListDB = () => {
-  return async function (dispatch, getState, {history}) {
+  return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     const pageNo = 0;
     const sizeNo = 10;
@@ -74,36 +78,58 @@ const getMyCardListDB = () => {
   }
 }
 
+
 const getCardTwoDetailDB = (postid) => {
-  return async function (dispatch, getState, { history }){
+  return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
-    await api.get(`api/thandbag/${postid}`, { 
-      headers : { Authorization: token}
-    }).then(function(response){
-      console.log(response)
-      dispatch(getTwoDetailCard(response.data))
-    })
-    .catch((err) => {
-      console.log(err.response)
-    })
+    await api
+      .get(`api/thandbag/${postid}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response);
+        dispatch(getTwoDetailCard(response.data));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 };
 
 const getCardOneDetailDB = (postid) => {
-  return async function ( dispatch, getState, { history }){
+  return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
-    await api.get(`api/thandbag/${postid}`, {
-      headers : { Authorization: token}
-    }).then(function(response){
-      console.log(response)
-      dispatch(getOneDetailCard(response.data))
-    })
-    .catch((err) => {
-      console.log(err.response)
-    })
+    await api
+      .get(`api/thandbag/${postid}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response);
+        dispatch(getOneDetailCard(response.data));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 };
 
+const findCardDB = (keyword) => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    const pageNo = 0;
+    const sizeNo = 1000;
+    await api
+      .get(`/api/thandbag?keyword=${keyword}&page=${pageNo}&size=${sizeNo}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        dispatch(searchCard(response.data));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+};
 
 const searchCardDB = (tagId) => {
   return async function (dispatch, getState, { history }) {};
@@ -119,6 +145,24 @@ const editCardDB = (id, tag, location, content) => {
 
 const deleteCardDB = (id) => {
   return async function (dispatch, getState, { history }) {};
+};
+
+// **** 댓글추가 **** /
+const sendCommentDB = (postId, comment) => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    await api
+      .post(`/api/${postId}/newComment`, {comment:comment},{
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response)
+        dispatch(sendComment(response.data));
+      })
+      .catch((err) => {
+        window.alert(err.response);
+      });
+  };
 };
 
 const categoryMapper = {
@@ -202,25 +246,23 @@ export default handleActions(
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
         const all_search = draft.card_list.filter((c) => {
-          return c.share == true
-        })
+          return c.share == true;
+        });
         const new_search = draft.card_list.filter((c) => {
-          return c.category == action.payload.search
-          })
+          return c.category == action.payload.search;
+        });
 
-        if(action.payload.search == '전체'){
-          draft.search_list = all_search
-        }else {
+        if (action.payload.search == "전체") {
+          draft.search_list = all_search;
+        } else {
           draft.search_list = new_search;
         }
-        
       }),
 
     [ADD_CARD]: (state, action) =>
       produce(state, (draft) => {
         draft.card_list.unshift(action.payload.card);
       }),
-
   },
   initialState
 );
@@ -237,7 +279,6 @@ const actionCreators = {
   getCardTwoDetailDB,
   getCardOneDetailDB,
   getMyCardListDB,
-
 };
 
 export { actionCreators };

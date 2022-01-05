@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "../shared/style.css";
 
-export default function LikeButton() {
+export default function LikeButton(props) {
   return (
     <div id="Like-Button">
       <div>
-        <input type="checkbox" id="checkbox" />
-        <label htmlFor="checkbox">
+        <input type="checkbox" id={props.key} className="checkbox" />
+        <label htmlFor={props.key}>
           <svg
             id="heart-svg"
             viewBox="467 392 58 57"
@@ -24,7 +24,7 @@ export default function LikeButton() {
               />
               <circle
                 id="main-circ"
-                fill="#FF5454"
+                fill="#E2264D"
                 opacity="0"
                 cx="29.5"
                 cy="29.5"

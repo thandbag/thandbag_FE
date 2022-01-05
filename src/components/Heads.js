@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
-
+import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
+import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
+import SearchModal from "../components/SearchModal";
 const Heads = (props) => {
-  const { is_anoter,hit, chat, stompDisConnect ,none, bg, color, fill, stroke } = props;
+  
+  const [modal, setModal] = useState("false");
+  const { is_anoter, hit, chat, stompDisConnect, none, bg, color, fill, stroke } =
+    props;
+
 
   const styles = {
     bg: bg,
@@ -35,6 +41,26 @@ const Heads = (props) => {
               <Arrow {...styles} width="20" height="20" />
             </BackIcon>
           </Grid>
+          <Grid
+            width="10%"
+            height="70px"
+            position="absolute"
+            top="0"
+            left="370px"
+            flex="flex"
+          >
+            <SearchWrap>
+              <SearchIcon
+                {...styles}
+                width="20"
+                height="20"
+                onClick={() => {
+                  setModal(true);
+                }}
+              />
+            </SearchWrap>
+            {modal === true ? <SearchModal setModal={setModal} /> : null}
+          </Grid>
           <Grid width="100%" height="70px" flex="flex">
             <Text size="1.4rem" {...styles}>
               {props.text}
@@ -60,7 +86,7 @@ const Heads = (props) => {
             <BackIcon
               onClick={() => {
                 history.push("/TbChatList");
-                stompDisConnect()
+                stompDisConnect();
               }}
             >
               <Arrow {...styles} width="20" height="20" />
@@ -73,7 +99,7 @@ const Heads = (props) => {
           </Grid>
         </HeadBox>
       </React.Fragment>
-    )
+    );
   }
 
   if (hit) {
@@ -105,8 +131,6 @@ const Heads = (props) => {
       </React.Fragment>
     )
   }
-
-
   if (none) {
     return (
       <React.Fragment>
@@ -150,6 +174,15 @@ const HeadBox = styled.div`
 `;
 
 const BackIcon = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const SearchWrap = styled.div`
   width: auto;
   height: auto;
   display: flex;
