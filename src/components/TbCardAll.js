@@ -18,71 +18,74 @@ const TbCardAll = (props) => {
 
   return (
     <>
-    {cardList.map((c) => {
-      return (
-        <ListBox
-        onClick={() => {
-          history.push(`/TbTwoDetail/${c.postId}`)
-        }}
-        >
-        <CardWrap>
-        <CardTop>
-          <TbText bold>{c.category}</TbText>
-        </CardTop>
-        <Grid
-          width="66px"
-          height="63px"
-          position="absolute"
-          top="5px"
-          right="10px"
-        >
-          <Bomb />
-        </Grid>
-        <CardMiddle>
-          <CardContent>
-            <CardContentTop>
-              <TbText bold size="20px">
-                {c.title}
-              </TbText>
-            </CardContentTop>
-            <CardContentBottom>
-              <div dangerouslySetInnerHTML={{ __html : c.content}}></div>
-            </CardContentBottom>
-          </CardContent>
-        </CardMiddle>
-        <CardBottom>
-          <CardBottomNameArea>
-            <TbText margin="0px 15px 0px 0px;">{c.nickname}님</TbText>
-          </CardBottomNameArea>
-          <CardBottomLvArea>
-            <CardMbti>
-              <TbText color="white" size="13px">
-                {c.mbti}
-              </TbText>
-            </CardMbti>
-            <CardLv>
-              <TbText color="white" size="13px">
-                LV {c.level}
-              </TbText>
-            </CardLv>
-          </CardBottomLvArea>
-          <CardBottomCommentArea>
-            <Comment width="20" height="20"></Comment>
-            <TbText margin="0px 0px 0px 5px">{c.commentCount}</TbText>
-          </CardBottomCommentArea>
-          <CardBottomTimeArea>
-            <TbText color="#F7C8C8" bold="600" size="12px" family="NotoSansCJK">
-              {c.createdAt}
-            </TbText>
-          </CardBottomTimeArea>
-        </CardBottom>
-      </CardWrap>
-    </ListBox>
-      )
-
-    })}
+      {cardList.map((c) => {
+        return (
+          <ListBox
+            onClick={() => {
+              history.push(`/TbTwoDetail/${c.postId}`);
+            }}
+          >
+            <CardWrap>
+              <CardTop>
+                <TbText bold>{c.category}</TbText>
+              </CardTop>
+              <Grid
+                width="66px"
+                height="63px"
+                position="absolute"
+                top="5px"
+                right="10px"
+              >
+                <Bomb />
+              </Grid>
+              <CardMiddle>
+                <CardContent>
+                  <CardContentTop>
+                    <TbText bold size="20px">
+                      {c.title}
+                    </TbText>
+                  </CardContentTop>
+                  <CardContentBottom>
+                    <div dangerouslySetInnerHTML={{ __html: c.content }}></div>
+                  </CardContentBottom>
+                </CardContent>
+              </CardMiddle>
+              <CardBottom>
+                <CardBottomNameArea>
+                  <TbText margin="0px 15px 0px 0px;">{c.nickname}님</TbText>
+                </CardBottomNameArea>
+                <CardBottomLvArea>
+                  <CardMbti>
+                    <TbText color="white" size="13px">
+                      {c.mbti}
+                    </TbText>
+                  </CardMbti>
+                  <CardLv>
+                    <TbText color="white" size="13px">
+                      LV {c.level}
+                    </TbText>
+                  </CardLv>
+                </CardBottomLvArea>
+                <CardBottomCommentArea>
+                  <Comment width="20" height="20"></Comment>
+                  <TbText margin="0px 0px 0px 5px">{c.commentCount}</TbText>
+                </CardBottomCommentArea>
+                <CardBottomTimeArea>
+                  <TbText
+                    color="#F7C8C8"
+                    bold="600"
+                    size="12px"
+                    family="NotoSansCJK"
+                  >
+                    {c.createdAt}
+                  </TbText>
+                </CardBottomTimeArea>
+              </CardBottom>
+            </CardWrap>
+          </ListBox>
+        );
+      })}
     </>
-    
   );
 };
 

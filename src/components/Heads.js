@@ -168,7 +168,7 @@ const HeadBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9;
+  z-index: 7;
   ${(props) => (props.color ? `color: ${props.color};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
 `;
