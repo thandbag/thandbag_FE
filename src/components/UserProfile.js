@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Grid, Text, Image, Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import { useSelector } from "react-redux";
+import TbModalTwoButton from "./TbModalTwoButton";
 
 const UserProfile = (props) => {
   const {
@@ -66,7 +67,7 @@ const UserProfile = (props) => {
             <UserProfile Isize="40" size="1.4rem" />
           </Grid>
           <Grid flex="flex" justify="flex-end" width="20%" height="40px">
-            <Button width="30px" height="30px" bg="#efefef" radius="100%" />
+            <TbModalTwoButton />
           </Grid>
         </Grid>
       </React.Fragment>

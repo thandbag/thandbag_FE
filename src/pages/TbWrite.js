@@ -4,6 +4,7 @@ import TbWriteSelect from "../components/TbWriteSelect";
 import TbTextEditor from "../components/TbTextEditor";
 import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
+import { TbModalThree } from "../components/TbModalThree";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
@@ -21,7 +22,6 @@ const TbWrite = (props) => {
   const getTitle = (e) => {
     const currentTitle = e.target.value;
     setTitle(currentTitle);
-    
   };
 
   const getContent = (e) => {
@@ -29,7 +29,16 @@ const TbWrite = (props) => {
     setContent(currentContent);
   };
 
+  //모달
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  };
+
   return (
+    <>
+    <TbModalThree showModal={showModal} setShowModal={setShowModal} />
     <Container>
       <Heads
         is_anoter
@@ -92,10 +101,12 @@ const TbWrite = (props) => {
             dispatch(
               cardActions.sendCardDB(category, title, content, null, checkState)
             );
+            openModal();
           }}
         />
       </Grid>
     </Container>
+    </>
   );
 };
 
