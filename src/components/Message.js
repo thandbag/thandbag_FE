@@ -29,7 +29,7 @@ const Message = (props) => {
                 <Grid width="auto">
                     <Text padding="5px">{messageInfo.sender}</Text>
                     <Grid radius="10px" bg="#FBF7F7" padding="10px" width="auto">
-                        <Text family="NotoSansCJK" size="13px" width="190px" color="#333">
+                        <Text family="NotoSansCJK" size="13px" width="auto" color="#333">
                         {messageInfo.message} </Text>
                     </Grid>
                 </Grid>

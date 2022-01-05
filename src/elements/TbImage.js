@@ -6,7 +6,7 @@ import thand_2 from "../static/images/thand_2.png";
 import NoThandBag from "../static/images/no_thnadbag.png";
 
 const TbImage = (props) => {
-  const { shape, position, right, src, Isize, thandbag_state, punch_thand, no_thand } = props;
+  const { shape, height, position, right, src, Isize, thandbag_state, punch_thand, no_thand } = props;
 
   const styles = {
     src: src,
@@ -16,6 +16,7 @@ const TbImage = (props) => {
     thandbag_state: thandbag_state,
     punch_thand: punch_thand,
     no_thand: no_thand,
+    height: height
   };
 
   if (no_thand) {
@@ -38,8 +39,25 @@ const TbImage = (props) => {
     return <BgCircle {...styles}></BgCircle>;
   }
 
+  if (shape === "logo") {
+    return <LogoImage {...styles}></LogoImage>;
+  }
+
+  if(shape === "rectangle"){
+    return (
+        <AspectOutter>
+            <AspectInner {...styles}>
+
+            </AspectInner>
+        </AspectOutter>
+    );
+};
+
   return <>이미지</>;
 };
+
+
+
 
 TbImage.defaultProps = {
   shape: "circle",
@@ -48,6 +66,29 @@ TbImage.defaultProps = {
   position:false,
   right:false,
 };
+
+const AspectOutter = styled.div`
+    width: 100%;
+    min-width: 250px;
+
+`;
+
+const AspectInner = styled.div`
+  --size: ${(props) => props.Isize}px;
+  width: var(--size);
+  height: var(--size);
+  background-position: center;
+  background-image: url("${(props) => props.src}");
+  background-size: cover;
+`;
+
+const LogoImage = styled.img`
+  src: ${(props) => props.src};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+
+`;
+
 
 const ImageCircle = styled.div`
   --size: ${(props) => props.Isize}px;

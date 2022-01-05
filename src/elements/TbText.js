@@ -16,6 +16,7 @@ const TbText = (props) => {
     deco,
     decoP,
     cursor,
+    max_width,
   } = props;
 
   const styles = {
@@ -30,6 +31,7 @@ const TbText = (props) => {
     deco: deco,
     decoP: decoP,
     cursor: cursor,
+    max_width: max_width,
   };
 
   return (
@@ -55,6 +57,7 @@ TbText.defaultProps = {
 
 const P = styled.p`
   color: ${(props) => props.color};
+  max-width: ${(props) => (props.max_width ? `${props.max_width}` : "")};
   font-family: ${(props) => (props.family ? `${props.family}` : "")};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? `${props.bold}` : "")};

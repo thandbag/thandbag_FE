@@ -1,12 +1,14 @@
 import React from "react";
-import TbText from "../elements/TbText";
 import styled from "styled-components";
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
 import TbNavgation from "../components/TbNavigation";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
-import { Navigation } from "swiper";
+import {Grid, Button, Image} from "../elements/TbIndex";
+import { history } from "../redux/configureStore";
+import thandbag_main from "../static/images/thandbag_main.png";
+import thandbag_logo from "../static/icons/thandbag_logo.svg";
 
 const Main = (props) => {
   const dispatch = useDispatch();
@@ -39,18 +41,18 @@ const Main = (props) => {
   return (
     <Container>
       <Header>
-        <Logo>로고가 들어갈 거에용</Logo>
+        <Image shape='logo' src={thandbag_logo}/>
       </Header>
       <MainBodyTop>
-        <MainImage>메인 이미지가 들어갈 거에용</MainImage>
+        <Image shape="rectangle" Isize="420" src={thandbag_main}/>
       </MainBodyTop>
       <MainBodyBottom>
-        <Button>
-          <TbText bold>버튼을 눌러보아용</TbText>
-        </Button>
-        <Button>
-          <TbText bold>어서 눌러보아욘</TbText>
-        </Button>
+        <Button login _onClick={() => {
+          history.push('/TbWrite')
+        }} height="60px" width="220px" text="생드백 만들기"></Button>
+        <Button margin="45px 0 0 0" login _onClick={() => {
+          history.push('/TbList')
+        }} height="60px" width="220px" text="다른 사람의 생드백 보기"></Button>
       </MainBodyBottom>
       <Footer />
       <TbNavgation/>
@@ -69,7 +71,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  width: 100%;
+  width: 50%;
   height: 10vh;
   background-color: #fff;
   display: flex;
@@ -86,20 +88,13 @@ const Logo = styled.div`
 
 const MainBodyTop = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 50vh;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const MainImage = styled.div`
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
 
 const MainBodyBottom = styled.div`
   width: 100%;
@@ -111,14 +106,6 @@ const MainBodyBottom = styled.div`
   flex-direction: column;
 `;
 
-const Button = styled.button`
-  width: 70%;
-  height: 20%;
-  background-color: dargreen;
-  border-radius: 15px;
-  margin: 10px 0px;
-  background-color: orange;
-`;
 
 const Footer = styled.div`
   width: 100%;

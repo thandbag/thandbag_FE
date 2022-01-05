@@ -145,7 +145,6 @@ const BtnSocial = styled.button`
   font-family: "KOTRAHOPE";
   background: #f6e24c;
   color: #381e1f;
->>>>>>> view_test
   outline: none;
   border-radius: 15px;
   border: none;
