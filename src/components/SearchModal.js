@@ -1,24 +1,42 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
 import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
+import { actionCreators as cardActions } from "../redux/modules/card";
+import { useDispatch } from "react-redux";
 
-const SearchModal = (setModal) => {
+const SearchModal = ({ setModal }) => {
+  const dispatch = useDispatch();
+  const searchInputRef = useRef(null);
+
+  const cancelButtonClick = () => {
+    dispatch(cardActions.getCardListDB());
+    setModal(false);
+  };
+
+  const searchIconClick = () => {
+    console.log(searchInputRef.current.value);
+    dispatch(cardActions.findCardDB(searchInputRef.current.value));
+  };
+
   return (
     <SearchArea>
-      <SearchInput placeholder="제목이나 내용을 검색하세요"></SearchInput>
+      <SearchInput
+        ref={searchInputRef}
+        placeholder="제목이나 내용을 검색하세요"
+      ></SearchInput>
       <SearchIconIn>
         <SearchWrap>
-          <SearchIconBlack />
+          <SearchIconBlack onClick={searchIconClick} />
         </SearchWrap>
       </SearchIconIn>
       <DeleteArea>
         <DeleteButton
           onClick={() => {
-            setModal(false);
+            cancelButtonClick();
           }}
         >
           <Text color="white">취소</Text>

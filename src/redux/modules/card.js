@@ -2,7 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import api from "../../shared/Api";
 
-
 // **** Action type **** //
 const SEARCH_CARD = "SEARCH_CARD";
 const ADD_CARD = "ADD_CARD";
@@ -17,8 +16,7 @@ const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
 const FIND_CARD = "FIND_CARD";
 
 // **** Action creator **** //
-const searchCard = createAction(SEARCH_CARD, (search) => ({search}));
-const findCard = createAction(FIND_CARD, (find_card) => ({ find_card }));
+const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
 const getTwoDetailCard = createAction(TWO_DETAIL_CARD, (card) => ({ card }));
 const getOneDetailCard = createAction(ONE_DETAIL_CARD, (card) => ({ card }));
@@ -28,7 +26,6 @@ const sendCard = createAction(SEND_CARD, (card) => ({ card }));
 const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
 const setMyList = createAction(SET_MY_LIST, (my_list) => ({ my_list }));
 
-
 // **** Initial data **** //
 const initialState = {
   card_list: [],
@@ -37,7 +34,6 @@ const initialState = {
   shared_card: "",
   not_shared_card: "",
   find_card: [],
-
 };
 
 // **** Middleware **** //
@@ -65,19 +61,19 @@ const getMyCardListDB = () => {
     const token = sessionStorage.getItem("token");
     const pageNo = 0;
     const sizeNo = 10;
-    await api.get( `/api/myThandbag?pageNo=${pageNo}&sizeNo=${sizeNo}`,
-    {
-      headers: { Authorization: token },
-    }).then(function(response){
-      console.log(response)
-      dispatch(setMyList(response.data.content))
-    })
-    .catch((err) => {
-      console.log(err.response)
-    })
-  }
-}
-
+    await api
+      .get(`/api/myThandbag?pageNo=${pageNo}&sizeNo=${sizeNo}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response);
+        dispatch(setMyList(response.data.content));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+};
 
 const getCardTwoDetailDB = (postid) => {
   return async function (dispatch, getState, { history }) {
@@ -123,7 +119,7 @@ const findCardDB = (keyword) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        dispatch(searchCard(response.data));
+        dispatch(setCardList(response.data));
       })
       .catch((err) => {
         console.log(err.response);
@@ -145,24 +141,6 @@ const editCardDB = (id, tag, location, content) => {
 
 const deleteCardDB = (id) => {
   return async function (dispatch, getState, { history }) {};
-};
-
-// **** 댓글추가 **** /
-const sendCommentDB = (postId, comment) => {
-  return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    await api
-      .post(`/api/${postId}/newComment`, {comment:comment},{
-        headers: { Authorization: token },
-      })
-      .then(function (response) {
-        console.log(response)
-        dispatch(sendComment(response.data));
-      })
-      .catch((err) => {
-        window.alert(err.response);
-      });
-  };
 };
 
 const categoryMapper = {
@@ -279,6 +257,7 @@ const actionCreators = {
   getCardTwoDetailDB,
   getCardOneDetailDB,
   getMyCardListDB,
+  findCardDB,
 };
 
 export { actionCreators };
