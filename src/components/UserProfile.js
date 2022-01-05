@@ -18,7 +18,6 @@ const UserProfile = (props) => {
     chat_user,
     mypage_user,
   } = props;
-  
 
   const styles = {
     size: size,
@@ -297,7 +296,7 @@ const UserProfile = (props) => {
               margin="0 4px 0 0"
             >
               <Text color="#fff" size="0.9rem" bold="400">
-                {cardDetail.mbti}
+                mbti
               </Text>
             </Grid>
             <Grid

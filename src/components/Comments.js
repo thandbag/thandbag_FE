@@ -13,11 +13,11 @@ import TbModal from "./TbModal";
 import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
-  const {count, is_Comment, is_mbtiFilter } = props;
+  const { count, is_Comment, is_mbtiFilter } = props;
   const dispatch = useDispatch();
   const params = useParams();
   const postId = params.postId;
-  console.log(props)
+  console.log(props);
 
   const commentInfo = useSelector((state) => state);
 
@@ -30,21 +30,19 @@ const Comments = (props) => {
     console.log("test");
   };
 
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
-    setModalOpen(true)
-  }
+    setModalOpen(true);
+  };
   const closeModal = () => {
-    setModalOpen(false)
-  }
-  window.addEventListener('keyup', (e) => {
-    if (setModalOpen(false) && e.key === 'Escape') {
-      setModalOpen(true)
+    setModalOpen(false);
+  };
+  window.addEventListener("keyup", (e) => {
+    if (setModalOpen(false) && e.key === "Escape") {
+      setModalOpen(true);
     }
-  })
+  });
 
-  const { is_Comment, is_mbtiFilter } = props;
-  
   // mbti 필터
   if (is_mbtiFilter) {
     return (
@@ -88,7 +86,7 @@ const Comments = (props) => {
               <UserProfile comment size="1rem" Isize="38" />
             </Grid>
             <Grid width="15%" height="auto" flex="flex">
-              <Delete width="17" onClick={openModal}/>
+              <Delete width="17" onClick={openModal} />
             </Grid>
           </Grid>
           <Grid width="100%" height="56px" flex="flex" justify="flex-start">
