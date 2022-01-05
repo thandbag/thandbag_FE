@@ -37,6 +37,7 @@ const initialState = {
   shared_card: "",
   not_shared_card: "",
   find_card: [],
+
 };
 
 // **** Middleware **** //
@@ -163,6 +164,24 @@ const editCardDB = (id, tag, location, content) => {
 
 const deleteCardDB = (id) => {
   return async function (dispatch, getState, { history }) {};
+};
+
+// **** 댓글추가 **** /
+const sendCommentDB = (postId, comment) => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    await api
+      .post(`/api/${postId}/newComment`, {comment:comment},{
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response)
+        dispatch(sendComment(response.data));
+      })
+      .catch((err) => {
+        window.alert(err.response);
+      });
+  };
 };
 
 const categoryMapper = {
