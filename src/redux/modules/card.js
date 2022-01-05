@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import api from "../../shared/Api";
 
+
 // **** Action type **** //
 const SEARCH_CARD = "SEARCH_CARD";
 const ADD_CARD = "ADD_CARD";
@@ -11,13 +12,12 @@ const EDIT_CARD = "EDIT_CARD";
 const DELETE_CARD = "DELETE_CARD";
 const SEND_CARD = "SEND_CARD";
 const SET_CARD_LIST = "SET_CARD_LIST";
+const SET_MY_LIST = "SET_MY_LIST";
 const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
 const FIND_CARD = "FIND_CARD";
 
 // **** Action creator **** //
-const searchCard = createAction(SEARCH_CARD, (search) => ({
-  search,
-}));
+const searchCard = createAction(SEARCH_CARD, (search) => ({search}));
 const findCard = createAction(FIND_CARD, (find_card) => ({ find_card }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
 const getTwoDetailCard = createAction(TWO_DETAIL_CARD, (card) => ({ card }));
@@ -26,14 +26,14 @@ const editCard = createAction(EDIT_CARD, (card) => ({ card }));
 const deleteCard = createAction(DELETE_CARD, (id) => ({ id }));
 const sendCard = createAction(SEND_CARD, (card) => ({ card }));
 const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
-const cardDetailOne = createAction(CARD_DETAIL_ONE, (card_detail) => ({
-  card_detail,
-}));
+const setMyList = createAction(SET_MY_LIST, (my_list) => ({ my_list }));
+
 
 // **** Initial data **** //
 const initialState = {
   card_list: [],
   search_list: [],
+  my_list: [],
   shared_card: "",
   not_shared_card: "",
   find_card: [],
@@ -41,9 +41,6 @@ const initialState = {
 };
 
 // **** Middleware **** //
-const addCardDB = (img, tag, location, content, size) => {
-  return async function (dispatch, getState, { history }) {};
-};
 
 const getCardListDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -67,19 +64,20 @@ const getMyCardListDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     const pageNo = 0;
-    const sizeNo = 1000;
-    await api
-      .get(`/api/myThandbag?page=${pageNo}&size=${sizeNo}`, {
-        headers: { Authorization: token },
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  };
-};
+    const sizeNo = 10;
+    await api.get( `/api/myThandbag?pageNo=${pageNo}&sizeNo=${sizeNo}`,
+    {
+      headers: { Authorization: token },
+    }).then(function(response){
+      console.log(response)
+      dispatch(setMyList(response.data.content))
+    })
+    .catch((err) => {
+      console.log(err.response)
+    })
+  }
+}
+
 
 const getCardTwoDetailDB = (postid) => {
   return async function (dispatch, getState, { history }) {
@@ -108,23 +106,6 @@ const getCardOneDetailDB = (postid) => {
       .then(function (response) {
         console.log(response);
         dispatch(getOneDetailCard(response.data));
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  };
-};
-
-const cardDetailOneDB = () => {
-  return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    const postId = 1;
-    await api
-      .get(`/api/thandbag/${postId}`, {
-        headers: { Authorization: token },
-      })
-      .then(function (response) {
-        dispatch(cardDetailOne(response.data));
       })
       .catch((err) => {
         console.log(err.response);
@@ -228,7 +209,10 @@ export default handleActions(
         draft.card_list = action.payload.card_list;
         draft.search_list = action.payload.card_list;
       }),
-
+    [SET_MY_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.my_list = action.payload.my_list;
+      }),
     [TWO_DETAIL_CARD]: (state, action) =>
       produce(state, (draft) => {
         draft.shared_card = action.payload.card;
@@ -284,7 +268,6 @@ export default handleActions(
 );
 
 const actionCreators = {
-  addCardDB,
   getCardDB,
   searchCardDB,
   getCardListDB,

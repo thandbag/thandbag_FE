@@ -36,10 +36,6 @@ const MyPage = (props) => {
             <CardList>
               <TbCardMy/>
             </CardList>
-          {/* <Image no_thand />
-          <Text color="#F7C8C8" size="24px" margin="40px 0 0 0">
-            아직 생드백이 없어요!
-          </Text> */}
         </Grid>
       </Grid>
       <TbNavigation />

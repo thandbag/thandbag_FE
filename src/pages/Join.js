@@ -119,7 +119,7 @@ const Join = (props) => {
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
                     <Input boxSizing="border-box" size="17px" bg="#FBF7F7" color="#FF5454" radius="10px" padding="10px" type="password" value={password} _onChange={onChangePassword} height="47px" width="300px" placeholder="비밀번호"></Input>
-                    {password.length > 0 && !isPassword && <p className="validation">8자 이상의 영문과 숫자 조합을 입력해주세요.</p>}
+                    {password.length > 0 && !isPassword && <p className="validation">8자 이상의 영문과 숫자, 특수문자 조합을 입력해주세요.</p>}
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
                     <Input boxSizing="border-box" size="17px" bg="#FBF7F7" color="#FF5454" radius="10px" padding="10px" type="password" value={passcheck} _onChange={onChangePasscheck} height="47px" width="300px" placeholder="비밀번호 확인"></Input>
@@ -128,7 +128,7 @@ const Join = (props) => {
                 </Grid>
                 <Grid margin="20px 0px 0px 0px">
                 
-                    <Select _onChange={handleClick} height="47px" width="300px"></Select>
+                    <Select bg="#fbf7f7" _onChange={handleClick} height="47px" width="300px"></Select>
                 </Grid>
                 
             </FormGroup>
@@ -157,7 +157,7 @@ const FormGroup = styled.div`
     }
     .validation {
         margin-top:5px;
-        font-size: 12px;
+        font-size: 11px;
         color: #e25c3d;
         font-family: 'NotoSansCJK';
     }

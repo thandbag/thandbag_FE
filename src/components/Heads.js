@@ -7,9 +7,11 @@ import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
 import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
 import SearchModal from "../components/SearchModal";
 const Heads = (props) => {
+  
   const [modal, setModal] = useState("false");
-  const { is_anoter, chat, stompDisConnect, none, bg, color, fill, stroke } =
+  const { is_anoter, hit, chat, stompDisConnect, none, bg, color, fill, stroke } =
     props;
+
 
   const styles = {
     bg: bg,
@@ -100,6 +102,35 @@ const Heads = (props) => {
     );
   }
 
+  if (hit) {
+    return (
+      <React.Fragment>
+        <HeadBox {...styles}>
+          <Grid
+            width="10%"
+            height="70px"
+            position="absolute"
+            top="0"
+            left="20px"
+            flex="flex"
+          >
+            <BackIcon
+              onClick={() => {
+                history.goBack();
+              }}
+            >
+              <Arrow {...styles} width="20" height="20" />
+            </BackIcon>
+          </Grid>
+          <Grid width="100%" height="70px" flex="flex">
+            <Text size="1.4rem" {...styles}>
+              {props.text}
+            </Text>
+          </Grid>
+        </HeadBox>
+      </React.Fragment>
+    )
+  }
   if (none) {
     return (
       <React.Fragment>

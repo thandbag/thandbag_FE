@@ -14,6 +14,7 @@ const TbSelect = (props) => {
     tblist,
     value,
     radius,
+    bg,
   } = props;
 
   const styles = {
@@ -24,6 +25,7 @@ const TbSelect = (props) => {
     width: width,
     border: border,
     radius: radius,
+    bg: bg,
   };
 
   //생드백 작성 부분
@@ -86,6 +88,7 @@ TbSelect.defaultProps = {
   padding: "6px 12px",
   margin: "0px",
   value: "",
+  bg: false,
   _onChange: () => {},
 };
 
@@ -96,7 +99,7 @@ const SelectBasic = styled.select`
   padding: ${(props) => props.padding};
   font-size: 17px;
   font-family: "KOTRAHOPE";
-  background: #fbf7f7;
+  background: ${(props) => props.bg};
   color: #ff5454;
   border: none;
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
