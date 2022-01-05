@@ -68,7 +68,10 @@ const logInDB = (email, password) => {
 
 const logOutDB = () => {
   return async function (dispatch, getState, { history }) {
-    
+    localStorage.removeItem('userId')
+    localStorage.removeItem('nickname')
+    localStorage.removeItem('token')
+    history.replace("/login")
   };
 };
 
@@ -87,6 +90,28 @@ const kakaoLogin = (code) => {
   };
 };
 
+const editDB = (nickname, password, newpassword, mbti) => {
+  return async function(dispatch, getState, { history }){
+    const token = sessionStorage.getItem('token')
+    const user_info = {
+      nickname: nickname,
+      currentPassword: password,
+      newPassword: newpassword,
+      mbti: mbti
+    }
+    console.log(user_info)
+    // return
+    await api.post('/mypage/profile', user_info, {
+      headers : {Authorization:token}
+    }).then(function(response){
+      console.log(response)
+      history.push('/MyPage')
+    })
+    .catch((err) => {
+      console.log(err.response)
+    })
+  }
+}
 
 // **** Reducer **** //
 export default handleActions(
@@ -108,6 +133,7 @@ const actionCreators = {
   joinDB,
   logInDB,
   logOutDB,
+  editDB,
   logOut,
   logIn,
   kakaoLogin,

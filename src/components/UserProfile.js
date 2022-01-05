@@ -297,7 +297,7 @@ const UserProfile = (props) => {
               margin="0 4px 0 0"
             >
               <Text color="#fff" size="0.9rem" bold="400">
-                {cardDetail.mbti}
+                mbti
               </Text>
             </Grid>
             <Grid

@@ -43,7 +43,6 @@ const Comments = (props) => {
     }
   })
 
-  const { is_Comment, is_mbtiFilter } = props;
   
   // mbti 필터
   if (is_mbtiFilter) {

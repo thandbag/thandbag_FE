@@ -5,7 +5,7 @@ import { history } from "../redux/configureStore";
 import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 
 const Heads = (props) => {
-  const { is_anoter, chat, stompDisConnect ,none, bg, color, fill, stroke } = props;
+  const { is_anoter,hit, chat, stompDisConnect ,none, bg, color, fill, stroke } = props;
 
   const styles = {
     bg: bg,
@@ -61,6 +61,36 @@ const Heads = (props) => {
               onClick={() => {
                 history.push("/TbChatList");
                 stompDisConnect()
+              }}
+            >
+              <Arrow {...styles} width="20" height="20" />
+            </BackIcon>
+          </Grid>
+          <Grid width="100%" height="70px" flex="flex">
+            <Text size="1.4rem" {...styles}>
+              {props.text}
+            </Text>
+          </Grid>
+        </HeadBox>
+      </React.Fragment>
+    )
+  }
+
+  if (hit) {
+    return (
+      <React.Fragment>
+        <HeadBox {...styles}>
+          <Grid
+            width="10%"
+            height="70px"
+            position="absolute"
+            top="0"
+            left="20px"
+            flex="flex"
+          >
+            <BackIcon
+              onClick={() => {
+                history.goBack();
               }}
             >
               <Arrow {...styles} width="20" height="20" />

@@ -13,7 +13,6 @@ const TbNavgation = (props) => {
   const dispatch = useDispatch();
   const alarm = useSelector((state) => (state.chat.alarm));
   const [newRing, setNewRings] = React.useState(false);
-  console.log(alarm)
 
   React.useEffect(() => {
     if(alarm.length !== 0){

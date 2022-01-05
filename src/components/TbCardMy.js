@@ -5,81 +5,86 @@ import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
-import { Grid } from "../elements/TbIndex";
+import { Grid, Image, Text } from "../elements/TbIndex";
 import TbText from "../elements/TbText";
 
 const TbCardMy = (props) => {
   const dispatch = useDispatch();
-  const cardList = useSelector((state) => state.card.search_list);
+  const cardList = useSelector((state) => state.card.my_list);
+    console.log(cardList)
 
   React.useEffect(() => {
-    dispatch(cardActions.getCardListDB());
+    dispatch(cardActions.getMyCardListDB());
   }, []);
+  
   return (
     <>
-    {cardList.map((c) => {
-      return (
-        <ListBox
-        onClick={() => {
-          history.push(`/TbTwoDetail/${c.postId}`)
-        }}
-        >
-        <CardWrap>
-        <CardTop>
-          <TbText bold>{c.category}</TbText>
-        </CardTop>
-        <Grid
-          width="66px"
-          height="63px"
-          position="absolute"
-          top="5px"
-          right="10px"
-        >
-          <Bomb />
-        </Grid>
-        <CardMiddle>
-          <CardContent>
-            <CardContentTop>
-              <TbText bold size="20px">
-                {c.title}
-              </TbText>
-            </CardContentTop>
-            <CardContentBottom>
-              <div dangerouslySetInnerHTML={{ __html : c.content}}></div>
-            </CardContentBottom>
-          </CardContent>
-        </CardMiddle>
-        <CardBottom>
-          <CardBottomNameArea>
-            <TbText margin="0px 15px 0px 0px;">{c.nickname}님</TbText>
-          </CardBottomNameArea>
-          <CardBottomLvArea>
-            <CardMbti>
-              <TbText color="white" size="13px">
-                {c.mbti}
-              </TbText>
-            </CardMbti>
-            <CardLv>
-              <TbText color="white" size="13px">
-                LV {c.level}
-              </TbText>
-            </CardLv>
-          </CardBottomLvArea>
-          <CardBottomCommentArea>
-            <Comment width="20" height="20"></Comment>
-            <TbText margin="0px 0px 0px 5px">{c.commentCount}</TbText>
-          </CardBottomCommentArea>
-          <CardBottomTimeArea>
-            <TbText color="#F7C8C8" bold="600" size="12px" family="NotoSansCJK">
-              {c.createdAt}
-            </TbText>
-          </CardBottomTimeArea>
-        </CardBottom>
-      </CardWrap>
-    </ListBox>
-      )
-
-    })}
+    {cardList? <><Image no_thand />
+        <Text align="center" color="#F7C8C8" size="24px" margin="40px 0 0 0">
+        아직 생드백이 없어요!
+        </Text></> : 
+        cardList.map((c) => {
+            return (
+              <ListBox
+              onClick={() => {
+                history.push(`/TbTwoDetail/${c.postId}`)
+              }}
+              >
+              <CardWrap>
+              <CardTop>
+                <TbText bold>{c.category}</TbText>
+              </CardTop>
+              <Grid
+                width="66px"
+                height="63px"
+                position="absolute"
+                top="5px"
+                right="10px"
+              >
+                <Bomb />
+              </Grid>
+              <CardMiddle>
+                <CardContent>
+                  <CardContentTop>
+                    <TbText bold size="20px">
+                      {c.title}
+                    </TbText>
+                  </CardContentTop>
+                  <CardContentBottom>
+                    <div dangerouslySetInnerHTML={{ __html : c.content}}></div>
+                  </CardContentBottom>
+                </CardContent>
+              </CardMiddle>
+              <CardBottom>
+                <CardBottomNameArea>
+                  <TbText margin="0px 15px 0px 0px;">{c.nickname}님</TbText>
+                </CardBottomNameArea>
+                <CardBottomLvArea>
+                  <CardMbti>
+                    <TbText color="white" size="13px">
+                      {c.mbti}
+                    </TbText>
+                  </CardMbti>
+                  <CardLv>
+                    <TbText color="white" size="13px">
+                      LV {c.level}
+                    </TbText>
+                  </CardLv>
+                </CardBottomLvArea>
+                <CardBottomCommentArea>
+                  <Comment width="20" height="20"></Comment>
+                  <TbText margin="0px 0px 0px 5px">{c.commentCount}</TbText>
+                </CardBottomCommentArea>
+                <CardBottomTimeArea>
+                  <TbText color="#F7C8C8" bold="600" size="12px" family="NotoSansCJK">
+                    {c.createdAt}
+                  </TbText>
+                </CardBottomTimeArea>
+              </CardBottom>
+            </CardWrap>
+          </ListBox>
+            )
+          }) }
     </>
     
   );
