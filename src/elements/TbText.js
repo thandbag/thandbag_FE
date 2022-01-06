@@ -68,7 +68,6 @@ const P = styled.p`
   word-break: break-all;
   letter-spacing: -0.5px;
   word-break: break-all;
-  letter-spacing: -0.5px;
   text-decoration: ${(props) => (props.deco ? `${props.deco}` : "")};
   text-underline-position: ${(props) => (props.decoP ? `${props.decoP}` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
