@@ -15,6 +15,7 @@ const TbModalTwoButton = (props) => {
   return (
     <>
       <Container>
+        {/* 수정한 부분 아이콘 */}
         <ThanksChat width="32px" height="32px" onClick={openModal}/>
         <TbModalTwo showModal={showModal} setShowModal={setShowModal} />
       </Container>
