@@ -63,7 +63,7 @@ const TbCardAll = (props) => {
                 top="5px"
                 right="10px"
               >
-              {c.closed ? <Bomb /> : <></>}
+                {c.closed ? <Bomb /> : <></>}
               </Grid>
               <CardMiddle>
                 <CardContent>
@@ -79,7 +79,9 @@ const TbCardAll = (props) => {
               </CardMiddle>
               <CardBottom>
                 <CardBottomNameArea>
-                  <TbText margin="0px 15px 0px 0px;">{c.nickname}님</TbText>
+                  <TbText elli margin="0px 15px 0px 0px;">
+                    {c.nickname}님
+                  </TbText>
                 </CardBottomNameArea>
                 <CardBottomLvArea>
                   <CardMbti>

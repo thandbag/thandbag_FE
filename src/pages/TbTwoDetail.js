@@ -15,9 +15,10 @@ const TbTwoDetail = (props) => {
   const comment_list = useSelector(state => state.comment.comment_list);
   const postid = props.match.params.postid
   console.log(card)
+
   React.useEffect(() => {
-    dispatch(cardActions.getCardTwoDetailDB(postid))
-  }, [])
+    dispatch(cardActions.getCardTwoDetailDB(postid));
+  }, []);
 
   return (
     <React.Fragment>
@@ -50,9 +51,13 @@ const TbTwoDetail = (props) => {
         <Comments count={card.commentCount} is_mbtiFilter />
         {/*입력한 댓글*/}
         <CommentsBox>
-          {comment_list ? comment_list.map((cList, idx) => {
-            return <Comments is_Comment key={idx} cList={cList} />
-          }) : <></>}
+          {comment_list ? (
+            comment_list.map((cList, idx) => {
+              return <Comments is_Comment key={idx} cList={cList} />;
+            })
+          ) : (
+            <></>
+          )}
         </CommentsBox>
       </DetailsBox>
       {/*댓글 입력 창*/}
@@ -63,7 +68,7 @@ const TbTwoDetail = (props) => {
 
 const DetailsBox = styled.div`
   width: 100%;
-  height: auto;
+  height: 100vh;
   max-height: 100vh;
   overflow-y: scroll;
   background-color: #fbf7f7;

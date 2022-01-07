@@ -1,11 +1,12 @@
 import React from "react";
 import Heads from "../components/Heads";
-import { Grid, Image, Text, Button } from "../elements/TbIndex";
+import { Grid, Image, Text } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import TbNavigation from "../components/TbNavigation";
 import TbLoading from "./TbLoading";
+import styled from "styled-components";
 
 
 const TbChatList = (props) => {
@@ -21,6 +22,8 @@ const TbChatList = (props) => {
     <>
     {!is_loaded && <TbLoading/>}
       <Heads none bg="#fff" stroke="#fff" color="#333" text="채팅" />
+       <TbNavigation />
+      <TbChatListBox>
       <Grid margin="70px 0 0 0">
         {chatList.length == 0 ? 
         <Grid flex="flex"
@@ -33,30 +36,48 @@ const TbChatList = (props) => {
         :chatList.map((m, idx) => {
           return (
             <Grid
+              hover2
+              position="relative"
               borderB
-              borderT
-              padding="16px 20px"
+              padding="0 20px"
               width="100%"
+              height="90px"
               flex="flex"
               justify="space-between"
-              bg="#FBF7F7"
+              cursor="pointer"
               _onClick={() => {
                 history.push(`/TbChatDetail/${m.roomId}`);
               }}
             >
-              <Image src={m.subProfileImgUrl} shape="circle" Isize="60" />
-              <Grid width="60%">
-                <Text padding="0 0 10px 0" size="20px">
-                  {m.subNickname}
-                </Text>
-                <Text size="12px" family="NotoSansCJK">
+              <Grid width="auto" height="auto">
+                <Image src={m.subProfileImgUrl} shape="circle" Isize="48" />
+              </Grid>
+              <Grid width="67%" margin="0 6% 0 0">
+                <Text size="20px">{m.subNickname}</Text>
+                <Text
+                  elli
+                  color="#595959"
+                  bold="bold"
+                  size="14px"
+                  margin="0.3rem 0 0 0"
+                  family="NotoSansCJK"
+                >
                   {m.lastContent}
                 </Text>
               </Grid>
-              <Grid flex="flex" direction="column" align="center" width="20%">
-                <Text padding="0 0 10px 0" size="12px" family="NotoSansCJK">
+              <Grid
+                width="auto"
+                height="auto"
+                position="absolute"
+                right="20px"
+                top="10px"
+              >
+                <Text size="10px" color="#878787" blod="bold" family="NotoSansCJK">
                   {m.lastContentCreatedTime}
                 </Text>
+              </Grid>
+
+              <Grid flex="flex" width="auto">
                 <Grid
                   width="23px"
                   height="23px"
@@ -72,13 +93,17 @@ const TbChatList = (props) => {
             </Grid>
           );
         })}
-        
-      </Grid>
-      <TbNavigation/>
-      
-      
+      </TbChatListBox>
+
     </>
   );
 };
+
+const TbChatListBox = styled.div`
+  width: 100%;
+  height: 100vh;
+  padding: 70px 0;
+  overflow-y: scroll;
+`;
 
 export default TbChatList;

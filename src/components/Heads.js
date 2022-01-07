@@ -12,9 +12,22 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 const Heads = (props) => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState("false");
-  const { is_anoter, list, post_id ,hitcount, hit, chat, stompDisConnect, none, bg, color, fill, stroke } =
-    props;
-
+  const {
+    is_anoter,
+    list,
+    post_id,
+    hitcount,
+    hit,
+    chat,
+    stompDisConnect,
+    none,
+    bg,
+    color,
+    fill,
+    stroke,
+    borderT,
+    borderB,
+  } = props;
 
   const styles = {
     bg: bg,
@@ -22,6 +35,8 @@ const Heads = (props) => {
     fill: fill,
     stroke: stroke,
     none: none,
+    borderT: borderT,
+    borderB: borderB,
   };
 
   // another 헤드
@@ -88,7 +103,7 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
-                history.replace('/main');
+                history.replace("/main");
               }}
             >
               <Arrow {...styles} width="20" height="20" />
@@ -169,7 +184,7 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
-                dispatch(cardActions.postHitCountDB(post_id,hitcount))
+                dispatch(cardActions.postHitCountDB(post_id, hitcount));
                 history.goBack();
               }}
             >
@@ -224,6 +239,8 @@ const HeadBox = styled.div`
   z-index: 7;
   ${(props) => (props.color ? `color: ${props.color};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
+  ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
+  ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
 `;
 
 const BackIcon = styled.div`

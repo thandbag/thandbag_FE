@@ -3,6 +3,49 @@ import { Grid, Text, Image, Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import TbModalTwoButton from "./TbModalTwoButton";
 import { ReactComponent as SettingButton } from "../static/icons/setting_button.svg";
+import styled from "styled-components";
+
+import { ReactComponent as ENFJ } from "../static/icons/mbti icons/Property 1=mbti_ENFJ.svg";
+import { ReactComponent as INFP } from "../static/icons/mbti icons/Property 1=mbti_INFP.svg";
+import { ReactComponent as ENFP } from "../static/icons/mbti icons/Property 1=mbti_ENFP.svg";
+import { ReactComponent as ENTJ } from "../static/icons/mbti icons/Property 1=mbti_ENTJ.svg";
+import { ReactComponent as ESFP } from "../static/icons/mbti icons/Property 1=mbti_ESFP.svg";
+import { ReactComponent as ESTJ } from "../static/icons/mbti icons/Property 1=mbti_ESTJ.svg";
+import { ReactComponent as ESTP } from "../static/icons/mbti icons/Property 1=mbti_ESTP.svg";
+import { ReactComponent as ESFJ } from "../static/icons/mbti icons/Property 1=mbti_ESFJ.svg";
+import { ReactComponent as ENTP } from "../static/icons/mbti icons/Property 1=mbti_ENTP.svg";
+import { ReactComponent as INFJ } from "../static/icons/mbti icons/Property 1=mbti_INFJ.svg";
+import { ReactComponent as INTJ } from "../static/icons/mbti icons/Property 1=mbti_INTJ.svg";
+import { ReactComponent as INTP } from "../static/icons/mbti icons/Property 1=mbti_INTP.svg";
+import { ReactComponent as ISFJ } from "../static/icons/mbti icons/Property 1=mbti_ISFJ.svg";
+import { ReactComponent as ISFP } from "../static/icons/mbti icons/Property 1=mbti_ISFP.svg";
+import { ReactComponent as ISTJ } from "../static/icons/mbti icons/Property 1=mbti_ISTJ.svg";
+import { ReactComponent as ISTP } from "../static/icons/mbti icons/Property 1=mbti_ISTP.svg";
+import { ReactComponent as NoMbti } from "../static/icons/mbti icons/Property 1=Variant17.svg";
+import { ReactComponent as LevelOne } from "../static/icons/lv icons/LV. 1.svg";
+import { ReactComponent as LevelTwo } from "../static/icons/lv icons/LV. 2.svg";
+import { ReactComponent as LevelThree } from "../static/icons/lv icons/LV. 3.svg";
+
+import { ReactComponent as CENFJ } from "../static/icons/mbti icons_comment/Property 1=Default-ENFJ.svg";
+import { ReactComponent as CINFP } from "../static/icons/mbti icons_comment/Property 1=Default-15_INFP.svg";
+import { ReactComponent as CENFP } from "../static/icons/mbti icons_comment/Property 1=Default-2_ENFP.svg";
+import { ReactComponent as CENTJ } from "../static/icons/mbti icons_comment/Property 1=Default-4_ENTJ.svg";
+import { ReactComponent as CESFP } from "../static/icons/mbti icons_comment/Property 1=Default-10_ESFP.svg";
+import { ReactComponent as CESTJ } from "../static/icons/mbti icons_comment/Property 1=Default-12_ESTJ.svg";
+import { ReactComponent as CESTP } from "../static/icons/mbti icons_comment/Property 1=Default-14_ESTP.svg";
+import { ReactComponent as CESFJ } from "../static/icons/mbti icons_comment/Property 1=Default-8_ESFJ.svg";
+import { ReactComponent as CENTP } from "../static/icons/mbti icons_comment/Property 1=Default-6_ENTP.svg";
+import { ReactComponent as CINFJ } from "../static/icons/mbti icons_comment/Property 1=Default-13_INFJ.svg";
+import { ReactComponent as CINTJ } from "../static/icons/mbti icons_comment/Property 1=Default-9_INTJ.svg";
+import { ReactComponent as CINTP } from "../static/icons/mbti icons_comment/Property 1=Default-11_INTP.svg";
+import { ReactComponent as CISFJ } from "../static/icons/mbti icons_comment/Property 1=Default-5_ISFJ.svg";
+import { ReactComponent as CISFP } from "../static/icons/mbti icons_comment/Property 1=Default-7_ISFP.svg";
+import { ReactComponent as CISTJ } from "../static/icons/mbti icons_comment/Property 1=Default-1_ISTJ.svg";
+import { ReactComponent as CISTP } from "../static/icons/mbti icons_comment/Property 1=Default-3_ISTP.svg";
+import { ReactComponent as CNoMbti } from "../static/icons/mbti icons_comment/Property 1=Default-16_none.svg";
+import { ReactComponent as CLevelOne } from "../static/icons/lv icons_comment/Property 1=Default-1.svg";
+import { ReactComponent as CLevelTwo } from "../static/icons/lv icons_comment/Property 1=Default-2.svg";
+import { ReactComponent as CLevelThree } from "../static/icons/lv icons_comment/Property 1=Default_3.svg";
 
 const UserProfile = (props) => {
   const userId = sessionStorage.getItem("userId");
@@ -10,7 +53,7 @@ const UserProfile = (props) => {
   const mbti = sessionStorage.getItem("mbti");
   const level = sessionStorage.getItem("level");
   const profile = sessionStorage.getItem("profile");
-  
+
   const {
     one_user,
     two_user,
@@ -209,7 +252,7 @@ const UserProfile = (props) => {
         <Grid width="auto" {...styles} flex="flex" bg="fff">
           {/* 유저 프로필 사진 */}
           <Grid {...styles} width="auto" height="auto" flex="flex">
-            <Image {...styles} />
+            <Image {...styles} src={comment_user.profileImgUrl} />
           </Grid>
           {/* mbti // 레벨 */}
           <Grid
@@ -222,25 +265,63 @@ const UserProfile = (props) => {
             <Grid width="100%" height="50%" flex="flex" justify="flex-start">
               <Grid
                 width="auto"
-                padding="3px 8px"
-                bg="#FF5454"
+                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
                 margin="0 4px 0 0"
               >
                 <Text color="#fff" size="0.9rem" bold="400">
-                  {comment_user.mbti}
+                  {comment_user.mbti === "ENFJ" ? (
+                    <CENFJ />
+                  ) : comment_user.mbti === "INFP" ? (
+                    <CINFP />
+                  ) : comment_user.mbti === "ENFP" ? (
+                    <CENFP />
+                  ) : comment_user.mbti === "ENTJ" ? (
+                    <CENTJ />
+                  ) : comment_user.mbti === "ESFP" ? (
+                    <CESFP />
+                  ) : comment_user.mbti === "ESTJ" ? (
+                    <CESTJ />
+                  ) : comment_user.mbti === "ESTP" ? (
+                    <CESTP />
+                  ) : comment_user.mbti === "INFJ" ? (
+                    <CINFJ />
+                  ) : comment_user.mbti === "INTJ" ? (
+                    <CINTJ />
+                  ) : comment_user.mbti === "INTP" ? (
+                    <CINTP />
+                  ) : comment_user.mbti === "ISFJ" ? (
+                    <CISFJ />
+                  ) : comment_user.mbti === "ISFP" ? (
+                    <CISFP />
+                  ) : comment_user.mbti === "ISTJ" ? (
+                    <CISTJ />
+                  ) : comment_user.mbti === "ISTP" ? (
+                    <CISTP />
+                  ) : comment_user.mbti === "맞춰보셈" ? (
+                    <CNoMbti />
+                  ) : comment_user.mbti === "ESFJ" ? (
+                    <CESFJ />
+                  ) : comment_user.mbti === "ENTP" ? (
+                    <CENTP />
+                  ) : null}
                 </Text>
               </Grid>
               <Grid
                 width="auto"
-                padding="3px 8px"
-                bg="#333"
+                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
               >
                 <Text color="#fff" size="0.9rem" bold="400">
-                  LV {comment_user.level}
+                  {comment_user.level === 1 ? (
+                    <CLevelOne />
+                  ) : comment_user.level === 2 ? (
+                    <CLevelTwo />
+                  ) : comment_user.level === 3 ? (
+                    <CLevelThree />
+                  ) : null}
                 </Text>
               </Grid>
             </Grid>
@@ -257,9 +338,8 @@ const UserProfile = (props) => {
     return (
       <React.Fragment>
         <Grid width="auto" {...styles} flex="flex" bg="fff">
-          {/* 유저 프로필 사진 */}
           <Grid {...styles} width="auto" height="auto" flex="flex">
-            <Image {...styles} />
+            <Image {...styles} src={two_user.profileImgUrl} />
           </Grid>
           {/* mbti // 레벨 */}
           <Grid
@@ -272,25 +352,63 @@ const UserProfile = (props) => {
             <Grid width="100%" height="50%" flex="flex" justify="flex-start">
               <Grid
                 width="auto"
-                padding="3px 8px"
-                bg="#FF5454"
+                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
                 margin="0 4px 0 0"
               >
                 <Text color="#fff" size="0.9rem" bold="400">
-                  {two_user.mbti}
+                  {two_user.mbti === "ENFJ" ? (
+                    <ENFJ />
+                  ) : two_user.mbti === "INFP" ? (
+                    <INFP />
+                  ) : two_user.mbti === "ENFP" ? (
+                    <ENFP />
+                  ) : two_user.mbti === "ENTJ" ? (
+                    <ENTJ />
+                  ) : two_user.mbti === "ESFP" ? (
+                    <ESFP />
+                  ) : two_user.mbti === "ESTJ" ? (
+                    <ESTJ />
+                  ) : two_user.mbti === "ESTP" ? (
+                    <ESTP />
+                  ) : two_user.mbti === "INFJ" ? (
+                    <INFJ />
+                  ) : two_user.mbti === "INTJ" ? (
+                    <INTJ />
+                  ) : two_user.mbti === "INTP" ? (
+                    <INTP />
+                  ) : two_user.mbti === "ISFJ" ? (
+                    <ISFJ />
+                  ) : two_user.mbti === "ISFP" ? (
+                    <ISFP />
+                  ) : two_user.mbti === "ISTJ" ? (
+                    <ISTJ />
+                  ) : two_user.mbti === "ISTP" ? (
+                    <ISTP />
+                  ) : two_user.mbti === "맞춰보셈" ? (
+                    <NoMbti />
+                  ) : two_user.mbti === "ESFJ" ? (
+                    <ESFJ />
+                  ) : two_user.mbti === "ENTP" ? (
+                    <ENTP />
+                  ) : null}
                 </Text>
               </Grid>
               <Grid
                 width="auto"
-                padding="3px 8px"
-                bg="#333"
+                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
               >
                 <Text color="#fff" size="0.9rem" bold="400">
-                  {"LV." + two_user.level}
+                  {two_user.level === 1 ? (
+                    <LevelOne />
+                  ) : two_user.level === 2 ? (
+                    <LevelTwo />
+                  ) : two_user.level === 3 ? (
+                    <LevelThree />
+                  ) : null}
                 </Text>
               </Grid>
             </Grid>
@@ -401,5 +519,9 @@ const UserProfile = (props) => {
     </React.Fragment>
   );
 };
+
+const profileArea = styled.div`
+  background-color: black;
+`;
 
 export default UserProfile;

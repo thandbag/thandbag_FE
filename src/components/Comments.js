@@ -39,6 +39,12 @@ const Comments = (props) => {
     }
   });
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setComment(e.target.value);
+    }
+  };
+
   // mbti 필터
   if (is_mbtiFilter) {
     return (
@@ -79,7 +85,12 @@ const Comments = (props) => {
         >
           <Grid width="100%" height="auto" flex="flex">
             <Grid width="85%" height="auto" padding="5px 0">
-              <UserProfile comment_user={cList} comment size="1rem" Isize="38" />
+              <UserProfile
+                comment_user={cList}
+                comment
+                size="1rem"
+                Isize="38"
+              />
             </Grid>
             {is_me == cList.userId ? 
             <Grid width="15%" height="auto" flex="flex">
@@ -97,7 +108,11 @@ const Comments = (props) => {
               padding="0 0 0 2px"
               margin="0 8px 0 0"
             >
-              <LikeButton user_like={cList.currentUserlike} commentId={cList.commentId} key={props.key} />
+              <LikeButton
+                user_like={cList.currentUserlike}
+                commentId={cList.commentId}
+                key={props.key}
+              />
               <Text
                 color="#F7C8C8"
                 family="NotoSansCJK"
@@ -126,8 +141,6 @@ const Comments = (props) => {
           </Grid>
         </Grid>
         <TbModal id={cList? cList.commentId: <></>} open={modalOpen} close={closeModal} /> 
-        
-        
       </React.Fragment>
     );
   }
@@ -138,6 +151,7 @@ const Comments = (props) => {
       <CommentsInputBox>
         <Grid width="80%" height="100%" flex="flex" margin="0 16px 0 0">
           <Input
+            _onKeyDown={handleKeyDown}
             type="text"
             size="1.2rem"
             color="#333"
@@ -167,7 +181,6 @@ const Comments = (props) => {
               sendComment()
               setComment("")
             }
-              
             }
           />
         </Grid>
