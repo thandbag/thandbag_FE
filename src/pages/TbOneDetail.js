@@ -47,7 +47,7 @@ const TbOneDetail = (props) => {
         </Grid>
 
         {/*생드백 때리러가기 버튼*/}
-        <ThandStateImg one_hit={card.hitCount} not_share />
+        <ThandStateImg not_share_close={card.closed} one_hit={card.hitCount} not_share />
       </DetailsBox>
     </React.Fragment>
   );

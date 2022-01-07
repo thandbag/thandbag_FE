@@ -48,7 +48,7 @@ function App() {
               <Route path={"/TbChatDetail/:roomid"} exact component={TbChatDetail} />
               <Route path={"/MyPage"} exact component={MyPage} />
               <Route path={"/MyEdit"} exact component={MyEdit} />
-              <Route path={"/tbfinish"} exact component={TbFinish} />
+              <Route path={"/TbFinish/:postid"} exact component={TbFinish} />
               <Route path={"/TbComplate"} exact component={TbComplate} />
             </Switch>
           </ConnectedRouter>

@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import "../shared/style.css";
+import { useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 export default function LikeButton(props) {
+  const {user_like, commentId} = props;
+
+  const dispatch = useDispatch();
+  const [state, setState] = React.useState(user_like ? true : false);
+
+  const changeLike = (e) => {
+    setState(e.target.checked)
+    dispatch(commentActions.likeCommentDB(e.target.checked, commentId))
+  }
+
   return (
-    <div id="Like-Button">
+    <div  id="Like-Button">
       <div>
-        <input type="checkbox" id={props.key} className="checkbox" />
+        <input onChange={changeLike} checked={state}  type="checkbox" id={props.key} className="checkbox" />
         <label htmlFor={props.key}>
           <svg
             id="heart-svg"

@@ -10,16 +10,11 @@ import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import LikeButton from "./LikeButton";
 import TbModal from "./TbModal";
-import { setAccessToken } from "../shared/Api";
 
 const Comments = (props) => {
   const { count, is_Comment, is_mbtiFilter, cList } = props;
   const dispatch = useDispatch();
   const { postid } = useParams();
-  console.log(cList);
-
-  const commentInfo = useSelector((state) => state.comment);
-  console.log(commentInfo);
 
   // 댓글 입력 //
   const [comment, setComment] = useState("");
@@ -28,7 +23,6 @@ const Comments = (props) => {
   const sendComment = () => {
     dispatch(commentActions.sendCommentDB(postid, comment));
   };
-  console.log(sendComment);
 
   // 댓글 삭제 모달 (팝업)
   const [modalOpen, setModalOpen] = useState(false);
@@ -84,7 +78,7 @@ const Comments = (props) => {
         >
           <Grid width="100%" height="auto" flex="flex">
             <Grid width="85%" height="auto" padding="5px 0">
-              <UserProfile comment size="1rem" Isize="38" />
+              <UserProfile comment_user={cList} comment size="1rem" Isize="38" />
             </Grid>
             <Grid width="15%" height="auto" flex="flex">
               <Delete width="17" onClick={openModal} />
@@ -100,14 +94,14 @@ const Comments = (props) => {
               padding="0 0 0 2px"
               margin="0 8px 0 0"
             >
-              <LikeButton key={props.key} />
+              <LikeButton user_like={cList.currentUserlike} commentId={cList.commentId} key={props.key} />
               <Text
                 color="#F7C8C8"
                 family="NotoSansCJK"
                 size="0.8rem"
                 bold="bold"
               >
-                22
+                {cList.like}
               </Text>
             </Grid>
             <Grid
@@ -116,16 +110,19 @@ const Comments = (props) => {
               maXheight="56px"
               overFlowY="scroll"
               flex="flex"
-              justify="flex-start"
+              justify="space-between"
               is_align="center"
             >
               <Text size="13px" family="NotoSansCJK">
                 {cList.comment}
               </Text>
+              <Text size="12px" color="#FF5454" family="NotoSansCJK">
+                {cList.createdAt}
+              </Text>
             </Grid>
           </Grid>
         </Grid>
-        <TbModal open={modalOpen} close={closeModal} />
+        <TbModal id={cList? cList.commentId: <></>} open={modalOpen} close={closeModal} />
       </React.Fragment>
     );
   }
@@ -161,7 +158,12 @@ const Comments = (props) => {
             color="#fff"
             text="완료"
             size="1.2rem"
-            _onClick={sendComment}
+            _onClick={() => {
+              sendComment()
+              setComment("")
+            }
+              
+            }
           />
         </Grid>
       </CommentsInputBox>

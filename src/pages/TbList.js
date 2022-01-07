@@ -14,7 +14,7 @@ const TbList = (props) => {
   return (
     <Container>
       <Heads
-        is_anoter
+        list
         text="전체 생드백 리스트"
         stroke="white"
         bg="#333333"

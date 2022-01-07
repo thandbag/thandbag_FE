@@ -1,17 +1,38 @@
 import React from "react";
 import UserProfile from "../components/UserProfile";
-import { Button } from "../elements/TbIndex";
+import { Grid, Button } from "../elements/TbIndex";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import TbModalTwo from "../components/TbModalTwo";
+import thandbagend from "../static/images/thandbag/one_thandbagend.png";
+import api from "../shared/Api";
 
 const TbFinish = (props) => {
+  
+  
+  const token = sessionStorage.getItem("token");
+  const postid = props.match.params.postid
+  const [user, setUsers] = React.useState("")
+
+  React.useEffect(() => {
+    api.post(`/api/thandbag?postId=${postid}`,{postId:postid} ,{
+      headers: {Authorization: token}
+    })
+    .then(function (response) {
+      setUsers(response.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  },[])
   return (
     <React.Fragment>
       <FinishBox>
+        <Grid height="70vh">
+        <img style={{width: "420px"}} src={thandbagend}/>
+        </Grid>
         <ChatBox>
           {/* 맵돌리자 */}
-          <UserProfile chat_user />
+          <UserProfile thank_user={user} chat_user />
         </ChatBox>
         <ButtonBox>
           <Button

@@ -6,10 +6,12 @@ import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
 import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
 import SearchModal from "../components/SearchModal";
+import { useDispatch } from "react-redux";
+import { actionCreators as cardActions } from "../redux/modules/card";
 const Heads = (props) => {
-  
+  const dispatch = useDispatch();
   const [modal, setModal] = useState("false");
-  const { is_anoter, hit, chat, stompDisConnect, none, bg, color, fill, stroke } =
+  const { is_anoter, list, post_id ,hitcount, hit, chat, stompDisConnect, none, bg, color, fill, stroke } =
     props;
 
 
@@ -36,6 +38,55 @@ const Heads = (props) => {
             <BackIcon
               onClick={() => {
                 history.goBack();
+              }}
+            >
+              <Arrow {...styles} width="20" height="20" />
+            </BackIcon>
+          </Grid>
+          <Grid
+            width="10%"
+            height="70px"
+            position="absolute"
+            top="0"
+            left="370px"
+            flex="flex"
+          >
+            <SearchWrap>
+              <SearchIcon
+                {...styles}
+                width="20"
+                height="20"
+                onClick={() => {
+                  setModal(true);
+                }}
+              />
+            </SearchWrap>
+            {modal === true ? <SearchModal setModal={setModal} /> : null}
+          </Grid>
+          <Grid width="100%" height="70px" flex="flex">
+            <Text size="1.4rem" {...styles}>
+              {props.text}
+            </Text>
+          </Grid>
+        </HeadBox>
+      </React.Fragment>
+    );
+  }
+  if (list) {
+    return (
+      <React.Fragment>
+        <HeadBox {...styles}>
+          <Grid
+            width="10%"
+            height="70px"
+            position="absolute"
+            top="0"
+            left="20px"
+            flex="flex"
+          >
+            <BackIcon
+              onClick={() => {
+                history.replace('/main');
               }}
             >
               <Arrow {...styles} width="20" height="20" />
@@ -116,6 +167,7 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
+                dispatch(cardActions.postHitCountDB(post_id,hitcount))
                 history.goBack();
               }}
             >

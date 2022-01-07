@@ -17,6 +17,7 @@ const TbText = (props) => {
     decoP,
     cursor,
     max_width,
+    bg
   } = props;
 
   const styles = {
@@ -32,6 +33,7 @@ const TbText = (props) => {
     decoP: decoP,
     cursor: cursor,
     max_width: max_width,
+    bg:bg
   };
 
   return (
@@ -51,6 +53,8 @@ TbText.defaultProps = {
   align: false,
   margin: false,
   padding: false,
+  max_width: false,
+  bg: false,
   family: "KOTRAHOPE",
   _onClick: () => {},
 };
@@ -69,6 +73,7 @@ const P = styled.p`
   letter-spacing: -0.5px;
   word-break: break-all;
   letter-spacing: -0.5px;
+  background-color: ${(props) => (props.bg ? ` ${props.bg};` : "")};
   text-decoration: ${(props) => (props.deco ? `${props.deco}` : "")};
   text-underline-position: ${(props) => (props.decoP ? `${props.decoP}` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};

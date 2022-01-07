@@ -1,4 +1,5 @@
 import { createAction, handleActions } from "redux-actions";
+import { actionCreators as commentActions } from "./comment";
 import { produce } from "immer";
 import api from "../../shared/Api";
 
@@ -7,24 +8,21 @@ const SEARCH_CARD = "SEARCH_CARD";
 const ADD_CARD = "ADD_CARD";
 const TWO_DETAIL_CARD = "TWO_DETAIL_CARD";
 const ONE_DETAIL_CARD = "ONE_DETAIL_CARD";
-const EDIT_CARD = "EDIT_CARD";
-const DELETE_CARD = "DELETE_CARD";
-const SEND_CARD = "SEND_CARD";
 const SET_CARD_LIST = "SET_CARD_LIST";
 const SET_MY_LIST = "SET_MY_LIST";
-const CARD_DETAIL_ONE = "CARD_DETAIL_ONE";
-const FIND_CARD = "FIND_CARD";
+const GET_THANK_USER = "GET_THANK_USER";
+
+
 
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
 const getTwoDetailCard = createAction(TWO_DETAIL_CARD, (card) => ({ card }));
 const getOneDetailCard = createAction(ONE_DETAIL_CARD, (card) => ({ card }));
-const editCard = createAction(EDIT_CARD, (card) => ({ card }));
-const deleteCard = createAction(DELETE_CARD, (id) => ({ id }));
-const sendCard = createAction(SEND_CARD, (card) => ({ card }));
 const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
 const setMyList = createAction(SET_MY_LIST, (my_list) => ({ my_list }));
+const getThankUser = createAction(GET_THANK_USER, (user) => ({user}));
+
 
 // **** Initial data **** //
 const initialState = {
@@ -34,6 +32,8 @@ const initialState = {
   shared_card: "",
   not_shared_card: "",
   find_card: [],
+  hit_count: "",
+  thank_users: []
 };
 
 // **** Middleware **** //
@@ -83,8 +83,8 @@ const getCardTwoDetailDB = (postid) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response);
         dispatch(getTwoDetailCard(response.data));
+        dispatch(commentActions.setComment(response.data.comments))
       })
       .catch((err) => {
         console.log(err.response);
@@ -127,20 +127,39 @@ const findCardDB = (keyword) => {
   };
 };
 
-const searchCardDB = (tagId) => {
-  return async function (dispatch, getState, { history }) {};
+const postHitCountDB = (postid, hitcount) => {
+  return async function (dispatch, getState, { history }) {
+    // return;
+    const token = sessionStorage.getItem("token")
+    await api.post(`/api/thandbag/punch/${postid}`, hitcount,{
+      headers: { Authorization: token ,
+        'Content-Type': 'application/json;charset=UTF-8'},
+    })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  };
 };
 
-const getCardDB = (id) => {
-  return async function (dispatch, getState, { history }) {};
-};
-
-const editCardDB = (id, tag, location, content) => {
-  return async function (dispatch, getState, { history }) {};
-};
-
-const deleteCardDB = (id) => {
-  return async function (dispatch, getState, { history }) {};
+const getThankUserDB = (postid) => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token")
+    console.log(postid)
+    // return;
+    await api.post(`/api/thandbag?postId=${postid}`, {
+      headers: {Authorization: token}
+    })
+    .then(function (response) {
+      console.log(response)
+      dispatch(getThankUser(response.data))
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  };
 };
 
 const categoryMapper = {
@@ -200,27 +219,6 @@ export default handleActions(
         draft.not_shared_card = action.payload.card;
       }),
 
-    [EDIT_CARD]: (state, action) =>
-      produce(state, (draft) => {
-        let idx = draft.card_list.findIndex(
-          (p) => p.boardId === action.payload.card.boardId
-        );
-
-        draft.card_list[idx] = {
-          ...draft.card_list[idx],
-          ...action.payload.card,
-        };
-      }),
-
-    [DELETE_CARD]: (state, action) =>
-      produce(state, (draft) => {
-        const new_dict = draft.card_list.filter((c, idx) => {
-          return c.boardId !== action.payload.id;
-        });
-
-        draft.card_list = new_dict;
-      }),
-
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
         const all_search = draft.card_list.filter((c) => {
@@ -241,16 +239,16 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list.unshift(action.payload.card);
       }),
+    [GET_THANK_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.thank_users = action.payload.user
+      })
   },
   initialState
 );
 
 const actionCreators = {
-  getCardDB,
-  searchCardDB,
   getCardListDB,
-  editCardDB,
-  deleteCardDB,
   searchCard,
   addCard,
   sendCardDB,
@@ -258,6 +256,9 @@ const actionCreators = {
   getCardOneDetailDB,
   getMyCardListDB,
   findCardDB,
+  postHitCountDB,
+  getThankUserDB,
+  getThankUser
 };
 
 export { actionCreators };

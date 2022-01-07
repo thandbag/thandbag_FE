@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import "../shared/style.css";
+import { useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const TbModal = (props) => {
-  const { open, close } = props;
+  const { id, open, close } = props;
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -12,7 +15,10 @@ const TbModal = (props) => {
           <section>
             <main>
               <ModalboxT>정말 댓글을 삭제하시겠어요??</ModalboxT>
-              <ModalboxR>댓글 삭제</ModalboxR>
+              <ModalboxR onClick={() => {
+                dispatch(commentActions.deleteCommentDB(id))
+                close()
+              }}>댓글 삭제</ModalboxR>
               <Modalbox onClick={close}>취소 </Modalbox>
             </main>
           </section>
