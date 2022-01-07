@@ -57,7 +57,7 @@ const Message = (props) => {
           height="65px"
           margin="0 10px 0 0"
         >
-          <Image shape="circle" Isize="40" />
+          <Image src={messageInfo.senderProfileImg} shape="circle" Isize="40" />
         </Grid>
         <Grid
           width="90%"

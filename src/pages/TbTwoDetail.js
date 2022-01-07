@@ -8,12 +8,14 @@ import ThandStateImg from "../components/ThandStateImg";
 import { Grid, Text } from "../elements/TbIndex";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
+import TbLoading from "./TbLoading";
 
 const TbTwoDetail = (props) => {
   const dispatch = useDispatch();
   const card = useSelector((state) => state.card.shared_card)
   const comment_list = useSelector(state => state.comment.comment_list);
   const postid = props.match.params.postid
+  const is_loaded = useSelector((state) => state.card.is_loaded);
   console.log(card)
 
   React.useEffect(() => {
@@ -22,6 +24,7 @@ const TbTwoDetail = (props) => {
 
   return (
     <React.Fragment>
+      {!is_loaded && <TbLoading/>}
       <DetailsBox>
         {/* 헤드 */}
         <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />

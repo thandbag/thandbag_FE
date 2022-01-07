@@ -47,32 +47,31 @@ const TbChatDetail = (props) => {
 
   const stompConnect = () => {
     try {
-      // stomp.debug = null;
+      stomp.debug = null;
       stomp.connect(token, () => {
         stomp.subscribe(
           `/sub/chat/room/${roomId}`,
           (data) => {
             const newMessage = JSON.parse(data.body);
-            console.log(newMessage);
             dispatch(chatActions.addMessage(newMessage));
           },
           token
         );
       });
     } catch (err) {
-      console.log(err.response);
+      
     }
   };
 
   const stompDisConnect = () => {
     try {
-      // stomp.debug = null;
+      stomp.debug = null;
       stomp.disconnect(() => {
         stomp.unsubscribe("sub-0");
         clearTimeout(waitForConnect);
       }, token);
     } catch (err) {
-      console.log(err.response);
+      
     }
   };
 
@@ -91,6 +90,7 @@ const TbChatDetail = (props) => {
   };
 
   const SendMessage = () => {
+    stomp.debug = null;
     const data = {
       type: "TALK",
       roomId: roomId,

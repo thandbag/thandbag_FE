@@ -7,6 +7,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 const MyEdit = (props) => {
   const profile = sessionStorage.getItem("profile");
+  const nick = sessionStorage.getItem("nickname");
   const dispatch = useDispatch();
   const option_list = [
     "MBTI 선택",
@@ -28,7 +29,7 @@ const MyEdit = (props) => {
     "ISTP",
   ];
 
-  const [nickname, setNickname] = React.useState("");
+  const [nickname, setNickname] = React.useState(nick);
   const [mbti, setMbti] = React.useState(0);
 
   const [isNickname, setIsNickname] = React.useState(false);
@@ -50,8 +51,8 @@ const MyEdit = (props) => {
   };
 
   const clickEdit = () => {
-    if (mbti === 0) {
-      window.alert("mbti를 선택해주세요");
+    if (mbti === 0 || nickname == "") {
+      window.alert("빈칸을 채워주세요");
       return;
     } else {
       dispatch(userActions.editDB(nickname, option_list[mbti]));

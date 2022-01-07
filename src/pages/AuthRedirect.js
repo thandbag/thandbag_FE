@@ -15,13 +15,6 @@ const AuthRedirect = (props) => {
 
     return (
         <>
-        {/* <Grid flex="flex"
-          direction="column" position="absolute" top="300px">
-            <Image no_thand />
-            <Text color="#F7C8C8" size="40px" margin="40px 0 0 0">
-            로딩중...
-          </Text>
-        </Grid> */}
         <TbLoading/>
         </>
     );

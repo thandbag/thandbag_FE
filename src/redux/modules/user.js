@@ -33,7 +33,6 @@ const joinDB = (email, password, nickname, mbti) => {
       window.alert('회원가입 성공!')
     })
     .catch((err) => {
-      console.log(err.response)
       window.alert('회원가입에 문제가 생겼습니다')
     })
     };
@@ -60,7 +59,6 @@ const logInDB = (email, password) => {
 
     })
     .catch((err) => {
-      console.log(err.response)
       window.alert('로그인에 문제가 생겼습니다')
     })
   };
@@ -114,11 +112,13 @@ const editDB = (nickname, mbti) => {
     }).then(function(response){
       console.log(response)
       sessionStorage.removeItem('nickname')
+      sessionStorage.removeItem('mbti')
       sessionStorage.setItem('nickname', response.data.nickname)
+      sessionStorage.setItem('mbti', response.data.mbti)
       history.push('/MyPage')
     })
     .catch((err) => {
-      console.log(err.response)
+      window.alert(err.response.data.errorMessage)
     })
   }
 }

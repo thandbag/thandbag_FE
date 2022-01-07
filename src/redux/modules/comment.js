@@ -35,11 +35,10 @@ const sendCommentDB = (postId, comment) => {
         },
       })
       .then(function (response) {
-        console.log(response)
         dispatch(addComment(response.data));
       })
       .catch((err) => {
-        window.alert(err.response);
+        window.alert("댓글작성에 문제가 발생했습니다.");
       });
   };
 };
@@ -55,7 +54,7 @@ const deleteCommentDB = (commentId) => {
         dispatch(deleteComment(commentId));
       })
       .catch((err) => {
-        console.log("댓글 삭제에 문제가 발생했습니다.", err);
+        window.alert("댓글 삭제에 문제가 발생했습니다.");
       });
   };
 };
@@ -72,11 +71,10 @@ const likeCommentDB = (bool, commentId) => {
         }
       )
       .then(function (response) {
-        console.log(response);
         dispatch(plusLike(response.data));
       })
       .catch((err) => {
-        console.log(err);
+        window.alert("좋아요에 문제가 발생했습니다.")
       });
   };
 };
