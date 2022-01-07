@@ -13,7 +13,6 @@ const SET_MY_LIST = "SET_MY_LIST";
 const GET_THANK_USER = "GET_THANK_USER";
 
 
-
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
@@ -33,7 +32,9 @@ const initialState = {
   not_shared_card: "",
   find_card: [],
   hit_count: "",
-  thank_users: []
+  thank_users: [],
+  is_loaded: false,
+
 };
 
 // **** Middleware **** //
@@ -148,7 +149,7 @@ const getThankUserDB = (postid) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token")
     console.log(postid)
-    // return;
+    // return; totalHitCount
     await api.post(`/api/thandbag?postId=${postid}`, {
       headers: {Authorization: token}
     })
@@ -205,22 +206,32 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list = action.payload.card_list;
         draft.search_list = action.payload.card_list;
+        draft.is_loaded = true;
       }),
     [SET_MY_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.my_list = action.payload.my_list;
+        draft.is_loaded = true;
       }),
     [TWO_DETAIL_CARD]: (state, action) =>
       produce(state, (draft) => {
         draft.shared_card = action.payload.card;
+        draft.is_loaded = true;
       }),
     [ONE_DETAIL_CARD]: (state, action) =>
       produce(state, (draft) => {
         draft.not_shared_card = action.payload.card;
+        draft.is_loaded = true;
       }),
 
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
+        const thand_end = draft.card_list.filter((c) => {
+          return c.closed == true;
+        });
+        const thand_not_end = draft.card_list.filter((c) => {
+          return c.closed == false;
+        });
         const all_search = draft.card_list.filter((c) => {
           return c.share == true;
         });
@@ -230,6 +241,10 @@ export default handleActions(
 
         if (action.payload.search == "전체") {
           draft.search_list = all_search;
+        } else if(action.payload.search == true) {
+          draft.search_list = thand_end;
+        } else if(action.payload.search == false){
+          draft.search_list = thand_not_end;
         } else {
           draft.search_list = new_search;
         }

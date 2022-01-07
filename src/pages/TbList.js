@@ -7,10 +7,12 @@ import styled from "styled-components";
 import TbListModal from "../components/TbListModal";
 import TbCardAll from "../components/TbCardAll";
 import { ReactComponent as Write } from "../static/icons/write.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as cardActions } from "../redux/modules/card";
+import { useSelector } from "react-redux";
+import TbLoading from "./TbLoading";
 
 const TbList = (props) => {
+  const is_loaded = useSelector((state) => state.card.is_loaded);
+
   return (
     <Container>
       <Heads
@@ -31,19 +33,7 @@ const TbList = (props) => {
         borderB
         flex="flex"
         justify="flex-end"
-      >
-        <Grid flex="flex" width="auto" height="100%" bg="blue">
-          <Button
-            width="100%"
-            height="100%"
-            text="전체"
-            bg="#fff"
-            color="#333"
-          />
-        </Grid>
-        <Grid flex="flex" width="5%" height="100%" bg="#fff">
-          <Line />
-        </Grid>
+      > 
         <Grid flex="flex" width="auto" height="100%" padding="0 20px 0 0">
           <TbListModal />
         </Grid>
@@ -69,6 +59,7 @@ const TbList = (props) => {
       >
         <Write width="27" height="27" />
       </Grid>
+      {!is_loaded && <TbLoading/>}
     </Container>
   );
 };

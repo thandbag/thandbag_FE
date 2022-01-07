@@ -35,6 +35,7 @@ const sendCommentDB = (postId, comment) => {
         },
       })
       .then(function (response) {
+        console.log(response)
         dispatch(addComment(response.data));
       })
       .catch((err) => {

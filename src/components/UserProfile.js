@@ -85,10 +85,10 @@ const UserProfile = (props) => {
         <Grid flex="flex" width="100%" hegiht="auto" bg="#fff">
           <Grid width="80%" height="auto">
             <React.Fragment>
-              <Grid width="auto" {...styles} flex="flex" bg="fff">
+              <Grid width="auto" flex="flex" bg="fff">
                 {/* 유저 프로필 사진 */}
-                <Grid {...styles} width="auto" height="auto" flex="flex">
-                  <Image {...styles} />
+                <Grid width="auto" height="auto" flex="flex">
+                  <Image shape="circle" Isize="80" src={profile} />
                 </Grid>
                 {/* mbti // 레벨 */}
                 <Grid

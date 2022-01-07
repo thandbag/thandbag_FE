@@ -53,7 +53,7 @@ const logInDB = (email, password) => {
       sessionStorage.setItem('token', response.headers.authorization)
       sessionStorage.setItem('mbti', response.data.mbti);
       sessionStorage.setItem('level', response.data.level);
-      sessionStorage.setItem('profile', response.data.profile);
+      sessionStorage.setItem('profile', response.data.profileImgUrl);
       dispatch(logIn({user_email:email, user_id: response.data.userId,
          nickname:response.data.nickname}))
       history.push('/main')
@@ -85,7 +85,7 @@ const kakaoLogin = (code) => {
       sessionStorage.setItem("token", response.headers.authorization);
       sessionStorage.setItem('mbti', response.data.mbti);
       sessionStorage.setItem('level', response.data.level);
-      sessionStorage.setItem('profile', response.data.profile);
+      sessionStorage.setItem('profile', response.data.profileImgUrl);
       dispatch(logIn({ 
         user_id: response.data.userId,
         nickname:response.data.nickname,
