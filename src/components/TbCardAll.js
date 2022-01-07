@@ -84,7 +84,7 @@ const TbCardAll = (props) => {
                 </CardMiddle>
                 <CardBottom>
                   <CardBottomNameArea>
-                    <TbText elli color="#333">
+                    <TbText Wspace="nowrap" color="#333">
                       {c.nickname}님
                     </TbText>
                   </CardBottomNameArea>
@@ -232,8 +232,9 @@ const CardBottom = styled.div`
 `;
 
 const CardBottomNameArea = styled.div`
-  width: 25%;
+  width: auto;
   height: 100%;
+  margin-right: 6px;
   overflow: hidden;
   display: flex;
   justify-content: center;
