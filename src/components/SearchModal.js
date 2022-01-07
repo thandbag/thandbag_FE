@@ -4,7 +4,7 @@ import { Grid, Text } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
-import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
+import { ReactComponent as SearchIconOrange } from "../static/icons/icon_Search_Orange.svg";
 import { actionCreators as cardActions } from "../redux/modules/card";
 import { useDispatch } from "react-redux";
 
@@ -22,15 +22,22 @@ const SearchModal = ({ setModal }) => {
     dispatch(cardActions.findCardDB(searchInputRef.current.value));
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      searchIconClick();
+    }
+  };
+
   return (
     <SearchArea>
       <SearchInput
         ref={searchInputRef}
+        onKeyDown={handleKeyDown}
         placeholder="제목이나 내용을 검색하세요"
       ></SearchInput>
       <SearchIconIn>
         <SearchWrap>
-          <SearchIconBlack onClick={searchIconClick} />
+          <SearchIconOrange onClick={searchIconClick} />
         </SearchWrap>
       </SearchIconIn>
       <DeleteArea>

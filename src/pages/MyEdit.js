@@ -114,12 +114,7 @@ const MyEdit = (props) => {
             <Grid flex="flex" width="30%" height="100%" justify="flex-start">
               <Text size="17px">MBTI 선택</Text>
             </Grid>
-            <Grid
-              flex="flex"
-              justify="space-between"
-              width="70%"
-              height="100%"
-            >
+            <Grid flex="flex" justify="space-between" width="70%" height="100%">
               <Select
                 _onChange={handleClick}
                 height="47px"

@@ -6,30 +6,32 @@ import { history } from "../redux/configureStore";
 import thandbagend from "../static/images/thandbag/one_thandbagend.png";
 import api from "../shared/Api";
 
-
 const TbFinish = (props) => {
-  
-  
   const token = sessionStorage.getItem("token");
-  const postid = props.match.params.postid
-  const [user, setUsers] = React.useState("")
+  const postid = props.match.params.postid;
+  const [user, setUsers] = React.useState("");
 
   React.useEffect(() => {
-    api.post(`/api/thandbag?postId=${postid}`,{postId:postid} ,{
-      headers: {Authorization: token}
-    })
-    .then(function (response) {
-      setUsers(response.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  },[])
+    api
+      .post(
+        `/api/thandbag?postId=${postid}`,
+        { postId: postid },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then(function (response) {
+        setUsers(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <React.Fragment>
       <FinishBox>
         <Grid height="70vh">
-        <img style={{width: "420px"}} src={thandbagend}/>
+          <img style={{ width: "420px" }} src={thandbagend} />
         </Grid>
         <ChatBox>
           {/* 맵돌리자 */}
@@ -61,17 +63,6 @@ const FinishBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
-`;
-
-const DieImgBox = styled.div`
-  width: 100%;
-  height:50vh;
-  position: absolute;
-  top: 2%;
-  background: url(${DieThandLv1});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 `;
 
 const ChatBox = styled.div`

@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import TbNavigation from "../components/TbNavigation";
 
-
 const TbChatList = (props) => {
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chat.chatListInfo);
@@ -62,7 +61,7 @@ const TbChatList = (props) => {
           );
         })}
       </Grid>
-      <TbNavigation/>
+      <TbNavigation />
     </>
   );
 };
