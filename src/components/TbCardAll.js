@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { ReactComponent as Bomb } from "../static/images/bomb.svg";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { ReactComponent as ENFJ } from "../static/icons/mbti icons/Property 1=mbti_ENFJ.svg";
@@ -26,7 +27,7 @@ import { ReactComponent as LevelThree } from "../static/icons/lv icons/LV. 3.svg
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
-import { Grid ,Image, Text } from "../elements/TbIndex";
+import { Grid, Image, Text } from "../elements/TbIndex";
 import TbText from "../elements/TbText";
 
 const TbCardAll = (props) => {
@@ -39,53 +40,56 @@ const TbCardAll = (props) => {
 
   return (
     <>
-      {cardList.length == 0 ? <Grid flex="flex"
-        direction="column" position="absolute" top="300px">
-        <Image no_thand />
-        <Text color="#F7C8C8" size="30px" margin="40px 0 0 0">
-        해당 생드백이 없어요!
-        </Text>
-        </Grid> : cardList.map((c) => {
-        return (
-          <ListBox
-            onClick={() => {
-              history.push(`/TbTwoDetail/${c.postId}`);
-            }}
-          >
-            <CardWrap>
-              <CardTop>
-                <TbText bold>{c.category}</TbText>
-              </CardTop>
-              <Grid
-                width="66px"
-                height="63px"
-                position="absolute"
-                top="5px"
-                right="10px"
-              >
-                {c.closed ? <Bomb /> : <></>}
-              </Grid>
-              <CardMiddle>
-                <CardContent>
-                  <CardContentTop>
-                    <TbText bold size="20px">
-                      {c.title}
+      {cardList.length == 0 ? (
+        <Grid flex="flex" direction="column" position="absolute" top="300px">
+          <Image no_thand />
+          <Text color="#F7C8C8" size="30px" margin="40px 0 0 0">
+            해당 생드백이 없어요!
+          </Text>
+        </Grid>
+      ) : (
+        cardList.map((c) => {
+          return (
+            <ListBox
+              onClick={() => {
+                history.push(`/TbTwoDetail/${c.postId}`);
+              }}
+            >
+              <CardWrap>
+                <CardTop>
+                  <TbText bold>{c.category}</TbText>
+                </CardTop>
+                <Grid
+                  width="66px"
+                  height="63px"
+                  position="absolute"
+                  top="5px"
+                  right="10px"
+                >
+                  {c.closed ? <Bomb /> : <></>}
+                </Grid>
+                <CardMiddle>
+                  <CardContent>
+                    <CardContentTop>
+                      <TbText bold size="20px">
+                        {c.title}
+                      </TbText>
+                    </CardContentTop>
+                    <CardContentBottom>
+                      <div
+                        dangerouslySetInnerHTML={{ __html: c.content }}
+                      ></div>
+                    </CardContentBottom>
+                  </CardContent>
+                </CardMiddle>
+                <CardBottom>
+                  <CardBottomNameArea>
+                    <TbText elli color="#333">
+                      {c.nickname}님
                     </TbText>
-                  </CardContentTop>
-                  <CardContentBottom>
-                    <div dangerouslySetInnerHTML={{ __html: c.content }}></div>
-                  </CardContentBottom>
-                </CardContent>
-              </CardMiddle>
-              <CardBottom>
-                <CardBottomNameArea>
-                  <TbText elli margin="0px 15px 0px 0px;">
-                    {c.nickname}님
-                  </TbText>
-                </CardBottomNameArea>
-                <CardBottomLvArea>
-                  <CardMbti>
-                    <TbText color="white" size="13px">
+                  </CardBottomNameArea>
+                  <CardBottomLvArea>
+                    <CardMbti>
                       {c.mbti === "ENFJ" ? (
                         <ENFJ />
                       ) : c.mbti === "INFP" ? (
@@ -121,10 +125,8 @@ const TbCardAll = (props) => {
                       ) : c.mbti === "ENTP" ? (
                         <ENTP />
                       ) : null}
-                    </TbText>
-                  </CardMbti>
-                  <CardLv>
-                    <TbText color="white" size="13px">
+                    </CardMbti>
+                    <CardLv>
                       {c.level === 1 ? (
                         <LevelOne />
                       ) : c.level === 2 ? (
@@ -132,28 +134,33 @@ const TbCardAll = (props) => {
                       ) : c.level === 3 ? (
                         <LevelThree />
                       ) : null}
+                    </CardLv>
+                  </CardBottomLvArea>
+                  <Grid flex="flex" width="20px" height="100%">
+                    <Grid width="1px" height="40%" bg="#eee" />
+                  </Grid>
+                  <CardBottomCommentArea>
+                    <Comment width="20" height="20" />
+                    <TbText margin="0px 0px 0px 5px" color="#333">
+                      {c.commentCount}
                     </TbText>
-                  </CardLv>
-                </CardBottomLvArea>
-                <CardBottomCommentArea>
-                  <Comment width="20" height="20"></Comment>
-                  <TbText margin="0px 0px 0px 5px">{c.commentCount}</TbText>
-                </CardBottomCommentArea>
-                <CardBottomTimeArea>
-                  <TbText
-                    color="#F7C8C8"
-                    bold="600"
-                    size="12px"
-                    family="NotoSansCJK"
-                  >
-                    {c.createdAt}
-                  </TbText>
-                </CardBottomTimeArea>
-              </CardBottom>
-            </CardWrap>
-          </ListBox>
-        );
-      })}
+                  </CardBottomCommentArea>
+                  <CardBottomTimeArea>
+                    <TbText
+                      color="#F7C8C8"
+                      size="12px"
+                      bold="bold"
+                      family="NotoSansCJK"
+                    >
+                      {c.createdAt}
+                    </TbText>
+                  </CardBottomTimeArea>
+                </CardBottom>
+              </CardWrap>
+            </ListBox>
+          );
+        })
+      )}
     </>
   );
 };
@@ -188,7 +195,7 @@ const CardMiddle = styled.div`
   height: 60%;
   margin-top: 46px;
   background-color: #fff;
-  border-bottom: 2px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,19 +218,15 @@ const CardContentBottom = styled.div`
   width: 100%;
   height: 70%;
   background-color: #fff;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const CardBottom = styled.div`
   width: 100%;
   height: 20%;
-  background-color: #fff;
-  padding: 10px 15px 10px 15px;
+  padding: 0 20px;
   display: flex;
-  justify-content: center;
+  background-color: #fff;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
 `;
@@ -231,7 +234,6 @@ const CardBottom = styled.div`
 const CardBottomNameArea = styled.div`
   width: 25%;
   height: 100%;
-  background-color: #fff;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -239,19 +241,17 @@ const CardBottomNameArea = styled.div`
 `;
 
 const CardBottomLvArea = styled.div`
-  width: 50%;
+  width: auto;
   height: 100%;
-  background-color: #fff;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: row;
 `;
 
 const CardBottomCommentArea = styled.div`
-  width: 25%;
+  width: auto;
   height: 100%;
-  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -259,12 +259,11 @@ const CardBottomCommentArea = styled.div`
 `;
 
 const CardBottomTimeArea = styled.div`
-  width: 25%;
+  width: auto;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: #fff;
   margin-left: 10px;
 `;
 
@@ -272,15 +271,15 @@ const CardMbti = styled.div`
   width: 40px;
   height: 18px;
   line-height: 18px;
-  background-color: #ff5454;
   text-align: center;
   border-radius: 25px;
   margin: 0px 15px 0px 0px;
 `;
 
 const CardLv = styled.div`
-  width: 40px;
+  width: auto;
   height: 18px;
+  margin-left: 3px;
   line-height: 18px;
   background-color: #333333;
   text-align: center;

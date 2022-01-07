@@ -106,7 +106,7 @@ const Heads = (props) => {
                 history.replace("/main");
               }}
             >
-              <Arrow {...styles} width="20" height="20" />
+              <Arrow {...styles} width="26" height="26" />
             </BackIcon>
           </Grid>
           <Grid

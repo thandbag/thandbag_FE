@@ -77,9 +77,9 @@ const Container = styled.div`
   height: 100%;
   background-color: #f6f6f6;
   background-image: url(${WebImg});
-  background-size: 95%;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: bottom;
   overflow: hidden;
 
   @media screen and (max-width: 1024px) {
