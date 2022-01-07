@@ -11,14 +11,14 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 
 const TbTwoDetail = (props) => {
   const dispatch = useDispatch();
-  const card = useSelector((state) => state.card.shared_card)
-  const comment_list = useSelector(state => state.comment.comment_list);
-  const postid = props.match.params.postid
-
+  const card = useSelector((state) => state.card.shared_card);
+  const comment_list = useSelector((state) => state.comment.comment_list);
+  const postid = props.match.params.postid;
+  console.log(comment_list);
 
   React.useEffect(() => {
-    dispatch(cardActions.getCardTwoDetailDB(postid))
-  }, [])
+    dispatch(cardActions.getCardTwoDetailDB(postid));
+  }, []);
 
   return (
     <React.Fragment>
@@ -46,14 +46,22 @@ const TbTwoDetail = (props) => {
           </Grid>
         </Grid>
         {/*생드백 때리러가기 버튼*/}
-        <ThandStateImg share_close={card.closed} id={postid} two_hit={card.hitCount} />
+        <ThandStateImg
+          share_close={card.closed}
+          id={postid}
+          two_hit={card.hitCount}
+        />
         {/*댓글 수 // mbti 필터*/}
         <Comments count={card.commentCount} is_mbtiFilter />
         {/*입력한 댓글*/}
         <CommentsBox>
-          {comment_list ? comment_list.map((cList, idx) => {
-            return <Comments is_Comment key={idx} cList={cList} />
-          }) : <></>}
+          {comment_list ? (
+            comment_list.map((cList, idx) => {
+              return <Comments is_Comment key={idx} cList={cList} />;
+            })
+          ) : (
+            <></>
+          )}
         </CommentsBox>
       </DetailsBox>
       {/*댓글 입력 창*/}

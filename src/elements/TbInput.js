@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const TbInput = (props) => {
   const {
+    _onKeyDown,
     boxSizing,
     type,
     placeholder,
@@ -45,6 +46,7 @@ const TbInput = (props) => {
           placeholder={placeholder}
           onChange={_onChange}
           className={_className}
+          onKeyDown={_onKeyDown}
         />
       </>
     );
@@ -59,6 +61,7 @@ const TbInput = (props) => {
         placeholder={placeholder}
         onChange={_onChange}
         className={_className}
+        onKeyDown={_onKeyDown}
       />
     </>
   );
@@ -75,6 +78,7 @@ TbInput.defaultProps = {
   value: "",
   color: "",
   _onChange: () => {},
+  _onKeyDown: () => {},
 };
 
 const InputBox = styled.input`
