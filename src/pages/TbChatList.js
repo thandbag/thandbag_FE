@@ -8,21 +8,20 @@ import TbNavigation from "../components/TbNavigation";
 import TbLoading from "./TbLoading";
 import styled from "styled-components";
 
-
 const TbChatList = (props) => {
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chat.chatListInfo);
   const is_loaded = useSelector((state) => state.chat.is_loaded);
-  
+
   React.useEffect(() => {
     dispatch(chatActions.getChatListDB());
   }, []);
 
   return (
     <>
-    {!is_loaded && <TbLoading/>}
+      {!is_loaded && <TbLoading />}
       <Heads none bg="#fff" stroke="#fff" color="#333" text="채팅" />
-       <TbNavigation />
+      <TbNavigation />
       <TbChatListBox>
         {chatList.length == 0 ? 
         <Grid flex="flex"
@@ -64,12 +63,20 @@ const TbChatList = (props) => {
                   {m.lastContent}
                 </Text>
               </Grid>
+
               <Grid
-                width="auto"
-                height="auto"
-                position="absolute"
-                right="20px"
-                top="10px"
+                hover2
+                position="relative"
+                borderB
+                padding="0 20px"
+                width="100%"
+                height="90px"
+                flex="flex"
+                justify="space-between"
+                cursor="pointer"
+                _onClick={() => {
+                  history.push(`/TbChatDetail/${m.roomId}`);
+                }}
               >
                 <Text size="10px" color="#878787" blod="bold" family="NotoSansCJK">
                   {m.lastContentCreatedTime}
@@ -90,11 +97,10 @@ const TbChatList = (props) => {
                 </Text>
               </Grid>}
               </Grid>
-            </Grid>
-          );
-        })}
+            );
+          })
+        )}
       </TbChatListBox>
-
     </>
   );
 };

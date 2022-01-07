@@ -49,7 +49,7 @@ const TbHitDetail = (props) => {
     return (
         <>
         <Grid height="100vh" bg="#fbf7f7">
-        <Heads post_id={postid} hitcount={count} hit bg="#fbf7f7" stroke="#333" color="#333"></Heads>
+        <Heads post_id={postid} hitcount={count} hit bg="transparent" stroke="#333" color="#333"></Heads>
         <Grid cursor="pointer" flex="flex" height="90vh" align="center" justify="center" position="relative">
             <Grid _onClick={() => {
                 toggle(!state)
