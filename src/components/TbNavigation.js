@@ -27,19 +27,16 @@ const TbNavgation = (props) => {
     setColor(color === "red" ? "black" : "red");
   }
 
-
   return (
     <React.Fragment>
       <NavBox>
         <Nav1
           onClick={() => {
-            toggleColor()
+            toggleColor();
             history.push("/main");
           }}
         >
-          <Main
-            className={`icon ${color}`}
-          />
+          <Main className={`icon ${color}`} />
         </Nav1>
         <Nav1>
           <TbChatList

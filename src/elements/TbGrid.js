@@ -33,6 +33,9 @@ const TbGrid = (props) => {
     _onClick,
     overFlowY,
     hover,
+    hover2,
+    maXwidth,
+    miNwidth,
   } = props;
 
   const styles = {
@@ -63,22 +66,37 @@ const TbGrid = (props) => {
     cursor: cursor,
     shadow: shadow,
     overFlowY: overFlowY,
+    maXwidth: maXwidth,
+    miNwidth: miNwidth,
   };
 
-  if(hover){
+  if (hover2) {
     return (
       <>
-      <HoverGrid {...styles} onClick={_onClick}>{children}</HoverGrid>
+        <HoverGrid2 {...styles} onClick={_onClick}>
+          {children}
+        </HoverGrid2>
       </>
-      
-    )
+    );
+  }
+
+  if (hover) {
+    return (
+      <>
+        <HoverGrid {...styles} onClick={_onClick}>
+          {children}
+        </HoverGrid>
+      </>
+    );
   }
 
   return (
-  <>
-  <GridBox {...styles} onClick={_onClick}>{children}</GridBox>
-  
-  </>)
+    <>
+      <GridBox {...styles} onClick={_onClick}>
+        {children}
+      </GridBox>
+    </>
+  );
 };
 
 TbGrid.defaultProps = {
@@ -110,6 +128,7 @@ TbGrid.defaultProps = {
 const GridBox = styled.div`
   box-sizing: border-box;
   width: ${(props) => props.width};
+  max-width: ${(props) => props.maXwidth};
   height: ${(props) => props.height};
   text-align: ${(props) => props.align};
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
@@ -167,10 +186,10 @@ const HoverGrid = styled.div`
   ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
   ${(props) => (props.overFlowY ? `overflow-y: ${props.overFlowY};` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
-  
+
   &:hover: {
-    color: #F7C8C8;
-    background-color: #F7C8C8;
+    color: #f7c8c8;
+    background-color: #f7c8c8;
     transition: 0.555s;
   }
   /* &:not(hover) {
@@ -178,6 +197,46 @@ const HoverGrid = styled.div`
     background: #333;
     transition: 0.555s;
   } */
+`;
+
+const HoverGrid2 = styled.div`
+  background-color: red;
+  box-sizing: border-box;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  text-align: ${(props) => props.align};
+  padding: ${(props) => (props.padding ? `${props.padding}` : "")};
+  margin: ${(props) => (props.margin ? `${props.margin}` : "")};
+  margin-top: ${(props) => (props.marginT ? `${props.marginT}` : "")};
+  margin-bottom: ${(props) => (props.marginB ? `${props.marginB}` : "")};
+  max-height: ${(props) => props.maXheight};
+  position: ${(props) => (props.position ? `${props.position}` : "")};
+  left: ${(props) => (props.left ? `${props.left}` : "")};
+  right: ${(props) => (props.right ? `${props.right}` : "")};
+  top: ${(props) => (props.top ? `${props.top}` : "")};
+  bottom: ${(props) => (props.bottom ? `${props.bottom}` : "")};
+  display: ${(props) => (props.flex ? `${props.flex}` : "")};
+  ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")};
+  ${(props) => (props.is_align ? `align-items: ${props.is_align};` : "")};
+  ${(props) => (props.direction ? `flex-direction: ${props.direction};` : "")};
+  ${(props) => (props.wrap ? `flex-wrap: ${props.wrap};` : "")};
+  ${(props) => (props.border ? `border: ${props.border};` : "")};
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
+  ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
+  ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
+  ${(props) => (props.overFlowY ? `overflow-y: ${props.overFlowY};` : "")};
+  cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
+
+  &:hover {
+    background-color: #f7c8c8;
+    transition: 0.3s;
+  }
+  &:not(hover) {
+    background-color: #fbf7f7;
+    transition: 0.3s;
+  }
 `;
 
 export default TbGrid;

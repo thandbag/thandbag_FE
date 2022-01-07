@@ -162,7 +162,6 @@ const Comments = (props) => {
               sendComment()
               setComment("")
             }
-              
             }
           />
         </Grid>
