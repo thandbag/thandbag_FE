@@ -8,7 +8,7 @@ function Welcome() {
   const fadeOut = useSpring({
     width: "100%",
     height: "100vh",
-    backgroundColor: "#FF5454",
+    backgroundColor: "#fff",
     position: "absolute",
     opacity: 0,
     from: { opacity: 1 },
@@ -17,6 +17,7 @@ function Welcome() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: "36vh",
   });
 
   const fadeIn = useSpring({

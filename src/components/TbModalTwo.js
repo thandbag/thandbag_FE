@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-import { useSpring, animated } from 'react-spring';
-import styled from 'styled-components';
+import React, { useRef, useEffect, useCallback } from "react";
+import { useSpring, animated } from "react-spring";
+import styled from "styled-components";
 import { ReactComponent as ThankYou } from "../static/images/thankyou.svg";
+import { ReactComponent as Close } from "../static/icons/close.svg";
 
 const Background = styled.div`
   width: 100%;
@@ -22,18 +23,32 @@ const ModalWrapper = styled.div`
   z-index: 10;
 `;
 
+const CloseModalButton = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  z-index: 10;
+`;
+
 export const TbModalTwo = ({ showModal, setShowModal }) => {
   const modalRef = useRef();
 
   const animation = useSpring({
     config: {
-      duration: 200
+      duration: 200,
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? `translateY(0%)` : `translateY(-30%)`
+    transform: showModal ? `translateY(0%)` : `translateY(-30%)`,
   });
 
-  const closeModal = e => {
+  const closeModal = (e) => {
     console.log(modalRef.current);
     console.log(e.target);
     if (modalRef.current === e.target) {
@@ -42,21 +57,18 @@ export const TbModalTwo = ({ showModal, setShowModal }) => {
   };
 
   const keyPress = useCallback(
-    e => {
-      if (e.key === 'Escape' && showModal) {
+    (e) => {
+      if (e.key === "Escape" && showModal) {
         setShowModal(false);
       }
     },
     [setShowModal, showModal]
   );
 
-  useEffect(
-    () => {
-      document.addEventListener('keydown', keyPress);
-      return () => document.removeEventListener('keydown', keyPress);
-    },
-    [keyPress]
-  );
+  useEffect(() => {
+    document.addEventListener("keydown", keyPress);
+    return () => document.removeEventListener("keydown", keyPress);
+  }, [keyPress]);
 
   return (
     <>
@@ -67,6 +79,12 @@ export const TbModalTwo = ({ showModal, setShowModal }) => {
               <ThankYou />
             </ModalWrapper>
           </animated.div>
+          <CloseModalButton
+            aria-label="Close modal"
+            onClick={() => setShowModal((prev) => !prev)}
+          >
+            <Close width="18px" height="18px" />
+          </CloseModalButton>
         </Background>
       ) : null}
     </>

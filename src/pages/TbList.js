@@ -56,7 +56,7 @@ const TbList = (props) => {
         height="60px"
         radius="100%"
         bg="#fff"
-        shadow="0px 4px 10px rgb(0, 0, 0, 0.3)"
+        shadow="0px 4px 12px rgb(0, 0, 0, 0.3)"
         position="absolute"
         right="20px"
         bottom="60px"

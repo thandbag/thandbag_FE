@@ -6,11 +6,12 @@ import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import kakao from "../static/icons/kakao.svg";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
+import TbLoading from "./TbLoading";
 
 const Login = (props) => {
   const dispatch = useDispatch();
-  const API_key = '2bbe979f5fff3c4ab9f79ad6a7be6729';
-  const Redirect_URI = 'http://localhost:3000/user/kakao/callback';
+  const API_key = "2bbe979f5fff3c4ab9f79ad6a7be6729";
+  const Redirect_URI = "http://localhost:3000/user/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_key}&redirect_uri=${Redirect_URI}&response_type=code`;
 
   // 이메일, 비밀번호 상태관리//
@@ -57,43 +58,93 @@ const Login = (props) => {
   };
 
   const clickSocial = () => {
-    return window.location.href= KAKAO_AUTH_URL
+    return (window.location.href = KAKAO_AUTH_URL);
   };
 
   return (
     <>
-    <Grid >
-      <Grid height="100vh" flex="flex" justify="center" direction="column">
-        <Grid margin="50px 0" align="center">
-          <Image shape="logo" width="200px" height="87px" src={thandbag_logo}></Image>
-        </Grid>
-        <FormGroup>
-            <Grid margin="30px 0px 20px 0px">
-                <Input boxSizing="border-box" size="17px" bg="#FBF7F7" color="#FF5454" radius="10px" padding="10px" value={email} _onChange={onChangeEmail} height="47px" width="300px" placeholder="아이디"></Input>
-                {email.length > 0 && !isEmail && (<p className="validation">올바른 이메일 형식을 입력해주세요.</p>)}
+      <Grid>
+        <Grid height="100vh" flex="flex" justify="center" direction="column">
+          <Grid margin="4.5vh 0" align="center">
+            <Image
+              shape="logo"
+              width="200px"
+              height="87px"
+              src={thandbag_logo}
+            ></Image>
+          </Grid>
+          <FormGroup>
+            <Grid margin="30px 0px">
+              <Input
+                boxSizing="border-box"
+                size="17px"
+                bg="#FBF7F7"
+                color="#FF5454"
+                radius="10px"
+                padding="10px"
+                value={email}
+                _onChange={onChangeEmail}
+                height="47px"
+                width="300px"
+                placeholder="아이디"
+              ></Input>
+              {email.length > 0 && !isEmail && (
+                <p className="validation">올바른 이메일 형식을 입력해주세요.</p>
+              )}
             </Grid>
             <Grid>
-                <Input boxSizing="border-box" size="17px" bg="#FBF7F7" color="#FF5454" radius="10px" padding="10px" type="password" value={password} _onChange={onChangePassword} height="47px" width="300px" placeholder="비밀번호"></Input>
-                {password.length > 0 && !isPassword && (<p className="validation">8자 이상의 영문과 숫자, 특수문자 조합을 입력해주세요.</p>)}
+              <Input
+                boxSizing="border-box"
+                size="17px"
+                bg="#FBF7F7"
+                color="#FF5454"
+                radius="10px"
+                padding="10px"
+                type="password"
+                value={password}
+                _onChange={onChangePassword}
+                height="47px"
+                width="300px"
+                placeholder="비밀번호"
+              ></Input>
+              {password.length > 0 && !isPassword && (
+                <p className="validation">
+                  8자 이상의 영문/숫자/특수문자 조합을 입력해주세요.
+                </p>
+              )}
             </Grid>
-        </FormGroup>
-        <Grid  margin="100px 0 0 0" align="center">
-            <Button login _onClick={clickLogin} height="60px" width="220px" text="로그인하기"></Button>
-            <Button social _onClick={clickSocial} margin="20px 0 0 0" height="60px" width="220px"><Icon/>&nbsp;카카오톡으로 로그인</Button>
-            
-        </Grid>
-        <Grid flex="flex" align="center" margin="10px 0 0 0">
-            <Text color="#C4C4C4" >생드백 회원이 아니신가요?&nbsp;</Text>
-                <JoinLink onClick={() => {
-                    history.push('/join')
-                    }}>
-                    회원가입
-                </JoinLink>
+          </FormGroup>
+          <Grid margin="8.5vh 0 0 0" align="center">
+            <Button
+              login
+              _onClick={clickLogin}
+              height="60px"
+              width="220px"
+              text="로그인하기"
+            ></Button>
+            <Button
+              social
+              _onClick={clickSocial}
+              margin="20px 0 0 0"
+              height="60px"
+              width="220px"
+            >
+              <Icon />
+              &nbsp;카카오톡으로 로그인
+            </Button>
+          </Grid>
+          <Grid flex="flex" align="center" margin="30px 0 0 0">
+            <Text color="#C4C4C4">생드백 회원이 아니신가요?&nbsp;</Text>
+            <JoinLink
+              onClick={() => {
+                history.push("/join");
+              }}
+            >
+              회원가입
+            </JoinLink>
+          </Grid>
         </Grid>
       </Grid>
-
-    </Grid>
-      
     </>
   );
 };
@@ -102,18 +153,17 @@ const FormGroup = styled.div`
   .validation {
     margin-top: 5px;
     font-size: 12px;
-    font-family: 'NotoSansCJK';
+    font-family: "NotoSansCJK";
     color: #e25c3d;
   }
 `;
-
 
 const JoinLink = styled.p`
   color: #767676;
   transition: color 0.1s ease-in-out, fill 0.1s ease-in-out,
   opacity 0.1s ease-in-out;
   text-decoration: underline;
-  font-family: 'KOTRAHOPE';
+  font-family: "KOTRAHOPE";
   margin-left: 5px;
   cursor: pointer;
 
@@ -133,6 +183,5 @@ const Icon = styled.div`
   background-position: center;
   background-size: cover;
 `;
-
 
 export default Login;

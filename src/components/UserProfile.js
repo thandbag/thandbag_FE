@@ -3,6 +3,7 @@ import { Grid, Text, Image, Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import { useSelector } from "react-redux";
 import TbModalTwoButton from "./TbModalTwoButton";
+import { ReactComponent as SettingButton } from "../static/icons/setting_button.svg";
 
 const UserProfile = (props) => {
   const {
@@ -33,16 +34,20 @@ const UserProfile = (props) => {
     return (
       <React.Fragment>
         <Grid flex="flex" width="100%" hegiht="auto" bg="#fff">
-          <Grid width="80%" height="auto">
-            <UserProfile my Isize="98" size="26px" />
+          <Grid width="80%" height="auto" >
+            <UserProfile my Isize="80" size="26px" />
           </Grid>
-          <Grid flex="flex" justify="flex-end" width="20%" height="40px">
-            <Button
-              width="30px"
-              height="30px"
-              bg="#efefef"
-              radius="100%"
-              _onClick={() => {
+          <Grid
+            flex="flex"
+            cursor="pointer"
+            justify="flex-end"
+            width="20%"
+            height="40px"
+          >
+            <SettingButton
+              width="28px"
+              height="28px"
+              onClick={() => {
                 history.push("/MyEdit");
               }}
             />

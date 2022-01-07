@@ -1,54 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import icon1 from "../static/icons/icon1.svg";
-import icon2 from "../static/icons/icon2.svg";
-import icon3 from "../static/icons/icon3.svg";
-import icon4 from "../static/icons/icon4.svg";
+import { ReactComponent as Main } from "../static/icons/nav_main.svg";
+import { ReactComponent as TbChatList } from "../static/icons/nav_chat.svg";
+import { ReactComponent as TbNotice } from "../static/icons/nav_notice.svg";
+import { ReactComponent as MyPage } from "../static/icons/nav_mypage.svg";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Image } from "../elements/TbIndex";
+import { Image } from "../elements/TbIndex";
 import { actionCreators as chatActions } from "../redux/modules/chat";
+import "../shared/style.css";
 
 const TbNavgation = (props) => {
   const dispatch = useDispatch();
-  const alarm = useSelector((state) => (state.chat.alarm));
+  const alarm = useSelector((state) => state.chat.alarm);
   const [newRing, setNewRings] = React.useState(false);
 
   React.useEffect(() => {
-    if(alarm.length !== 0){
-      setNewRings(true)
+    if (alarm.length !== 0) {
+      setNewRings(true);
     }
-  },[alarm])
+  }, [alarm]);
+
+  const [color, setColor] = useState("red");
+
+  function toggleColor() {
+    setColor(color === "red" ? "black" : "red");
+  }
+
 
   return (
     <React.Fragment>
       <NavBox>
-        <Nav1>
-          <Icon1
-            onClick={() => {
-              history.push("/main");
-            }}
+        <Nav1
+          onClick={() => {
+            toggleColor()
+            history.push("/main");
+          }}
+        >
+          <Main
+            className={`icon ${color}`}
           />
         </Nav1>
         <Nav1>
-          <Icon2
+          <TbChatList
+            fill="#333"
             onClick={() => {
               history.push("/TbChatList");
             }}
           />
         </Nav1>
         <Nav1>
-          {newRing === true && <Image position="absolute" right="137px" shape="alarm" Isize="10"/>}
-          <Icon3
+          {newRing === true && (
+            <Image position="absolute" right="137px" shape="alarm" Isize="10" />
+          )}
+          <TbNotice
+            fill="#333"
             onClick={() => {
               history.push("/TbNotice");
-              dispatch(chatActions.deleteAlarm())
-              setNewRings(false)
+              dispatch(chatActions.deleteAlarm());
+              setNewRings(false);
             }}
           />
         </Nav1>
         <Nav1>
-          <Icon4
+          <MyPage
+            fill="#333"
             onClick={() => {
               history.push("/MyPage");
             }}
@@ -83,28 +99,7 @@ const Nav1 = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-`;
-
-const Icon1 = styled.div`
-  width: 25px;
-  height: 25px;
-  background-image: url(${icon1});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   cursor: pointer;
-`;
-
-const Icon2 = styled(Icon1)`
-  background-image: url(${icon2});
-`;
-
-const Icon3 = styled(Icon1)`
-  background-image: url(${icon3});
-`;
-
-const Icon4 = styled(Icon1)`
-  background-image: url(${icon4});
 `;
 
 export default TbNavgation;

@@ -59,7 +59,7 @@ const MyEdit = (props) => {
 
   return (
     <React.Fragment>
-      <Heads is_anoter bg="#FBF7F7" stroke="#333" color="#333" />
+      <Heads is_anoter bg="#FBF7F7" stroke="#333" color="#333" none="none" />
       <Grid
         width="100%"
         height="100vh"
@@ -85,7 +85,7 @@ const MyEdit = (props) => {
             margin="36px 0 0 0"
             cursor="pointer"
           >
-            프로필 이미지 변경
+            {/* 프로필 이미지 변경 */}
           </Text>
         </Grid>
         <Grid
@@ -117,7 +117,6 @@ const MyEdit = (props) => {
             <Grid
               flex="flex"
               justify="space-between"
-              borderB
               width="70%"
               height="100%"
             >
@@ -160,7 +159,7 @@ const MyEdit = (props) => {
           height="auto"
           flex="flex"
           position="absolute"
-          bottom="1.5rem"
+          bottom="7vh"
           left="0"
         >
           <Button

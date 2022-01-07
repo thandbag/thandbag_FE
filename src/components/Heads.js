@@ -5,19 +5,29 @@ import { history } from "../redux/configureStore";
 import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
 import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
+import { ReactComponent as ThandbagLogo } from "../static/icons/thandbag_logo.svg";
 import SearchModal from "../components/SearchModal";
-const Heads = (props) => {
-  
-  const [modal, setModal] = useState("false");
-  const { is_anoter, hit, chat, stompDisConnect, none, bg, color, fill, stroke } =
-    props;
 
+const Heads = (props) => {
+  const [modal, setModal] = useState("false");
+  const {
+    is_anoter,
+    hit,
+    chat,
+    stompDisConnect,
+    none,
+    bg,
+    color,
+    fill,
+    stroke,
+  } = props;
 
   const styles = {
     bg: bg,
     color: color,
     fill: fill,
     stroke: stroke,
+    none: none,
   };
 
   // another 헤드
@@ -38,7 +48,7 @@ const Heads = (props) => {
                 history.goBack();
               }}
             >
-              <Arrow {...styles} width="20" height="20" />
+              <Arrow {...styles} width="26" height="26" />
             </BackIcon>
           </Grid>
           <Grid
@@ -49,11 +59,11 @@ const Heads = (props) => {
             left="370px"
             flex="flex"
           >
-            <SearchWrap>
+            <SearchWrap {...styles}>
               <SearchIcon
                 {...styles}
-                width="20"
-                height="20"
+                width="26"
+                height="26"
                 onClick={() => {
                   setModal(true);
                 }}
@@ -89,7 +99,7 @@ const Heads = (props) => {
                 stompDisConnect();
               }}
             >
-              <Arrow {...styles} width="20" height="20" />
+              <Arrow {...styles} width="26" height="26" />
             </BackIcon>
           </Grid>
           <Grid width="100%" height="70px" flex="flex">
@@ -119,7 +129,7 @@ const Heads = (props) => {
                 history.goBack();
               }}
             >
-              <Arrow {...styles} width="20" height="20" />
+              <Arrow {...styles} width="26" height="26" />
             </BackIcon>
           </Grid>
           <Grid width="100%" height="70px" flex="flex">
@@ -129,7 +139,7 @@ const Heads = (props) => {
           </Grid>
         </HeadBox>
       </React.Fragment>
-    )
+    );
   }
   if (none) {
     return (
@@ -149,10 +159,9 @@ const Heads = (props) => {
     // default 헤드
     <React.Fragment>
       <HeadBox>
-        <Grid width="20%" height="70px" bg="#fff" flex="flex">
-          <Text size="2.8rem">🍔</Text>
+        <Grid width="100%" height="70px" flex="flex">
+          <ThandbagLogo width="100%" />
         </Grid>
-        <Grid width="80%" height="70px" bg="#fff" flex="flex" />
       </HeadBox>
     </React.Fragment>
   );
@@ -189,6 +198,7 @@ const SearchWrap = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  ${(props) => (props.none ? `display: ${props.none};` : "")};
 `;
 
 export default Heads;

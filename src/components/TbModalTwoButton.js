@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { TbModalTwo } from '../components/TbModalTwo';
 import { Button } from "../elements/TbIndex";
+import { ReactComponent as ThanksChat } from "../static/icons/thanks_chat.svg";
+
 
 const TbModalTwoButton = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -13,15 +15,7 @@ const TbModalTwoButton = (props) => {
   return (
     <>
       <Container>
-        <Button
-          width="100%"
-          height="100%"
-          bg="#eee"
-          color="#555"
-          radius="100%"
-          text="채팅"
-          _onClick={openModal}
-        />
+        <ThanksChat width="32px" height="32px" onClick={openModal}/>
         <TbModalTwo showModal={showModal} setShowModal={setShowModal} />
       </Container>
     </>
@@ -34,6 +28,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export default TbModalTwoButton;

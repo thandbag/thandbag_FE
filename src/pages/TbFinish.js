@@ -3,12 +3,15 @@ import UserProfile from "../components/UserProfile";
 import { Button } from "../elements/TbIndex";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import TbModalTwo from "../components/TbModalTwo";
+import DieThandLv1 from "../static/images/die_thand_lv1.png";
+import DieThandLv2 from "../static/images/die_thand_lv2.png";
+import DieThandLv3 from "../static/images/die_thand_lv3.png";
 
 const TbFinish = (props) => {
   return (
     <React.Fragment>
       <FinishBox>
+        <DieImgBox />
         <ChatBox>
           {/* 맵돌리자 */}
           <UserProfile chat_user />
@@ -39,6 +42,17 @@ const FinishBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
+`;
+
+const DieImgBox = styled.div`
+  width: 100%;
+  height:50vh;
+  position: absolute;
+  top: 2%;
+  background: url(${DieThandLv1});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const ChatBox = styled.div`
