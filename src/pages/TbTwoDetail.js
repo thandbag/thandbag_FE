@@ -72,7 +72,7 @@ const TbTwoDetail = (props) => {
 
 const DetailsBox = styled.div`
   width: 100%;
-  height: auto;
+  height: 100vh;
   max-height: 100vh;
   overflow-y: scroll;
   background-color: #fbf7f7;

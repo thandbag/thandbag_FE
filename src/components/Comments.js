@@ -179,9 +179,10 @@ const Comments = (props) => {
             text="완료"
             size="1.2rem"
             _onClick={() => {
-              sendComment();
-              setComment("");
-            }}
+              sendComment()
+              setComment("")
+            }
+            }
           />
         </Grid>
       </CommentsInputBox>

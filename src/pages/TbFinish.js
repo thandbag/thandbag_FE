@@ -31,7 +31,7 @@ const TbFinish = (props) => {
     <React.Fragment>
       <FinishBox>
         <Grid height="70vh">
-          <img style={{ width: "420px" }} src={thandbagend} />
+          <img style={{width: "420px"}} src={thandbagend}/>
         </Grid>
         <ChatBox>
           {/* 맵돌리자 */}

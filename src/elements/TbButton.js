@@ -37,7 +37,7 @@ const TbButton = (props) => {
 
   if (category) {
     return (
-      <CategoryBtn  {...styles} onClick={_onClick}>
+      <CategoryBtn {...styles} onClick={_onClick}>
         {text}
       </CategoryBtn>
     );
@@ -127,12 +127,12 @@ const BtnLogin = styled.button`
   &:hover {
     color: #ffffff;
     background: #ff5454;
-    transition: 0.55s;
+    transition: 0.35s;
   }
   &:not(hover) {
     color: #fff;
     background: #333;
-    transition: 0.555s;
+    transition: 0.35;
   }
 `;
 

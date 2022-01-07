@@ -17,7 +17,10 @@ const TbText = (props) => {
     decoP,
     cursor,
     max_width,
-    bg
+    bg,
+    elli,
+    spacing,
+    Wbreack,
   } = props;
 
   const styles = {
@@ -33,8 +36,21 @@ const TbText = (props) => {
     decoP: decoP,
     cursor: cursor,
     max_width: max_width,
-    bg:bg
+    bg: bg,
+    elli: elli,
+    spacing: spacing,
+    Wbreack: Wbreack,
   };
+
+  if (elli) {
+    return (
+      <>
+        <Ellipsis {...styles} onClick={_onClick}>
+          {children}
+        </Ellipsis>
+      </>
+    );
+  }
 
   return (
     <>
@@ -69,14 +85,25 @@ const P = styled.p`
   line-height: ${(props) => (props.LHeight ? `${props.LHeight}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
-  word-break: break-all;
-  letter-spacing: -0.5px;
-  word-break: break-all;
-  letter-spacing: -0.5px;
+  word-break: ${(props) => (props.Wbreack ? `${props.Wbreack}` : "")};
+  letter-spacing: ${(props) => (props.spacing ? `${props.spacing}` : "")};
   background-color: ${(props) => (props.bg ? ` ${props.bg};` : "")};
   text-decoration: ${(props) => (props.deco ? `${props.deco}` : "")};
   text-underline-position: ${(props) => (props.decoP ? `${props.decoP}` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
+`;
+
+const Ellipsis = styled.div`
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: ${(props) => props.color};
+  font-size: ${(props) => props.size};
+  font-weight: ${(props) => (props.bold ? `${props.bold}` : "")};
+  margin: ${(props) => (props.margin ? `${props.margin}` : "")};
+  font-family: ${(props) => (props.family ? `${props.family}` : "")};
 `;
 
 export default TbText;
