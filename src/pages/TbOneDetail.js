@@ -7,11 +7,13 @@ import ThandStateImg from "../components/ThandStateImg";
 import { Grid, Text } from "../elements/TbIndex";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
+import TbLoading from "./TbLoading";
 
 const TbOneDetail = (props) => {
   const dispatch = useDispatch();
-  const card = useSelector((state) => state.card.not_shared_card) 
-  const post_id = props.match.params.postid
+  const card = useSelector((state) => state.card.not_shared_card);
+  const post_id = props.match.params.postid;
+  const is_loaded = useSelector((state) => state.card.is_loaded);
   console.log(card)
 
   React.useEffect(() => {
@@ -22,6 +24,8 @@ const TbOneDetail = (props) => {
   return (
     <React.Fragment>
       {/* 헤드 */}
+      {!is_loaded && <TbLoading/>}
+      <TbLoading/>
       <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />
       <DetailsBox>
         {/* 게시글 내용 */}

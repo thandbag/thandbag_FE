@@ -52,7 +52,7 @@ const getCardListDB = () => {
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
-        console.log(err.response);
+        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
       });
   };
 };
@@ -67,11 +67,10 @@ const getMyCardListDB = () => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response);
         dispatch(setMyList(response.data.content));
       })
       .catch((err) => {
-        console.log(err.response);
+        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
       });
   };
 };
@@ -88,7 +87,7 @@ const getCardTwoDetailDB = (postid) => {
         dispatch(commentActions.setComment(response.data.comments))
       })
       .catch((err) => {
-        console.log(err.response);
+        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
       });
   };
 };
@@ -101,11 +100,10 @@ const getCardOneDetailDB = (postid) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response);
         dispatch(getOneDetailCard(response.data));
       })
       .catch((err) => {
-        console.log(err.response);
+        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
       });
   };
 };
@@ -123,7 +121,7 @@ const findCardDB = (keyword) => {
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
-        console.log(err.response);
+        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
       });
   };
 };
@@ -137,28 +135,9 @@ const postHitCountDB = (postid, hitcount) => {
         'Content-Type': 'application/json;charset=UTF-8'},
     })
     .then(function (response) {
-      console.log(response)
     })
     .catch((err) => {
-      console.log(err)
-    })
-  };
-};
-
-const getThankUserDB = (postid) => {
-  return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token")
-    console.log(postid)
-    // return; totalHitCount
-    await api.post(`/api/thandbag?postId=${postid}`, {
-      headers: {Authorization: token}
-    })
-    .then(function (response) {
-      console.log(response)
-      dispatch(getThankUser(response.data))
-    })
-    .catch((err) => {
-      console.log(err)
+      window.alert("문제가 발생했습니다.")
     })
   };
 };
@@ -183,18 +162,14 @@ const sendCardDB = (category, title, content, img, share) => {
       img: img,
       share: share,
     };
-    console.log(card);
     await api
       .post("/api/newThandbag", card, {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response);
-        // history.push("/tblist");
-        // window.alert("생드백 작성 완료!");
+        
       })
       .catch((err) => {
-        console.log(err.response);
         window.alert("생드백 작성 실패!");
       });
   };
@@ -272,7 +247,6 @@ const actionCreators = {
   getMyCardListDB,
   findCardDB,
   postHitCountDB,
-  getThankUserDB,
   getThankUser
 };
 

@@ -7,7 +7,6 @@ import Wlecome from "../pages/Welcome";
 import Main from "../pages/Main";
 import Login from "../pages/Login";
 import Join from "../pages/Join";
-import TbSelect from "../pages/TbSelect";
 import TbWrite from "../pages/TbWrite";
 import TbList from "../pages/TbList";
 import TbOneDetail from "../pages/TbOneDetail";
@@ -18,7 +17,6 @@ import TbChatDetail from "../pages/TbChatDetail";
 import MyPage from "../pages/MyPage";
 import MyEdit from "../pages/MyEdit";
 import AuthRedirect from "../pages/AuthRedirect";
-import TbComplate from "../pages/TbComplete";
 import TbFinish from "../pages/TbFinish";
 import TbHitDetail from "../pages/TbHitDetail";
 import NotFound from "../pages/NotFound";
@@ -43,7 +41,6 @@ function App() {
               />
               <Route path={"/join"} exact component={Join} />
               <Route path={"/main"} exact component={Main} />
-              <Route path={"/TbSelect"} exact component={TbSelect} />
               <Route path={"/TbWrite"} exact component={TbWrite} />
               <Route path={"/TbList"} exact component={TbList} />
               <Route path={"/TbOneDetail/:postid"} exact component={TbOneDetail} />
@@ -59,7 +56,6 @@ function App() {
               <Route path={"/MyPage"} exact component={MyPage} />
               <Route path={"/MyEdit"} exact component={MyEdit} />
               <Route path={"/TbFinish/:postid"} exact component={TbFinish} />
-              <Route path={"/TbComplate"} exact component={TbComplate} />
               <Route path={"*"} exact component={NotFound} />
             </Switch>
           </ConnectedRouter>

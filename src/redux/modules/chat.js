@@ -42,11 +42,9 @@ const createChatRoomDB = (myId, youId) => {
       await api.post('/chat/room',ids,{
             headers: {Authorization:token}
         }).then(function(response){
-            console.log(response)
-            //채팅방생성 알림
         })
         .catch((err) => {
-          window.alert(err.response.data)
+          window.alert("채팅방을 생성하는데 문제가 발생했습니다.")
         })
     }
 }
@@ -60,7 +58,7 @@ const getChatListDB = () => {
         dispatch(setChatList(response.data))
     })
     .catch((err) => {
-      console.log(err.response)
+      window.alert("채팅 목록을 불러오는데 문제가 발생했습니다.")
     })
   }
 };
@@ -71,11 +69,10 @@ const getChatMessageDB = (roomId) => {
       await api.post(`/chat/room/enter/${roomId}`,{roomId:roomId},{
         headers: {Authorization:token}
     }).then(function(response){
-      console.log(response)
       dispatch(setMessage(response.data))
     })
     .catch((err) => {
-      console.log(err)
+      window.alert("메세지를 불러오는데 문제가 발생했습니다.")
     })
   }
 };
@@ -86,11 +83,10 @@ const getNoticeDB = () => {
     await api.get('/api/alarm',{
       headers : {Authorization:token}
   }).then(function(response) {
-    console.log(response)
     dispatch(getNotice(response.data))
   })
   .catch((err) => {
-    console.log(err)
+    window.alert("알림목록을 불러오는데 문제가 발생했습니다.")
   })
   }
 };
@@ -101,11 +97,10 @@ const postNoticeDB = (Id) => {
     await api.post(`/api/alarm/${Id}`, {alarmId:Id},{
       headers : {Authorization:token}
   }).then(function(response) {
-    console.log(response)
     dispatch(editNotice(response.data))
   })
   .catch((err) => {
-    console.log(err.response)
+    window.alert("해당 경로를 불러오는데 문제가 발생했습니다.")
   })
   }
 };

@@ -5,7 +5,6 @@ import { connectRouter } from 'connected-react-router'
 import User from './modules/user'
 import Card from './modules/card'
 import Comment from './modules/comment'
-import Likes from './modules/likes'
 import Chat from './modules/chat'
 
 export const history = createBrowserHistory()
@@ -13,7 +12,6 @@ export const history = createBrowserHistory()
 const rootReducer = combineReducers({
   user: User,
   card: Card,
-  likes: Likes,
   comment: Comment,
   chat: Chat,
   router: connectRouter(history),

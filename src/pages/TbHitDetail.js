@@ -7,11 +7,10 @@ import thandbag_frame from "../static/images/thandbag/one_thand_frame.png";
 import one_thandbag1 from "../static/images/thandbag/one_thandbag_1.png";
 import one_thandbag2 from "../static/images/thandbag/one_thandbag_2.png";
 import one_thandbag3 from "../static/images/thandbag/one_thandbag_3.png";
-import effect1 from "../static/images/thandbag/effect1.svg"
-import effect2 from "../static/images/thandbag/effect2.svg"
+import effect1 from "../static/images/thandbag/effect1.svg";
+import effect2 from "../static/images/thandbag/effect2.svg";
 import hit from "../static/images/Hit.svg";
 import api from "../shared/Api";
-
 
 
 const TbHitDetail = (props) => {
@@ -21,7 +20,6 @@ const TbHitDetail = (props) => {
     const [state, toggle] = React.useState(true);
     const [count, setCounts] = React.useState(0);
     const [effect, setEffects] = React.useState(true);
-    console.log(history)
     const clickCount = () => {
         setCounts(count + 1);
     }
@@ -130,7 +128,7 @@ const TbHitDetail = (props) => {
             {10 > count ? <></> : is_me == history.location.state ?
                 <Grid bottom="89px" right="16px" width="auto" position="absolute">
                 <Button margin="45px 0 0 0" login _onClick={() => {
-                    history.push(`/TbFinish/${postid}`)
+                    history.push(`/TbFinish/${postid}`,count)
                     }} height="50px" width="150px" text="생드백 터트리기"></Button>
                 </Grid>
             : <></>}

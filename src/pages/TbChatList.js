@@ -24,7 +24,6 @@ const TbChatList = (props) => {
       <Heads none bg="#fff" stroke="#fff" color="#333" text="채팅" />
        <TbNavigation />
       <TbChatListBox>
-      <Grid margin="70px 0 0 0">
         {chatList.length == 0 ? 
         <Grid flex="flex"
         direction="column" position="absolute" top="300px">
@@ -33,7 +32,7 @@ const TbChatList = (props) => {
         아직 채팅방이 없어요!
         </Text>
         </Grid>
-        :chatList.map((m, idx) => {
+        :chatList.map((m) => {
           return (
             <Grid
               hover2
@@ -78,17 +77,18 @@ const TbChatList = (props) => {
               </Grid>
 
               <Grid flex="flex" width="auto">
+                {m.unreadCount == 0 ? <></> :
                 <Grid
-                  width="23px"
-                  height="23px"
-                  bg="#FF5454"
-                  flex="flex"
-                  radius="20px"
-                >
-                  <Text color="#fff" size="11px">
-                    {m.unreadCount}
-                  </Text>
-                </Grid>
+                width="23px"
+                height="23px"
+                bg="#FF5454"
+                flex="flex"
+                radius="20px"
+              >
+                <Text color="#fff" size="11px">
+                  {m.unreadCount}
+                </Text>
+              </Grid>}
               </Grid>
             </Grid>
           );

@@ -6,7 +6,6 @@ import { history } from "../redux/configureStore";
 const ThandStateImg = (props) => {
   const { display, is_you, lvImg, not_share_close, share_close, id, two_hit, one_hit, not_share } = props;
   const styles = { display: display };
-  console.log(props)
   if(not_share){
     return(
       <React.Fragment>

@@ -23,19 +23,18 @@ const Main = (props) => {
 
   React.useEffect(() => {
     try {
+      stomp.debug = null;
       stomp.connect(token, () => {
         stomp.subscribe(
           `/sub/alarm/${userId}`,
           (data) => {
             const newData = JSON.parse(data.body);
-            console.log(newData);
             dispatch(chatActions.getAlarm(newData));
           },
           token
         );
       });
     } catch (e) {
-      console.log(e);
     }
   }, [dispatch, alarm]);
 

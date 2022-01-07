@@ -15,16 +15,18 @@ const TbFinish = (props) => {
     api
       .post(
         `/api/thandbag?postId=${postid}`,
-        { postId: postid },
+         history.location.state ,
         {
-          headers: { Authorization: token },
+          headers: { Authorization: token ,
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
         }
       )
       .then(function (response) {
         setUsers(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        window.alert("유저정보를 불러오는데 문제가 발생했습니다");
       });
   }, []);
   return (

@@ -15,11 +15,13 @@ import { ReactComponent as NewThand } from "../static/icons/notice_icons/newthan
 import { ReactComponent as LevelUp } from "../static/icons/notice_icons/lelvelup_icon.svg";
 import { ReactComponent as WirteSelect } from "../static/icons/notice_icons/writerselect_icon.svg";
 import styled from "styled-components";
+import TbLoading from "./TbLoading";
 
 const TbNotice = (props) => {
   const dispatch = useDispatch();
   const notice = useSelector((state) => state.chat.notice);
-  console.log(notice);
+  const is_loaded = useSelector((state) => state.chat.is_loaded);
+
 
   React.useEffect(() => {
     dispatch(chatActions.getNoticeDB());
@@ -27,6 +29,7 @@ const TbNotice = (props) => {
 
   return (
     <>
+      {!is_loaded && <TbLoading/>}
       <Heads none bg="#fff" stroke="#fff" color="#333" borderB text="알림" />
       <TbNavgation />
       <TbNoticeBox>
@@ -61,7 +64,7 @@ const TbNotice = (props) => {
           </Grid>
         </Grid>
         {/* 맵돌릴구간 */}
-        {notice?.map((n, idx) => {
+        {notice?.map((n) => {
           return (
             <Grid
               hover
@@ -86,7 +89,10 @@ const TbNotice = (props) => {
               }}
             >
               <Grid width="10%" height="auto" flex="flex">
-                <Image shape="circle" Isize="36" />
+               {n.type == "INVITEDCHAT" ? <ChatOpen/> : 
+                            n.type == "REPLY" ? <NewThand/> :
+                            n.type == "PICKED" ? <WirteSelect/> :
+                            n.type == "LEVELCHANGE" ? <LevelUp/> : <></>}
               </Grid>
               <Grid
                 width="80%"

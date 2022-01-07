@@ -29,7 +29,7 @@ const TbCardMy = (props) => {
             return (
               <>
               <ListBox
-              onClick={() => {
+              onClick={() => { 
                 history.push(`/TbTwoDetail/${c.postId}`)
               }}
               >
