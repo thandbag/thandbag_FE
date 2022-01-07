@@ -19,12 +19,15 @@ const TbCardMy = (props) => {
   return (
     <>
     {cardList.length == 0 ? 
-    <><Image no_thand />
+    <>
+    <Grid marginT="175px"><Image no_thand />
       <Text align="center" color="#F7C8C8" size="24px" margin="40px 0 0 0">
         아직 생드백이 없어요!
-        </Text></> :
+        </Text></Grid>
+        </> :
         cardList.map((c) => {
             return (
+              <>
               <ListBox
               onClick={() => {
                 history.push(`/TbTwoDetail/${c.postId}`)
@@ -83,6 +86,7 @@ const TbCardMy = (props) => {
               </CardBottom>
             </CardWrap>
           </ListBox>
+          </>
             )
           }) }
     </>
@@ -93,6 +97,7 @@ const TbCardMy = (props) => {
 const ListBox = styled.div`
   width: 100%;
   height: auto;
+  cursor: pointer;
 `;
 
 const CardWrap = styled.div`

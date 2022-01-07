@@ -28,6 +28,7 @@ const sendCommentDB = (postId, comment) => {
           'Content-Type': 'application/json;charset=UTF-8'},
       })
       .then(function (response) {
+        console.log(response)
         dispatch(addComment(response.data));
       })
       .catch((err) => {

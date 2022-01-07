@@ -14,16 +14,20 @@ const TbModalTwoButton = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
-    setShowModal(prev => !prev);
+    setShowModal(true);
+    setTimeout(() => {
+      setShowModal(false)
+  }, 1500)
   };
 
   return (
     <>
       <Container>
-// _onClick={() => {openModal()
-//             dispatch(chatActions.createChatRoomDB(userId, you_id));
-//             }}
-        <ThanksChat width="32px" height="32px" onClick={openModal}/>
+ 
+        <ThanksChat width="32px" height="32px"
+          onClick={() => {openModal()
+          dispatch(chatActions.createChatRoomDB(userId, you_id));
+          }}/>
         <TbModalTwo showModal={showModal} setShowModal={setShowModal} />
       </Container>
     </>

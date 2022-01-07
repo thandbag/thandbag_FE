@@ -7,7 +7,7 @@ export default function LikeButton(props) {
   const {user_like, commentId} = props;
 
   const dispatch = useDispatch();
-  const [state, setState] = React.useState(user_like ? true : false);
+  const [state, setState] = React.useState(user_like == true ? true : false);
 
   const changeLike = (e) => {
     setState(e.target.checked)

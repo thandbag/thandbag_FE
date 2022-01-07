@@ -16,10 +16,12 @@ import api from "../shared/Api";
 
 const TbHitDetail = (props) => {
     const token = sessionStorage.getItem("token");
+    const is_me = sessionStorage.getItem("userId");
     const postid = props.match.params.postid
     const [state, toggle] = React.useState(true);
     const [count, setCounts] = React.useState(0);
     const [effect, setEffects] = React.useState(true);
+    console.log(history)
     const clickCount = () => {
         setCounts(count + 1);
     }
@@ -125,13 +127,13 @@ const TbHitDetail = (props) => {
                     </Grid>
                 </animated.div>
             </Grid>
-            {10 > count ? <></> :
+            {10 > count ? <></> : is_me == history.location.state ?
                 <Grid bottom="89px" right="16px" width="auto" position="absolute">
                 <Button margin="45px 0 0 0" login _onClick={() => {
                     history.push(`/TbFinish/${postid}`)
                     }} height="50px" width="150px" text="생드백 터트리기"></Button>
                 </Grid>
-            }
+            : <></>}
             <Grid width="auto" bottom="109px" left="40px"  position="absolute">
                 <Text max_width="120px">생드백의 아무 곳이나 클릭해주세요!</Text>
             </Grid>

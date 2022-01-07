@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { ReactComponent as Bomb } from "../static/images/bomb.svg";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { ReactComponent as ENFJ } from "../static/icons/mbti icons/Property 1=mbti_ENFJ.svg";
@@ -27,7 +26,7 @@ import { ReactComponent as LevelThree } from "../static/icons/lv icons/LV. 3.svg
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
-import { Grid } from "../elements/TbIndex";
+import { Grid ,Image, Text } from "../elements/TbIndex";
 import TbText from "../elements/TbText";
 
 const TbCardAll = (props) => {
@@ -40,7 +39,13 @@ const TbCardAll = (props) => {
 
   return (
     <>
-      {cardList.map((c) => {
+      {cardList.length == 0 ? <Grid flex="flex"
+        direction="column" position="absolute" top="300px">
+        <Image no_thand />
+        <Text color="#F7C8C8" size="30px" margin="40px 0 0 0">
+        해당 생드백이 없어요!
+        </Text>
+        </Grid> : cardList.map((c) => {
         return (
           <ListBox
             onClick={() => {

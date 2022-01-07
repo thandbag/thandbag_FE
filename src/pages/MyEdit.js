@@ -6,6 +6,7 @@ import { Grid, Text, Image, Input, Button, Select } from "../elements/TbIndex";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const MyEdit = (props) => {
+  const profile = sessionStorage.getItem("profile");
   const dispatch = useDispatch();
   const option_list = [
     "MBTI 선택",
@@ -76,7 +77,7 @@ const MyEdit = (props) => {
           direction="column"
           padding="40px 0"
         >
-          <Image Isize="150" />
+          <Image shape="circle" src={profile} Isize="150" />
           <Text
             size="20px"
             bold="400"

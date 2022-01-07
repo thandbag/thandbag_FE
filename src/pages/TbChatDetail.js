@@ -20,7 +20,7 @@ const TbChatDetail = (props) => {
    }
   const roomId = props.match.params.roomid
   const sender_nick = sessionStorage.getItem("nickname");
-  const now = moment().format("LT");
+  const now = moment().format("hh:mm A");
 
   const [message, setMessage] = React.useState("");
 

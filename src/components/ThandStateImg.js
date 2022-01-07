@@ -2,16 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Button, Text } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
-import Lv1 from "../static/images/lv_1.jpg";
 
 const ThandStateImg = (props) => {
-  const { display, not_share_close, share_close, id, two_hit, one_hit, not_share } = props;
+  const { display, is_you, lvImg, not_share_close, share_close, id, two_hit, one_hit, not_share } = props;
   const styles = { display: display };
-  console.log(share_close)
+  console.log(props)
   if(not_share){
     return(
       <React.Fragment>
-      <BackgroundState>
+      <BackgroundState src={lvImg}>
       {not_share_close ? <Grid
         width="100%"
         padding="16px 20px"
@@ -81,7 +80,7 @@ const ThandStateImg = (props) => {
   }
   return (
     <React.Fragment>
-      <BackgroundState>
+      <BackgroundState src={lvImg}>
         {share_close ? <Grid
         width="100%"
         padding="16px 20px"
@@ -115,8 +114,12 @@ const ThandStateImg = (props) => {
           justify="flex-end"
           is_align="flex-end"
           direction="column"
+          // {
+          //   path:`/TbHitDetail/${id}`,
+          //   state: is_you
+          // }
           _onClick={() => {
-            history.push(`/TbHitDetail/${id}`)
+            history.push(`/TbHitDetail/${id}`,is_you)
           }}
         >
           <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
@@ -154,7 +157,7 @@ const BackgroundState = styled.div`
   width: 100%;
   height: 110px;
   display: flex;
-  background-image: url(${Lv1});
+  background-image: url("${(props) => props.src}");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

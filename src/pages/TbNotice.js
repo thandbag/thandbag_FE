@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Heads from "../components/Heads";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import TbNavgation from "../components/TbNavigation";
+import TbLoading from "./TbLoading";
 
 const TbNotice = (props) => {
     const dispatch = useDispatch();
     const notice = useSelector((state) => (state.chat.notice));
+    const is_loaded = useSelector((state) => state.chat.is_loaded);
     console.log(notice)
     
     React.useEffect(() => {
@@ -17,6 +19,8 @@ const TbNotice = (props) => {
 
     return (
         <>
+        {!is_loaded && <TbLoading/>}
+        <Grid>
         <Heads none bg="#fff" stroke="#fff" color="#333" text="알림" />
         <Grid margin="70px 0 0 0">
             <Grid
@@ -51,7 +55,14 @@ const TbNotice = (props) => {
             </Grid>
             </Grid>
             {/* 맵돌릴구간 */}
-            {notice?.map((n,idx) => {
+            {notice.length == 0 ? 
+            <Grid flex="flex"
+            direction="column" position="absolute" top="300px">
+            <Image no_thand />
+            <Text color="#F7C8C8" size="30px" margin="40px 0 0 0">
+            아직 등록된 알림이 없어요!
+            </Text>
+            </Grid> : notice.map((n,idx) => {
                 return (
                     <Grid
                     hover
@@ -102,7 +113,7 @@ const TbNotice = (props) => {
             })}
             <TbNavgation/>
         </Grid>
-        
+        </Grid>
         </>
     )
 }

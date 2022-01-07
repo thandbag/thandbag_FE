@@ -30,7 +30,7 @@ const SearchModal = ({ setModal }) => {
       ></SearchInput>
       <SearchIconIn>
         <SearchWrap>
-          <SearchIconBlack onClick={searchIconClick} />
+          <SearchIcon onClick={searchIconClick} />
         </SearchWrap>
       </SearchIconIn>
       <DeleteArea>

@@ -32,7 +32,7 @@ const Message = (props) => {
                         {messageInfo.message} </Text>
                     </Grid>
                 </Grid>
-                <Grid marginT="auto"  width="12%">
+                <Grid marginT="auto" padding="0 0 0 5px"  width="12%">
                     <Text  size="10px" family="NotoSansCJK">{messageInfo.createdAt}</Text>
                 </Grid>
             </Grid>

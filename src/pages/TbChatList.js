@@ -5,21 +5,32 @@ import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import TbNavigation from "../components/TbNavigation";
+import TbLoading from "./TbLoading";
 
 
 const TbChatList = (props) => {
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chat.chatListInfo);
-
+  const is_loaded = useSelector((state) => state.chat.is_loaded);
+  
   React.useEffect(() => {
     dispatch(chatActions.getChatListDB());
   }, []);
 
   return (
     <>
+    {!is_loaded && <TbLoading/>}
       <Heads none bg="#fff" stroke="#fff" color="#333" text="채팅" />
       <Grid margin="70px 0 0 0">
-        {chatList?.map((m, idx) => {
+        {chatList.length == 0 ? 
+        <Grid flex="flex"
+        direction="column" position="absolute" top="300px">
+        <Image no_thand />
+        <Text color="#F7C8C8" size="30px" margin="40px 0 0 0">
+        아직 채팅방이 없어요!
+        </Text>
+        </Grid>
+        :chatList.map((m, idx) => {
           return (
             <Grid
               borderB
@@ -61,8 +72,11 @@ const TbChatList = (props) => {
             </Grid>
           );
         })}
+        
       </Grid>
       <TbNavigation/>
+      
+      
     </>
   );
 };
