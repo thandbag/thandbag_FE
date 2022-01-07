@@ -11,7 +11,6 @@ import TbText from "../elements/TbText";
 const TbCardMy = (props) => {
   const dispatch = useDispatch();
   const cardList = useSelector((state) => state.card.my_list);
-    console.log(cardList)
 
   React.useEffect(() => {
     dispatch(cardActions.getMyCardListDB());
@@ -19,10 +18,11 @@ const TbCardMy = (props) => {
   
   return (
     <>
-    {cardList? <><Image no_thand />
-        <Text align="center" color="#F7C8C8" size="24px" margin="40px 0 0 0">
+    {cardList.length == 0 ? 
+    <><Image no_thand />
+      <Text align="center" color="#F7C8C8" size="24px" margin="40px 0 0 0">
         아직 생드백이 없어요!
-        </Text></> : 
+        </Text></> :
         cardList.map((c) => {
             return (
               <ListBox

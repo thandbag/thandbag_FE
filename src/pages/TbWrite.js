@@ -5,9 +5,9 @@ import TbTextEditor from "../components/TbTextEditor";
 import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
 import { TbModalThree } from "../components/TbModalThree";
-
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
+import { history } from "../redux/configureStore";
 
 const TbWrite = (props) => {
   const dispatch = useDispatch();
@@ -33,7 +33,11 @@ const TbWrite = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
-    setShowModal(prev => !prev);
+    setShowModal(true);
+    setTimeout(() => {
+      setShowModal(false)
+      history.push("/TbList")
+  }, 1500)
   };
 
   return (
@@ -87,6 +91,9 @@ const TbWrite = (props) => {
           size="24px"
           color="#fff"
           margin="0 20px 0 0"
+          _onClick={() => {
+            history.goBack();
+          }}
         />
         <Button
           login

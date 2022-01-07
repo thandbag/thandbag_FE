@@ -27,7 +27,7 @@ const initialState = {
   chatListInfo: [],
   message: [],
   notice: [],
-  alarm: [null],
+  alarm: [],
   
 }
 
@@ -43,7 +43,6 @@ const createChatRoomDB = (myId, youId) => {
             headers: {Authorization:token}
         }).then(function(response){
             console.log(response)
-            window.alert('채팅방이 생성되었습니다')
             //채팅방생성 알림
         })
         .catch((err) => {

@@ -10,7 +10,6 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 
-
 const TbChatDetail = (props) => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => (state.chat.message))
@@ -21,10 +20,9 @@ const TbChatDetail = (props) => {
    }
   const roomId = props.match.params.roomid
   const sender_nick = sessionStorage.getItem("nickname");
-  const now = moment().format("YYYY/MM/DD hh:mm");
+  const now = moment().format("LT");
 
   const [message, setMessage] = React.useState("");
-  console.log(now)
 
   React.useEffect(() => {
     if(!token) {

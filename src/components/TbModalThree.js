@@ -78,7 +78,7 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-              <ThandCreate />
+              <ThandCreate/>
             </ModalWrapper>
           </animated.div>
           <CloseModalButton

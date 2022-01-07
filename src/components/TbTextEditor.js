@@ -1,11 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import ReactQuill from "react-quill";
 import TbEditorToolbar, { modules, formats } from "./TbEditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import styled from "styled-components";
-import { Button } from "../elements/TbIndex";
-import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
-
 import "../shared/style.css";
 
 export const TbTextEditor = ({
@@ -16,8 +13,6 @@ export const TbTextEditor = ({
 }) => {
   const handleChange = (value) => {
     setContent(value);
-    console.log(checkState);
-    console.log(content);
   };
 
   return (

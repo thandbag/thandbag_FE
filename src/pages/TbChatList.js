@@ -9,10 +9,7 @@ import TbNavigation from "../components/TbNavigation";
 
 const TbChatList = (props) => {
   const dispatch = useDispatch();
-  const user_id = parseInt(sessionStorage.getItem("userId"));
-  const you_id = parseInt("4");
   const chatList = useSelector((state) => state.chat.chatListInfo);
-  console.log(chatList);
 
   React.useEffect(() => {
     dispatch(chatActions.getChatListDB());
@@ -64,15 +61,6 @@ const TbChatList = (props) => {
             </Grid>
           );
         })}
-
-        <Button
-          _onClick={() => {
-            dispatch(chatActions.createChatRoomDB(user_id, you_id));
-            // history.push("/TbChatDetail");
-          }}
-          margin="10px 0 0 0"
-          text="채팅방생성"
-        ></Button>
       </Grid>
       <TbNavigation/>
     </>

@@ -54,6 +54,8 @@ const TbNotice = (props) => {
             {notice?.map((n,idx) => {
                 return (
                     <Grid
+                    hover
+                    cursor="pointer"
                     borderB
                     borderT
                     padding="16px 20px"
@@ -62,10 +64,6 @@ const TbNotice = (props) => {
                     justify="space-between"
                     bg="#FFF"
                     _onClick={()=>{
-                        // INVITEDCHAT = "/TbChatDetail/:roomId"
-                        // REPLY = "/TbTwoDetail/:postid"
-                        // PICKED = "/TbTwoDetail/:postid"
-                        // LEVELCHANGE = "/MyPage"
                         if(n.type === "INVITEDCHAT"){
                             history.push(`/TbChatDetail/${n.chatRoomId}`)
                         } else if(n.type === "REPLY"){
