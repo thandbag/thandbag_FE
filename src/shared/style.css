@@ -49,7 +49,7 @@ body {
 }
 
 /* 글 작성 텍스트 에디터 스타일 */
-.ql-toolbar.ql-snow  {
+.ql-toolbar.ql-snow {
   width: 100% !important;
   border: none !important;
   padding: 0 !important;
@@ -211,6 +211,9 @@ body {
   cursor: pointer;
 }
 
+.checkcss::after {
+}
+
 .labelcss {
   cursor: pointer;
 }
@@ -226,7 +229,6 @@ body {
 .checkcss:checked {
   background-color: #ff5454;
 }
-
 
 /* 좋아요 버튼 css */
 #Like-Button {
@@ -264,7 +266,7 @@ svg #main-circ {
 
 .checkbox:checked + label svg #heart {
   transform: scale(0.2);
-  fill: #FF5454;
+  fill: #ff5454;
   animation: animateHeart 0.3s linear forwards 0.25s;
 }
 .checkbox:checked + label svg #main-circ {
@@ -399,44 +401,44 @@ svg #main-circ {
   40% {
     transform: scale(10);
     opacity: 1;
-    fill: #DD4688;
+    fill: #dd4688;
   }
   55% {
     transform: scale(11);
     opacity: 1;
-    fill: #D46ABF;
+    fill: #d46abf;
   }
   65% {
     transform: scale(12);
     opacity: 1;
-    fill: #CC8EF5;
+    fill: #cc8ef5;
   }
   75% {
     transform: scale(13);
     opacity: 1;
     fill: transparent;
-    stroke: #CC8EF5;
+    stroke: #cc8ef5;
     stroke-width: 0.5;
   }
   85% {
     transform: scale(17);
     opacity: 1;
     fill: transparent;
-    stroke: #CC8EF5;
+    stroke: #cc8ef5;
     stroke-width: 0.2;
   }
   95% {
     transform: scale(18);
     opacity: 1;
     fill: transparent;
-    stroke: #CC8EF5;
+    stroke: #cc8ef5;
     stroke-width: 0.1;
   }
   100% {
     transform: scale(19);
     opacity: 1;
     fill: transparent;
-    stroke: #CC8EF5;
+    stroke: #cc8ef5;
     stroke-width: 0;
   }
 }
