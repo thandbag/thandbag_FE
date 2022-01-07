@@ -24,18 +24,9 @@ export const TbTextEditor = ({
     <div className="text-editor">
       <Box>
         <EboxOne>
-          {/* 룡태님 버전 */}
-          {/* <CheckBox width="23" height="23" />
-          <Button
-            margin="0 0 0 5px"
-            text="나만 볼래요"
-            bg="transparent"
-            width="auto"
-            ref={sharedCheckBoxRef}
-          /> */}
           <input
             onChange={(e) => {
-              setCheckState(e.target.checked);
+              setCheckState(!e.target.checked);
             }}
             type="checkbox"
             id="check"
