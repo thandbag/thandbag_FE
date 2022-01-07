@@ -7,7 +7,6 @@ import TbCardMy from "../components/TbCardMy";
 import { useSelector } from "react-redux";
 import TbLoading from "./TbLoading";
 
-
 const MyPage = (props) => {
   const cardList = useSelector((state) => state.card.my_list);
   const is_loaded = useSelector((state) => state.card.is_loaded);
@@ -21,39 +20,40 @@ const MyPage = (props) => {
         flex="flex"
         direction="column"
         justify="flex-start"
-        >
+      >
         <Grid
           width="100%"
-          height="182px"
+          height="20vh"
           flex="flex"
-          is_align="center"
+          is_align="flex-end"
           bg="#fff"
           padding="20px 20px"
         >
-          <UserProfile mypage_user />
+          <UserProfile mypage_user size="26px" />
         </Grid>
         {/* 기본 리스트 없는 초기상태 */}
         <Grid
           width="100%"
-          height="82%"
+          height="80vh"
           flex="flex"
           direction="column"
           justify="flex-start"
-          padding="0 0 70px 0">
-            { cardList.length == 0 ?  <></> :
-            <Grid width="auto" margin="20px 0 0 0">
-                <Text size="30px">내 생드백</Text> 
+          padding="0 0 70px 0"
+        >
+          {cardList.length == 0 ? (
+            <></>
+          ) : (
+            <Grid width="100%" height="auto" padding="15px 20px">
+              <Text size="24px">내 생드백</Text>
             </Grid>
-            }
-            <CardList>
-              <TbCardMy/>
-            </CardList>
+          )}
+          <CardList>
+            <TbCardMy />
+          </CardList>
         </Grid>
-        {!is_loaded && <TbLoading/>}
+        {!is_loaded && <TbLoading />}
       </Grid>
       <TbNavigation />
-      
-      
     </React.Fragment>
   );
 };
@@ -63,7 +63,6 @@ const CardList = styled.div`
   height: auto;
   max-height: 100vh;
   overflow-y: scroll;
-  
 `;
 
 export default MyPage;
