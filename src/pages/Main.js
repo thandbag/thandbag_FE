@@ -5,7 +5,7 @@ import StompJs from "stompjs";
 import TbNavgation from "../components/TbNavigation";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
-import { Button, Image } from "../elements/TbIndex";
+import { Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import Heads from "../components/Heads";
 import thandbag_main from "../static/images/thandbag_main.png";
@@ -41,7 +41,7 @@ const Main = (props) => {
 
   const fadeIn = useSpring({
     config: {
-      duration: 1000,
+      duration: 300,
     },
     width: "100%",
     opacity: 1,
