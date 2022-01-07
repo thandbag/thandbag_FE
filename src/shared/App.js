@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import WebImg from "../static/images/web.png";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wlecome from "../pages/Welcome";
 import Main from "../pages/Main";
 import Login from "../pages/Login";
@@ -20,6 +21,7 @@ import AuthRedirect from "../pages/AuthRedirect";
 import TbComplate from "../pages/TbComplete";
 import TbFinish from "../pages/TbFinish";
 import TbHitDetail from "../pages/TbHitDetail";
+import NotFound from "../pages/NotFound";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import GlobalStyles from "../components/GlobalStyles";
@@ -34,22 +36,31 @@ function App() {
             <Switch>
               <Route path={"/"} exact component={Wlecome} />
               <Route path={"/login"} exact component={Login} />
-              <Route path={"/user/kakao/callback"} exact component={AuthRedirect}/>
+              <Route
+                path={"/user/kakao/callback"}
+                exact
+                component={AuthRedirect}
+              />
               <Route path={"/join"} exact component={Join} />
               <Route path={"/main"} exact component={Main} />
               <Route path={"/TbSelect"} exact component={TbSelect} />
               <Route path={"/TbWrite"} exact component={TbWrite} />
               <Route path={"/TbList"} exact component={TbList} />
               <Route path={"/TbOneDetail/:postid"} exact component={TbOneDetail} />
+              <Route path={"/TbOneDetail/:404"} exact component={NotFound} />
               <Route path={"/TbTwoDetail/:postid"} exact component={TbTwoDetail} />
+              <Route path={"/TbTwoDetail/:404"} exact component={NotFound} />
               <Route path={"/TbHitDetail/:postid"} exact component={TbHitDetail} />
+              <Route path={"/TbHitDetail/:404"} exact component={TbHitDetail} />
               <Route path={"/TbNotice"} exact component={TbNotice} />
               <Route path={"/TbChatList"} exact component={TbChatList} />
               <Route path={"/TbChatDetail/:roomid"} exact component={TbChatDetail} />
+              <Route path={"/TbChatDetail/:404"} exact component={TbChatDetail} />
               <Route path={"/MyPage"} exact component={MyPage} />
               <Route path={"/MyEdit"} exact component={MyEdit} />
               <Route path={"/TbFinish/:postid"} exact component={TbFinish} />
               <Route path={"/TbComplate"} exact component={TbComplate} />
+              <Route path={"*"} exact component={NotFound} />
             </Switch>
           </ConnectedRouter>
         </div>
@@ -64,8 +75,16 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  background-color: #e5e5e5;
+  background-color: #f6f6f6;
+  background-image: url(${WebImg});
+  background-size: 95%;
+  background-repeat: no-repeat;
+  background-position: left;
   overflow: hidden;
+
+  @media screen and (max-width: 1024px) {
+    background-image: none;
+  }
 
   .wrap {
     width: 100%;

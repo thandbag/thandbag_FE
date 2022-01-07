@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Grid, Text, Image, Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import TbModalTwoButton from "./TbModalTwoButton";
+import { ReactComponent as SettingButton } from "../static/icons/setting_button.svg";
 
 const UserProfile = (props) => {
   const userId = sessionStorage.getItem("userId");
@@ -90,14 +91,19 @@ const UserProfile = (props) => {
                 </Grid>
               </Grid>
             </React.Fragment>
+
           </Grid>
-          <Grid flex="flex" justify="flex-end" width="20%" height="40px">
-            <Button
-              width="30px"
-              height="30px"
-              bg="#efefef"
-              radius="100%"
-              _onClick={() => {
+          <Grid
+            flex="flex"
+            cursor="pointer"
+            justify="flex-end"
+            width="20%"
+            height="40px"
+          >
+            <SettingButton
+              width="28px"
+              height="28px"
+              onClick={() => {
                 history.push("/MyEdit");
               }}
             />

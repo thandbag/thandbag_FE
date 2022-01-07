@@ -6,7 +6,17 @@ import thand_2 from "../static/images/thand_2.png";
 import NoThandBag from "../static/images/no_thnadbag.png";
 
 const TbImage = (props) => {
-  const { shape, height, position, right, src, Isize, thandbag_state, punch_thand, no_thand } = props;
+  const {
+    shape,
+    height,
+    position,
+    right,
+    src,
+    Isize,
+    thandbag_state,
+    punch_thand,
+    no_thand,
+  } = props;
 
   const styles = {
     src: src,
@@ -16,7 +26,7 @@ const TbImage = (props) => {
     thandbag_state: thandbag_state,
     punch_thand: punch_thand,
     no_thand: no_thand,
-    height: height
+    height: height,
   };
 
   if (no_thand) {
@@ -43,34 +53,28 @@ const TbImage = (props) => {
     return <LogoImage {...styles}></LogoImage>;
   }
 
-  if(shape === "rectangle"){
+  if (shape === "rectangle") {
     return (
-        <AspectOutter>
-            <AspectInner {...styles}>
-
-            </AspectInner>
-        </AspectOutter>
+      <AspectOutter>
+        <AspectInner {...styles}></AspectInner>
+      </AspectOutter>
     );
-};
+  }
 
   return <>이미지</>;
 };
-
-
-
 
 TbImage.defaultProps = {
   shape: "circle",
   src: "https://kpopsource.com/data/avatars/h/2/2834.jpg?1612192799",
   size: 36,
-  position:false,
-  right:false,
+  position: false,
+  right: false,
 };
 
 const AspectOutter = styled.div`
-    width: 100%;
-    min-width: 250px;
-
+  width: 100%;
+  min-width: 250px;
 `;
 
 const AspectInner = styled.div`
@@ -86,9 +90,7 @@ const LogoImage = styled.img`
   src: ${(props) => props.src};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-
 `;
-
 
 const ImageCircle = styled.div`
   --size: ${(props) => props.Isize}px;
@@ -109,10 +111,10 @@ const BgCircle = styled.div`
   height: var(--size);
   border-radius: var(--size);
   background-position: center;
-  background-color: red;
+  background-color: #FF5454;
   background-size: cover;
   border: 0.1px solid #efefef;
-`
+`;
 
 const StateImage = styled.div`
   width: 100%;

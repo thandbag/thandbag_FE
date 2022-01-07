@@ -1,7 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+
 import { ReactComponent as Bomb } from "../static/images/bomb.svg";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
+import { ReactComponent as ENFJ } from "../static/icons/mbti icons/Property 1=mbti_ENFJ.svg";
+import { ReactComponent as INFP } from "../static/icons/mbti icons/Property 1=mbti_INFP.svg";
+import { ReactComponent as ENFP } from "../static/icons/mbti icons/Property 1=mbti_ENFP.svg";
+import { ReactComponent as ENTJ } from "../static/icons/mbti icons/Property 1=mbti_ENTJ.svg";
+import { ReactComponent as ESFP } from "../static/icons/mbti icons/Property 1=mbti_ESFP.svg";
+import { ReactComponent as ESTJ } from "../static/icons/mbti icons/Property 1=mbti_ESTJ.svg";
+import { ReactComponent as ESTP } from "../static/icons/mbti icons/Property 1=mbti_ESTP.svg";
+import { ReactComponent as ESFJ } from "../static/icons/mbti icons/Property 1=mbti_ESFJ.svg";
+import { ReactComponent as ENTP } from "../static/icons/mbti icons/Property 1=mbti_ENTP.svg";
+import { ReactComponent as INFJ } from "../static/icons/mbti icons/Property 1=mbti_INFJ.svg";
+import { ReactComponent as INTJ } from "../static/icons/mbti icons/Property 1=mbti_INTJ.svg";
+import { ReactComponent as INTP } from "../static/icons/mbti icons/Property 1=mbti_INTP.svg";
+import { ReactComponent as ISFJ } from "../static/icons/mbti icons/Property 1=mbti_ISFJ.svg";
+import { ReactComponent as ISFP } from "../static/icons/mbti icons/Property 1=mbti_ISFP.svg";
+import { ReactComponent as ISTJ } from "../static/icons/mbti icons/Property 1=mbti_ISTJ.svg";
+import { ReactComponent as ISTP } from "../static/icons/mbti icons/Property 1=mbti_ISTP.svg";
+import { ReactComponent as NoMbti } from "../static/icons/mbti icons/Property 1=Variant17.svg";
+import { ReactComponent as LevelOne } from "../static/icons/lv icons/LV. 1.svg";
+import { ReactComponent as LevelTwo } from "../static/icons/lv icons/LV. 2.svg";
+import { ReactComponent as LevelThree } from "../static/icons/lv icons/LV. 3.svg";
+
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
@@ -57,12 +79,52 @@ const TbCardAll = (props) => {
                 <CardBottomLvArea>
                   <CardMbti>
                     <TbText color="white" size="13px">
-                      {c.mbti}
+                      {c.mbti === "ENFJ" ? (
+                        <ENFJ />
+                      ) : c.mbti === "INFP" ? (
+                        <INFP />
+                      ) : c.mbti === "ENFP" ? (
+                        <ENFP />
+                      ) : c.mbti === "ENTJ" ? (
+                        <ENTJ />
+                      ) : c.mbti === "ESFP" ? (
+                        <ESFP />
+                      ) : c.mbti === "ESTJ" ? (
+                        <ESTJ />
+                      ) : c.mbti === "ESTP" ? (
+                        <ESTP />
+                      ) : c.mbti === "INFJ" ? (
+                        <INFJ />
+                      ) : c.mbti === "INTJ" ? (
+                        <INTJ />
+                      ) : c.mbti === "INTP" ? (
+                        <INTP />
+                      ) : c.mbti === "ISFJ" ? (
+                        <ISFJ />
+                      ) : c.mbti === "ISFP" ? (
+                        <ISFP />
+                      ) : c.mbti === "ISTJ" ? (
+                        <ISTJ />
+                      ) : c.mbti === "ISTP" ? (
+                        <ISTP />
+                      ) : c.mbti === "맞춰보셈" ? (
+                        <NoMbti />
+                      ) : c.mbti === "ESFJ" ? (
+                        <ESFJ />
+                      ) : c.mbti === "ENTP" ? (
+                        <ENTP />
+                      ) : null}
                     </TbText>
                   </CardMbti>
                   <CardLv>
                     <TbText color="white" size="13px">
-                      LV {c.level}
+                      {c.level === 1 ? (
+                        <LevelOne />
+                      ) : c.level === 2 ? (
+                        <LevelTwo />
+                      ) : c.level === 3 ? (
+                        <LevelThree />
+                      ) : null}
                     </TbText>
                   </CardLv>
                 </CardBottomLvArea>
@@ -160,6 +222,7 @@ const CardBottom = styled.div`
 `;
 
 const CardBottomNameArea = styled.div`
+  width: 25%;
   height: 100%;
   background-color: #fff;
   overflow: hidden;
@@ -169,7 +232,7 @@ const CardBottomNameArea = styled.div`
 `;
 
 const CardBottomLvArea = styled.div`
-  width: 25%;
+  width: 50%;
   height: 100%;
   background-color: #fff;
   display: flex;
@@ -205,7 +268,7 @@ const CardMbti = styled.div`
   background-color: #ff5454;
   text-align: center;
   border-radius: 25px;
-  margin: 0px 3px 0px 0px;
+  margin: 0px 15px 0px 0px;
 `;
 
 const CardLv = styled.div`

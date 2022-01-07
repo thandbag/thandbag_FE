@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-import { useSpring, animated } from 'react-spring';
-import styled from 'styled-components';
+import React, { useRef, useEffect, useCallback } from "react";
+import { useSpring, animated } from "react-spring";
+import styled from "styled-components";
 import { ReactComponent as ThandCreate } from "../static/images/thandcreate.svg";
+import { ReactComponent as Close } from "../static/icons/close.svg";
 import { history } from "../redux/configureStore";
 
 const Background = styled.div`
@@ -24,18 +25,32 @@ const ModalWrapper = styled.div`
   z-index: 9;
 `;
 
+const CloseModalButton = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  z-index: 10;
+`;
+
 export const TbModalThree = ({ showModal, setShowModal }) => {
   const modalRef = useRef();
 
   const animation = useSpring({
     config: {
-      duration: 200
+      duration: 200,
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? `translateY(0%)` : `translateY(-30%)`
+    transform: showModal ? `translateY(0%)` : `translateY(-30%)`,
   });
 
-  const closeModal = e => {
+  const closeModal = (e) => {
     if (modalRef.current === e.target) {
       setShowModal(false);
       history.push("/TbList");
@@ -43,8 +58,8 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
   };
 
   const keyPress = useCallback(
-    e => {
-      if (e.key === 'Escape' && showModal) {
+    (e) => {
+      if (e.key === "Escape" && showModal) {
         setShowModal(false);
         history.push("/TbList");
       }
@@ -52,13 +67,10 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
     [setShowModal, showModal]
   );
 
-  useEffect(
-    () => {
-      document.addEventListener('keydown', keyPress);
-      return () => document.removeEventListener('keydown', keyPress);
-    },
-    [keyPress]
-  );
+  useEffect(() => {
+    document.addEventListener("keydown", keyPress);
+    return () => document.removeEventListener("keydown", keyPress);
+  }, [keyPress]);
 
   return (
     <>
@@ -69,6 +81,12 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
               <ThandCreate/>
             </ModalWrapper>
           </animated.div>
+          <CloseModalButton
+            aria-label="Close modal"
+            onClick={() => setShowModal((prev) => !prev)}
+          >
+            <Close width="18px" height="18px" />
+          </CloseModalButton>
         </Background>
       ) : null}
     </>

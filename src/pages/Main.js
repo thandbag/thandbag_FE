@@ -5,14 +5,15 @@ import StompJs from "stompjs";
 import TbNavgation from "../components/TbNavigation";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
-import {Grid, Button, Image} from "../elements/TbIndex";
+import { Button, Image } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
+import Heads from "../components/Heads";
 import thandbag_main from "../static/images/thandbag_main.png";
-import thandbag_logo from "../static/icons/thandbag_logo.svg";
+import { useSpring, animated } from "@react-spring/web";
 
 const Main = (props) => {
   const dispatch = useDispatch();
-  const alarm = useSelector((state) => (state.chat.alarm));
+  const alarm = useSelector((state) => state.chat.alarm);
   const sock = new SockJs("http://3.38.7.220/ws-stompAlarm");
   const stomp = StompJs.over(sock);
   const userId = sessionStorage.getItem("userId");
@@ -38,25 +39,46 @@ const Main = (props) => {
     }
   }, [dispatch, alarm]);
 
+  const fadeIn = useSpring({
+    config: {
+      duration: 1000,
+    },
+    width: "100%",
+    opacity: 1,
+    from: { opacity: 0 },
+  });
+
   return (
-    <Container>
-      <Header>
-        <Image shape='logo' src={thandbag_logo}/>
-      </Header>
-      <MainBodyTop>
-        <Image shape="rectangle" Isize="420" src={thandbag_main}/>
-      </MainBodyTop>
-      <MainBodyBottom>
-        <Button login _onClick={() => {
-          history.push('/TbWrite')
-        }} height="60px" width="220px" text="생드백 만들기"></Button>
-        <Button margin="45px 0 0 0" login _onClick={() => {
-          history.push('/TbList')
-        }} height="60px" width="220px" text="다른 사람의 생드백 보기"></Button>
-      </MainBodyBottom>
-      <Footer />
-      <TbNavgation/>
-    </Container>
+    <>
+      <Heads />
+      <Container>
+        <animated.div style={fadeIn}>
+          <MainBodyTop />
+          <MainBodyBottom>
+            <Button
+              login
+              _onClick={() => {
+                history.push("/TbWrite");
+              }}
+              height="60px"
+              width="220px"
+              text="생드백 만들기"
+            ></Button>
+            <Button
+              margin="5vh 0 0 0"
+              login
+              _onClick={() => {
+                history.push("/TbList");
+              }}
+              height="60px"
+              width="220px"
+              text="다른 사람의 생드백 보기"
+            />
+          </MainBodyBottom>
+        </animated.div>
+        <TbNavgation />
+      </Container>
+    </>
   );
 };
 
@@ -65,52 +87,34 @@ const Container = styled.div`
   height: 100vh;
   background-color: white;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-`;
-
-const Header = styled.div`
-  width: 50%;
-  height: 10vh;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const Logo = styled.div`
-  width: 50%;
-  height: 100%;
-  background-color: midnightblue;
+  padding: 70px 0;
 `;
 
 const MainBodyTop = styled.div`
   width: 100%;
-  height: 50vh;
-  background-color: #fff;
+  height: 48vh;
+  margin-top: 1vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url(${thandbag_main});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
-
 
 const MainBodyBottom = styled.div`
   width: 100%;
-  height: 40vh;
-  background-color: #fff;
+  height: auto;
+  margin-top: 3vh;
+  padding: 4vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-
-const Footer = styled.div`
-  width: 100%;
-  height: 10vh;
-  background-color: #fff;
 `;
 
 export default Main;

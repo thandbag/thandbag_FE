@@ -5,6 +5,7 @@ import { Button } from "../elements/TbIndex";
 import {useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { history } from '../redux/configureStore';
+import { ReactComponent as ThanksChat } from "../static/icons/thanks_chat.svg";
 
 const TbModalTwoButton = (props) => {
   const {you_id} = props;
@@ -19,17 +20,10 @@ const TbModalTwoButton = (props) => {
   return (
     <>
       <Container>
-        <Button
-          width="100%"
-          height="100%"
-          bg="#eee"
-          color="#555"
-          radius="100%"
-          text="채팅"
-          _onClick={() => {openModal()
-            dispatch(chatActions.createChatRoomDB(userId, you_id));
-            }}
-        />
+// _onClick={() => {openModal()
+//             dispatch(chatActions.createChatRoomDB(userId, you_id));
+//             }}
+        <ThanksChat width="32px" height="32px" onClick={openModal}/>
         <TbModalTwo showModal={showModal} setShowModal={setShowModal} />
       </Container>
     </>
@@ -42,6 +36,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export default TbModalTwoButton;

@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import thandbagend from "../static/images/thandbag/one_thandbagend.png";
 import api from "../shared/Api";
 
+
 const TbFinish = (props) => {
   
   
@@ -60,6 +61,17 @@ const FinishBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
+`;
+
+const DieImgBox = styled.div`
+  width: 100%;
+  height:50vh;
+  position: absolute;
+  top: 2%;
+  background: url(${DieThandLv1});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const ChatBox = styled.div`
