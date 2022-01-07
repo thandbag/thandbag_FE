@@ -92,7 +92,9 @@ const TbCardMy = (props) => {
                   </CardMiddle>
                   <CardBottom>
                     <CardBottomNameArea>
-                      <TbText margin="0px 15px 0px 0px;">{c.nickname}님</TbText>
+                      <TbText Wspace="nowrap" color="#333">
+                        {c.nickname}님
+                      </TbText>
                     </CardBottomNameArea>
                     <CardBottomLvArea>
                       <CardMbti>
@@ -237,8 +239,9 @@ const CardBottom = styled.div`
 `;
 
 const CardBottomNameArea = styled.div`
-  width: 25%;
+  width: auto;
   height: 100%;
+  margin-right: 6px;
   overflow: hidden;
   display: flex;
   justify-content: center;

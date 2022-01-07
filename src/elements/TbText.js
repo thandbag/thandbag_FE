@@ -21,6 +21,7 @@ const TbText = (props) => {
     elli,
     spacing,
     Wbreack,
+    Wspace,
   } = props;
 
   const styles = {
@@ -40,6 +41,7 @@ const TbText = (props) => {
     elli: elli,
     spacing: spacing,
     Wbreack: Wbreack,
+    Wspace: Wspace,
   };
 
   if (elli) {
@@ -86,6 +88,7 @@ const P = styled.p`
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
   padding: ${(props) => (props.padding ? `${props.padding}` : "")};
   word-break: ${(props) => (props.Wbreack ? `${props.Wbreack}` : "")};
+  white-space: ${(props) => (props.Wspace ? `${props.Wspace}` : "")};
   letter-spacing: ${(props) => (props.spacing ? `${props.spacing}` : "")};
   background-color: ${(props) => (props.bg ? ` ${props.bg};` : "")};
   text-decoration: ${(props) => (props.deco ? `${props.deco}` : "")};
