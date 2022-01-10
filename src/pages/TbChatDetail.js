@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 
 const TbChatDetail = (props) => {
+
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.chat.message);
   const sock = new SockJs("http://3.38.7.220/ws-stomp");
@@ -21,8 +22,13 @@ const TbChatDetail = (props) => {
   const roomId = props.match.params.roomid;
   const sender_nick = sessionStorage.getItem("nickname");
   const now = moment().format("hh:mm A");
-
+  
   const [message, setMessage] = React.useState("");
+  const messageScroll = React.useRef();
+  const now_message = React.useRef("");
+  const msg = now_message.current;
+  console.log(msg)
+  
 
   React.useEffect(() => {
     if (!token) {
@@ -39,7 +45,8 @@ const TbChatDetail = (props) => {
         return history.replace("/TbChatList");
       });
     }
-    stompConnect();
+    
+      stompConnect();
     return () => {
       stompDisConnect();
     };
@@ -53,6 +60,7 @@ const TbChatDetail = (props) => {
           `/sub/chat/room/${roomId}`,
           (data) => {
             const newMessage = JSON.parse(data.body);
+            console.log(newMessage)
             dispatch(chatActions.addMessage(newMessage));
           },
           token
@@ -75,12 +83,12 @@ const TbChatDetail = (props) => {
     }
   };
 
-  const waitForConnect = (stomp, callback) => {
+  const waitForConnect = (ws, callback) => {
     setTimeout(() => {
-      if (stomp.stomp.readyState === 1) {
+      if (stomp.ws.readyState === 1) {
         callback();
       } else {
-        waitForConnect(stomp, callback);
+        waitForConnect(ws, callback);
       }
     }, 0.1);
   };
@@ -100,10 +108,28 @@ const TbChatDetail = (props) => {
     };
     waitForConnect(stomp, () => {
       stomp.debug = null;
+      stomp.send("/pub/chat/message", token, JSON.stringify(data));
     });
-    stomp.send("/pub/chat/message", token, JSON.stringify(data));
     setMessage("");
   };
+
+  const onEnterPress = (e) => {
+    if(e.key === 'Enter') {
+      SendMessage();
+    }
+  }
+
+
+  const scrollToBottom = () => {
+    if (messageScroll.current) {
+      messageScroll.current.scrollTop = messageScroll.current.scrollHeight;
+    }
+  };
+
+  React.useEffect(() => {
+    scrollToBottom();
+  }, [contents.length])
+
 
   return (
     <>
@@ -114,9 +140,9 @@ const TbChatDetail = (props) => {
           bg="#fff"
           stroke="#333"
           color="#333"
-          text="닉네임"
+          text={history.location.state}
         />
-        <Container>
+        <Container ref={messageScroll}>
           <Grid>
             {contents?.map((m, idx) => {
               return <Message messageInfo={m} />;
@@ -135,6 +161,8 @@ const TbChatDetail = (props) => {
           justify="space-between"
         >
           <Input
+            ref={now_message}
+            _onKeyDown={onEnterPress}
             value={message}
             _onChange={addMessage}
             placeholder="채팅을 남겨주세요"

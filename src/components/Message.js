@@ -4,7 +4,7 @@ import { Grid, Text, Image } from "../elements/TbIndex";
 const Message = (props) => {
   const { messageInfo } = props;
   const user_info = sessionStorage.getItem("nickname");
-
+  
   if (user_info === messageInfo.sender) {
     return (
       <Grid
@@ -88,6 +88,7 @@ const Message = (props) => {
               height="auto"
             >
               <Text
+                
                 family="NotoSansCJK"
                 bold="600"
                 size="13px"
