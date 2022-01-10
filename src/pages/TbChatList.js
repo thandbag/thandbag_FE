@@ -12,7 +12,7 @@ const TbChatList = (props) => {
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chat.chatListInfo);
   const is_loaded = useSelector((state) => state.chat.is_loaded);
-
+  
   React.useEffect(() => {
     dispatch(chatActions.getChatListDB());
   }, []);
@@ -44,7 +44,7 @@ const TbChatList = (props) => {
                 justify="space-between"
                 cursor="pointer"
                 _onClick={() => {
-                  history.push(`/TbChatDetail/${m.roomId}`);
+                  history.push(`/TbChatDetail/${m.roomId}`,m.subNickname);
                 }}
               >
                 <Grid width="auto" height="auto">

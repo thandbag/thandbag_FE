@@ -13,6 +13,7 @@ import LikeButton from "./LikeButton";
 import TbModal from "./TbModal";
 
 const Comments = (props) => {
+  const is_me = sessionStorage.getItem('userId')
   const { count, is_Comment, is_mbtiFilter, cList } = props;
   const dispatch = useDispatch();
   const { postid } = useParams();
@@ -93,9 +94,12 @@ const Comments = (props) => {
                 Isize="38"
               />
             </Grid>
-            <Grid width="15%" height="auto" flex="flex" justify="flex-end" cursor="pointer">
+
+            {is_me == cList.userId ? 
+            <Grid width="15%" height="auto" flex="flex">
               <DeleteText onClick={openModal} >삭제</DeleteText>
             </Grid>
+              : <Grid width="15%"></Grid>}
           </Grid>
           <Grid width="100%" height="56px" flex="flex" justify="flex-start">
             <Grid
