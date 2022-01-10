@@ -59,10 +59,9 @@ const TbCardMy = (props) => {
           return (
             <>
               <ListBox
-              onClick={() => { 
-                history.push(`/TbTwoDetail/${c.postId}`)
-              }}
-
+                onClick={() => {
+                  history.push(`/TbTwoDetail/${c.postId}`);
+                }}
               >
                 <CardWrap>
                   <CardTop>
@@ -80,9 +79,7 @@ const TbCardMy = (props) => {
                   <CardMiddle>
                     <CardContent>
                       <CardContentTop>
-                        <TbText bold size="20px">
                           {c.title}
-                        </TbText>
                       </CardContentTop>
                       <CardContentBottom>
                         <div
@@ -149,8 +146,10 @@ const TbCardMy = (props) => {
                       <Grid width="1px" height="40%" bg="#eee" />
                     </Grid>
                     <CardBottomCommentArea>
-                      <Comment width="20" height="20"></Comment>
-                      <TbText margin="0px 0px 0px 5px">{c.commentCount}</TbText>
+                      <Comment width="20" height="20" />
+                      <TbText margin="0px 0px 0px 5px" color="#333">
+                        {c.commentCount}
+                      </TbText>
                     </CardBottomCommentArea>
                     <CardBottomTimeArea>
                       <TbText
@@ -158,6 +157,7 @@ const TbCardMy = (props) => {
                         bold="600"
                         size="12px"
                         family="NotoSansCJK"
+                        spacing="-1px"
                       >
                         {c.createdAt}
                       </TbText>
@@ -216,10 +216,13 @@ const CardContent = styled.div`
 `;
 
 const CardContentTop = styled.div`
-  width: 100%;
+  width: 80%;
   height: 30%;
+  font-size: 18px;
   background-color: #fff;
-  text-align: middle;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
 `;
 
 const CardContentBottom = styled.div`
@@ -268,12 +271,13 @@ const CardBottomCommentArea = styled.div`
 `;
 
 const CardBottomTimeArea = styled.div`
-  width: auto;
+  width: 40px;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 6px;
+  white-space: nowrap;
 `;
 
 const CardMbti = styled.div`

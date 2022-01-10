@@ -210,9 +210,8 @@ body {
 .checkcss {
   appearance: none;
   -webkit-appearance: none;
-  height: 25px;
-  width: 25px;
-  margin-right: 10px;
+  height: 2.3vh;
+  width: 2.3vh;
   background-color: #d5d5d5;
   border-radius: 20px;
   cursor: pointer;
@@ -223,6 +222,7 @@ body {
 
 .labelcss {
   cursor: pointer;
+  font-size: 2vh;
 }
 
 .test:hover {

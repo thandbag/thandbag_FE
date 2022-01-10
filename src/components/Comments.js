@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
+// 댓글 삭제 아이콘 - 보류
 import { ReactComponent as Delete } from "../static/icons/delete.svg";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import styled from "styled-components";
@@ -91,8 +92,8 @@ const Comments = (props) => {
                 Isize="38"
               />
             </Grid>
-            <Grid width="15%" height="auto" flex="flex">
-              <Delete width="17" onClick={openModal} />
+            <Grid width="15%" height="auto" flex="flex" justify="flex-end" cursor="pointer">
+              <DeleteText onClick={openModal} >삭제</DeleteText>
             </Grid>
           </Grid>
           <Grid width="100%" height="56px" flex="flex" justify="flex-start">
@@ -122,18 +123,31 @@ const Comments = (props) => {
             <Grid
               width="87%"
               height="100%"
-              maXheight="56px"
-              overFlowY="scroll"
               flex="flex"
               justify="space-between"
               is_align="center"
             >
-              <Text size="13px" family="NotoSansCJK">
-                {cList.comment}
-              </Text>
-              <Text size="12px" color="#FF5454" family="NotoSansCJK">
+
+              <Grid 
+                width="85%"
+                hegight="100%"
+                maXheight="56px"
+                overFlowY="scroll"
+                flex="flex"
+                justify="flex-start"
+                is_align="flex-start"
+              >
+                <Text size="13px" family="NotoSansCJK" spacing="-1px" LHeight="17px">
+                  {cList.comment}
+                </Text>
+              </Grid>
+
+              <Grid width="15%" flex="flex" justify="flex-end">
+              <Text size="12px" color="#FF5454" family="NotoSansCJK" spacing="-1px">
                 {cList.createdAt}
               </Text>
+              </Grid>
+
             </Grid>
           </Grid>
         </Grid>
@@ -202,6 +216,21 @@ const CommentsInputBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const DeleteText = styled.div`
+  font-size: 0.8rem;
+  font-family: "NotoSansCJK";
+  font-weight: bold;
+  color: #eee;
+  &:hover {
+    color: #FF5454;
+    transition: 0.3s;
+  }
+  &:not(:hover){
+    color: #eee;
+    transition: 0.3s;
+}
 `;
 
 export default Comments;

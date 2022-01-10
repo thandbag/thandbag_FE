@@ -15,7 +15,6 @@ import { ReactComponent as ChatOpen } from "../static/icons/notice_icons/chatope
 import { ReactComponent as NewThand } from "../static/icons/notice_icons/newthand_icon.svg";
 import { ReactComponent as LevelUp } from "../static/icons/notice_icons/lelvelup_icon.svg";
 import { ReactComponent as WirteSelect } from "../static/icons/notice_icons/writerselect_icon.svg";
-import styled from "styled-components";
 import TbLoading from "./TbLoading";
 
 
@@ -91,7 +90,7 @@ const TbNotice = (props) => {
               }}
             >
               <Grid width="10%" height="auto" flex="flex">
-               {n.type == "INVITEDCHAT" ? <ChatOpen/> : 
+               {n.type == "INVITEDCHAT" ? <ChatOpen/> :
                             n.type == "REPLY" ? <NewThand/> :
                             n.type == "PICKED" ? <WirteSelect/> :
                             n.type == "LEVELCHANGE" ? <LevelUp/> : <></>}

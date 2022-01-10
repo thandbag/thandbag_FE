@@ -58,9 +58,7 @@ const TbChatDetail = (props) => {
           token
         );
       });
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   };
 
   const stompDisConnect = () => {
@@ -70,9 +68,7 @@ const TbChatDetail = (props) => {
         stomp.unsubscribe("sub-0");
         clearTimeout(waitForConnect);
       }, token);
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   };
 
   const waitForConnect = (stomp, callback) => {
