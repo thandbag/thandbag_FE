@@ -71,14 +71,10 @@ const TbCardAll = (props) => {
                 <CardMiddle>
                   <CardContent>
                     <CardContentTop>
-                      <TbText bold size="20px">
                         {c.title}
-                      </TbText>
                     </CardContentTop>
                     <CardContentBottom>
-                      <div
-                        dangerouslySetInnerHTML={{ __html: c.content }}
-                      ></div>
+                      <div dangerouslySetInnerHTML={{ __html: c.content }} />
                     </CardContentBottom>
                   </CardContent>
                 </CardMiddle>
@@ -151,6 +147,7 @@ const TbCardAll = (props) => {
                       size="12px"
                       bold="bold"
                       family="NotoSansCJK"
+                      spacing="-1px"
                     >
                       {c.createdAt}
                     </TbText>
@@ -204,14 +201,18 @@ const CardMiddle = styled.div`
 const CardContent = styled.div`
   width: 90%;
   height: 80%;
+  overflow: hidden;
   background-color: #fff;
 `;
 
 const CardContentTop = styled.div`
-  width: 100%;
+  width: 80%;
   height: 30%;
+  font-size: 18px;
   background-color: #fff;
-  text-align: middle;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
 `;
 
 const CardContentBottom = styled.div`
@@ -260,12 +261,13 @@ const CardBottomCommentArea = styled.div`
 `;
 
 const CardBottomTimeArea = styled.div`
-  width: auto;
+  width: 40px;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 6px;
+  white-space: nowrap;
 `;
 
 const CardMbti = styled.div`
