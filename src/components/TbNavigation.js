@@ -21,51 +21,41 @@ const TbNavgation = (props) => {
     }
   }, [alarm]);
 
-  const [color, setColor] = useState("red");
-
-  function toggleColor() {
-    setColor(color === "red" ? "black" : "red");
-  }
-
   return (
     <React.Fragment>
       <NavBox>
         <Nav1
+        onClick={() => {
+          history.push("/main");
+        }}
+        >
+          <Main  fill="#333" />
+        </Nav1>
+        <Nav1
           onClick={() => {
-            toggleColor();
-            history.push("/main");
+            history.push("/TbChatList");
           }}
         >
-          <Main className={`icon ${color}`} />
+          <TbChatList fill="#333" />
         </Nav1>
-        <Nav1>
-          <TbChatList
-            fill="#333"
-            onClick={() => {
-              history.push("/TbChatList");
-            }}
-          />
-        </Nav1>
-        <Nav1>
+        <Nav1
+          onClick={() => {
+            history.push("/TbNotice");
+            dispatch(chatActions.deleteAlarm());
+            setNewRings(false);
+          }}
+        >
           {newRing === true && (
             <Image position="absolute" right="137px" shape="alarm" Isize="10" />
           )}
-          <TbNotice
-            fill="#333"
-            onClick={() => {
-              history.push("/TbNotice");
-              dispatch(chatActions.deleteAlarm());
-              setNewRings(false);
-            }}
-          />
+          <TbNotice fill="#333" />
         </Nav1>
-        <Nav1>
-          <MyPage
-            fill="#333"
-            onClick={() => {
-              history.push("/MyPage");
-            }}
-          />
+        <Nav1
+          onClick={() => {
+            history.push("/MyPage");
+          }}
+        >
+          <MyPage fill="#333" />
         </Nav1>
       </NavBox>
     </React.Fragment>

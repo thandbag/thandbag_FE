@@ -22,13 +22,13 @@ const TbChatDetail = (props) => {
   const roomId = props.match.params.roomid;
   const sender_nick = sessionStorage.getItem("nickname");
   const now = moment().format("hh:mm A");
-  
+
   const [message, setMessage] = React.useState("");
   const messageScroll = React.useRef();
   const now_message = React.useRef("");
   const msg = now_message.current;
   console.log(msg)
-  
+
 
   React.useEffect(() => {
     if (!token) {
@@ -45,7 +45,7 @@ const TbChatDetail = (props) => {
         return history.replace("/TbChatList");
       });
     }
-    
+
       stompConnect();
     return () => {
       stompDisConnect();
