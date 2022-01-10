@@ -74,7 +74,7 @@ const TbCardMy = (props) => {
                     top="5px"
                     right="10px"
                   >
-                    <Bomb />
+                    {c.closed ? <Bomb /> : <></>}
                   </Grid>
                   <CardMiddle>
                     <CardContent>

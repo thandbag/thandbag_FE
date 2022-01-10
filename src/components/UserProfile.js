@@ -54,6 +54,7 @@ const UserProfile = (props) => {
   const level = sessionStorage.getItem("level");
   const profile = sessionStorage.getItem("profile");
 
+  
   const {
     one_user,
     two_user,
@@ -78,7 +79,7 @@ const UserProfile = (props) => {
     chat_user: chat_user,
     mypage_user: mypage_user,
   };
-
+  
   if (mypage_user) {
     return (
       <React.Fragment>
@@ -172,15 +173,14 @@ const UserProfile = (props) => {
                 >
                   <Grid width="80%" height="auto">
                     <React.Fragment>
-                      <Grid width="auto" {...styles} flex="flex" bg="fff">
+                      <Grid width="auto" flex="flex" bg="fff">
                         {/* 유저 프로필 사진 */}
                         <Grid
-                          {...styles}
                           width="auto"
                           height="auto"
                           flex="flex"
                         >
-                          <Image {...styles} />
+                          <Image shape="circle" Isize="60" src={u.profileImgUrl}/>
                         </Grid>
                         {/* mbti // 레벨 */}
                         <Grid

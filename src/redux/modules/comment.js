@@ -4,6 +4,7 @@ import api from "../../shared/Api";
 
 // **** Action type **** //
 const SET_COMMENT = "SET_COMMENT";
+const SEARCH_COMMENT = "SEARCH_COMMENT";
 const ADD_COMMENT = "ADD_COMMENT";
 const DELETE_COMMENT = "DELETE_COMMNET";
 const PLUS_LIKE = "PLUS_LIKE";
@@ -17,10 +18,12 @@ const deleteComment = createAction(DELETE_COMMENT, (commentId) => ({
   commentId,
 }));
 const plusLike = createAction(PLUS_LIKE, (like) => ({ like }));
+const searchComment = createAction(SEARCH_COMMENT, (search) => ({ search }));
 
 // **** Initial data **** //
 const initialState = {
   comment_list: [],
+  search_list: [],
 };
 
 // **** Middleware **** /
@@ -85,10 +88,27 @@ export default handleActions(
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.comment_list = action.payload.comment_list;
+        draft.search_list = action.payload.comment_list;
+      }),
+    [SEARCH_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.search)
+        const my_mbti = sessionStorage.getItem("mbti");
+        const mbti_find = draft.comment_list.filter((c) => {
+          return c.mbti == my_mbti
+        })
+
+        if(action.payload.search == true) {
+          draft.search_list = mbti_find;
+        } else {
+          draft.search_list = draft.comment_list
+        }
+        
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.comment_list.push(action.payload.comment);
+        draft.search_list.push(action.payload.comment);
       }),
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -117,6 +137,7 @@ const actionCreators = {
   deleteCommentDB,
   likeCommentDB,
   setComment,
+  searchComment
 };
 
 export { actionCreators };

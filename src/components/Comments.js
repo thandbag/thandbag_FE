@@ -13,8 +13,8 @@ import LikeButton from "./LikeButton";
 import TbModal from "./TbModal";
 
 const Comments = (props) => {
-  const is_me = sessionStorage.getItem('userId')
   const { count, is_Comment, is_mbtiFilter, cList } = props;
+  const is_me = sessionStorage.getItem('userId')
   const dispatch = useDispatch();
   const { postid } = useParams();
 
@@ -47,23 +47,30 @@ const Comments = (props) => {
     }
   };
 
+  const handleMBTI = (e) => {
+    dispatch(commentActions.searchComment(e.target.checked))
+  }
+
   // mbti 필터
   if (is_mbtiFilter) {
     return (
       <React.Fragment>
         <Grid width="100%" flex="flex" borderB bg="#fff" padding="0 20px">
-          <Grid width="60%" padding="16px 0" flex="flex" justify="flex-start">
+          <Grid width="50%" padding="16px 0" flex="flex" justify="flex-start">
             <Comment width="20" height="20" />
             <Text margin="0 0 0 5px">{count}</Text>
           </Grid>
-          <Grid width="40%" padding="16px 0" flex="flex" justify="flex-end">
-            <Button
+          <Grid width="50%" padding="16px 0" flex="flex" justify="flex-end">
+            <Text
               margin="0 10px 0 0"
-              text="같은 MBTI만 보기"
-              bg="transparent"
               width="auto"
+            >나와 같은 MBTI만 보기</Text>
+            <input
+              onClick={handleMBTI}
+              type="checkbox"
+              id="check"
+              className="checkcss"
             />
-            <CheckBox width="20" height="20" fill="#FBF7F7" />
           </Grid>
         </Grid>
       </React.Fragment>

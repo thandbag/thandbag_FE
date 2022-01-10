@@ -13,10 +13,9 @@ import TbLoading from "./TbLoading";
 const TbTwoDetail = (props) => {
   const dispatch = useDispatch();
   const card = useSelector((state) => state.card.shared_card);
-  const comment_list = useSelector((state) => state.comment.comment_list);
+  const comment_list = useSelector((state) => state.comment.search_list);
   const postid = props.match.params.postid;
   const is_loaded = useSelector((state) => state.card.is_loaded);
-  console.log(card);
 
   React.useEffect(() => {
     dispatch(cardActions.getCardTwoDetailDB(postid));
@@ -50,11 +49,8 @@ const TbTwoDetail = (props) => {
         </Grid>
         {/*생드백 때리러가기 버튼*/}
         <ThandStateImg
-          is_you={card.userId}
-          lvImg={card.lvImg}
-          share_close={card.closed}
+          all={card}
           id={postid}
-          two_hit={card.hitCount}
         />
         {/*댓글 수 // mbti 필터*/}
         <Comments count={card.commentCount} is_mbtiFilter />

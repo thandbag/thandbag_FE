@@ -16,9 +16,7 @@ const TbChatDetail = (props) => {
   const contents = useSelector((state) => state.chat.message);
   const sock = new SockJs("http://3.38.7.220/ws-stomp");
   const stomp = StompJs.over(sock);
-  const token = {
-    Authorization: sessionStorage.getItem("token"),
-  };
+  const token = {Authorization: sessionStorage.getItem("token")};
   const roomId = props.match.params.roomid;
   const sender_nick = sessionStorage.getItem("nickname");
   const now = moment().format("hh:mm A");
@@ -27,7 +25,6 @@ const TbChatDetail = (props) => {
   const messageScroll = React.useRef();
   const now_message = React.useRef("");
   const msg = now_message.current;
-  console.log(msg)
   
 
   React.useEffect(() => {
@@ -45,7 +42,6 @@ const TbChatDetail = (props) => {
         return history.replace("/TbChatList");
       });
     }
-    
       stompConnect();
     return () => {
       stompDisConnect();
@@ -95,11 +91,14 @@ const TbChatDetail = (props) => {
 
   const SendMessage = () => {
     stomp.debug = null;
+    if (message === ""){
+      return
+    }
     const data = {
       type: "TALK",
       roomId: roomId,
       sender: sender_nick,
-      message: message,
+      message: msg.defaultValue,
       createdAt: now,
     };
     waitForConnect(stomp, () => {
@@ -114,7 +113,6 @@ const TbChatDetail = (props) => {
       SendMessage();
     }
   }
-
 
   const scrollToBottom = () => {
     if (messageScroll.current) {

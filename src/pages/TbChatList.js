@@ -34,7 +34,7 @@ const TbChatList = (props) => {
           chatList.map((m, idx) => {
             return (
               <Grid
-                hover2
+                hover
                 position="relative"
                 borderB
                 padding="0 20px"
