@@ -60,35 +60,11 @@ const Heads = (props) => {
               <Arrow {...styles} width="26" height="26" />
             </BackIcon>
           </Grid>
-          <Grid
-            width="10%"
-            height="70px"
-            position="absolute"
-            top="0"
-            left="370px"
-            flex="flex"
-          >
-            <SearchWrap {...styles}>
-              <SearchIcon
-                {...styles}
-                width="26"
-                height="26"
-                onClick={() => {
-                  setModal(true);
-                }}
-              />
-            </SearchWrap>
-            {modal === true ? <SearchModal setModal={setModal} /> : null}
-          </Grid>
-          <Grid width="100%" height="70px" flex="flex">
-            <Text size="1.4rem" {...styles}>
-              {props.text}
-            </Text>
-          </Grid>
         </HeadBox>
       </React.Fragment>
     );
   }
+
   if (list) {
     return (
       <React.Fragment>
