@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { history } from "../redux/configureStore";
 import Heads from "../components/Heads";
 import SwipeCategory from "../components/SwipeCategory";
@@ -7,11 +7,29 @@ import styled from "styled-components";
 import TbListModal from "../components/TbListModal";
 import TbCardAll from "../components/TbCardAll";
 import { ReactComponent as Write } from "../static/icons/write.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TbLoading from "./TbLoading";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 const TbList = (props) => {
   const is_loaded = useSelector((state) => state.card.is_loaded);
+  const card_list = useSelector((state) => state.card.card_list);
+  const is_append_loaded = useSelector((state) => state.card.is_append_loaded);
+  console.log(card_list);
+  const cardListRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const scrollCardList = (e) => {
+    if (!is_append_loaded) return;
+    const scrollTop = e.target.scrollTop;
+    const cardListHeight = e.target.scrollHeight;
+    const contentsHeight = e.target.offsetHeight;
+    if ((cardListHeight - contentsHeight) * 0.99 < scrollTop) {
+      dispatch(cardActions.appendCardListDB());
+    }
+    console.log(scrollTop);
+    console.log(cardListHeight);
+  };
 
   return (
     <Container>
@@ -33,12 +51,12 @@ const TbList = (props) => {
         borderB
         flex="flex"
         justify="flex-end"
-      > 
+      >
         <Grid flex="flex" width="auto" height="100%" padding="0 20px 0 0">
           <TbListModal />
         </Grid>
       </Grid>
-      <CardList>
+      <CardList onScroll={scrollCardList}>
         <TbCardAll></TbCardAll>
       </CardList>
       <Grid
@@ -59,7 +77,7 @@ const TbList = (props) => {
       >
         <Write width="27" height="27" />
       </Grid>
-      {!is_loaded && <TbLoading/>}
+      {!is_loaded && <TbLoading />}
     </Container>
   );
 };
