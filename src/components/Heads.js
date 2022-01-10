@@ -60,6 +60,11 @@ const Heads = (props) => {
               <Arrow {...styles} width="26" height="26" />
             </BackIcon>
           </Grid>
+          <Grid width="100%" height="70px" flex="flex">
+            <Text size="1.4rem" {...styles}>
+              {props.text}
+            </Text>
+          </Grid>
         </HeadBox>
       </React.Fragment>
     );
