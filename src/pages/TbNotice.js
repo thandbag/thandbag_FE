@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import styled from "styled-components";
 
-
 // 컴포넌트
 import Heads from "../components/Heads";
 import TbNavgation from "../components/TbNavigation";
@@ -123,7 +122,7 @@ const TbNotice = (props) => {
                     flex="flex"
                     radius="20px"
                   >
-                    <Text color="#fff" size="12px" bold="bold">
+                    <Text color="#fff" size="11px">
                       N
                     </Text>
                   </Grid>

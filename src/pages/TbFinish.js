@@ -4,18 +4,21 @@ import { Grid, Button } from "../elements/TbIndex";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import thandbagend from "../static/images/thandbag/one_thandbagend.png";
+import thandbagend2 from "../static/images/thandbag/two_thandbagend.png";
+import thandbagend3 from "../static/images/thandbag/three_thandbagend.png";
 import api from "../shared/Api";
 
 const TbFinish = (props) => {
   const token = sessionStorage.getItem("token");
   const postid = props.match.params.postid;
   const [user, setUsers] = React.useState("");
-
+  const is_level = history.location.state.level;
+  console.log(history)
   React.useEffect(() => {
     api
       .post(
         `/api/thandbag?postId=${postid}`,
-         history.location.state ,
+         history.location.state.count ,
         {
           headers: { Authorization: token ,
             'Content-Type': 'application/json;charset=UTF-8',
@@ -33,7 +36,7 @@ const TbFinish = (props) => {
     <React.Fragment>
       <FinishBox>
         <Grid height="70vh">
-          <img style={{width: "420px"}} src={thandbagend}/>
+          <img style={{width: "420px"}} src={is_level == 1 ? thandbagend : is_level == 2 ? thandbagend2 : thandbagend3}/>
         </Grid>
         <ChatBox>
           {/* 맵돌리자 */}

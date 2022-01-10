@@ -33,7 +33,7 @@ import TbText from "../elements/TbText";
 const TbCardAll = (props) => {
   const dispatch = useDispatch();
   const cardList = useSelector((state) => state.card.search_list);
-
+  
   React.useEffect(() => {
     dispatch(cardActions.getCardListDB());
   }, []);

@@ -57,6 +57,7 @@ const getCardListDB = (pageNo = 0, sizeNo = 5) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
+        console.log(response)
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
@@ -99,6 +100,7 @@ const getMyCardListDB = () => {
         headers: { Authorization: token },
       })
       .then(function (response) {
+        console.log(response)
         dispatch(setMyList(response.data.content));
       })
       .catch((err) => {
@@ -200,7 +202,10 @@ const sendCardDB = (category, title, content, img, share) => {
       .post("/api/newThandbag", card, {
         headers: { Authorization: token },
       })
-      .then(function (response) {})
+      .then(function (response) {
+        dispatch(addCard(response.data))
+      })
+
       .catch((err) => {
         window.alert("생드백 작성 실패!");
       });
@@ -250,23 +255,24 @@ export default handleActions(
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
         const thand_end = draft.card_list.filter((c) => {
-          return c.closed == true;
+          return c.closed === true;
         });
         const thand_not_end = draft.card_list.filter((c) => {
-          return c.closed == false;
+          return c.closed === false;
         });
         const all_search = draft.card_list.filter((c) => {
-          return c.share == true;
+          return c.share === true;
         });
         const new_search = draft.card_list.filter((c) => {
-          return c.category == action.payload.search;
+          return c.category === action.payload.search;
         });
 
-        if (action.payload.search == "전체") {
+        if (action.payload.search === "전체") {
           draft.search_list = all_search;
         } else if (action.payload.search == true) {
           draft.search_list = thand_end;
         } else if (action.payload.search == false) {
+
           draft.search_list = thand_not_end;
         } else {
           draft.search_list = new_search;

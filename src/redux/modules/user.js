@@ -69,6 +69,9 @@ const logOutDB = () => {
     localStorage.removeItem('userId')
     localStorage.removeItem('nickname')
     localStorage.removeItem('token')
+    localStorage.removeItem('mbti')
+    localStorage.removeItem('level')
+    localStorage.removeItem('profile')
     history.replace("/login")
     dispatch(logOut())
   };

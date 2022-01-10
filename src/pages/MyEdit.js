@@ -32,14 +32,15 @@ const MyEdit = (props) => {
   const [nickname, setNickname] = React.useState(nick);
   const [mbti, setMbti] = React.useState(0);
 
-  const [isNickname, setIsNickname] = React.useState(false);
+  const [isNickname, setIsNickname] = React.useState(true);
+  const nickRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,6}$/;
 
   const handleClick = (e) => {
     setMbti(e.target.value);
   };
 
   const onChangeNick = (e) => {
-    const nickRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,6}$/;
+    
     const currentNickname = e.target.value;
     setNickname(currentNickname);
 
@@ -49,6 +50,7 @@ const MyEdit = (props) => {
       setIsNickname(true);
     }
   };
+  
 
   const clickEdit = () => {
     if (mbti === 0 || nickname == "") {
@@ -129,9 +131,9 @@ const MyEdit = (props) => {
         <Grid align="center" height="13px">
           {nickname.length > 0 && !isNickname ? (
             <Danger>올바른 닉네임 형식을 입력해주세요.</Danger>
-          ) : nickname.length > 0 && mbti == 0 ? (
+          ) :nickname.length > 0 && mbti == 0 ? (
             <Danger>MBTI를 선택해주세요</Danger>
-          ) : (
+          ) :  (
             <></>
           )}
         </Grid>
