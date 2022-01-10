@@ -41,7 +41,8 @@ const Comments = (props) => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      setComment(e.target.value);
+      sendComment();
+      setComment("");
     }
   };
 

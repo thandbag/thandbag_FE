@@ -12,11 +12,11 @@ import TbLoading from "./TbLoading";
 
 const TbTwoDetail = (props) => {
   const dispatch = useDispatch();
-  const card = useSelector((state) => state.card.shared_card)
-  const comment_list = useSelector(state => state.comment.comment_list);
-  const postid = props.match.params.postid
+  const card = useSelector((state) => state.card.shared_card);
+  const comment_list = useSelector((state) => state.comment.comment_list);
+  const postid = props.match.params.postid;
   const is_loaded = useSelector((state) => state.card.is_loaded);
-  console.log(card)
+  console.log(card);
 
   React.useEffect(() => {
     dispatch(cardActions.getCardTwoDetailDB(postid));
@@ -24,7 +24,7 @@ const TbTwoDetail = (props) => {
 
   return (
     <React.Fragment>
-      {!is_loaded && <TbLoading/>}
+      {!is_loaded && <TbLoading />}
       <DetailsBox>
         {/* 헤드 */}
         <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />
@@ -49,7 +49,13 @@ const TbTwoDetail = (props) => {
           </Grid>
         </Grid>
         {/*생드백 때리러가기 버튼*/}
-        <ThandStateImg is_you={card.userId} lvImg={card.lvImg} share_close={card.closed} id={postid} two_hit={card.hitCount} />
+        <ThandStateImg
+          is_you={card.userId}
+          lvImg={card.lvImg}
+          share_close={card.closed}
+          id={postid}
+          two_hit={card.hitCount}
+        />
         {/*댓글 수 // mbti 필터*/}
         <Comments count={card.commentCount} is_mbtiFilter />
         {/*입력한 댓글*/}
