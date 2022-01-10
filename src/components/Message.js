@@ -103,7 +103,6 @@ const Message = (props) => {
               <Text size="0.5rem" color="#878787" bold="bold" family="NotoSansCJK">
                 {messageInfo.createdAt}
               </Text>
-
             </Grid>
           </Grid>
         </Grid>

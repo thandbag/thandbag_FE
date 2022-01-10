@@ -25,7 +25,7 @@ function WelcomeTwo() {
           spaceBetween={30}
           centeredSlides={true}
           autoplay={{
-            delay: 5000,
+            delay: 4000,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -43,20 +43,6 @@ function WelcomeTwo() {
                 생드백을 때려 보세요
               </Text>
             </Grid>
-            <ButtonBox>
-              <Button
-                width="150px"
-                height="50px"
-                radius="12px"
-                bg="#333"
-                color="#fff"
-                size="1.2rem"
-                text="SKIP"
-                _onClick={() => {
-                  history.push("/login");
-                }}
-              />
-            </ButtonBox>
           </SwiperSlide>
           <SwiperSlide>
             <ImgBox2 />
@@ -67,20 +53,6 @@ function WelcomeTwo() {
                 고민을 나눠보세요
               </Text>
             </Grid>
-            <ButtonBox>
-              <Button
-                width="150px"
-                height="50px"
-                radius="12px"
-                bg="#333"
-                color="#fff"
-                size="1.2rem"
-                text="SKIP"
-                _onClick={() => {
-                  history.push("/login");
-                }}
-              />
-            </ButtonBox>
           </SwiperSlide>
           <SwiperSlide>
             <ImgBox3 />

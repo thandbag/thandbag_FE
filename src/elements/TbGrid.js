@@ -36,6 +36,7 @@ const TbGrid = (props) => {
     hover2,
     maXwidth,
     miNwidth,
+    miNheight,
   } = props;
 
   const styles = {
@@ -68,6 +69,7 @@ const TbGrid = (props) => {
     overFlowY: overFlowY,
     maXwidth: maXwidth,
     miNwidth: miNwidth,
+    miNheight: miNheight,
   };
 
   if (hover2) {
@@ -136,6 +138,7 @@ const GridBox = styled.div`
   margin-top: ${(props) => (props.marginT ? `${props.marginT}` : "")};
   margin-bottom: ${(props) => (props.marginB ? `${props.marginB}` : "")};
   max-height: ${(props) => props.maXheight};
+  min-height: ${(props) => props.miNheight};
   position: ${(props) => (props.position ? `${props.position}` : "")};
   left: ${(props) => (props.left ? `${props.left}` : "")};
   right: ${(props) => (props.right ? `${props.right}` : "")};
