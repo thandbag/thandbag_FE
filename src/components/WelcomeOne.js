@@ -1,34 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring, animated, config } from "@react-spring/web";
+import { ReactComponent as ThandBagLogo } from "../static/icons/thandbag_logo.svg";
 
 function WelcomeOne() {
   const logoImg = useSpring({
-    fontSize: "100px",
-    scale: 1,
-    from: { scale: 0 },
-    transition: "0.2s",
-  });
-
-  const logoText = useSpring({
-    fontSize: "50px",
-    fontWeight: "bold",
-    color: "#fff",
+    config: {
+      duration: 280,
+      tension: 170,
+      precision: 0.01,
+    },
     opacity: 1,
-    from: { opacity: 0 },
-    transition: "0.5s",
+    scale: 1,
+    from: { scale: 0, opacity: 0 },
   });
 
   return (
     <LogoBox>
-      <TopBox>
-        <animated.h1 style={logoImg}>
-          🍔
-        </animated.h1>
-      </TopBox>
-      <BottomBox>
-        <animated.h1 style={logoText}>Thand Bag .</animated.h1>
-      </BottomBox>
+      <animated.div style={logoImg}>
+        <ThandBagLogo width="220px" height="220px" />
+      </animated.div>
     </LogoBox>
   );
 }
@@ -40,22 +31,6 @@ const LogoBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-const TopBox = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: -apple-system;
-`;
-
-const BottomBox = styled.div`
-  width: 100%;
-  height: auto;
-  text-align: center;
-  margin-top: 8px;
 `;
 
 export default WelcomeOne;

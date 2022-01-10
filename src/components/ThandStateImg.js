@@ -1,33 +1,63 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Button, Text } from "../elements/TbIndex";
-import state_img from "../static/images/state_img.png";
+import { history } from "../redux/configureStore";
 
 const ThandStateImg = (props) => {
-  const { display } = props;
+  const { display, is_you, lvImg, not_share_close, share_close, id, two_hit, one_hit, not_share } = props;
   const styles = { display: display };
-  return (
-    <React.Fragment>
-      <BackgroundState>
-        <Grid
+  if(not_share){
+    return(
+      <React.Fragment>
+      <BackgroundState src={lvImg}>
+      {not_share_close ? <Grid
+        width="100%"
+        padding="16px 20px"
+        flex="flex"
+        justify="flex-end"
+        is_align="flex-end"
+        direction="column"
+      >
+        <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
+          총{" "}
+          <span
+            style={{
+              color: "#fff",
+              padding: "0 3px",
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.45) 50%, transparent 50%)",
+            }}
+          >
+            {one_hit}
+          </span>{" "}
+          맞음!!
+        </Text>
+        <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
+          펑💥
+        </Text>
+      </Grid>:
+      <Grid
           width="100%"
           padding="16px 20px"
           flex="flex"
           justify="flex-end"
           is_align="flex-end"
           direction="column"
+          _onClick={() => {
+            history.push(`/TbHitDetail/${id}`)
+          }}
         >
           <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
-            🔥 현재{" "}
+            현재{" "}
             <span
               style={{
                 color: "#fff",
                 padding: "0 3px",
                 background:
-                  "linear-gradient(to top, #333 50%, transparent 50%)",
+                  "linear-gradient(to top, rgba(0,0,0,0.45) 50%, transparent 50%)",
               }}
             >
-              999대
+              {one_hit}
             </span>{" "}
             맞음!!
           </Text>
@@ -39,9 +69,84 @@ const ThandStateImg = (props) => {
             radius="12px"
             bg="#333"
             size="1.2rem"
-            text="생드백 때리러가기 >"
+            text="생드백 때리러가기 =>"
           />
         </Grid>
+        }
+      </BackgroundState>
+    </React.Fragment>
+    )
+  }
+  return (
+    <React.Fragment>
+      <BackgroundState src={lvImg}>
+        {share_close ? <Grid
+        width="100%"
+        padding="16px 20px"
+        flex="flex"
+        justify="flex-end"
+        is_align="flex-end"
+        direction="column"
+      >
+        <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
+          총{" "}
+          <span
+            style={{
+              color: "#fff",
+              padding: "0 3px",
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.45) 50%, transparent 50%)",
+            }}
+          >
+            {two_hit}
+          </span>{" "}
+          맞음!!
+        </Text>
+        <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
+          펑💥
+        </Text>
+      </Grid>:
+      <Grid
+          width="100%"
+          padding="16px 20px"
+          flex="flex"
+          justify="flex-end"
+          is_align="flex-end"
+          direction="column"
+          // {
+          //   path:`/TbHitDetail/${id}`,
+          //   state: is_you
+          // }
+          _onClick={() => {
+            history.push(`/TbHitDetail/${id}`,is_you)
+          }}
+        >
+          <Text color="#fff" size="1.2rem" margin="0 0 10px 0" padding="0 16px 0 0">
+            현재{" "}
+            <span
+              style={{
+                color: "#fff",
+                padding: "0 3px",
+                background:
+                  "linear-gradient(to top, rgba(0,0,0,0.45) 50%, transparent 50%)",
+              }}
+            >
+              {two_hit}
+            </span>{" "}
+            맞음!!
+          </Text>
+          <Button
+            {...styles}
+            width="176px"
+            height="43px"
+            color="#fff"
+            radius="12px"
+            bg="#333"
+            size="1.2rem"
+            text="생드백 때리러가기 =>"
+          />
+        </Grid>
+        }
       </BackgroundState>
     </React.Fragment>
   );
@@ -51,7 +156,7 @@ const BackgroundState = styled.div`
   width: 100%;
   height: 110px;
   display: flex;
-  background-image: url(${state_img});
+  background-image: url("${(props) => props.src}");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

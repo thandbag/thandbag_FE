@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const TbInput = (props) => {
   const {
+    _onKeyDown,
     boxSizing,
     type,
     placeholder,
@@ -14,11 +15,11 @@ const TbInput = (props) => {
     border,
     height,
     radius,
-    border,
     bg,
     size,
     color,
     value,
+    title,
   } = props;
 
   const styles = {
@@ -32,25 +33,42 @@ const TbInput = (props) => {
     bg: bg,
     size: size,
     color: color,
-
+    title: title,
   };
+
+  if (title) {
+    return (
+      <>
+        <InputTitle
+          {...styles}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onChange={_onChange}
+          className={_className}
+          onKeyDown={_onKeyDown}
+        />
+      </>
+    );
+  }
 
   return (
     <>
       <InputBox
         {...styles}
         type={type}
-        placeholder={placeholder}
         value={value}
+        placeholder={placeholder}
         onChange={_onChange}
         className={_className}
+        onKeyDown={_onKeyDown}
       />
     </>
   );
 };
 
 TbInput.defaultProps = {
-  _className: '',
+  _className: "",
   border: "none",
   placeholder: "",
   bg: "",
@@ -60,6 +78,7 @@ TbInput.defaultProps = {
   value: "",
   color: "",
   _onChange: () => {},
+  _onKeyDown: () => {},
 };
 
 const InputBox = styled.input`
@@ -74,14 +93,30 @@ const InputBox = styled.input`
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.color ? `color: ${props.color};` : "")};
-  font-family: 'KOTRAHOPE';
   outline: none;
-  border-radius: 10px;
 
   &::placeholder {
-    color: #F7C8C8;
+    color: #f7c8c8;
   }
+`;
 
+const InputTitle = styled.input`
+  font-family: "KOTRAHOPE";
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  box-sizing: ${(props) => props.boxSizing};
+  font-size: ${(props) => props.size};
+  border: ${(props) => props.border};
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
+  ${(props) => (props.color ? `color: ${props.color};` : "")};
+  outline: none;
+
+  &::placeholder {
+    color: #ccc;
+  }
 `;
 
 export default TbInput;

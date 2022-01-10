@@ -4,12 +4,13 @@
 	 y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
 <style type="text/css">
 	.st0{
-    fill:#FBF7F7;
-    stroke-width: 0;
+    fill: #FBF7F7;
+    fill-rule: evenodd;
+    clip-rule: evenodd;
   }
 	.st1{
-    fill-rule:evenodd;
-    clip-rule:evenodd;
+    fill-rule: evenodd;
+    clip-rule: evenodd;
     fill: #333333;
   }
 </style>

@@ -19,7 +19,6 @@ const GlobalStyles = createGlobalStyle`
     } 
     p, h1, h2, h3, h4, h5, h6, span {
       color: #333;
-      font-weight: 100;
     }
     ::-webkit-scrollbar { 
       display: none;
