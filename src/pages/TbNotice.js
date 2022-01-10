@@ -2,7 +2,6 @@ import React from "react";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
-import styled from "styled-components";
 
 // 컴포넌트
 import Heads from "../components/Heads";
@@ -17,12 +16,10 @@ import { ReactComponent as LevelUp } from "../static/icons/notice_icons/lelvelup
 import { ReactComponent as WirteSelect } from "../static/icons/notice_icons/writerselect_icon.svg";
 import TbLoading from "./TbLoading";
 
-
 const TbNotice = (props) => {
   const dispatch = useDispatch();
   const notice = useSelector((state) => state.chat.notice);
   const is_loaded = useSelector((state) => state.chat.is_loaded);
-
 
   React.useEffect(() => {
     dispatch(chatActions.getNoticeDB());
@@ -30,7 +27,7 @@ const TbNotice = (props) => {
 
   return (
     <>
-      {!is_loaded && <TbLoading/>}
+      {!is_loaded && <TbLoading />}
       <Heads none bg="#fff" stroke="#fff" color="#333" borderB text="알림" />
       <TbNavgation />
       <TbNoticeBox>
@@ -90,10 +87,18 @@ const TbNotice = (props) => {
               }}
             >
               <Grid width="10%" height="auto" flex="flex">
-               {n.type == "INVITEDCHAT" ? <ChatOpen/> : 
-                            n.type == "REPLY" ? <NewThand/> :
-                            n.type == "PICKED" ? <WirteSelect/> :
-                            n.type == "LEVELCHANGE" ? <LevelUp/> : <></>}
+                {n.type == "INVITEDCHAT" ? (
+                  <ChatOpen />
+                ) : n.type == "REPLY" ? (
+                  <NewThand />
+                ) : n.type == "PICKED" ? (
+                  <WirteSelect />
+                ) : n.type == "LEVELCHANGE" ? (
+                  <LevelUp />
+                ) : (
+                  <></>
+                )}
+
               </Grid>
               <Grid
                 width="80%"

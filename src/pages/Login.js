@@ -61,6 +61,12 @@ const Login = (props) => {
     return (window.location.href = KAKAO_AUTH_URL);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      clickLogin();
+    }
+  };
+
   return (
     <>
       <Grid>
@@ -84,6 +90,7 @@ const Login = (props) => {
                 padding="10px"
                 value={email}
                 _onChange={onChangeEmail}
+                _onKeyDown={handleKeyDown}
                 height="47px"
                 width="300px"
                 placeholder="아이디"
@@ -103,6 +110,7 @@ const Login = (props) => {
                 type="password"
                 value={password}
                 _onChange={onChangePassword}
+                _onKeyDown={handleKeyDown}
                 height="47px"
                 width="300px"
                 placeholder="비밀번호"
@@ -161,7 +169,7 @@ const FormGroup = styled.div`
 const JoinLink = styled.p`
   color: #767676;
   transition: color 0.1s ease-in-out, fill 0.1s ease-in-out,
-  opacity 0.1s ease-in-out;
+    opacity 0.1s ease-in-out;
   text-decoration: underline;
   font-family: "KOTRAHOPE";
   margin-left: 5px;
