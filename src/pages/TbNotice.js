@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
@@ -7,7 +8,8 @@ import styled from "styled-components";
 // 컴포넌트
 import Heads from "../components/Heads";
 import TbNavgation from "../components/TbNavigation";
-import { Grid, Text, Image } from "../elements/TbIndex";
+import TbLoading from "./TbLoading";
+import { Grid, Text } from "../elements/TbIndex";
 
 // 알림 페이지 아이콘
 import { ReactComponent as NoticeIcon } from "../static/icons/notice_icons/notice_icon.svg";
@@ -15,7 +17,7 @@ import { ReactComponent as ChatOpen } from "../static/icons/notice_icons/chatope
 import { ReactComponent as NewThand } from "../static/icons/notice_icons/newthand_icon.svg";
 import { ReactComponent as LevelUp } from "../static/icons/notice_icons/lelvelup_icon.svg";
 import { ReactComponent as WirteSelect } from "../static/icons/notice_icons/writerselect_icon.svg";
-import TbLoading from "./TbLoading";
+
 
 const TbNotice = (props) => {
   const dispatch = useDispatch();
@@ -99,7 +101,6 @@ const TbNotice = (props) => {
                 ) : (
                   <></>
                 )}
-
               </Grid>
               <Grid
                 width="80%"
