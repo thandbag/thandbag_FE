@@ -224,7 +224,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list = [...draft.card_list, ...action.payload.card_list];
         draft.search_list = [...draft.card_list, ...action.payload.card_list];
-        // draft.is_loaded = true;
       }),
     [INCREASE_PAGE_NUM]: (state, action) =>
       produce(state, (draft) => {
