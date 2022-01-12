@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
-import { ReactComponent as CheckBox } from "../static/icons/checkBox.svg";
-// 댓글 삭제 아이콘 - 보류
-import { ReactComponent as Delete } from "../static/icons/delete.svg";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
@@ -14,7 +11,7 @@ import TbModal from "./TbModal";
 
 const Comments = (props) => {
   const { count, is_Comment, is_mbtiFilter, cList } = props;
-  const is_me = sessionStorage.getItem('userId')
+  const is_me = sessionStorage.getItem("userId");
   const dispatch = useDispatch();
   const { postid } = useParams();
 
@@ -31,15 +28,18 @@ const Comments = (props) => {
   const openModal = () => {
     setModalOpen(true);
   };
+
   const closeModal = () => {
     setModalOpen(false);
   };
+
   window.addEventListener("keyup", (e) => {
     if (setModalOpen(false) && e.key === "Escape") {
       setModalOpen(true);
     }
   });
 
+  // 채팅 입력 (엔터)
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       sendComment();
@@ -47,9 +47,10 @@ const Comments = (props) => {
     }
   };
 
+  // mbti 필터 기능
   const handleMBTI = (e) => {
-    dispatch(commentActions.searchComment(e.target.checked))
-  }
+    dispatch(commentActions.searchComment(e.target.checked));
+  };
 
   // mbti 필터
   if (is_mbtiFilter) {
@@ -61,10 +62,9 @@ const Comments = (props) => {
             <Text margin="0 0 0 5px">{count}</Text>
           </Grid>
           <Grid width="50%" padding="16px 0" flex="flex" justify="flex-end">
-            <Text
-              margin="0 10px 0 0"
-              width="auto"
-            >나와 같은 MBTI만 보기</Text>
+            <Text margin="0 10px 0 0" width="auto">
+              나와 같은 MBTI만 보기
+            </Text>
             <input
               onClick={handleMBTI}
               type="checkbox"
@@ -102,11 +102,13 @@ const Comments = (props) => {
               />
             </Grid>
 
-            {is_me == cList.userId ? 
-            <Grid width="15%" height="auto" flex="flex">
-              <DeleteText onClick={openModal} >삭제</DeleteText>
-            </Grid>
-              : <Grid width="15%"></Grid>}
+            {is_me == cList.userId ? (
+              <Grid width="15%" height="auto" flex="flex" justify="flex-end">
+                <DeleteText onClick={openModal}>삭제</DeleteText>
+              </Grid>
+            ) : (
+              <Grid width="15%"></Grid>
+            )}
           </Grid>
           <Grid width="100%" height="56px" flex="flex" justify="flex-start">
             <Grid
@@ -139,8 +141,7 @@ const Comments = (props) => {
               justify="space-between"
               is_align="center"
             >
-
-              <Grid 
+              <Grid
                 width="85%"
                 hegight="100%"
                 maXheight="56px"
@@ -149,17 +150,26 @@ const Comments = (props) => {
                 justify="flex-start"
                 is_align="flex-start"
               >
-                <Text size="13px" family="NotoSansCJK" spacing="-1px" LHeight="17px">
+                <Text
+                  size="13px"
+                  family="NotoSansCJK"
+                  spacing="-1px"
+                  LHeight="17px"
+                >
                   {cList.comment}
                 </Text>
               </Grid>
 
               <Grid width="15%" flex="flex" justify="flex-end">
-              <Text size="12px" color="#FF5454" family="NotoSansCJK" spacing="-1px">
-                {cList.createdAt}
-              </Text>
+                <Text
+                  size="12px"
+                  color="#FF5454"
+                  family="NotoSansCJK"
+                  spacing="-1px"
+                >
+                  {cList.createdAt}
+                </Text>
               </Grid>
-
             </Grid>
           </Grid>
         </Grid>
@@ -231,18 +241,19 @@ const CommentsInputBox = styled.div`
 `;
 
 const DeleteText = styled.div`
-  font-size: 0.8rem;
   font-family: "NotoSansCJK";
+  font-size: 0.8rem;
   font-weight: bold;
   color: #eee;
+  cursor: pointer;
   &:hover {
-    color: #FF5454;
+    color: #ff5454;
     transition: 0.3s;
   }
-  &:not(:hover){
+  &:not(:hover) {
     color: #eee;
     transition: 0.3s;
-}
+  }
 `;
 
 export default Comments;
