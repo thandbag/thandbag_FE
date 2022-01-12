@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useCallback } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 import { ReactComponent as ThankYou } from "../static/images/thankyou.svg";
-import { ReactComponent as Close } from "../static/icons/close.svg";
 
 const Background = styled.div`
   width: 100%;
@@ -20,20 +19,6 @@ const ModalWrapper = styled.div`
   width: 200px;
   height: 300px;
   position: relative;
-  z-index: 10;
-`;
-
-const CloseModalButton = styled.div`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 0;
   z-index: 10;
 `;
 
@@ -79,12 +64,6 @@ export const TbModalTwo = ({ showModal, setShowModal }) => {
               <ThankYou />
             </ModalWrapper>
           </animated.div>
-          <CloseModalButton
-            aria-label="Close modal"
-            onClick={() => setShowModal((prev) => !prev)}
-          >
-            <Close width="18px" height="18px" />
-          </CloseModalButton>
         </Background>
       ) : null}
     </>

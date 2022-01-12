@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useCallback } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 import { ReactComponent as ThandCreate } from "../static/images/thandcreate.svg";
-import { ReactComponent as Close } from "../static/icons/close.svg";
 import { history } from "../redux/configureStore";
 
 const Background = styled.div`
@@ -23,20 +22,6 @@ const ModalWrapper = styled.div`
   height: 300px;
   position: relative;
   z-index: 9;
-`;
-
-const CloseModalButton = styled.div`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 0;
-  z-index: 10;
 `;
 
 export const TbModalThree = ({ showModal, setShowModal }) => {
@@ -81,12 +66,6 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
               <ThandCreate/>
             </ModalWrapper>
           </animated.div>
-          <CloseModalButton
-            aria-label="Close modal"
-            onClick={() => setShowModal((prev) => !prev)}
-          >
-            <Close width="18px" height="18px" />
-          </CloseModalButton>
         </Background>
       ) : null}
     </>
