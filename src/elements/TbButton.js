@@ -97,19 +97,25 @@ const BtnBasic = styled.button`
   ${(props) => (props.size ? `font-size: ${props.size};` : "")};
   ${(props) => (props.display ? `display: ${props.display};` : "")};
   ${(props) => (props.border ? `border: ${props.border};` : "")};
+
 `;
 
 const CategoryBtn = styled(BtnBasic)`
-  &:hover {
+  &:active,
+  &:hover,
+  &:focus {
     color: #ffffff;
     background: #ff5454;
     transition: 0.35s;
   }
+  
   &:not(hover) {
     color: #333;
     background: #fff;
     transition: 0.35s;
   }
+
+  
 `;
 
 const BtnLogin = styled.button`

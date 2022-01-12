@@ -8,6 +8,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const MyEdit = (props) => {
   const profile = sessionStorage.getItem("profile");
   const nick = sessionStorage.getItem("nickname");
+  const my_mbti = sessionStorage.getItem("mbti");
   const dispatch = useDispatch();
   const option_list = [
     "MBTI 선택",
@@ -30,11 +31,11 @@ const MyEdit = (props) => {
   ];
 
   const [nickname, setNickname] = React.useState(nick);
-  const [mbti, setMbti] = React.useState(0);
+  const [mbti, setMbti] = React.useState(my_mbti);
 
   const [isNickname, setIsNickname] = React.useState(true);
   const nickRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,6}$/;
-
+  
   const handleClick = (e) => {
     setMbti(e.target.value);
   };
@@ -53,11 +54,11 @@ const MyEdit = (props) => {
   
 
   const clickEdit = () => {
-    if (mbti === 0 || nickname == "") {
+    if (mbti == 0 || nickname == "") {
       window.alert("빈칸을 채워주세요");
       return;
     } else {
-      dispatch(userActions.editDB(nickname, option_list[mbti]));
+      dispatch(userActions.editDB(nickname, mbti));
     }
   };
 
@@ -118,11 +119,12 @@ const MyEdit = (props) => {
             <Grid flex="flex" width="30%" height="100%" justify="flex-start">
               <Text size="17px">MBTI 선택</Text>
             </Grid>
-            <Grid flex="flex" justify="space-between" width="70%" height="100%">
+            <Grid flex="flex" justify="flex" width="70%" height="100%">
               <Select
+                value={mbti}
                 _onChange={handleClick}
-                height="47px"
-                width="300px"
+                height="auto"
+                width="auto"
               ></Select>
             </Grid>
           </Grid>
@@ -148,7 +150,7 @@ const MyEdit = (props) => {
           margin="43px 0 0 0"
           cursor="pointer"
           _onClick={() => {
-            dispatch(userActions.logOutDB());
+            dispatch(userActions.logOut());
           }}
         >
           <Text>로그아웃</Text>

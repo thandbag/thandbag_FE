@@ -148,7 +148,8 @@ const TbChatDetail = (props) => {
           borderB
           borderT
           padding="26px 20px"
-          width="420px"
+          width="100%"
+          maXwidth="420px"
           flex="flex"
           bg="#fff"
           justify="space-between"
@@ -165,7 +166,7 @@ const TbChatDetail = (props) => {
             color="#FF5454"
             radius="10px"
             padding="10px 15px"
-            width="300px"
+            width="75%"
           />
           <Button
             _onClick={SendMessage}
@@ -175,7 +176,7 @@ const TbChatDetail = (props) => {
             color="#fff"
             radius="10px"
             height="40px"
-            width="60px"
+            width="20%"
             text="전송"
           />
         </Grid>

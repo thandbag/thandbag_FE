@@ -60,26 +60,26 @@ const TbSelect = (props) => {
   }
 
   return (
-    <SelectBasic {...styles} onChange={_onChange}>
-      <OptionBasic className="red" value="0">
+    <SelectBasic {...styles} value={value} onChange={_onChange}>
+      <OptionBasic value="0">
         MBTI 선택
       </OptionBasic>
-      <OptionBasic value="1">ENFJ</OptionBasic>
-      <OptionBasic value="2">ENFP</OptionBasic>
-      <OptionBasic value="3">ENTJ</OptionBasic>
-      <OptionBasic value="4">ENTP</OptionBasic>
-      <OptionBasic value="5">ESFJ</OptionBasic>
-      <OptionBasic value="6">ESFP</OptionBasic>
-      <OptionBasic value="7">ESTJ</OptionBasic>
-      <OptionBasic value="8">ESTP</OptionBasic>
-      <OptionBasic value="9">INFJ</OptionBasic>
-      <OptionBasic value="10">INFP</OptionBasic>
-      <OptionBasic value="11">INTJ</OptionBasic>
-      <OptionBasic value="12">INTP</OptionBasic>
-      <OptionBasic value="13">ISFJ</OptionBasic>
-      <OptionBasic value="14">ISFP</OptionBasic>
-      <OptionBasic value="15">ISTJ</OptionBasic>
-      <OptionBasic value="16">ISTP</OptionBasic>
+      <OptionBasic value="ENFJ">ENFJ</OptionBasic>
+      <OptionBasic value="ENFP">ENFP</OptionBasic>
+      <OptionBasic value="ENTJ">ENTJ</OptionBasic>
+      <OptionBasic value="ENTP">ENTP</OptionBasic>
+      <OptionBasic value="ESFJ">ESFJ</OptionBasic>
+      <OptionBasic value="ESFP">ESFP</OptionBasic>
+      <OptionBasic value="ESTJ">ESTJ</OptionBasic>
+      <OptionBasic value="ESTP">ESTP</OptionBasic>
+      <OptionBasic value="INFJ">INFJ</OptionBasic>
+      <OptionBasic value="INFP">INFP</OptionBasic>
+      <OptionBasic value="INTJ">INTJ</OptionBasic>
+      <OptionBasic value="INTP">INTP</OptionBasic>
+      <OptionBasic value="ISFJ">ISFJ</OptionBasic>
+      <OptionBasic value="ISFP">ISFP</OptionBasic>
+      <OptionBasic value="ISTJ">ISTJ</OptionBasic>
+      <OptionBasic value="ISTP">ISTP</OptionBasic>
     </SelectBasic>
   );
 };
@@ -114,7 +114,7 @@ const OptionBasic = styled.option`
   border: none;
   font-size: 17px;
   background: #ffffff;
-  text-align: center;
+  /* text-align: center; */
 `;
 
 export default TbSelect;

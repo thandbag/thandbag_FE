@@ -18,7 +18,8 @@ const TbFinish = (props) => {
     api
       .post(
         `/api/thandbag?postId=${postid}`,
-         history.location.state.count ,
+         {newHitCount:history.location.state.count,
+          prevHitCount:history.location.state.pastcount} ,
         {
           headers: { Authorization: token ,
             'Content-Type': 'application/json;charset=UTF-8',

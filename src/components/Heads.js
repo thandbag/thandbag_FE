@@ -16,6 +16,7 @@ const Heads = (props) => {
     is_anoter,
     list,
     post_id,
+    pastHitcount,
     hitcount,
     hit,
     chat,
@@ -28,7 +29,7 @@ const Heads = (props) => {
     borderT,
     borderB,
   } = props;
-
+  
   const styles = {
     bg: bg,
     color: color,
@@ -165,7 +166,7 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
-                dispatch(cardActions.postHitCountDB(post_id, hitcount));
+                dispatch(cardActions.postHitCountDB(post_id, hitcount, pastHitcount));
                 history.goBack();
               }}
             >

@@ -19,7 +19,7 @@ const TbTwoDetail = (props) => {
 
   React.useEffect(() => {
     dispatch(cardActions.getCardTwoDetailDB(postid));
-  }, []);
+  }, [dispatch]);
 
   return (
     <React.Fragment>
