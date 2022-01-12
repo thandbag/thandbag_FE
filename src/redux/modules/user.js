@@ -10,7 +10,7 @@ const LOG_OUT = 'LOG_OUT'
 
 // **** Action creator **** //
 const logIn = createAction(LOG_IN, (user) => ({ user }))
-const logOut = createAction(LOG_OUT, (user) => ({ user }))
+const logOut = createAction(LOG_OUT, () => ({ }))
 
 
 // **** Initial data **** //
@@ -53,9 +53,13 @@ const logInDB = (email, password) => {
       sessionStorage.setItem('mbti', response.data.mbti);
       sessionStorage.setItem('level', response.data.level);
       sessionStorage.setItem('profile', response.data.profileImgUrl);
-      dispatch(logIn({user_email:email, user_id: response.data.userId,
-         nickname:response.data.nickname}))
-      history.push('/main')
+      dispatch(logIn({
+        user_id: response.data.userId,
+        nickname:response.data.nickname,
+        mbti: response.data.mbti,
+        profile: response.data.profileImgUrl,
+        level: response.data.level}))
+      history.replace('/main')
 
     })
     .catch((err) => {
@@ -64,29 +68,16 @@ const logInDB = (email, password) => {
   };
 };
 
-const logOutDB = () => {
-  return async function (dispatch, getState, { history }) {
-    localStorage.removeItem('userId')
-    localStorage.removeItem('nickname')
-    localStorage.removeItem('token')
-    localStorage.removeItem('mbti')
-    localStorage.removeItem('level')
-    localStorage.removeItem('profile')
-    history.replace("/login")
-    dispatch(logOut())
-  };
-};
-
 const kakaoLogin = (code) => {
   return async function(dispatch, getState, { history }){
     await api.get(`/user/kakao/callback?code=${code}`).then(function(response){
-      console.log(response)
       sessionStorage.setItem('userId', response.data.userId)
       sessionStorage.setItem('nickname', response.data.nickname)
       sessionStorage.setItem("token", response.headers.authorization);
       sessionStorage.setItem('mbti', response.data.mbti);
       sessionStorage.setItem('level', response.data.level);
       sessionStorage.setItem('profile', response.data.profileImgUrl);
+
       dispatch(logIn({ 
         user_id: response.data.userId,
         nickname:response.data.nickname,
@@ -135,7 +126,10 @@ export default handleActions(
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action)
+        sessionStorage.clear()
         draft.user = ""
+        window.location.replace("/login")
       }),
   },
   initialState
@@ -145,7 +139,7 @@ export default handleActions(
 const actionCreators = {
   joinDB,
   logInDB,
-  logOutDB,
+  // logOutDB,
   editDB,
   logOut,
   logIn,

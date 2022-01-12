@@ -48,7 +48,6 @@ import { ReactComponent as CLevelTwo } from "../static/icons/lv icons_comment/Pr
 import { ReactComponent as CLevelThree } from "../static/icons/lv icons_comment/Property 1=Default_3.svg";
 
 const UserProfile = (props) => {
-  const userId = sessionStorage.getItem("userId");
   const nickname = sessionStorage.getItem("nickname");
   const mbti = sessionStorage.getItem("mbti");
   const level = sessionStorage.getItem("level");

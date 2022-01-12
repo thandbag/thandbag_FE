@@ -31,6 +31,7 @@ const TbGrid = (props) => {
     cursor,
     shadow,
     _onClick,
+    _onKeyDown,
     overFlowY,
     hover,
     maXwidth,
@@ -83,7 +84,7 @@ const TbGrid = (props) => {
 
   return (
     <>
-      <GridBox {...styles} onClick={_onClick}>
+      <GridBox {...styles} onKeyDown={_onKeyDown} onClick={_onClick}>
         {children}
       </GridBox>
     </>
@@ -114,6 +115,7 @@ TbGrid.defaultProps = {
   borderT: false,
   borderB: false,
   _onClick: () => {},
+  _onKeyDown: () => {},
 };
 
 const GridBox = styled.div`

@@ -25,9 +25,10 @@ const TbHitDetail = (props) => {
   const postid = props.match.params.postid;
   const [state, toggle] = React.useState(true);
   const [count, setCounts] = React.useState(0);
+  const [pastCount, setPastcounts] = React.useState(null)
   const [effect, setEffects] = React.useState(true);
   const is_level = history.location.state.level;
-
+  
   const clickCount = () => {
     setCounts(count + 1);
   };
@@ -45,12 +46,21 @@ const TbHitDetail = (props) => {
     }, 400);
   };
 
+  const onEnterPress = (e) => {
+    if(e.key === 'Enter') {
+      toggle(!state);
+      clickCount();
+      clickTarget();
+    }
+  }
+
   React.useEffect(() => {
     api
       .get(`/api/thandbag/punch/${postid}`, {
         headers: { Authorization: token },
       })
       .then(function (response) {
+        setPastcounts(response.data.totalHitCount);
         setCounts(response.data.totalHitCount);
       })
       .catch((err) => {
@@ -64,6 +74,7 @@ const TbHitDetail = (props) => {
         <Heads
           post_id={postid}
           hitcount={count}
+          pastHitcount={pastCount}
           hit
           bg="transparent"
           stroke="#333"
@@ -186,6 +197,7 @@ const TbHitDetail = (props) => {
                 login
                 _onClick={() => {
                   history.push(`/TbFinish/${postid}`, {
+                    pastcount: pastCount,
                     count: count,
                     level: history.location.state.level,
                   });
@@ -212,6 +224,7 @@ const TbHitDetail = (props) => {
         <Heads
           post_id={postid}
           hitcount={count}
+          pastHitcount={pastCount}
           hit
           bg="transparent"
           stroke="#333"
@@ -334,6 +347,7 @@ const TbHitDetail = (props) => {
                 login
                 _onClick={() => {
                   history.push(`/TbFinish/${postid}`, {
+                    pastcount: pastCount,
                     count: count,
                     level: history.location.state.level,
                   });
@@ -360,6 +374,7 @@ const TbHitDetail = (props) => {
         <Heads
           post_id={postid}
           hitcount={count}
+          pastHitcount={pastCount}
           hit
           bg="transparent"
           stroke="#333"
@@ -374,6 +389,7 @@ const TbHitDetail = (props) => {
           position="relative"
         >
           <Grid
+            _onKeydown={onEnterPress}
             _onClick={() => {
               toggle(!state);
               clickCount();
@@ -431,6 +447,7 @@ const TbHitDetail = (props) => {
             </>
           )}
           <Grid
+            _onKeydown={onEnterPress}
             _onClick={() => {
               toggle(!state);
               clickCount();
@@ -470,6 +487,7 @@ const TbHitDetail = (props) => {
                 login
                 _onClick={() => {
                   history.push(`/TbFinish/${postid}`, {
+                    pastcount: pastCount,
                     count: count,
                     level: history.location.state.level,
                   });

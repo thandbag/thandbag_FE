@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 const ThandStateImg = (props) => {
   const { display, all, id} = props;
   const styles = { display: display };
-  console.log(all)
+ 
   return (
     <React.Fragment>
       <BackgroundState src={all.lvImg}>

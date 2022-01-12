@@ -100,8 +100,9 @@ const getMyCardListDB = () => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response)
-        dispatch(setMyList(response.data.content));
+        sessionStorage.removeItem('level')
+        sessionStorage.setItem('level', response.data.level)
+        dispatch(setMyList(response.data.myPostList));
       })
       .catch((err) => {
         window.alert("생드백을 불러오는데 문제가 발생했습니다.");
@@ -160,18 +161,22 @@ const findCardDB = (keyword) => {
   };
 };
 
-const postHitCountDB = (postid, hitcount) => {
+const postHitCountDB = (postid, hitcount, pastHitcount) => {
   return async function (dispatch, getState, { history }) {
+    console.log(postid, hitcount,pastHitcount)
     // return;
     const token = sessionStorage.getItem("token");
     await api
-      .post(`/api/thandbag/punch/${postid}`, hitcount, {
+      .post(`/api/thandbag/punch/${postid}`, 
+      {newHitCount:hitcount,
+        prevHitCount:pastHitcount}, {
         headers: {
           Authorization: token,
           "Content-Type": "application/json;charset=UTF-8",
         },
       })
-      .then(function (response) {})
+      .then(function (response) {
+      })
       .catch((err) => {
         window.alert("문제가 발생했습니다.");
       });
