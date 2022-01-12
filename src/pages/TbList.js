@@ -16,7 +16,6 @@ const TbList = (props) => {
   const card_list = useSelector((state) => state.card.card_list);
   const is_append_loaded = useSelector((state) => state.card.is_append_loaded);
   console.log(card_list);
-  const cardListRef = useRef(null);
   const dispatch = useDispatch();
 
   const scrollCardList = (e) => {
@@ -27,8 +26,6 @@ const TbList = (props) => {
     if ((cardListHeight - contentsHeight) * 0.99 < scrollTop) {
       dispatch(cardActions.appendCardListDB());
     }
-    console.log(scrollTop);
-    console.log(cardListHeight);
   };
 
   return (

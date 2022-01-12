@@ -66,7 +66,7 @@ const ThandStateImg = (props) => {
             radius="12px"
             bg="#333"
             size="1.2rem"
-            text="생드백 때리러가기 =>"
+            text="생드백 때리러가기 >"
             _onClick={() => {
               history.push(`/TbHitDetail/${id}`,all)
             }}

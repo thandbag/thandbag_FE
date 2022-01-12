@@ -4,7 +4,7 @@ import { Grid, Text, Image } from "../elements/TbIndex";
 const Message = (props) => {
   const { messageInfo } = props;
   const user_info = sessionStorage.getItem("nickname");
-  
+
   if (user_info === messageInfo.sender) {
     return (
       <Grid
@@ -15,7 +15,13 @@ const Message = (props) => {
         justify="flex-end"
       >
         <Grid marginT="auto" width="auto" margin="0 6px 0 0">
-          <Text size="0.5rem" color="#878787" bold="bold" family="NotoSansCJK">
+          <Text
+            size="0.5rem"
+            color="#878787"
+            bold="bold"
+            family="NotoSansCJK"
+            spacing="-0.3px"
+          >
             {messageInfo.createdAt}
           </Text>
         </Grid>
@@ -88,7 +94,6 @@ const Message = (props) => {
               height="auto"
             >
               <Text
-                
                 family="NotoSansCJK"
                 bold="600"
                 size="13px"
@@ -101,7 +106,13 @@ const Message = (props) => {
               </Text>
             </Grid>
             <Grid width="auto" margin="0 0 0 6px">
-              <Text size="0.5rem" color="#878787" bold="bold" family="NotoSansCJK">
+              <Text
+                size="0.5rem"
+                color="#878787"
+                bold="bold"
+                family="NotoSansCJK"
+                spacing="-0.3px"
+              >
                 {messageInfo.createdAt}
               </Text>
             </Grid>

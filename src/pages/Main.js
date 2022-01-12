@@ -34,8 +34,7 @@ const Main = (props) => {
           token
         );
       });
-    } catch (e) {
-    }
+    } catch (e) {}
   }, [dispatch, alarm]);
 
   const fadeIn = useSpring({
@@ -75,7 +74,7 @@ const Main = (props) => {
             />
           </MainBodyBottom>
         </animated.div>
-        <TbNavgation />
+        <TbNavgation main={"main"} />
       </Container>
     </>
   );

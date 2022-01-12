@@ -2,6 +2,8 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 import { Grid, Text, Button } from "../elements/TbIndex";
 import Heads from "../components/Heads";
+import { ReactComponent as UserGloveLv1 } from "../static/images/userglove/user_ glove_lv1.svg";
+import { ReactComponent as UserGloveLv2 } from "../static/images/userglove/user_ glove_lv2.svg";
 import { history } from "../redux/configureStore";
 import thandbag_frame from "../static/images/thandbag/one_thand_frame.png";
 import thandbag_frame2 from "../static/images/thandbag/two_thand_frame.png";

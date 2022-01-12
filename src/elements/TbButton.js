@@ -96,7 +96,8 @@ const BtnBasic = styled.button`
   ${(props) => (props.color ? `color: ${props.color};` : "")};
   ${(props) => (props.size ? `font-size: ${props.size};` : "")};
   ${(props) => (props.display ? `display: ${props.display};` : "")};
-  
+  ${(props) => (props.border ? `border: ${props.border};` : "")};
+
 `;
 
 const CategoryBtn = styled(BtnBasic)`

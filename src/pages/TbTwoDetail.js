@@ -42,7 +42,7 @@ const TbTwoDetail = (props) => {
         >
           <UserProfile two_user={card} share size="1.3rem" Isize="50" />
           <Grid width="20%" flex="flex" justify="flex-end" padding="20px 0 0 0">
-            <Text size="12px" color="#FF5454" family="NotoSansCJK">
+            <Text size="12px" color="#FF5454" family="NotoSansCJK" spacing="-1px">
               {card.createdAt}
             </Text>
           </Grid>

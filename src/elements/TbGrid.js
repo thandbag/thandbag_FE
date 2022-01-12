@@ -37,6 +37,7 @@ const TbGrid = (props) => {
     maXwidth,
     miNwidth,
     miNheight,
+    overFlow,
   } = props;
 
   const styles = {
@@ -70,6 +71,7 @@ const TbGrid = (props) => {
     maXwidth: maXwidth,
     miNwidth: miNwidth,
     miNheight: miNheight,
+    overFlow: overFlow,
   };
 
   if (hover) {
@@ -147,6 +149,7 @@ const GridBox = styled.div`
   ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
   ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
+  ${(props) => (props.overFlow ? `overflow: ${props.overFlow};` : "")};
   ${(props) => (props.overFlowY ? `overflow-y: ${props.overFlowY};` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
 `;
@@ -186,7 +189,7 @@ const HoverGrid = styled.div`
     transition: 0.3s;
   }
   &:not(hover) {
-    background-color: #fbf7f7;
+    background-color: #fff;
     transition: 0.3s;
   }
 `;

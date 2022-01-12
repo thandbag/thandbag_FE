@@ -57,7 +57,7 @@ const getCardListDB = (pageNo = 0, sizeNo = 5) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response)
+        console.log(response);
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
@@ -103,6 +103,7 @@ const getMyCardListDB = () => {
         sessionStorage.removeItem('level')
         sessionStorage.setItem('level', response.data.level)
         dispatch(setMyList(response.data.myPostList));
+
       })
       .catch((err) => {
         window.alert("생드백을 불러오는데 문제가 발생했습니다.");
@@ -208,7 +209,7 @@ const sendCardDB = (category, title, content, img, share) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        dispatch(addCard(response.data))
+        dispatch(addCard(response.data));
       })
 
       .catch((err) => {
@@ -276,7 +277,6 @@ export default handleActions(
         } else if (action.payload.search == true) {
           draft.search_list = thand_end;
         } else if (action.payload.search == false) {
-
           draft.search_list = thand_not_end;
         } else {
           draft.search_list = new_search;
