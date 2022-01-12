@@ -7,11 +7,11 @@ const TbWriteSelect = ({ category, setCategory }) => {
   const options = [
     "공부",
     "진로고민",
+    "사회생활",
     "대인관계",
     "가정문제",
     "연애",
     "기타",
-    "사회생활",
   ];
 
   return (

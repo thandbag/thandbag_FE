@@ -210,31 +210,22 @@ body {
 .checkcss {
   appearance: none;
   -webkit-appearance: none;
-  height: 2.3vh;
-  width: 2.3vh;
-  background-color: #d5d5d5;
+  height: 24px;
+  width: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12Z' fill='%23FBF7F7'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.8272 7.74236C18.1844 8.07931 18.2008 8.64202 17.8639 8.99921L10.788 16.5L6.15446 11.8664C5.80724 11.5192 5.80724 10.9563 6.15446 10.609C6.50167 10.2618 7.06462 10.2618 7.41184 10.609L10.7508 13.948L16.5704 7.779C16.9073 7.42182 17.4701 7.40541 17.8272 7.74236Z' fill='%23333333'/%3E%3C/svg%3E%0A");  
   border-radius: 20px;
   cursor: pointer;
 }
 
-.checkcss::after {
+.checkcss:active,
+.checkcss:checked{
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12Z' fill='%23FF5454'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.8272 7.74236C18.1844 8.07931 18.2008 8.64202 17.8639 8.99921L10.788 16.5L6.15446 11.8664C5.80724 11.5192 5.80724 10.9563 6.15446 10.609C6.50167 10.2618 7.06462 10.2618 7.41184 10.609L10.7508 13.948L16.5704 7.779C16.9073 7.42182 17.4701 7.40541 17.8272 7.74236Z' fill='white'/%3E%3C/svg%3E%0A");
+  transition: 0.3s;
 }
 
 .labelcss {
   cursor: pointer;
   font-size: 2vh;
-}
-
-.test:hover {
-  fill: red;
-}
-
-.checkcss:hover {
-  background-color: #a5a5a5;
-}
-
-.checkcss:checked {
-  background-color: #ff5454;
 }
 
 /* 좋아요 버튼 css */
@@ -472,7 +463,7 @@ svg #main-circ {
 /* 모달 css */
 .modal {
   display: none;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -480,27 +471,27 @@ svg #main-circ {
   z-index: 9900;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
 .modal > section {
-  width: 90%;
-  max-width: 300px;
+  width: 219px;
   margin: 0 auto;
   /* 팝업 애니메이션 */
   animation: modal-show 0.3s;
   display: flex;
-  background-color: rgba(var(--f23, 255, 255, 255), 1);
-  border-radius: 20px;
   max-height: 100%;
-  overflow: hidden;
 }
+
 .modal > section > main {
   width: 100%;
 }
+
 .modal.openModal {
   display: flex;
   align-items: center;
   /* 팝업 애니메이션 */
   animation: modal-bg-show 0.1s ease-out;
 }
+
 @keyframes modal-show {
   from {
     opacity: 0;
@@ -511,6 +502,7 @@ svg #main-circ {
     margin-top: 0;
   }
 }
+
 @keyframes modal-bg-show {
   from {
     opacity: 0;
@@ -518,16 +510,4 @@ svg #main-circ {
   to {
     opacity: 1;
   }
-}
-
-.icon {
-  transition: fill 0.1s linear;
-}
-
-.black {
-  fill: #333;
-}
-
-.red {
-  fill: #FF5454;
 }

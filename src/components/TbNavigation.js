@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Main } from "../static/icons/nav_main.svg";
 import { ReactComponent as TbChatList } from "../static/icons/nav_chat.svg";
@@ -11,6 +11,7 @@ import { actionCreators as chatActions } from "../redux/modules/chat";
 import "../shared/style.css";
 
 const TbNavgation = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
   const alarm = useSelector((state) => state.chat.alarm);
   const [newRing, setNewRings] = React.useState(false);
@@ -29,14 +30,18 @@ const TbNavgation = (props) => {
           history.push("/main");
         }}
         >
-          <Main  fill="#333" />
+          <Main
+            className={props.main === "main" ? "active main" : "icon main"}
+          />
         </Nav1>
         <Nav1
           onClick={() => {
             history.push("/TbChatList");
           }}
         >
-          <TbChatList fill="#333" />
+          <TbChatList
+            className={props.TbChatList === "TbChatList" ? "active TbChatList" : "icon TbChatList"}
+          />
         </Nav1>
         <Nav1
           onClick={() => {
@@ -48,14 +53,18 @@ const TbNavgation = (props) => {
           {newRing === true && (
             <Image position="absolute" right="137px" shape="alarm" Isize="10" />
           )}
-          <TbNotice fill="#333" />
+          <TbNotice
+            className={props.TbNotice === "TbNotice" ? "active TbNotice" : "icon TbNotice"}
+          />
         </Nav1>
         <Nav1
           onClick={() => {
             history.push("/MyPage");
           }}
         >
-          <MyPage fill="#333" />
+          <MyPage
+            className={props.MyPage === "MyPage" ? "active MyPage" : "icon MyPage"}
+          />
         </Nav1>
       </NavBox>
     </React.Fragment>
@@ -87,6 +96,14 @@ const Nav1 = styled.div`
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+
+  .icon {
+    fill: #333;
+  }
+
+  .active {
+    fill: #FF5454;
+  }
 `;
 
 export default TbNavgation;

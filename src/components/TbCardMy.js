@@ -212,6 +212,7 @@ const CardMiddle = styled.div`
 const CardContent = styled.div`
   width: 90%;
   height: 80%;
+  overflow: hidden;
   background-color: #fff;
 `;
 
