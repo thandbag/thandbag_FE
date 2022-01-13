@@ -10,26 +10,6 @@ import { useSpring, animated } from "@react-spring/web";
 const Join = (props) => {
   const dispatch = useDispatch();
 
-  const option_list = [
-    "MBTI 선택",
-    "ENFJ",
-    "ENFP",
-    "ENTJ",
-    "ENTP",
-    "ESFJ",
-    "ESFP",
-    "ESTJ",
-    "ESTP",
-    "INFJ",
-    "INFP",
-    "INTJ",
-    "INTP",
-    "ISFJ",
-    "ISFP",
-    "ISTJ",
-    "ISTP",
-  ];
-
   // 이메일, 비밀번호, 닉네임 상태관리//
   const [email, setEmail] = React.useState("");
   const [nickname, setNickname] = React.useState("");
@@ -108,7 +88,7 @@ const Join = (props) => {
       return;
     } else {
       dispatch(
-        userActions.joinDB(email, password, nickname, option_list[mbti])
+        userActions.joinDB(email, password, nickname, mbti)
       );
     }
   };
@@ -213,6 +193,7 @@ const Join = (props) => {
             </Grid>
             <Grid margin="20px 0px 0px 0px">
               <Select
+                value={mbti}
                 bg="#fbf7f7"
                 _onChange={handleClick}
                 height="47px"

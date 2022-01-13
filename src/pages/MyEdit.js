@@ -10,25 +10,7 @@ const MyEdit = (props) => {
   const nick = sessionStorage.getItem("nickname");
   const my_mbti = sessionStorage.getItem("mbti");
   const dispatch = useDispatch();
-  const option_list = [
-    "MBTI 선택",
-    "ENFJ",
-    "ENFP",
-    "ENTJ",
-    "ENTP",
-    "ESFJ",
-    "ESFP",
-    "ESTJ",
-    "ESTP",
-    "INFJ",
-    "INFP",
-    "INTJ",
-    "INTP",
-    "ISFJ",
-    "ISFP",
-    "ISTJ",
-    "ISTP",
-  ];
+  
 
   const [nickname, setNickname] = React.useState(nick);
   const [mbti, setMbti] = React.useState(my_mbti);

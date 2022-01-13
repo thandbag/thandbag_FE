@@ -184,10 +184,10 @@ const TbHitDetail = (props) => {
               <Grid position="relative" flex="flex">
                 <img style={{ width: "55%" }} src={hit} />
                 <Grid width="auto" position="absolute">
-                  <Text size="6vmax" bold>
+                  <Text size="3rem" bold>
                     Hit!
                   </Text>
-                  <Text align="center" size="6vmax" bold>
+                  <Text align="center" size="3rem" bold>
                     {count}
                   </Text>
                 </Grid>
@@ -215,7 +215,7 @@ const TbHitDetail = (props) => {
             <></>
           )}
           <Grid width="30%" top="83%" left="10%" position="absolute">
-            <Text size="2vmax">생드백의 아무 곳이나 클릭해주세요!</Text>
+            <Text size="1rem">생드백의 아무 곳이나 클릭해주세요!</Text>
           </Grid>
         </Grid>
       </Grid>
@@ -326,10 +326,10 @@ const TbHitDetail = (props) => {
               <Grid position="relative" flex="flex">
                 <img style={{ width: "55%" }} src={hit} />
                 <Grid width="auto" position="absolute">
-                  <Text size="50px" bold>
+                  <Text size="3rem" bold>
                     Hit!
                   </Text>
-                  <Text align="center" size="50px" bold>
+                  <Text align="center" size="3rem" bold>
                     {count}
                   </Text>
                 </Grid>
@@ -357,7 +357,7 @@ const TbHitDetail = (props) => {
             <></>
           )}
           <Grid width="30%" top="90%" left="10%" position="absolute">
-            <Text size="2vmax">생드백의 아무 곳이나 클릭해주세요!</Text>
+            <Text size="1rem">생드백의 아무 곳이나 클릭해주세요!</Text>
           </Grid>
         </Grid>
       </Grid>
@@ -458,10 +458,10 @@ const TbHitDetail = (props) => {
               <Grid position="relative" flex="flex">
                 <img style={{ width: "55%" }} src={hit} />
                 <Grid width="auto" position="absolute">
-                  <Text size="6vmax" bold>
+                  <Text size="3rem" bold>
                     Hit!
                   </Text>
-                  <Text align="center" size="6vmax" bold>
+                  <Text align="center" size="3rem" bold>
                     {count}
                   </Text>
                 </Grid>
@@ -489,7 +489,7 @@ const TbHitDetail = (props) => {
             <></>
           )}
           <Grid width="30%" top="90%" left="10%" position="absolute">
-            <Text size="2vmax">생드백의 아무 곳이나 클릭해주세요!</Text>
+            <Text size="1rem">생드백의 아무 곳이나 클릭해주세요!</Text>
           </Grid>
         </Grid>
       </Grid>
