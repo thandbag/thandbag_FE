@@ -6,7 +6,7 @@ import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
 import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
 import { ReactComponent as ThandbagLogo } from "../static/icons/thandbag_logo.svg";
-import SearchModal from "../components/SearchModal";
+import SearchModal from "./TbModals/SearchModal";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 const Heads = (props) => {

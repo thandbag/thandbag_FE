@@ -7,7 +7,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import LikeButton from "./LikeButton";
-import TbModal from "./TbModal";
+import TbModal from "./TbModals/TbModal";
 
 const Comments = (props) => {
   const { count, is_Comment, is_mbtiFilter, cList } = props;

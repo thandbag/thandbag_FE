@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/TbIndex";
-import TbModal from "./TbModal";
+import TbModal from "./TbModals/TbModal";
 
 const ThandDetail = (props) => {
-  const { one, share, contents } = props;
+  const { one, share, contents, postid } = props;
+  const is_me = sessionStorage.getItem("userId");
+  const deleteUserId = contents.userId;
+  console.log(postid);
 
   // 댓글 삭제 모달 (팝업)
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,28 +41,39 @@ const ThandDetail = (props) => {
                 {contents.title}
               </Text>
             </Grid>
-            <Grid
-              width="20%"
-              height="50px"
-              padding="2px 0 0 0"
-              flex="flex"
-              justify="center"
-              is_align="flex-start"
-            >
+            {is_me == deleteUserId ? (
               <Grid
-                width="52px"
-                height="30px"
-                border="1px solid #fff"
-                radius="8px"
+                width="20%"
+                height="50px"
+                padding="2px 0 0 0"
                 flex="flex"
-                cursor="pointer"
-                _onClick={openModal}
+                justify="center"
+                is_align="flex-start"
               >
-                <Text color="#fff" size="17px">
-                  삭제
-                </Text>
+                <Grid
+                  width="52px"
+                  height="30px"
+                  border="1px solid #fff"
+                  radius="8px"
+                  flex="flex"
+                  cursor="pointer"
+                  _onClick={openModal}
+                >
+                  <Text color="#fff" size="17px">
+                    삭제
+                  </Text>
+                </Grid>
               </Grid>
-            </Grid>
+            ) : (
+              <Grid
+                width="20%"
+                height="50px"
+                padding="2px 0 0 0"
+                flex="flex"
+                justify="center"
+                is_align="flex-start"
+              />
+            )}
           </Grid>
 
           <TextBox>
@@ -68,6 +82,7 @@ const ThandDetail = (props) => {
 
           <TbModal
             detailX
+            postid={postid ? postid : <></>}
             open={modalOpen}
             close={closeModal}
           />
@@ -122,6 +137,7 @@ const ThandDetail = (props) => {
 
         <TbModal 
           detailX 
+          postid={postid ? postid : <></>}
           open={modalOpen} 
           close={closeModal} 
         />

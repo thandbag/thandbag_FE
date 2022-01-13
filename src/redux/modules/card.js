@@ -14,6 +14,7 @@ const GET_THANK_USER = "GET_THANK_USER";
 const APPEND_CARD_LIST = "APPEND_CARD_LIST";
 const INCREASE_PAGE_NUM = "INCREASE_PAGE_NUM";
 const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
+const DELETE_CARD = "DELETE_CARD";
 
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
@@ -31,6 +32,7 @@ const setIsAppendLoaded = createAction(
   SET_IS_APPEND_LOADED,
   (is_append_loaded) => ({ is_append_loaded })
 );
+const deleteCard = createAction(DELETE_CARD, (postId) => ({ postId }));
 
 // **** Initial data **** //
 const initialState = {
@@ -100,10 +102,9 @@ const getMyCardListDB = () => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        sessionStorage.removeItem('level')
-        sessionStorage.setItem('level', response.data.level)
+        sessionStorage.removeItem("level");
+        sessionStorage.setItem("level", response.data.level);
         dispatch(setMyList(response.data.myPostList));
-
       })
       .catch((err) => {
         window.alert("생드백을 불러오는데 문제가 발생했습니다.");
@@ -164,22 +165,41 @@ const findCardDB = (keyword) => {
 
 const postHitCountDB = (postid, hitcount, pastHitcount) => {
   return async function (dispatch, getState, { history }) {
-    console.log(postid, hitcount,pastHitcount)
+    console.log(postid, hitcount, pastHitcount);
     // return;
     const token = sessionStorage.getItem("token");
     await api
-      .post(`/api/thandbag/punch/${postid}`, 
-      {newHitCount:hitcount,
-        prevHitCount:pastHitcount}, {
-        headers: {
-          Authorization: token,
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-      })
-      .then(function (response) {
-      })
+      .post(
+        `/api/thandbag/punch/${postid}`,
+        { newHitCount: hitcount, prevHitCount: pastHitcount },
+        {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      )
+      .then(function (response) {})
       .catch((err) => {
         window.alert("문제가 발생했습니다.");
+      });
+  };
+};
+
+const deleteCardDB = (postid) => {
+  console.log(postid)
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    await api
+      .delete(`/api/thandbag/${postid}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) { console.log(response);
+        dispatch(deleteCard(postid));
+        history.push('/TbList')
+      })
+      .catch((err) => {
+        window.alert("생드백 삭제에 문제가 발생했습니다.");
       });
   };
 };
@@ -287,6 +307,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list.unshift(action.payload.card);
       }),
+    [DELETE_CARD]: (state, action) =>
+      produce(state, (draft) => {
+        const delete_post = draft.card_list.filter(
+          (c) => c.postId !== action.payload.postId
+        );
+        draft.card_list = delete_post;
+      }),
     [GET_THANK_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.thank_users = action.payload.user;
@@ -307,6 +334,7 @@ const actionCreators = {
   postHitCountDB,
   getThankUser,
   appendCardListDB,
+  deleteCardDB,
 };
 
 export { actionCreators };

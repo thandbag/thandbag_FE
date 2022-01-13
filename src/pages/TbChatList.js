@@ -7,6 +7,7 @@ import { actionCreators as chatActions } from "../redux/modules/chat";
 import TbNavigation from "../components/TbNavigation";
 import TbLoading from "./TbLoading";
 import styled from "styled-components";
+import NoChatList from "../static/images/no_chatlist.png";
 import { useSpring, animated } from "@react-spring/web";
 
 const TbChatList = (props) => {
@@ -34,17 +35,7 @@ const TbChatList = (props) => {
       <animated.div style={fadeIn}>
         <TbChatListBox>
           {chatList.length == 0 ? (
-            <Grid
-              flex="flex"
-              direction="column"
-              position="absolute"
-              top="300px"
-            >
-              <Image no_thand />
-              <Text color="#F7C8C8" size="30px" margin="40px 0 0 0">
-                아직 채팅방이 없어요!
-              </Text>
-            </Grid>
+           <BgBox />
           ) : (
             chatList.map((m, idx) => {
               return (
@@ -128,6 +119,20 @@ const TbChatListBox = styled.div`
   height: 100vh;
   padding: 70px 0;
   overflow-y: scroll;
+  background-color: #fbf7f7;
+`;
+
+const BgBox = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 4%;
+  left: 0;
+  background-color: #fbf7f7;
+  background-image: url(${NoChatList});
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 export default TbChatList;

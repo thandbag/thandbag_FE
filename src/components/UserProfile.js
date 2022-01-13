@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Grid, Text, Image, Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
-import TbModalTwoButton from "./TbModalTwoButton";
+import TbModalTwoButton from "./TbModals/TbModalTwoButton";
 import { ReactComponent as SettingButton } from "../static/icons/setting_button.svg";
 import styled from "styled-components";
 

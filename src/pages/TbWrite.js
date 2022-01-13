@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Heads from "../components/Heads";
-import TbWriteSelect from "../components/TbWriteSelect";
+import TbWriteSelect from "../components/TbModals/TbWriteSelect";
 import TbTextEditor from "../components/TbTextEditor";
 import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
-import { TbModalThree } from "../components/TbModalThree";
+import { TbModalThree } from "../components/TbModals/TbModalThree";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 import { history } from "../redux/configureStore";

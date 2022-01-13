@@ -27,7 +27,8 @@ import { ReactComponent as LevelThree } from "../static/icons/lv icons/LV. 3.svg
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
-import { Grid, Image, Text } from "../elements/TbIndex";
+import { Grid } from "../elements/TbIndex";
+import NoThandBag from "../static/images/no_thandbag.png";
 import TbText from "../elements/TbText";
 
 const TbCardMy = (props) => {
@@ -41,19 +42,7 @@ const TbCardMy = (props) => {
   return (
     <>
       {cardList.length == 0 ? (
-        <>
-          <Grid marginT="175px">
-            <Image no_thand />
-            <Text
-              align="center"
-              color="#F7C8C8"
-              size="24px"
-              margin="40px 0 0 0"
-            >
-              아직 생드백이 없어요!
-            </Text>
-          </Grid>
-        </>
+        <BgBox />
       ) : (
         cardList.map((c) => {
           return (
@@ -298,6 +287,19 @@ const CardLv = styled.div`
   background-color: #333333;
   text-align: center;
   border-radius: 25px;
+`;
+
+const BgBox = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 4%;
+  left: 0;
+  background-color: #fbf7f7;
+  background-image: url(${NoThandBag});
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 export default TbCardMy;
