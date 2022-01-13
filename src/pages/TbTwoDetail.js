@@ -16,10 +16,10 @@ const TbTwoDetail = (props) => {
   const comment_list = useSelector((state) => state.comment.search_list);
   const postid = props.match.params.postid;
   const is_loaded = useSelector((state) => state.card.is_loaded);
-
   React.useEffect(() => {
     dispatch(cardActions.getCardTwoDetailDB(postid));
-  }, [dispatch]);
+    
+  }, []);
 
   return (
     <React.Fragment>

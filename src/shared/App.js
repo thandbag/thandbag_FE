@@ -9,7 +9,6 @@ import Login from "../pages/Login";
 import Join from "../pages/Join";
 import TbWrite from "../pages/TbWrite";
 import TbList from "../pages/TbList";
-import TbOneDetail from "../pages/TbOneDetail";
 import TbTwoDetail from "../pages/TbTwoDetail";
 import TbNotice from "../pages/TbNotice";
 import TbChatList from "../pages/TbChatList";
@@ -43,8 +42,6 @@ function App() {
               <Route path={"/main"} exact component={Main} />
               <Route path={"/TbWrite"} exact component={TbWrite} />
               <Route path={"/TbList"} exact component={TbList} />
-              <Route path={"/TbOneDetail/:postid"} exact component={TbOneDetail} />
-              <Route path={"/TbOneDetail/:404"} exact component={NotFound} />
               <Route path={"/TbTwoDetail/:postid"} exact component={TbTwoDetail} />
               <Route path={"/TbTwoDetail/:404"} exact component={NotFound} />
               <Route path={"/TbHitDetail/:postid"} exact component={TbHitDetail} />

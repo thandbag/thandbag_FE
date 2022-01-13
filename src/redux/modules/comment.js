@@ -74,6 +74,7 @@ const likeCommentDB = (bool, commentId) => {
         }
       )
       .then(function (response) {
+        console.log(response)
         dispatch(plusLike(response.data));
       })
       .catch((err) => {

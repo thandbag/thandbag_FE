@@ -25,6 +25,7 @@ const TbHitDetail = (props) => {
   const token = sessionStorage.getItem("token");
   const is_me = sessionStorage.getItem("userId");
   const postid = props.match.params.postid;
+  const [stop, setStops] = React.useState(true);
   const [state, toggle] = React.useState(true);
   const [count, setCounts] = React.useState(0);
   const [pastCount, setPastcounts] = React.useState(null)
@@ -36,6 +37,7 @@ const TbHitDetail = (props) => {
   };
 
   const { x } = useSpring({
+    immediate: stop,
     from: { x: 0 },
     x: state ? 1 : 0,
     config: { mass: 1, tension: 120, friction: 100, duration: 500 },
@@ -48,6 +50,13 @@ const TbHitDetail = (props) => {
     }, 400);
   };
 
+  const clickHit = () => {
+    toggle(!state);
+    clickCount();
+    clickTarget();
+    
+  }
+
   const onEnterPress = (e) => {
     if(e.key === 'Enter') {
       toggle(!state);
@@ -57,6 +66,7 @@ const TbHitDetail = (props) => {
   }
 
   React.useEffect(() => {
+    setStops(false);
     api
       .get(`/api/thandbag/punch/${postid}`, {
         headers: { Authorization: token },
@@ -72,7 +82,7 @@ const TbHitDetail = (props) => {
 
   if (is_level === 1) {
     return (
-      <Grid height="100vh" bg="#fbf7f7">
+      <Grid width="100%" height="100vh" bg="#fbf7f7">
         <Heads
           post_id={postid}
           hitcount={count}
@@ -92,21 +102,17 @@ const TbHitDetail = (props) => {
         >
           <Grid
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
             position="absolute"
           >
             <Grid>
-              <img style={{ width: "390px" }} src={thandbag_frame} />
+              <img style={{ width: "90%" }} src={thandbag_frame} />
             </Grid>
           </Grid>
           <Grid
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
           >
             <Grid>
@@ -119,8 +125,8 @@ const TbHitDetail = (props) => {
                     : one_thandbag3
                 }
                 style={{
-                  width: "360px",
-                  height: "820px",
+                  width: "90%",
+                  height: "90%",
                   scale: x.to({
                     range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                     output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -133,11 +139,11 @@ const TbHitDetail = (props) => {
             <></>
           ) : (
             <>
-              <Grid width="auto" top="280px" right="60px" position="absolute">
+              <Grid width="auto" top="30%" right="10%" position="absolute">
                 <animated.img
                   src={effect1}
                   style={{
-                    width: "100px",
+                    width: "100%",
                     scale: x.to({
                       range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                       output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -145,11 +151,11 @@ const TbHitDetail = (props) => {
                   }}
                 ></animated.img>
               </Grid>
-              <Grid width="auto" left="40px" position="absolute">
+              <Grid width="auto" left="10%" position="absolute">
                 <animated.img
                   src={effect2}
                   style={{
-                    width: "100px",
+                    width: "100%",
                     scale: x.to({
                       range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                       output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -161,12 +167,10 @@ const TbHitDetail = (props) => {
           )}
           <Grid
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
-            top="500px"
-            left="90px"
+            top="60%"
+            left="20%"
             position="absolute"
           >
             <animated.div
@@ -178,12 +182,12 @@ const TbHitDetail = (props) => {
               }}
             >
               <Grid position="relative" flex="flex">
-                <img style={{ width: "210px" }} src={hit} />
+                <img style={{ width: "55%" }} src={hit} />
                 <Grid width="auto" position="absolute">
-                  <Text size="50px" bold>
+                  <Text size="6vmax" bold>
                     Hit!
                   </Text>
-                  <Text align="center" size="50px" bold>
+                  <Text align="center" size="6vmax" bold>
                     {count}
                   </Text>
                 </Grid>
@@ -193,9 +197,8 @@ const TbHitDetail = (props) => {
           {10 > count ? (
             <></>
           ) : is_me == history.location.state.userId ? (
-            <Grid bottom="89px" right="16px" width="auto" position="absolute">
+            <Grid top="90%" right="2%" width="35%" position="absolute">
               <Button
-                margin="45px 0 0 0"
                 login
                 _onClick={() => {
                   history.push(`/TbFinish/${postid}`, {
@@ -205,15 +208,14 @@ const TbHitDetail = (props) => {
                   });
                 }}
                 height="50px"
-                width="150px"
                 text="생드백 터트리기"
               ></Button>
             </Grid>
           ) : (
             <></>
           )}
-          <Grid width="auto" bottom="109px" left="40px" position="absolute">
-            <Text max_width="120px">생드백의 아무 곳이나 클릭해주세요!</Text>
+          <Grid width="30%" top="83%" left="10%" position="absolute">
+            <Text size="2vmax">생드백의 아무 곳이나 클릭해주세요!</Text>
           </Grid>
         </Grid>
       </Grid>
@@ -222,7 +224,7 @@ const TbHitDetail = (props) => {
 
   if (is_level === 2) {
     return (
-      <Grid height="100vh" bg="#fbf7f7">
+      <Grid width="100%" height="100vh" bg="#fbf7f7">
         <Heads
           post_id={postid}
           hitcount={count}
@@ -242,21 +244,17 @@ const TbHitDetail = (props) => {
         >
           <Grid
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
             position="absolute"
           >
             <Grid>
-              <img style={{ width: "390px" }} src={thandbag_frame2} />
+              <img style={{ width: "90%" }} src={thandbag_frame2} />
             </Grid>
           </Grid>
           <Grid
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
           >
             <Grid>
@@ -269,8 +267,8 @@ const TbHitDetail = (props) => {
                     : two_thandbag3
                 }
                 style={{
-                  width: "360px",
-                  height: "820px",
+                  width: "90%",
+                  height: "90%",
                   scale: x.to({
                     range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                     output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -283,11 +281,11 @@ const TbHitDetail = (props) => {
             <></>
           ) : (
             <>
-              <Grid width="auto" top="280px" right="60px" position="absolute">
+              <Grid width="auto" top="30%" right="10%" position="absolute">
                 <animated.img
                   src={effect1}
                   style={{
-                    width: "100px",
+                    width: "100%",
                     scale: x.to({
                       range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                       output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -295,11 +293,11 @@ const TbHitDetail = (props) => {
                   }}
                 ></animated.img>
               </Grid>
-              <Grid width="auto" left="40px" position="absolute">
+              <Grid width="auto" left="10%" position="absolute">
                 <animated.img
                   src={effect2}
                   style={{
-                    width: "100px",
+                    width: "100%",
                     scale: x.to({
                       range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                       output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -311,12 +309,10 @@ const TbHitDetail = (props) => {
           )}
           <Grid
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
-            top="500px"
-            left="90px"
+            top="50%"
+            left="20%"
             position="absolute"
           >
             <animated.div
@@ -328,7 +324,7 @@ const TbHitDetail = (props) => {
               }}
             >
               <Grid position="relative" flex="flex">
-                <img style={{ width: "210px" }} src={hit} />
+                <img style={{ width: "55%" }} src={hit} />
                 <Grid width="auto" position="absolute">
                   <Text size="50px" bold>
                     Hit!
@@ -343,9 +339,8 @@ const TbHitDetail = (props) => {
           {10 > count ? (
             <></>
           ) : is_me == history.location.state.userId ? (
-            <Grid bottom="89px" right="16px" width="auto" position="absolute">
+            <Grid top="90%" right="2%" width="35%" position="absolute">
               <Button
-                margin="45px 0 0 0"
                 login
                 _onClick={() => {
                   history.push(`/TbFinish/${postid}`, {
@@ -355,15 +350,14 @@ const TbHitDetail = (props) => {
                   });
                 }}
                 height="50px"
-                width="150px"
                 text="생드백 터트리기"
               ></Button>
             </Grid>
           ) : (
             <></>
           )}
-          <Grid width="auto" bottom="109px" left="40px" position="absolute">
-            <Text max_width="120px">생드백의 아무 곳이나 클릭해주세요!</Text>
+          <Grid width="30%" top="90%" left="10%" position="absolute">
+            <Text size="2vmax">생드백의 아무 곳이나 클릭해주세요!</Text>
           </Grid>
         </Grid>
       </Grid>
@@ -372,7 +366,7 @@ const TbHitDetail = (props) => {
 
   return (
     <>
-      <Grid height="100vh" bg="#fbf7f7">
+      <Grid width="100%" height="100vh" bg="#fbf7f7">
         <Heads
           post_id={postid}
           hitcount={count}
@@ -391,11 +385,8 @@ const TbHitDetail = (props) => {
           position="relative"
         >
           <Grid
-            _onKeydown={onEnterPress}
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
           >
             <Grid>
@@ -408,8 +399,8 @@ const TbHitDetail = (props) => {
                     : three_thandbag3
                 }
                 style={{
-                  width: "360px",
-                  height: "820px",
+                  width: "85%",
+                  height: "85%",
                   scale: x.to({
                     range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                     output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -422,11 +413,11 @@ const TbHitDetail = (props) => {
             <></>
           ) : (
             <>
-              <Grid width="auto" top="280px" right="60px" position="absolute">
+              <Grid width="auto" top="30%" right="10%" position="absolute">
                 <animated.img
                   src={effect1}
                   style={{
-                    width: "100px",
+                    width: "100%",
                     scale: x.to({
                       range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                       output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -434,11 +425,11 @@ const TbHitDetail = (props) => {
                   }}
                 ></animated.img>
               </Grid>
-              <Grid width="auto" left="40px" position="absolute">
+              <Grid width="auto" left="10%" position="absolute">
                 <animated.img
                   src={effect2}
                   style={{
-                    width: "100px",
+                    width: "100%",
                     scale: x.to({
                       range: [0, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                       output: [1, 0.77, 0.9, 1.2, 0.8, 1.4, 1.03, 1],
@@ -449,14 +440,11 @@ const TbHitDetail = (props) => {
             </>
           )}
           <Grid
-            _onKeydown={onEnterPress}
             _onClick={() => {
-              toggle(!state);
-              clickCount();
-              clickTarget();
+              clickHit();
             }}
-            top="500px"
-            left="90px"
+            top="60%"
+            left="20%"
             position="absolute"
           >
             <animated.div
@@ -468,12 +456,12 @@ const TbHitDetail = (props) => {
               }}
             >
               <Grid position="relative" flex="flex">
-                <img style={{ width: "210px" }} src={hit} />
+                <img style={{ width: "55%" }} src={hit} />
                 <Grid width="auto" position="absolute">
-                  <Text size="50px" bold>
+                  <Text size="6vmax" bold>
                     Hit!
                   </Text>
-                  <Text align="center" size="50px" bold>
+                  <Text align="center" size="6vmax" bold>
                     {count}
                   </Text>
                 </Grid>
@@ -483,9 +471,8 @@ const TbHitDetail = (props) => {
           {10 > count ? (
             <></>
           ) : is_me == history.location.state.userId ? (
-            <Grid bottom="89px" right="16px" width="auto" position="absolute">
+            <Grid top="90%" right="2%" width="35%" position="absolute">
               <Button
-                margin="45px 0 0 0"
                 login
                 _onClick={() => {
                   history.push(`/TbFinish/${postid}`, {
@@ -495,15 +482,14 @@ const TbHitDetail = (props) => {
                   });
                 }}
                 height="50px"
-                width="150px"
                 text="생드백 터트리기"
               ></Button>
             </Grid>
           ) : (
             <></>
           )}
-          <Grid width="auto" bottom="109px" left="40px" position="absolute">
-            <Text max_width="120px">생드백의 아무 곳이나 클릭해주세요!</Text>
+          <Grid width="30%" top="90%" left="10%" position="absolute">
+            <Text size="2vmax">생드백의 아무 곳이나 클릭해주세요!</Text>
           </Grid>
         </Grid>
       </Grid>

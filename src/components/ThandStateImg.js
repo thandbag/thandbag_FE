@@ -69,6 +69,7 @@ const ThandStateImg = (props) => {
             text="생드백 때리러가기 >"
             _onClick={() => {
               history.push(`/TbHitDetail/${id}`,all)
+              
             }}
           />
         </Grid>
