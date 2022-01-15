@@ -248,10 +248,10 @@ const UserProfile = (props) => {
   if (comment) {
     return (
       <React.Fragment>
-        <Grid width="auto" {...styles} flex="flex" bg="fff">
+        <Grid width="auto" {...styles} flex="flex" bg="#fff">
           {/* 유저 프로필 사진 */}
           <Grid {...styles} width="auto" height="auto" flex="flex">
-            <Image {...styles} src={comment_user.profileImgUrl} />
+            <Image {...styles} src={comment_user.profileImgUrl}  />
           </Grid>
           {/* mbti // 레벨 */}
           <Grid
@@ -264,7 +264,6 @@ const UserProfile = (props) => {
             <Grid width="100%" height="50%" flex="flex" justify="flex-start">
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
                 margin="0 4px 0 0"
@@ -309,7 +308,6 @@ const UserProfile = (props) => {
               </Grid>
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
               >
@@ -324,7 +322,7 @@ const UserProfile = (props) => {
                 </Text>
               </Grid>
             </Grid>
-            <Grid width="100%" height="50%" margin="5px 0 0 0">
+            <Grid width="100%" height="50%" margin="3px 0 0 0">
               <Text {...styles}>{comment_user.nickname}</Text>
             </Grid>
           </Grid>
@@ -351,7 +349,6 @@ const UserProfile = (props) => {
             <Grid width="100%" height="50%" flex="flex" justify="flex-start">
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
                 margin="0 4px 0 0"
@@ -396,7 +393,6 @@ const UserProfile = (props) => {
               </Grid>
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
               >
@@ -411,7 +407,7 @@ const UserProfile = (props) => {
                 </Text>
               </Grid>
             </Grid>
-            <Grid width="100%" height="50%" margin="5px 0 0 0">
+            <Grid width="100%" height="50%" margin="3px 0 0 0">
               <Text {...styles}>{two_user.nickname}</Text>
             </Grid>
           </Grid>
@@ -461,7 +457,7 @@ const UserProfile = (props) => {
                 </Text>
               </Grid>
             </Grid>
-            <Grid width="100%" height="50%" margin="5px 0 0 0">
+            <Grid width="100%" height="50%" margin="3px 0 0 0">
               <Text {...styles}>{one_user.nickname}</Text>
             </Grid>
           </Grid>

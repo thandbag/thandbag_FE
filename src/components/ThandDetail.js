@@ -30,25 +30,29 @@ const ThandDetail = (props) => {
         <DetailBox>
           <Grid width="100%" flex="flex" bg="#333">
             <Grid
-              width="80%"
+              width="100%"
               height="auto"
               miNheight="50px"
               flex="flex"
               justify="flex-start"
               padding="12px 20px 16px 20px"
             >
-              <Text bold="400" color="#fff" size="1.75rem" Wbreack="break-all">
+              <Text bold="400" color="#fff" size="1.75rem" LHeight="2rem" Wbreack="break-all">
                 {contents.title}
               </Text>
             </Grid>
             {is_me == deleteUserId ? (
               <Grid
-                width="20%"
-                height="50px"
+                width="auto"
+                height="auto"
                 padding="2px 0 0 0"
                 flex="flex"
                 justify="center"
                 is_align="flex-start"
+                position="absolute"
+                top="20px"
+                right="20px"
+                zIndex="999"
               >
                 <Grid
                   width="52px"
@@ -114,6 +118,10 @@ const ThandDetail = (props) => {
             flex="flex"
             justify="center"
             is_align="flex-start"
+            position="absolute"
+            top="20px"
+            right="0"
+            zIndex="999"
           >
             <Grid
               width="52px"
@@ -153,6 +161,10 @@ const TextBox = styled.div`
   overflow-y: scroll;
   background-color: #fff;
   padding: 20px;
+  font-family: 'NotoSansCJK';
+  font-size: 1.2rem;
+  line-height: 2rem;
+  letter-spacing: -0.4px;
 `;
 
 const DetailBox = styled.div`

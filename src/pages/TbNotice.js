@@ -124,7 +124,7 @@ const TbNotice = (props) => {
                     justify="flex-start"
                     overFlow="hidden"
                   >
-                    <Text size="16px" LHeight="20px" Wbreack="keep-all">
+                    <Text size="14px" LHeight="20px" family="NotoSansCJK" Wbreack="keep-all">
                       {n.message}
                     </Text>
                   </Grid>

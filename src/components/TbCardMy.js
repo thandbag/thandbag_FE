@@ -73,7 +73,7 @@ const TbCardMy = (props) => {
                       <CardContentBottom>
                         <div
                           dangerouslySetInnerHTML={{ __html: c.content }}
-                        ></div>
+                        />
                       </CardContentBottom>
                     </CardContent>
                   </CardMiddle>
@@ -218,8 +218,13 @@ const CardContentTop = styled.div`
 const CardContentBottom = styled.div`
   width: 100%;
   height: 70%;
+  line-height: 1.4rem;
+  letter-spacing: -0.5px;
+  font-size: 1rem;
+  font-family: 'NotoSansCJK' !important;
   background-color: #fff;
 `;
+
 
 const CardBottom = styled.div`
   width: 100%;

@@ -136,8 +136,8 @@ const TbCardAll = (props) => {
                     <Grid width="1px" height="40%" bg="#eee" />
                   </Grid>
                   <CardBottomCommentArea>
-                    <Comment width="20" height="20" />
-                    <TbText margin="0px 0px 0px 5px" color="#333">
+                    <Comment width="18" height="18" />
+                    <TbText margin="0px 0px 4px 5px" color="#333" size="1rem" family="NotoSansCJK">
                       {c.commentCount}
                     </TbText>
                   </CardBottomCommentArea>
@@ -218,6 +218,10 @@ const CardContentTop = styled.div`
 const CardContentBottom = styled.div`
   width: 100%;
   height: 70%;
+  line-height: 1.4rem;
+  letter-spacing: -0.5px;
+  font-size: 1rem;
+  font-family: 'NotoSansCJK' !important;
   background-color: #fff;
 `;
 
