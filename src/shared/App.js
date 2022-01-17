@@ -22,6 +22,7 @@ import NotFound from "../pages/NotFound";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import GlobalStyles from "../components/GlobalStyles";
+import Auth from "../shared/auth";
 
 function App() {
   return (
@@ -32,27 +33,24 @@ function App() {
           <ConnectedRouter history={history}>
             <Switch>
               <Route path={"/"} exact component={Wlecome} />
-              <Route path={"/login"} exact component={Login} />
+              <Route path={"/login"} exact component={Auth(Login, false)} />
               <Route
                 path={"/user/kakao/callback"}
                 exact
-                component={AuthRedirect}
+                component={Auth(AuthRedirect, false)}
               />
-              <Route path={"/join"} exact component={Join} />
+              <Route path={"/join"} exact component={Auth(Join, false)} />
               <Route path={"/main"} exact component={Main} />
-              <Route path={"/TbWrite"} exact component={TbWrite} />
+              <Route path={"/TbWrite"} exact component={Auth(TbWrite, true)} />
               <Route path={"/TbList"} exact component={TbList} />
               <Route path={"/TbTwoDetail/:postid"} exact component={TbTwoDetail} />
-              <Route path={"/TbTwoDetail/:404"} exact component={NotFound} />
-              <Route path={"/TbHitDetail/:postid"} exact component={TbHitDetail} />
-              <Route path={"/TbHitDetail/:404"} exact component={TbHitDetail} />
-              <Route path={"/TbNotice"} exact component={TbNotice} />
-              <Route path={"/TbChatList"} exact component={TbChatList} />
-              <Route path={"/TbChatDetail/:roomid"} exact component={TbChatDetail} />
-              <Route path={"/TbChatDetail/:404"} exact component={TbChatDetail} />
-              <Route path={"/MyPage"} exact component={MyPage} />
-              <Route path={"/MyEdit"} exact component={MyEdit} />
-              <Route path={"/TbFinish/:postid"} exact component={TbFinish} />
+              <Route path={"/TbHitDetail/:postid"} exact component={Auth(TbHitDetail, true)} />
+              <Route path={"/TbNotice"} exact component={Auth(TbNotice,true)} />
+              <Route path={"/TbChatList"} exact component={Auth(TbChatList,true)} />
+              <Route path={"/TbChatDetail/:roomid"} exact component={Auth(TbChatDetail,true)} />
+              <Route path={"/MyPage"} exact component={Auth(MyPage,true)} />
+              <Route path={"/MyEdit"} exact component={Auth(MyEdit,true)} />
+              <Route path={"/TbFinish/:postid"} exact component={Auth(TbFinish,true)} />
               <Route path={"*"} exact component={NotFound} />
             </Switch>
           </ConnectedRouter>

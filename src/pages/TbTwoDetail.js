@@ -53,7 +53,7 @@ const TbTwoDetail = (props) => {
           id={postid}
         />
         {/*댓글 수 // mbti 필터*/}
-        <Comments count={card.commentCount} is_mbtiFilter />
+        <Comments count={comment_list.length} is_mbtiFilter />
         {/*입력한 댓글*/}
         <CommentsBox>
           {comment_list ? (

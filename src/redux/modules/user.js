@@ -10,7 +10,7 @@ const LOG_OUT = 'LOG_OUT'
 
 // **** Action creator **** //
 const logIn = createAction(LOG_IN, (user) => ({ user }))
-const logOut = createAction(LOG_OUT, () => ({ }))
+const logOut = createAction(LOG_OUT, () => ({}))
 
 
 // **** Initial data **** //
@@ -93,20 +93,29 @@ const kakaoLogin = (code) => {
   };
 };
 
-const editDB = (nickname, mbti) => {
+const editDB = (nickname, mbti, imgfile) => {
   return async function(dispatch, getState, { history }){
     const token = sessionStorage.getItem('token')
+    const addFormData = new FormData()
+    console.log(nickname, mbti, imgfile)
     const user_info = {
       nickname: nickname,
       mbti: mbti
     }
-    await api.post('/mypage/profile', user_info, {
+
+    addFormData.append('file', imgfile)
+    addFormData.append('updateDto',new Blob([JSON.stringify(user_info)], { type: 'application/json' }))
+    await api.post('/mypage/profile', addFormData, {
       headers : {Authorization:token,
         'Content-Type': 'application/json;charset=UTF-8'}
     }).then(function(response){
       console.log(response)
+      // return;
       sessionStorage.removeItem('nickname')
       sessionStorage.removeItem('mbti')
+      sessionStorage.removeItem('profile')
+
+      sessionStorage.setItem('profile', response.data.profileImgUrl)
       sessionStorage.setItem('nickname', response.data.nickname)
       sessionStorage.setItem('mbti', response.data.mbti)
       history.push('/MyPage')
@@ -139,7 +148,6 @@ export default handleActions(
 const actionCreators = {
   joinDB,
   logInDB,
-  // logOutDB,
   editDB,
   logOut,
   logIn,

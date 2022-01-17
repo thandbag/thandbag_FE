@@ -51,11 +51,8 @@ const initialState = {
 
 const getCardListDB = (pageNo = 0, sizeNo = 5) => {
   return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
     await api
-      .get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`, {
-        headers: { Authorization: token },
-      })
+      .get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`)
       .then(function (response) {
         console.log(response);
         dispatch(setCardList(response.data));
@@ -146,13 +143,10 @@ const getCardOneDetailDB = (postid) => {
 
 const findCardDB = (keyword) => {
   return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
     const pageNo = 0;
     const sizeNo = 1000;
     await api
-      .get(`/api/thandbag?keyword=${keyword}&page=${pageNo}&size=${sizeNo}`, {
-        headers: { Authorization: token },
-      })
+      .get(`/api/thandbag?keyword=${keyword}&page=${pageNo}&size=${sizeNo}`)
       .then(function (response) {
         dispatch(setCardList(response.data));
       })

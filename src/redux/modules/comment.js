@@ -117,6 +117,7 @@ export default handleActions(
           (c) => c.commentId !== action.payload.commentId
         );
         draft.comment_list = new_comment;
+        draft.search_list = new_comment;
       }),
     [PLUS_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -127,6 +128,11 @@ export default handleActions(
           ...draft.comment_list[idx],
           ...action.payload.like,
         };
+        draft.search_list[idx] = {
+          ...draft.search_list[idx],
+          ...action.payload.like,
+        };
+        
       }),
   },
   initialState
