@@ -14,6 +14,7 @@ const Comments = (props) => {
   const is_me = sessionStorage.getItem("nickname");
   const dispatch = useDispatch();
   const { postid } = useParams();
+  console.log(props)
 
   // 댓글 입력 //
   const [comment, setComment] = useState("");
