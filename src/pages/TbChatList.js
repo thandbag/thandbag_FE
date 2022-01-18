@@ -63,8 +63,9 @@ const TbChatList = (props) => {
                       color="#595959"
                       bold="bold"
                       size="14px"
-                      margin="0.3rem 0 0 0"
+                      margin="0.4rem 0 0 0"
                       family="NotoSansCJK"
+                      spacing="-0.5px"
                     >
                       {m.lastContent}
                     </Text>

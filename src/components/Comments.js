@@ -110,7 +110,7 @@ const Comments = (props) => {
               <Grid width="15%"></Grid>
             )}
           </Grid>
-          <Grid width="100%" height="auto" flex="flex" justify="flex-start">
+          <Grid width="100%" height="auto" flex="flex" justify="flex-start" is_align="flex-start">
             <Grid
               width="10%"
               height="auto"
@@ -139,6 +139,7 @@ const Comments = (props) => {
                 flex="flex"
                 justify="flex-start"
                 is_align="flex-start"
+                padding="0 0 0 6px"
               >
                 <Text
                   size="0.9rem"
@@ -154,8 +155,9 @@ const Comments = (props) => {
           <Grid
             width="90%"
             flex="flex"
-            margin="10px 0 0 12.2%"
+            margin="15px 0 0 12.2%"
             justify="flex-start"
+            padding="0 0 0 6px"
           >
             <Text
               size="0.8rem"

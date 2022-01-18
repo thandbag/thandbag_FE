@@ -124,9 +124,17 @@ const TbNotice = (props) => {
                     justify="flex-start"
                     overFlow="hidden"
                   >
-                    <Text size="14px" LHeight="20px" family="NotoSansCJK" Wbreack="keep-all">
-                      {n.message}
-                    </Text>
+                    <NotiBox>
+                      <Text
+                        size="14px"
+                        LHeight="20px"
+                        family="NotoSansCJK"
+                        Wbreack="keep-all"
+                        spacing="-0.5px"
+                      >
+                        {n.message}
+                      </Text>
+                    </NotiBox>
                   </Grid>
                   <Grid
                     width="10%"
@@ -177,6 +185,16 @@ const BgBox = styled.div`
   background-size: 90%;
   background-repeat: no-repeat;
   background-position: center;
+`;
+
+const NotiBox = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 
 export default TbNotice;

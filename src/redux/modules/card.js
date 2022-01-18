@@ -231,7 +231,6 @@ const sendCardDB = (category, title, content, img, share) => {
       .then(function (response) {
         dispatch(addCard(response.data));
       })
-
       .catch((err) => {
         window.alert("생드백 작성 실패!");
       });

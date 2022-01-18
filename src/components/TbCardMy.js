@@ -67,11 +67,10 @@ const TbCardMy = (props) => {
                   </Grid>
                   <CardMiddle>
                     <CardContent>
-                      <CardContentTop>
-                          {c.title}
-                      </CardContentTop>
+                      <CardContentTop>{c.title}</CardContentTop>
                       <CardContentBottom>
                         <div
+                          className="text_edit_view"
                           dangerouslySetInnerHTML={{ __html: c.content }}
                         />
                       </CardContentBottom>
@@ -210,9 +209,10 @@ const CardContentTop = styled.div`
   height: 30%;
   font-size: 18px;
   background-color: #fff;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  padding-top: 1%;
 `;
 
 const CardContentBottom = styled.div`
@@ -221,10 +221,19 @@ const CardContentBottom = styled.div`
   line-height: 1.4rem;
   letter-spacing: -0.5px;
   font-size: 1rem;
-  font-family: 'NotoSansCJK' !important;
+  font-family: "NotoSansCJK" !important;
   background-color: #fff;
-`;
+  word-break: break-all;
 
+  .text_edit_view {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-top: 2%;
+  }
+`;
 
 const CardBottom = styled.div`
   width: 100%;

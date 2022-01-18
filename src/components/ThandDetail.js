@@ -165,6 +165,7 @@ const TextBox = styled.div`
   font-size: 1.2rem;
   line-height: 2rem;
   letter-spacing: -0.4px;
+  word-break: break-all;
 `;
 
 const DetailBox = styled.div`

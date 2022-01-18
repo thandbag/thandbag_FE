@@ -80,7 +80,7 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
             <BackIcon
@@ -130,7 +130,7 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
             <BackIcon

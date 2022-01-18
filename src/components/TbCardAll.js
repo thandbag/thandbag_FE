@@ -33,7 +33,7 @@ import TbText from "../elements/TbText";
 const TbCardAll = (props) => {
   const dispatch = useDispatch();
   const cardList = useSelector((state) => state.card.search_list);
-  
+
   React.useEffect(() => {
     dispatch(cardActions.getCardListDB());
   }, []);
@@ -70,11 +70,12 @@ const TbCardAll = (props) => {
                 </Grid>
                 <CardMiddle>
                   <CardContent>
-                    <CardContentTop>
-                        {c.title}
-                    </CardContentTop>
+                    <CardContentTop>{c.title}</CardContentTop>
                     <CardContentBottom>
-                      <div dangerouslySetInnerHTML={{ __html: c.content }} />
+                      <div
+                        className="text_edit_view"
+                        dangerouslySetInnerHTML={{ __html: c.content }}
+                      />
                     </CardContentBottom>
                   </CardContent>
                 </CardMiddle>
@@ -137,7 +138,12 @@ const TbCardAll = (props) => {
                   </Grid>
                   <CardBottomCommentArea>
                     <Comment width="18" height="18" />
-                    <TbText margin="0px 0px 4px 5px" color="#333" size="1rem" family="NotoSansCJK">
+                    <TbText
+                      margin="0px 0px 4px 5px"
+                      color="#333"
+                      size="1rem"
+                      family="NotoSansCJK"
+                    >
                       {c.commentCount}
                     </TbText>
                   </CardBottomCommentArea>
@@ -209,9 +215,10 @@ const CardContentTop = styled.div`
   width: 80%;
   height: 30%;
   font-size: 18px;
+  padding-top: 1%;
   background-color: #fff;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
@@ -221,8 +228,18 @@ const CardContentBottom = styled.div`
   line-height: 1.4rem;
   letter-spacing: -0.5px;
   font-size: 1rem;
-  font-family: 'NotoSansCJK' !important;
+  font-family: "NotoSansCJK" !important;
   background-color: #fff;
+  word-break: break-all;
+
+  .text_edit_view {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-top: 2%;
+  }
 `;
 
 const CardBottom = styled.div`
