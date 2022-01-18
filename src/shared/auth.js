@@ -6,7 +6,6 @@ export default (Page, checkAuth) => {
     const AuthCheck = (props) => {
         const token = sessionStorage.getItem("token");
         const is_login = token ? true : false
-        console.log(token, is_login)
         React.useEffect(() => {
             if(!is_login && checkAuth) {
                 window.alert("로그인이 필요한 페이지입니다")

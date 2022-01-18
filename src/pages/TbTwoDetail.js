@@ -16,8 +16,17 @@ const TbTwoDetail = (props) => {
   const comment_list = useSelector((state) => state.comment.search_list);
   const postid = props.match.params.postid;
   const is_loaded = useSelector((state) => state.card.is_loaded);
+  const token = sessionStorage.getItem('token');
+
   React.useEffect(() => {
-    dispatch(cardActions.getCardTwoDetailDB(postid));
+    if(token){
+      window.alert('로그인이다')
+      // dispatch(cardActions.getCardTwoDetailDB(postid));
+    } else {
+      window.alert('로그인 아니다')
+      // dispatch(cardActions.getCardOneDetailDB(postid))
+    }
+    
     
   }, []);
 

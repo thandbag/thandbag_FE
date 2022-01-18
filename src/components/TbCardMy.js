@@ -61,7 +61,8 @@ const TbCardMy = (props) => {
               <ListBox>
                 <CardWrap
                 onClick={() => {
-                  history.push(`/TbTwoDetail/${c.postId}`);
+                  history.push(`/TbTwoDetail/${c.postId}`) 
+                  
                 }}
                 >
                   <CardTop>

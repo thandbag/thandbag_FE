@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ReactGA from 'react-ga';
 import WebImg from "../static/images/web.png";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -24,7 +25,26 @@ import { history } from "../redux/configureStore";
 import GlobalStyles from "../components/GlobalStyles";
 import Auth from "../shared/auth";
 
+ReactGA.event({
+  category: 'User',
+  action: 'Created an Account'
+});
+ReactGA.exception({
+  description: 'An error ocurred',
+  fatal: true
+});
+
 function App() {
+  
+  React.useEffect(() => {
+    ReactGA.initialize("user id");
+    history.listen((location) => {
+      ReactGA.set({ page: location.pathname }); // Update the user's current page
+      ReactGA.pageview(location.pathname); // Record a pageview for the given page
+    });
+    // ReactGA.pageview(window.location.pathname + window.location.search);
+  },[])
+
   return (
     <div className="App">
       <GlobalStyles />

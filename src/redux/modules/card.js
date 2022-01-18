@@ -108,6 +108,7 @@ const getMyCardListDB = () => {
   };
 };
 
+//로그인 한 유저가 보는 디테일
 const getCardTwoDetailDB = (postid) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
@@ -125,14 +126,14 @@ const getCardTwoDetailDB = (postid) => {
   };
 };
 
+
+//로그인 안한 유저가 보는 디테일
 const getCardOneDetailDB = (postid) => {
   return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
     await api
-      .get(`api/thandbag/${postid}`, {
-        headers: { Authorization: token },
-      })
+      .get(`api/visitor/thandbag/${postid}`)
       .then(function (response) {
+        console.log(response)
         dispatch(getOneDetailCard(response.data));
       })
       .catch((err) => {
