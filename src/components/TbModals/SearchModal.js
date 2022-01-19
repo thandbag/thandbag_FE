@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { Grid, Text } from "../elements/TbIndex";
-import { history } from "../redux/configureStore";
-import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
-import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
-import { ReactComponent as SearchIconOrange } from "../static/icons/icon_Search_Orange.svg";
-import { actionCreators as cardActions } from "../redux/modules/card";
+import { Grid, Text } from "../../elements/TbIndex";
+import { history } from "../../redux/configureStore";
+import { ReactComponent as Arrow } from "../../static/icons/arrow.svg";
+import { ReactComponent as SearchIcon } from "../../static/icons/icon_search.svg";
+import { ReactComponent as SearchIconOrange } from "../../static/icons/icon_Search_Orange.svg";
+import { actionCreators as cardActions } from "../../redux/modules/card";
 import { useDispatch } from "react-redux";
 
 const SearchModal = ({ setModal }) => {
@@ -63,9 +63,8 @@ const SearchWrap = styled.div`
 `;
 
 const SearchArea = styled.div`
-  width: 400px;
+  width: 395px;
   height: 50px;
-  background-color: #333333;
   position: absolute;
   right: 2px;
 `;

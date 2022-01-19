@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import kakao from "../static/icons/kakao.svg";
+import { ReactComponent as KakaoBtn } from "../static/images/kakao_btn.svg";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
 import { useSpring, animated } from "@react-spring/web";
 import Swal from "sweetalert2";
@@ -57,6 +58,7 @@ const Login = (props) => {
         title: '앗!',
         text: '빈값을 다 채워주세요'
       })
+
       return;
     } else {
       dispatch(userActions.logInDB(email, password));
@@ -147,8 +149,18 @@ const Login = (props) => {
                 height="60px"
                 width="220px"
                 text="로그인하기"
-              ></Button>
-              <Button
+              />
+              {/* 카카오 버튼 수정 */}
+              <Grid
+                width="auto"
+                height="auto"
+                margin="20px 0 0 0"
+                cursor="pointer"
+              >
+                <KakaoBtn onClick={clickSocial} height="60px" width="220px" />
+              </Grid>
+
+              {/* <Button
                 social
                 _onClick={clickSocial}
                 margin="20px 0 0 0"
@@ -157,7 +169,7 @@ const Login = (props) => {
               >
                 <Icon />
                 &nbsp;카카오톡으로 로그인
-              </Button>
+              </Button> */}
             </Grid>
             <Grid flex="flex" align="center" margin="30px 0 0 0">
               <Text color="#C4C4C4">생드백 회원이 아니신가요?&nbsp;</Text>

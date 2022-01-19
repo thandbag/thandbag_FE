@@ -107,6 +107,7 @@ const Ellipsis = styled.div`
   font-weight: ${(props) => (props.bold ? `${props.bold}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "")};
   font-family: ${(props) => (props.family ? `${props.family}` : "")};
+  letter-spacing: ${(props) => (props.spacing ? `${props.spacing}` : "")};
 `;
 
 export default TbText;

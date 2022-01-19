@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import state_img from "../static/images/state_img.png";
-import NoThandBag from "../static/images/no_thnadbag.png";
 
 const TbImage = (props) => {
   const {
@@ -13,7 +12,6 @@ const TbImage = (props) => {
     Isize,
     thandbag_state,
     punch_thand,
-    no_thand,
   } = props;
 
   const styles = {
@@ -23,13 +21,9 @@ const TbImage = (props) => {
     Isize: Isize,
     thandbag_state: thandbag_state,
     punch_thand: punch_thand,
-    no_thand: no_thand,
     height: height,
   };
 
-  if (no_thand) {
-    return <NoImg {...styles}></NoImg>;
-  }
 
   if (thandbag_state) {
     return <StateImage {...styles}></StateImage>;
@@ -119,11 +113,5 @@ const StateImage = styled.div`
   background-position: center;
 `;
 
-const NoImg = styled(StateImage)`
-  width: 100%;
-  height: 200px;
-  background-image: url(${NoThandBag});
-  background-size: contain;
-`;
 
 export default TbImage;

@@ -102,6 +102,15 @@ const MainBodyTop = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+
+  @media all and (min-height: 944px) {
+    margin-top: 3.4vh;
+  }
+
+  @media all and (min-width: 1920px) {
+    margin-top: 3.4vh;
+  }
 `;
 
 const MainBodyBottom = styled.div`

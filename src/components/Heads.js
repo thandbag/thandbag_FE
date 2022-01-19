@@ -6,7 +6,7 @@ import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
 import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
 import { ReactComponent as ThandbagLogo } from "../static/icons/thandbag_logo.svg";
-import SearchModal from "../components/SearchModal";
+import SearchModal from "./TbModals/SearchModal";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 const Heads = (props) => {
@@ -29,7 +29,7 @@ const Heads = (props) => {
     borderT,
     borderB,
   } = props;
-  
+
   const styles = {
     bg: bg,
     color: color,
@@ -50,7 +50,7 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
             <BackIcon
@@ -80,7 +80,7 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
             <BackIcon
@@ -130,7 +130,7 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
             <BackIcon
@@ -166,7 +166,9 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
-                dispatch(cardActions.postHitCountDB(post_id, hitcount, pastHitcount));
+                dispatch(
+                  cardActions.postHitCountDB(post_id, hitcount, pastHitcount)
+                );
                 history.goBack();
               }}
             >
