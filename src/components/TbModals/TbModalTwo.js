@@ -1,30 +1,28 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
-import { ReactComponent as ThandCreate } from "../static/images/thandcreate.svg";
-import { history } from "../redux/configureStore";
+import { ReactComponent as ThankYou } from "../../static/images/thankyou.svg";
 
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 8;
 `;
 
 const ModalWrapper = styled.div`
   width: 200px;
   height: 300px;
   position: relative;
-  z-index: 9;
+  z-index: 10;
 `;
 
-export const TbModalThree = ({ showModal, setShowModal }) => {
+export const TbModalTwo = ({ showModal, setShowModal }) => {
   const modalRef = useRef();
 
   const animation = useSpring({
@@ -36,9 +34,10 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
   });
 
   const closeModal = (e) => {
+    console.log(modalRef.current);
+    console.log(e.target);
     if (modalRef.current === e.target) {
       setShowModal(false);
-      history.push("/TbList");
     }
   };
 
@@ -46,7 +45,6 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
     (e) => {
       if (e.key === "Escape" && showModal) {
         setShowModal(false);
-        history.push("/TbList");
       }
     },
     [setShowModal, showModal]
@@ -63,7 +61,7 @@ export const TbModalThree = ({ showModal, setShowModal }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-              <ThandCreate/>
+              <ThankYou />
             </ModalWrapper>
           </animated.div>
         </Background>

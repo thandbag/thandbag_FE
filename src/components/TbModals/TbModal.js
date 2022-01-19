@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import "../shared/style.css";
+import "../../shared/style.css";
 import { useDispatch } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/comment";
-import BasicModal from "../static/images/modals/basic_modal.png";
-import { Text } from "../elements/TbIndex";
+import { actionCreators as cardActions } from "../../redux/modules/card";
+import { actionCreators as commentActions } from "../../redux/modules/comment";
+import BasicModal from "../../static/images/modals/basic_modal.png";
+import { Text } from "../../elements/TbIndex";
 
 const TbModal = (props) => {
-  const { id, open, close, detailX } = props;
+  const { id, postid, open, close, detailX } = props;
   const dispatch = useDispatch();
 
   if (detailX) {
@@ -26,7 +27,7 @@ const TbModal = (props) => {
                 <ModalbottomBox>
                   <MBTop
                     onClick={() => {
-                      dispatch(commentActions.deleteCommentDB(id));
+                      dispatch(cardActions.deleteCardDB(postid));
                       close();
                     }}
                   >

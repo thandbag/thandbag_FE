@@ -7,8 +7,8 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import LikeButton from "./LikeButton";
-import TbModal from "./TbModal";
 import Effect from "../components/Effect";
+import TbModal from "./TbModals/TbModal";
 
 const getCursorXY = (input, selectionPoint) => {
   const { offsetLeft: inputX, offsetTop: inputY } = input;
@@ -132,13 +132,13 @@ const Comments = (props) => {
           bg="#fff"
           borderB="1px solid #efefef"
         >
-          <Grid width="100%" height="auto" flex="flex">
+          <Grid width="100%" height="auto" flex="flex" margin="0 0 10px 0">
             <Grid width="85%" height="auto" padding="5px 0">
               <UserProfile
                 comment_user={cList}
                 comment
                 size="1rem"
-                Isize="38"
+                Isize="43"
               />
             </Grid>
 
@@ -150,10 +150,10 @@ const Comments = (props) => {
               <Grid width="15%"></Grid>
             )}
           </Grid>
-          <Grid width="100%" height="56px" flex="flex" justify="flex-start">
+          <Grid width="100%" height="auto" flex="flex" justify="flex-start" is_align="flex-start">
             <Grid
               width="10%"
-              height="100%"
+              height="auto"
               flex="flex"
               justify="center"
               direction="column"
@@ -165,52 +165,63 @@ const Comments = (props) => {
                 commentId={cList.commentId}
                 key={props.key}
               />
-              <Text
-                color="#F7C8C8"
-                family="NotoSansCJK"
-                size="0.8rem"
-                bold="bold"
-              >
-                {cList.like}
-              </Text>
             </Grid>
             <Grid
-              width="87%"
-              height="100%"
+              width="90%"
+              height="auto"
               flex="flex"
               justify="space-between"
               is_align="center"
             >
               <Grid
-                width="85%"
-                hegight="100%"
-                maXheight="56px"
-                overFlowY="scroll"
+                width="100%"
+                hegight="auto"
                 flex="flex"
                 justify="flex-start"
                 is_align="flex-start"
+                padding="0 0 0 6px"
               >
                 <Text
-                  size="13px"
+                  size="0.9rem"
                   family="NotoSansCJK"
-                  spacing="-1px"
-                  LHeight="17px"
+                  spacing="-0.9px"
+                  LHeight="1.4rem"
                 >
                   {cList.comment}
                 </Text>
               </Grid>
-
-              <Grid width="15%" flex="flex" justify="flex-end">
-                <Text
-                  size="12px"
-                  color="#FF5454"
-                  family="NotoSansCJK"
-                  spacing="-1px"
-                >
-                  {cList.createdAt}
-                </Text>
-              </Grid>
             </Grid>
+          </Grid>
+          <Grid
+            width="90%"
+            flex="flex"
+            margin="15px 0 0 12.2%"
+            justify="flex-start"
+            padding="0 0 0 6px"
+          >
+            <Text
+              size="0.8rem"
+              color="#999"
+              family="NotoSansCJK"
+              spacing="-0.5px"
+            >
+              좋아요 {cList.like}개
+            </Text>
+            <Grid
+              width="1px"
+              height="12px"
+              radius="10px"
+              bg="#999"
+              margin="0 8px"
+            />
+            <Text
+              size="0.8rem"
+              color="#999"
+              family="NotoSansCJK"
+              spacing="-0.5px"
+            >
+              {cList.createdAt}
+            </Text>
           </Grid>
         </Grid>
         <TbModal
@@ -286,15 +297,14 @@ const CommentsInputBox = styled.div`
 const DeleteText = styled.div`
   font-family: "NotoSansCJK";
   font-size: 0.8rem;
-  font-weight: bold;
-  color: #eee;
+  color: #999;
   cursor: pointer;
   &:hover {
     color: #ff5454;
     transition: 0.3s;
   }
   &:not(:hover) {
-    color: #eee;
+    color: #999;
     transition: 0.3s;
   }
 `;

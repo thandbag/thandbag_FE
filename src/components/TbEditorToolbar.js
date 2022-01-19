@@ -1,25 +1,26 @@
 import React from "react";
+import { Quill } from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import quillEmoji from "react-quill-emoji";
+import "react-quill-emoji/dist/quill-emoji.css";
+import "../shared/style.css";
+import { Grid } from "../elements/TbIndex";
 
 // Modules object for setting up the Quill editor
 export const modules = {
   toolbar: {
     container: "#toolbar",
   },
-  history: {
-    delay: 500,
-    maxStack: 100,
-    userOnly: true,
-  },
+  "emoji-toolbar": true,
 };
 
 // Formats objects for setting up the Quill editor
 export const formats = [
-  "header",
+  "emoji",
   "underline",
   "strike",
-  "blockquote",
+  "video",
   "background",
-  "image",
   "color",
 ];
 
@@ -27,13 +28,24 @@ export const formats = [
 export const TbEditorToolbar = () => (
   <div id="toolbar">
     <span className="ql-formats">
-      <button className="ql-header" value="1"></button>
-      <button className="ql-header" value="2"></button>
-      <select className="ql-color" />
-      <select className="ql-background" />
-      <button className="ql-underline" />
-      <button className="ql-strike" />
-      <button className="ql-image" />
+      <Grid flex="flex" justify="flex-end">
+        <button className="ql-emoji" />
+      </Grid>
+      <Grid flex="flex" justify="flex-end">
+        <select className="ql-color" />
+      </Grid>
+      <Grid flex="flex" justify="flex-end">
+        <select className="ql-background" />
+      </Grid>
+      <Grid flex="flex" justify="flex-end">
+        <button className="ql-underline" />
+      </Grid>
+      <Grid flex="flex" justify="flex-end">
+        <button className="ql-strike" />
+      </Grid>
+      <Grid flex="flex" justify="flex-end">
+        <button className="ql-video" />
+      </Grid>
     </span>
   </div>
 );

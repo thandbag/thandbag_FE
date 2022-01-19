@@ -30,7 +30,7 @@ const TbTwoDetail = (props) => {
         <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
-          <ThandDetail share contents={card} />
+          <ThandDetail share contents={card} postid={postid} />
         </Grid>
         {/* 유저 프로필 // 시간 */}
         <Grid
@@ -41,7 +41,7 @@ const TbTwoDetail = (props) => {
           justify="space-between"
           bg="#fff"
         >
-          <UserProfile two_user={card} share size="1.3rem" Isize="50" />
+          <UserProfile two_user={card} share size="1.3rem" Isize="55" />
           <Grid width="20%" flex="flex" justify="flex-end" padding="20px 0 0 0">
             <Text
               size="12px"

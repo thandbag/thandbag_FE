@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TbNavigation from "../components/TbNavigation";
 import UserProfile from "../components/UserProfile";
-import { Grid, Text, Image } from "../elements/TbIndex";
+import { Grid, Text } from "../elements/TbIndex";
 import TbCardMy from "../components/TbCardMy";
 import { useDispatch, useSelector } from "react-redux";
 import TbLoading from "./TbLoading";
@@ -57,17 +57,19 @@ const MyPage = (props) => {
             is_align="center"
             bg="#fff"
             padding="20px 20px"
+            position="absolute"
+            zIndex="9"
           >
             <UserProfile mypage_user size="26px" />
           </Grid>
           {/* 기본 리스트 없는 초기상태 */}
           <Grid
             width="100%"
-            height="80vh"
+            height="100vh"
             flex="flex"
             direction="column"
             justify="flex-start"
-            padding="0 0 70px 0"
+            padding="20vh 0 70px 0"
           >
             {cardList.length == 0 ? (
               <></>

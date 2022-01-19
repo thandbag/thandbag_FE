@@ -13,16 +13,19 @@ const TbFinish = (props) => {
   const postid = props.match.params.postid;
   const [user, setUsers] = React.useState("");
   const is_level = history.location.state.level;
-  console.log(history)
+  console.log(history);
   React.useEffect(() => {
     api
       .post(
         `/api/thandbag?postId=${postid}`,
-         {newHitCount:history.location.state.count,
-          prevHitCount:history.location.state.pastcount} ,
         {
-          headers: { Authorization: token ,
-            'Content-Type': 'application/json;charset=UTF-8',
+          newHitCount: history.location.state.count,
+          prevHitCount: history.location.state.pastcount,
+        },
+        {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json;charset=UTF-8",
           },
         }
       )
@@ -37,7 +40,17 @@ const TbFinish = (props) => {
     <React.Fragment>
       <FinishBox>
         <Grid height="70vh">
-          <img style={{width: "420px"}} src={is_level == 1 ? thandbagend : is_level == 2 ? thandbagend2 : thandbagend3}/>
+          <img
+            style={{ width: "420px" }}
+            src={
+              is_level == 1
+                ? thandbagend
+                : is_level == 2
+                ? thandbagend2
+                : thandbagend3
+            }
+            alt="level_thand"
+          />
         </Grid>
         <ChatBox>
           {/* 맵돌리자 */}

@@ -15,6 +15,8 @@ const APPEND_CARD_LIST = "APPEND_CARD_LIST";
 const INCREASE_PAGE_NUM = "INCREASE_PAGE_NUM";
 const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
 const SET_IS_CARD_LIST_LOAD_COMPLETE = "SET_IS_CARD_LIST_LOAD_COMPLETE";
+const DELETE_CARD = "DELETE_CARD";
+
 
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
@@ -36,6 +38,8 @@ const setIsCardListLoadComplete = createAction(
   SET_IS_CARD_LIST_LOAD_COMPLETE,
   (is_card_list_load_complete) => ({ is_card_list_load_complete })
 );
+const deleteCard = createAction(DELETE_CARD, (postId) => ({ postId }));
+
 
 // **** Initial data **** //
 const initialState = {
@@ -217,6 +221,24 @@ const postHitCountDB = (postid, hitcount, pastHitcount) => {
   };
 };
 
+const deleteCardDB = (postid) => {
+  console.log(postid)
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    await api
+      .delete(`/api/thandbag/${postid}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) { console.log(response);
+        dispatch(deleteCard(postid));
+        history.push('/TbList')
+      })
+      .catch((err) => {
+        window.alert("생드백 삭제에 문제가 발생했습니다.");
+      });
+  };
+};
+
 const categoryMapper = {
   사회생활: "SOCIAL",
   공부: "STUDY",
@@ -244,7 +266,6 @@ const sendCardDB = (category, title, content, img, share) => {
       .then(function (response) {
         dispatch(addCard(response.data));
       })
-
       .catch((err) => {
         window.alert("생드백 작성 실패!");
       });
@@ -326,6 +347,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list.unshift(action.payload.card);
       }),
+    [DELETE_CARD]: (state, action) =>
+      produce(state, (draft) => {
+        const delete_post = draft.card_list.filter(
+          (c) => c.postId !== action.payload.postId
+        );
+        draft.card_list = delete_post;
+      }),
     [GET_THANK_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.thank_users = action.payload.user;
@@ -345,8 +373,9 @@ const actionCreators = {
   findCardDB,
   postHitCountDB,
   getThankUser,
-  // appendCardListDB,
   appendMyCardListDB,
+  appendCardListDB,
+  deleteCardDB,
 };
 
 export { actionCreators };

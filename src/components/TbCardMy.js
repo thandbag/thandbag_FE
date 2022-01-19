@@ -27,7 +27,8 @@ import { ReactComponent as LevelThree } from "../static/icons/lv icons/LV. 3.svg
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
-import { Grid, Image, Text } from "../elements/TbIndex";
+import { Grid } from "../elements/TbIndex";
+import NoThandBag from "../static/images/no_thandbag.png";
 import TbText from "../elements/TbText";
 
 const TbCardMy = (props) => {
@@ -41,19 +42,7 @@ const TbCardMy = (props) => {
   return (
     <>
       {cardList.length == 0 ? (
-        <>
-          <Grid marginT="175px">
-            <Image no_thand />
-            <Text
-              align="center"
-              color="#F7C8C8"
-              size="24px"
-              margin="40px 0 0 0"
-            >
-              아직 생드백이 없어요!
-            </Text>
-          </Grid>
-        </>
+        <BgBox />
       ) : (
         cardList.map((c) => {
           return (
@@ -78,13 +67,12 @@ const TbCardMy = (props) => {
                   </Grid>
                   <CardMiddle>
                     <CardContent>
-                      <CardContentTop>
-                          {c.title}
-                      </CardContentTop>
+                      <CardContentTop>{c.title}</CardContentTop>
                       <CardContentBottom>
                         <div
+                          className="text_edit_view"
                           dangerouslySetInnerHTML={{ __html: c.content }}
-                        ></div>
+                        />
                       </CardContentBottom>
                     </CardContent>
                   </CardMiddle>
@@ -221,15 +209,30 @@ const CardContentTop = styled.div`
   height: 30%;
   font-size: 18px;
   background-color: #fff;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  padding-top: 1%;
 `;
 
 const CardContentBottom = styled.div`
   width: 100%;
   height: 70%;
+  line-height: 1.4rem;
+  letter-spacing: -0.5px;
+  font-size: 1rem;
+  font-family: "NotoSansCJK" !important;
   background-color: #fff;
+  word-break: break-all;
+
+  .text_edit_view {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-top: 2%;
+  }
 `;
 
 const CardBottom = styled.div`
@@ -298,6 +301,19 @@ const CardLv = styled.div`
   background-color: #333333;
   text-align: center;
   border-radius: 25px;
+`;
+
+const BgBox = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 4%;
+  left: 0;
+  background-color: #fbf7f7;
+  background-image: url(${NoThandBag});
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 export default TbCardMy;

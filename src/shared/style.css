@@ -56,28 +56,26 @@ body {
 }
 
 .ql-container {
-  font-family: "KOTRAHOPE" !important;
+  font-family: "NotoSansCJK" !important;
   border: none !important;
 }
 .ql-editor {
   padding: 20px !important;
-  height: 54vh !important;
-  font-size: 20px;
-  font-weight: 400;
+  height: 55vh !important;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  letter-spacing: -0.4px;
 }
 
 .ql-editor.ql-blank::before {
   color: #ccc !important;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 1.3rem;
 }
 
 .ql-formats {
   width: 90%;
   margin: 0 5% !important;
   display: flex !important;
-  justify-content: space-around !important;
-  align-items: center !important;
 }
 
 .ql-fill {
@@ -86,6 +84,40 @@ body {
 
 .ql-stroke {
   stroke: #909792 !important ;
+}
+#emoji-palette {
+  width: 100% !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+#tab-toolbar .active {
+  border-bottom: 3px solid #ff5454 !important;
+}
+
+.ql-size-large {
+  font-size: 2.3em !important;
+}
+
+.ql-size-medium{
+  font-size: 1.3rem !important;
+}
+
+.ql-size-small {
+  font-size: 1em !important;
+}
+
+iframe {
+  width: 100% !important;
+  height: 30vh !important;
+}
+
+.ql-snow .ql-tooltip {
+  width: auto !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 /* 전체 생드백 리스트 모달 스타일 - TbListFilterModal */

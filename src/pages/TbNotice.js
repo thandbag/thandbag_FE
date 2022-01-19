@@ -4,6 +4,8 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
 import { useSpring, animated } from "@react-spring/web";
+import NoTbNotice from "../static/images/no_tbnotice.png";
+
 
 // 컴포넌트
 import Heads from "../components/Heads";
@@ -63,6 +65,8 @@ const TbNotice = (props) => {
             height="50px"
             padding="0 20px"
             flex="flex"
+            borderB
+            borderT
             justify="space-between"
             bg="#FBF7F7"
           >
@@ -88,9 +92,10 @@ const TbNotice = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          {/* 맵돌릴구간 */}
-          <Grid>
-            {notice?.map((n) => {
+          {notice.length == 0 ? (
+            <BgBox />
+          ) : (
+            notice?.map((n) => {
               return (
                 <Grid
                   hover
@@ -136,9 +141,17 @@ const TbNotice = (props) => {
                     justify="flex-start"
                     overFlow="hidden"
                   >
-                    <Text size="16px" LHeight="20px" Wbreack="keep-all">
-                      {n.message}
-                    </Text>
+                    <NotiBox>
+                      <Text
+                        size="14px"
+                        LHeight="20px"
+                        family="NotoSansCJK"
+                        Wbreack="keep-all"
+                        spacing="-0.5px"
+                      >
+                        {n.message}
+                      </Text>
+                    </NotiBox>
                   </Grid>
                   <Grid
                     width="10%"
@@ -162,8 +175,8 @@ const TbNotice = (props) => {
                   </Grid>
                 </Grid>
               );
-            })}
-          </Grid>
+            })
+          )}
         </TbNoticeBox>
       </animated.div>
       <TbNavgation TbNotice={"TbNotice"} />
@@ -176,6 +189,29 @@ const TbNoticeBox = styled.div`
   height: 100vh;
   padding: 70px 0;
   overflow-y: scroll;
+`;
+
+const BgBox = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 4%;
+  left: 0;
+  background-color: #fbf7f7;
+  background-image: url(${NoTbNotice});
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const NotiBox = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 
 export default TbNotice;

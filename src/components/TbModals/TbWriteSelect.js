@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../shared/style.css";
+import "../../shared/style.css";
 
 const TbWriteSelect = ({ category, setCategory }) => {
   const [isActive, setIsActive] = useState(false);
