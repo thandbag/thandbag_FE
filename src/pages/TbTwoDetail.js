@@ -17,6 +17,7 @@ const TbTwoDetail = (props) => {
   const postid = props.match.params.postid;
   const is_loaded = useSelector((state) => state.card.is_loaded);
 
+  console.log(card);
   React.useEffect(() => {
     dispatch(cardActions.getCardTwoDetailDB(postid));
   }, [dispatch]);

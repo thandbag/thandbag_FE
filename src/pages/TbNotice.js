@@ -6,6 +6,7 @@ import { actionCreators as chatActions } from "../redux/modules/chat";
 import { useSpring, animated } from "@react-spring/web";
 import NoTbNotice from "../static/images/no_tbnotice.png";
 
+
 // 컴포넌트
 import Heads from "../components/Heads";
 import TbNavgation from "../components/TbNavigation";
@@ -18,11 +19,27 @@ import { ReactComponent as ChatOpen } from "../static/icons/notice_icons/chatope
 import { ReactComponent as NewThand } from "../static/icons/notice_icons/newthand_icon.svg";
 import { ReactComponent as LevelUp } from "../static/icons/notice_icons/lelvelup_icon.svg";
 import { ReactComponent as WirteSelect } from "../static/icons/notice_icons/writerselect_icon.svg";
+import { actionCreators as noticeActions } from "../redux/modules/chat";
 
 const TbNotice = (props) => {
   const dispatch = useDispatch();
   const notice = useSelector((state) => state.chat.notice);
   const is_loaded = useSelector((state) => state.chat.is_loaded);
+  const is_append_loaded = useSelector((state) => state.chat.is_append_loaded);
+  const is_card_list_load_complete = useSelector(
+    (state) => state.chat.is_card_list_load_complete
+  );
+
+  const scrollNoticeList = (e) => {
+    if (!is_append_loaded || is_card_list_load_complete) return;
+    const scrollTop = e.target.scrollTop;
+    const cardListHeight = e.target.scrollHeight;
+    const contentsHeight = e.target.offsetHeight;
+    if ((cardListHeight - contentsHeight) * 0.99 < scrollTop) {
+      console.log("무한스크롤 시작!");
+      dispatch(chatActions.appendNoticeListDB());
+    }
+  };
 
   React.useEffect(() => {
     dispatch(chatActions.getNoticeDB());
@@ -42,7 +59,7 @@ const TbNotice = (props) => {
       {!is_loaded && <TbLoading />}
       <Heads none bg="#fff" stroke="#fff" color="#333" borderB text="알림" />
       <animated.div style={fadeIn}>
-        <TbNoticeBox>
+        <TbNoticeBox onScroll={scrollNoticeList}>
           <Grid
             width="100%"
             height="50px"
