@@ -29,7 +29,7 @@ const TbTwoDetail = (props) => {
         <Heads is_anoter bg="#333" stroke="#fff" color="#fff" text="" />
         {/* 게시글 내용 */}
         <Grid width="100%" height="auto" margin="70px 0 0 0">
-          <ThandDetail share contents={card} />
+          <ThandDetail share contents={card} postid={postid} />
         </Grid>
         {/* 유저 프로필 // 시간 */}
         <Grid
@@ -40,18 +40,20 @@ const TbTwoDetail = (props) => {
           justify="space-between"
           bg="#fff"
         >
-          <UserProfile two_user={card} share size="1.3rem" Isize="50" />
+          <UserProfile two_user={card} share size="1.3rem" Isize="55" />
           <Grid width="20%" flex="flex" justify="flex-end" padding="20px 0 0 0">
-            <Text size="12px" color="#FF5454" family="NotoSansCJK" spacing="-1px">
+            <Text
+              size="12px"
+              color="#FF5454"
+              family="NotoSansCJK"
+              spacing="-1px"
+            >
               {card.createdAt}
             </Text>
           </Grid>
         </Grid>
         {/*생드백 때리러가기 버튼*/}
-        <ThandStateImg
-          all={card}
-          id={postid}
-        />
+        <ThandStateImg all={card} id={postid} />
         {/*댓글 수 // mbti 필터*/}
         <Comments count={card.commentCount} is_mbtiFilter />
         {/*입력한 댓글*/}

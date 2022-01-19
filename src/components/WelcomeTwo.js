@@ -56,11 +56,13 @@ function WelcomeTwo() {
           </SwiperSlide>
           <SwiperSlide>
             <ImgBox3 />
-            <Grid position="absolute" flex="flex" bottom="32vh">
+            <Grid position="absolute" flex="flex" bottom="28vh">
               <Text size="1.5rem" LHeight="2rem">
-                고민을 함께 나눈 사람에게
+                내 고민을 함께 나눈 댓글에 
                 <br />
-                감사 인사를 보낼 수 있어요!
+                Like 버튼을 눌러보세요!
+                <br />
+                채팅으로 감사 인사를 보낼 수 있어요!
               </Text>
             </Grid>
             <ButtonBox>
@@ -115,7 +117,7 @@ const ButtonBox = styled.div`
   width: 100%;
   height: auto;
   position: absolute;
-  bottom: 21vh;
+  bottom: 17vh;
   display: flex;
   align-items: center;
   justify-content: center;

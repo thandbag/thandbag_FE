@@ -80,7 +80,7 @@ const getChatMessageDB = (roomId) => {
 const getNoticeDB = () => {
   return async function (dispatch, getState, { history }){
     const token = sessionStorage.getItem('token')
-    await api.get('/api/alarm',{
+    await api.get('/api/alarm?page=0&size=10',{
       headers : {Authorization:token}
   }).then(function(response) {
     dispatch(getNotice(response.data))

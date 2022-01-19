@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { history } from "../redux/configureStore";
 import Heads from "../components/Heads";
 import SwipeCategory from "../components/SwipeCategory";
-import { Grid, Button } from "../elements/TbIndex";
+import { Grid } from "../elements/TbIndex";
 import styled from "styled-components";
-import TbListModal from "../components/TbListModal";
+import TbListModal from "../components/TbModals/TbListModal";
 import TbCardAll from "../components/TbCardAll";
 import { ReactComponent as Write } from "../static/icons/write.svg";
 import { useDispatch, useSelector } from "react-redux";

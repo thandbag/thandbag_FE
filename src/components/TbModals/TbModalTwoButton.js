@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { TbModalTwo } from "../components/TbModalTwo";
+import { TbModalTwo } from "./TbModalTwo";
 import { useDispatch } from "react-redux";
-import { actionCreators as chatActions } from "../redux/modules/chat";
-import { ReactComponent as ThanksChat } from "../static/icons/thanks_chat.svg";
+import { actionCreators as chatActions } from "../../redux/modules/chat";
+import { ReactComponent as ThanksChat } from "../../static/icons/thanks_chat.svg";
 
 const TbModalTwoButton = (props) => {
   const { you_id } = props;
