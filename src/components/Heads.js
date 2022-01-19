@@ -29,7 +29,7 @@ const Heads = (props) => {
     borderT,
     borderB,
   } = props;
-  
+
   const styles = {
     bg: bg,
     color: color,
@@ -166,7 +166,9 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
-                dispatch(cardActions.postHitCountDB(post_id, hitcount, pastHitcount));
+                dispatch(
+                  cardActions.postHitCountDB(post_id, hitcount, pastHitcount)
+                );
                 history.goBack();
               }}
             >

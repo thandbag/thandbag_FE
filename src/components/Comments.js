@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
@@ -8,6 +8,33 @@ import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import LikeButton from "./LikeButton";
 import TbModal from "./TbModal";
+import Effect from "../components/Effect";
+
+const getCursorXY = (input, selectionPoint) => {
+  const { offsetLeft: inputX, offsetTop: inputY } = input;
+  const div = document.createElement("div");
+  const copyStyle = getComputedStyle(input);
+  for (const prop of copyStyle) {
+    div.style[prop] = copyStyle[prop];
+  }
+  const swap = ".";
+  const inputValue =
+    input.tagName === "INPUT" ? input.value.replace(/ /g, swap) : input.value;
+  const textContent = inputValue.substr(0, selectionPoint);
+  div.textContent = textContent;
+  if (input.tagName === "TEXTAREA") div.style.height = "auto";
+  if (input.tagName === "INPUT") div.style.width = "auto";
+  const span = document.createElement("span");
+  span.textContent = inputValue.substr(selectionPoint) || ".";
+  div.appendChild(span);
+  document.body.appendChild(div);
+  const { offsetLeft: spanX, offsetTop: spanY } = span;
+  document.body.removeChild(div);
+  return {
+    x: inputX + spanX,
+    y: inputY + spanY,
+  };
+};
 
 const Comments = (props) => {
   const { count, is_Comment, is_mbtiFilter, cList } = props;
@@ -17,6 +44,10 @@ const Comments = (props) => {
 
   // 댓글 입력 //
   const [comment, setComment] = useState("");
+  const [cursorPosition, setCursorPosition] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const timerRef = useRef(null);
 
   // 댓글 게시 추가 기능
   const sendComment = () => {
@@ -39,11 +70,20 @@ const Comments = (props) => {
     }
   });
 
-  // 채팅 입력 (엔터)
+  // 채팅 입력 및 애니메이션(엔터)
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       sendComment();
       setComment("");
+    } else {
+      const { x, y } = getCursorXY(e.target, e.target.selectionEnd);
+      const inputLength = e.target.offsetWidth - 20;
+      setCursorPosition(inputLength > x ? x : inputLength);
+      setIsVisible(true);
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        setIsVisible(false);
+      }, 1000);
     }
   };
 
@@ -187,23 +227,26 @@ const Comments = (props) => {
     <React.Fragment>
       <CommentsInputBox>
         <Grid width="80%" height="100%" flex="flex" margin="0 16px 0 0">
-          <Input
-            _onKeyDown={handleKeyDown}
-            type="text"
-            size="1.2rem"
-            color="#333"
-            placeholder="댓글을 남겨주세요"
-            radius="12px"
-            border="1px solid #fbf7f7"
-            width="100%"
-            height="43px"
-            bg="#fbf7f7"
-            padding="10px 20px"
-            value={comment}
-            _onChange={(e) => {
-              setComment(e.target.value);
-            }}
-          />
+          <div style={{ width: "100%", position: "relative" }}>
+            <Effect cursorPosition={cursorPosition} isVisible={isVisible} />
+            <Input
+              _onKeyDown={handleKeyDown}
+              type="text"
+              size="1.2rem"
+              color="#333"
+              placeholder="댓글을 남겨주세요"
+              radius="12px"
+              border="1px solid #fbf7f7"
+              width="100%"
+              height="43px"
+              bg="#fbf7f7"
+              padding="10px 20px"
+              value={comment}
+              _onChange={(e) => {
+                setComment(e.target.value);
+              }}
+            />
+          </div>
         </Grid>
         <Grid width="20%" height="100%" flex="flex">
           <Button

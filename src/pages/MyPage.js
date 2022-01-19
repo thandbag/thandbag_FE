@@ -4,13 +4,31 @@ import TbNavigation from "../components/TbNavigation";
 import UserProfile from "../components/UserProfile";
 import { Grid, Text, Image } from "../elements/TbIndex";
 import TbCardMy from "../components/TbCardMy";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TbLoading from "./TbLoading";
 import { useSpring, animated } from "@react-spring/web";
+import { actionCreators as cardActions } from "../redux/modules/card";
 
 const MyPage = (props) => {
   const cardList = useSelector((state) => state.card.my_list);
   const is_loaded = useSelector((state) => state.card.is_loaded);
+  const is_append_loaded = useSelector((state) => state.card.is_append_loaded);
+  const is_card_list_load_complete = useSelector(
+    (state) => state.card.is_card_list_load_complete
+  );
+
+  const dispatch = useDispatch();
+
+  const scrollCardList = (e) => {
+    if (!is_append_loaded || is_card_list_load_complete) return;
+    const scrollTop = e.target.scrollTop;
+    const cardListHeight = e.target.scrollHeight;
+    const contentsHeight = e.target.offsetHeight;
+    if ((cardListHeight - contentsHeight) * 0.99 < scrollTop) {
+      console.log("무한스크롤 시작!");
+      dispatch(cardActions.appendMyCardListDB());
+    }
+  };
 
   const fadeIn = useSpring({
     config: {
@@ -58,7 +76,7 @@ const MyPage = (props) => {
                 <Text size="24px">내 생드백</Text>
               </Grid>
             )}
-            <CardList>
+            <CardList onScroll={scrollCardList}>
               <TbCardMy />
             </CardList>
           </Grid>

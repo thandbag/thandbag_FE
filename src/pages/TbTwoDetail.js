@@ -17,6 +17,7 @@ const TbTwoDetail = (props) => {
   const postid = props.match.params.postid;
   const is_loaded = useSelector((state) => state.card.is_loaded);
 
+  console.log(card);
   React.useEffect(() => {
     dispatch(cardActions.getCardTwoDetailDB(postid));
   }, [dispatch]);
@@ -42,16 +43,18 @@ const TbTwoDetail = (props) => {
         >
           <UserProfile two_user={card} share size="1.3rem" Isize="50" />
           <Grid width="20%" flex="flex" justify="flex-end" padding="20px 0 0 0">
-            <Text size="12px" color="#FF5454" family="NotoSansCJK" spacing="-1px">
+            <Text
+              size="12px"
+              color="#FF5454"
+              family="NotoSansCJK"
+              spacing="-1px"
+            >
               {card.createdAt}
             </Text>
           </Grid>
         </Grid>
         {/*생드백 때리러가기 버튼*/}
-        <ThandStateImg
-          all={card}
-          id={postid}
-        />
+        <ThandStateImg all={card} id={postid} />
         {/*댓글 수 // mbti 필터*/}
         <Comments count={card.commentCount} is_mbtiFilter />
         {/*입력한 댓글*/}
