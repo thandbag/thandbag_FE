@@ -5,7 +5,6 @@ import TbTextEditor from "../components/TbTextEditor";
 import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
 import { TbModalThree } from "../components/TbModals/TbModalThree";
-import { ErrorModal } from "../components/TbModals/ErrorModal";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 import { history } from "../redux/configureStore";
@@ -25,10 +24,6 @@ const TbWrite = (props) => {
     setTitle(currentTitle);
   };
 
-  const getContent = (e) => {
-    const currentContent = e.target.value;
-    setContent(currentContent);
-  };
 
   //모달
   const [showModal, setShowModal] = useState(false);

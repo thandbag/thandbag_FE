@@ -18,7 +18,6 @@ const SearchModal = ({ setModal }) => {
   };
 
   const searchIconClick = () => {
-    console.log(searchInputRef.current.value);
     dispatch(cardActions.findCardDB(searchInputRef.current.value));
   };
 

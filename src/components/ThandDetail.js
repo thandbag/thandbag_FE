@@ -7,7 +7,6 @@ const ThandDetail = (props) => {
   const { one, share, contents, postid } = props;
   const is_me = sessionStorage.getItem("userId");
   const deleteUserId = contents.userId;
-  console.log(postid);
 
   // 댓글 삭제 모달 (팝업)
   const [modalOpen, setModalOpen] = useState(false);

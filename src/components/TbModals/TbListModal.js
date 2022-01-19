@@ -11,7 +11,6 @@ const TbListModal = () => {
   const options = ["전체", "터트림", "터트리는 중"];
 
   const clickFilter = (e) => {
-    console.log(e.target.innerText);
     if (e.target.innerText == "터트림") {
       setIsActive(false);
       setSelected("터트림");
@@ -26,7 +25,7 @@ const TbListModal = () => {
       dispatch(cardActions.searchCard("전체"));
     }
   };
-  // console.log(selected, isActive)
+
   return (
     <div className="dropdown" id="ListFilter">
       <div

@@ -15,7 +15,6 @@ const GET_THANK_USER = "GET_THANK_USER";
 const APPEND_CARD_LIST = "APPEND_CARD_LIST";
 const INCREASE_PAGE_NUM = "INCREASE_PAGE_NUM";
 const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
-const SET_IS_CARD_LIST_LOAD_COMPLETE = "SET_IS_CARD_LIST_LOAD_COMPLETE";
 const DELETE_CARD = "DELETE_CARD";
 
 
@@ -33,10 +32,6 @@ const increasePageNum = createAction(INCREASE_PAGE_NUM);
 const setIsAppendLoaded = createAction(
   SET_IS_APPEND_LOADED,
   (is_append_loaded) => ({ is_append_loaded })
-);
-const setIsCardListLoadComplete = createAction(
-  SET_IS_CARD_LIST_LOAD_COMPLETE,
-  (is_card_list_load_complete) => ({ is_card_list_load_complete })
 );
 const deleteCard = createAction(DELETE_CARD, (postId) => ({ postId }));
 
@@ -61,13 +56,12 @@ const initialState = {
 
 // **** Middleware **** //
 
-const getCardListDB = (pageNo = 0, sizeNo = 5) => {
+const getCardListDB = (pageNo = 0, sizeNo = 1000) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     await api
       .get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`)
       .then(function (response) {
-        console.log(response);
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
@@ -83,35 +77,6 @@ const getCardListDB = (pageNo = 0, sizeNo = 5) => {
   };
 };
 
-//전체 리스트 무한스크롤
-const appendCardListDB = (sizeNo = 1000) => {
-  return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    dispatch(setIsAppendLoaded(false));
-    await api
-      .get(
-        `/api/thandbagList?page=${getState().card.pageNumber}&size=${sizeNo}`,
-        {
-          headers: { Authorization: token },
-        }
-      )
-      .then(function (response) {
-        dispatch(appendCardList(response.data));
-        // dispatch(increasePageNum());
-        // dispatch(setIsAppendLoaded(true));
-      })
-      .catch((err) => {
-        if(token){
-          Swal.fire({
-            icon: 'error',
-            title: '앗!',
-            text: '생드백을 추가하는데 문제가 발생했습니다.'
-          })
-        }
-        dispatch(setIsAppendLoaded(true));
-      });
-  };
-};
 
 const getMyCardListDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -128,7 +93,13 @@ const getMyCardListDB = () => {
         dispatch(setMyList(response.data.myPostList));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -138,7 +109,6 @@ const appendMyCardListDB = (sizeNo = 5) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     dispatch(setIsAppendLoaded(false));
-    console.log(getState());
     await api
       .get(
         `/api/myThandbag?pageNo=${getState().card.pageNumber}&sizeNo=${sizeNo}`,
@@ -147,7 +117,6 @@ const appendMyCardListDB = (sizeNo = 5) => {
         }
       )
       .then(function (response) {
-        console.log(response.data.myPostList);
         dispatch(appendCardList(response.data.myPostList));
         dispatch(increasePageNum());
         dispatch(setIsAppendLoaded(true));
@@ -232,8 +201,6 @@ const findCardDB = (keyword) => {
 
 const postHitCountDB = (postid, hitcount, pastHitcount) => {
   return async function (dispatch, getState, { history }) {
-    console.log(postid, hitcount, pastHitcount);
-    // return;
     const token = sessionStorage.getItem("token");
     await api
       .post(
@@ -248,20 +215,25 @@ const postHitCountDB = (postid, hitcount, pastHitcount) => {
       )
       .then(function (response) {})
       .catch((err) => {
-        window.alert("문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
 
 const deleteCardDB = (postid) => {
-  console.log(postid)
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     await api
       .delete(`/api/thandbag/${postid}`, {
         headers: { Authorization: token },
       })
-      .then(function (response) { console.log(response);
+      .then(function (response) { 
         dispatch(deleteCard(postid));
         history.push('/TbList')
       })
@@ -326,7 +298,6 @@ export default handleActions(
       }),
     [APPEND_CARD_LIST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.card_list);
         if (action.payload.card_list.length === 0) {
           draft.is_card_list_load_complete = true;
           return;
@@ -337,7 +308,6 @@ export default handleActions(
       }),
     [INCREASE_PAGE_NUM]: (state, action) =>
       produce(state, (draft) => {
-        console.log(draft.pageNumber);
         draft.pageNumber += 1;
       }),
 
@@ -418,7 +388,6 @@ const actionCreators = {
   postHitCountDB,
   getThankUser,
   appendMyCardListDB,
-  appendCardListDB,
   deleteCardDB,
 };
 

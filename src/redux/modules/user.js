@@ -114,7 +114,6 @@ const editDB = (nickname, mbti, imgfile) => {
   return async function(dispatch, getState, { history }){
     const token = sessionStorage.getItem('token')
     const addFormData = new FormData()
-    console.log(nickname, mbti, imgfile)
     const user_info = {
       nickname: nickname,
       mbti: mbti
@@ -154,7 +153,6 @@ export default handleActions(
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action)
         sessionStorage.clear()
         draft.user = ""
         window.location.replace("/login")
