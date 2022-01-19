@@ -50,12 +50,12 @@ const TbCardAll = (props) => {
       ) : (
         cardList.map((c) => {
           return (
-            <ListBox
+            <ListBox>
+              <CardWrap
               onClick={() => {
-                history.push(`/TbTwoDetail/${c.postId}`);
+                history.push(`/TbTwoDetail/${c.postId}`)
               }}
-            >
-              <CardWrap>
+              >
                 <CardTop>
                   <TbText bold>{c.category}</TbText>
                 </CardTop>
@@ -183,6 +183,7 @@ const CardWrap = styled.div`
   margin: 20px auto;
   margin-bottom: 40px;
   position: relative;
+  cursor: pointer;
 `;
 
 const CardTop = styled.div`

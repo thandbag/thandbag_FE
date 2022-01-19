@@ -8,7 +8,7 @@ import kakao from "../static/icons/kakao.svg";
 import { ReactComponent as KakaoBtn } from "../static/images/kakao_btn.svg";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
 import { useSpring, animated } from "@react-spring/web";
-import TbLoading from "./TbLoading";
+import Swal from "sweetalert2";
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -52,8 +52,13 @@ const Login = (props) => {
   };
 
   const clickLogin = () => {
-    if (email === "" || password === "") {
-      window.alert("Please fill in all blanks");
+    if (email == "" || password === "") {
+      Swal.fire({
+        icon: 'warning',
+        title: '앗!',
+        text: '빈값을 다 채워주세요'
+      })
+
       return;
     } else {
       dispatch(userActions.logInDB(email, password));

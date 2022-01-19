@@ -116,6 +116,7 @@ TbGrid.defaultProps = {
   radius: "",
   borderT: false,
   borderB: false,
+  _tabIndex: "0",
   _onClick: () => {},
   _onKeyDown: () => {},
 };

@@ -4,37 +4,38 @@ import Heads from "../components/Heads";
 import { useDispatch } from "react-redux";
 import { Grid, Text, Image, Input, Button, Select } from "../elements/TbIndex";
 import { actionCreators as userActions } from "../redux/modules/user";
+import Swal from "sweetalert2";
 
 const MyEdit = (props) => {
   const profile = sessionStorage.getItem("profile");
   const nick = sessionStorage.getItem("nickname");
   const my_mbti = sessionStorage.getItem("mbti");
   const dispatch = useDispatch();
-  const option_list = [
-    "MBTI 선택",
-    "ENFJ",
-    "ENFP",
-    "ENTJ",
-    "ENTP",
-    "ESFJ",
-    "ESFP",
-    "ESTJ",
-    "ESTP",
-    "INFJ",
-    "INFP",
-    "INTJ",
-    "INTP",
-    "ISFJ",
-    "ISFP",
-    "ISTJ",
-    "ISTP",
-  ];
+  
 
   const [nickname, setNickname] = React.useState(nick);
   const [mbti, setMbti] = React.useState(my_mbti);
+  const [imgfile, setImgfile] = React.useState(profile);
+  const fileInput = React.useRef('');
 
   const [isNickname, setIsNickname] = React.useState(true);
   const nickRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,6}$/;
+
+  const handleChangeFile = (e) => {
+    setImgfile(e.target.files)
+    let reader = new FileReader()
+    reader.readAsDataURL(e.target.files[0])
+
+    reader.onload = () => {
+      const file = reader.result
+
+      if (file) {
+        var file_picture = file.toString()
+
+        setImgfile(file_picture)
+      };
+    };
+  };
   
   const handleClick = (e) => {
     setMbti(e.target.value);
@@ -55,10 +56,14 @@ const MyEdit = (props) => {
 
   const clickEdit = () => {
     if (mbti == 0 || nickname == "") {
-      window.alert("빈칸을 채워주세요");
+      Swal.fire({
+        icon: 'warning',
+        title: '앗!',
+        text: '빈값을 다 채워주세요'
+      })
       return;
     } else {
-      dispatch(userActions.editDB(nickname, mbti));
+      dispatch(userActions.editDB(nickname, mbti, fileInput.current.files[0]));
     }
   };
 
@@ -81,17 +86,10 @@ const MyEdit = (props) => {
           direction="column"
           padding="40px 0"
         >
-          <Image shape="circle" src={profile} Isize="150" />
-          <Text
-            size="20px"
-            bold="400"
-            deco="underline"
-            decoP="under"
-            margin="36px 0 0 0"
-            cursor="pointer"
-          >
-            {/* 프로필 이미지 변경 */}
-          </Text>
+          <Image shape="circle" src={imgfile} Isize="150" />
+          <label style={{margin:"26px 0 20px 0", fontSize:"20px", cursor:"pointer", textDecoration:"underline", textUnderlinePosition:"under"}} 
+          for="profile">프로필 이미지 변경</label>
+          <input id="profile" ref={fileInput} onChange={handleChangeFile} style={{display: "none"}} type="file"></input>
         </Grid>
         <Grid
           width="100%"

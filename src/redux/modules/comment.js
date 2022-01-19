@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import api from "../../shared/Api";
+import Swal from "sweetalert2";
 
 // **** Action type **** //
 const SET_COMMENT = "SET_COMMENT";
@@ -41,7 +42,13 @@ const sendCommentDB = (postId, comment) => {
         dispatch(addComment(response.data));
       })
       .catch((err) => {
-        window.alert("댓글작성에 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '댓글을 작성하는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -57,7 +64,13 @@ const deleteCommentDB = (commentId) => {
         dispatch(deleteComment(commentId));
       })
       .catch((err) => {
-        window.alert("댓글 삭제에 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '댓글을 삭제하는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -74,10 +87,17 @@ const likeCommentDB = (bool, commentId) => {
         }
       )
       .then(function (response) {
+        console.log(response)
         dispatch(plusLike(response.data));
       })
       .catch((err) => {
-        window.alert("좋아요에 문제가 발생했습니다.")
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '좋아요에 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -116,6 +136,7 @@ export default handleActions(
           (c) => c.commentId !== action.payload.commentId
         );
         draft.comment_list = new_comment;
+        draft.search_list = new_comment;
       }),
     [PLUS_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -126,6 +147,11 @@ export default handleActions(
           ...draft.comment_list[idx],
           ...action.payload.like,
         };
+        draft.search_list[idx] = {
+          ...draft.search_list[idx],
+          ...action.payload.like,
+        };
+        
       }),
   },
   initialState

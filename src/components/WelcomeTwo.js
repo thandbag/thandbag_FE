@@ -75,7 +75,7 @@ function WelcomeTwo() {
                 size="1.2rem"
                 text="SKIP"
                 _onClick={() => {
-                  history.push("/login");
+                  history.push("/main");
                 }}
               />
             </ButtonBox>

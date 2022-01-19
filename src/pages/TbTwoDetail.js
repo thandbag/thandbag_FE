@@ -16,11 +16,17 @@ const TbTwoDetail = (props) => {
   const comment_list = useSelector((state) => state.comment.search_list);
   const postid = props.match.params.postid;
   const is_loaded = useSelector((state) => state.card.is_loaded);
+  const token = sessionStorage.getItem('token');
 
   console.log(card);
   React.useEffect(() => {
-    dispatch(cardActions.getCardTwoDetailDB(postid));
-  }, [dispatch]);
+    if(token){
+      dispatch(cardActions.getCardTwoDetailDB(postid));
+    } else {
+      dispatch(cardActions.getCardOneDetailDB(postid))
+    }
+    
+  }, []);
 
   return (
     <React.Fragment>
@@ -56,7 +62,7 @@ const TbTwoDetail = (props) => {
         {/*생드백 때리러가기 버튼*/}
         <ThandStateImg all={card} id={postid} />
         {/*댓글 수 // mbti 필터*/}
-        <Comments count={card.commentCount} is_mbtiFilter />
+        <Comments count={comment_list.length} is_mbtiFilter />
         {/*입력한 댓글*/}
         <CommentsBox>
           {comment_list ? (

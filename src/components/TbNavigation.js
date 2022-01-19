@@ -11,7 +11,6 @@ import { actionCreators as chatActions } from "../redux/modules/chat";
 import "../shared/style.css";
 
 const TbNavgation = (props) => {
-  console.log(props);
   const dispatch = useDispatch();
   const alarm = useSelector((state) => state.chat.alarm);
   const [newRing, setNewRings] = React.useState(false);

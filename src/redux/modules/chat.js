@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import api from "../../shared/Api";
+import Swal from "sweetalert2";
 
 // **** Action type **** //
 const SET_CHAT_LIST = "SET_CHAT_LIST";
@@ -64,7 +65,13 @@ const createChatRoomDB = (myId, youId) => {
       })
       .then(function (response) {})
       .catch((err) => {
-        window.alert("채팅방을 생성하는데 문제가 발생했습니다.");
+         if(token){
+            Swal.fire({
+              icon: 'error',
+              title: '앗!',
+              text: '채팅방을 생성하는데 문제가 발생했습니다.'
+            })
+          }
       });
   };
 };
@@ -80,7 +87,13 @@ const getChatListDB = () => {
         dispatch(setChatList(response.data));
       })
       .catch((err) => {
-        window.alert("채팅 목록을 불러오는데 문제가 발생했습니다.");
+        if(token){
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '채팅 목록을 불러오는데 문제가 발생했습니다.'
+        })
+      }
       });
   };
 };
@@ -100,7 +113,13 @@ const getChatMessageDB = (roomId) => {
         dispatch(setMessage(response.data));
       })
       .catch((err) => {
-        window.alert("메세지를 불러오는데 문제가 발생했습니다.");
+        if(token){
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '메세지를 불러오는데 문제가 발생했습니다.'
+        })
+      }
       });
   };
 };
@@ -116,7 +135,13 @@ const getNoticeDB = () => {
         dispatch(getNotice(response.data));
       })
       .catch((err) => {
-        window.alert("알림목록을 불러오는데 문제가 발생했습니다.");
+        if(token){
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '알림목록을 불러오는데 문제가 발생했습니다.'
+      })
+    }
       });
   };
 };
@@ -137,7 +162,13 @@ const appendNoticeListDB = (sizeNo = 8) => {
         dispatch(setIsAppendLoaded(true));
       })
       .catch((err) => {
-        window.alert("알림을 불러오는데 문제가 발생했습니다.");
+        if(token){
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '알림을 불러오는데 문제가 발생했습니다.'
+      })
+    }
         dispatch(setIsAppendLoaded(true));
       });
   };

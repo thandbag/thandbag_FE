@@ -38,9 +38,10 @@ const getCursorXY = (input, selectionPoint) => {
 
 const Comments = (props) => {
   const { count, is_Comment, is_mbtiFilter, cList } = props;
-  const is_me = sessionStorage.getItem("userId");
+  const is_me = sessionStorage.getItem("nickname");
   const dispatch = useDispatch();
   const { postid } = useParams();
+
 
   // 댓글 입력 //
   const [comment, setComment] = useState("");
@@ -142,7 +143,7 @@ const Comments = (props) => {
               />
             </Grid>
 
-            {is_me == cList.userId ? (
+            {is_me == cList.nickname ? (
               <Grid width="15%" height="auto" flex="flex" justify="flex-end">
                 <DeleteText onClick={openModal}>삭제</DeleteText>
               </Grid>

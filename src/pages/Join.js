@@ -6,29 +6,10 @@ import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
 import { useSpring, animated } from "@react-spring/web";
+import Swal from "sweetalert2";
 
 const Join = (props) => {
   const dispatch = useDispatch();
-
-  const option_list = [
-    "MBTI 선택",
-    "ENFJ",
-    "ENFP",
-    "ENTJ",
-    "ENTP",
-    "ESFJ",
-    "ESFP",
-    "ESTJ",
-    "ESTP",
-    "INFJ",
-    "INFP",
-    "INTJ",
-    "INTP",
-    "ISFJ",
-    "ISFP",
-    "ISTJ",
-    "ISTP",
-  ];
 
   // 이메일, 비밀번호, 닉네임 상태관리//
   const [email, setEmail] = React.useState("");
@@ -104,11 +85,15 @@ const Join = (props) => {
       nickname == "" ||
       mbti === 0
     ) {
-      window.alert("Please fill in all blanks");
+      Swal.fire({
+        icon: 'warning',
+        title: '앗!',
+        text: '빈값을 다 채워주세요'
+      })
       return;
     } else {
       dispatch(
-        userActions.joinDB(email, password, nickname, option_list[mbti])
+        userActions.joinDB(email, password, nickname, mbti)
       );
     }
   };
@@ -213,6 +198,7 @@ const Join = (props) => {
             </Grid>
             <Grid margin="20px 0px 0px 0px">
               <Select
+                value={mbti}
                 bg="#fbf7f7"
                 _onChange={handleClick}
                 height="47px"

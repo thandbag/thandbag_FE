@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import state_img from "../static/images/state_img.png";
-import thand_2 from "../static/images/thand_2.png";
 
 const TbImage = (props) => {
   const {
@@ -25,9 +24,6 @@ const TbImage = (props) => {
     height: height,
   };
 
-  if (punch_thand) {
-    return <PunchImg {...styles}></PunchImg>;
-  }
 
   if (thandbag_state) {
     return <StateImage {...styles}></StateImage>;
@@ -117,9 +113,5 @@ const StateImage = styled.div`
   background-position: center;
 `;
 
-const PunchImg = styled(StateImage)`
-  background-image: url(${thand_2});
-  background-size: 100% 100%;
-`;
 
 export default TbImage;
