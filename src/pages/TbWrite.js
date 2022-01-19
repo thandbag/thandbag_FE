@@ -41,21 +41,9 @@ const TbWrite = (props) => {
     }, 1500);
   };
 
-  // 에러 모달
-  const [errorModal, setErrorModal] = useState(false);
-
-  const openErrorModal = () => {
-    setErrorModal(true);
-    // setTimeout(() => {
-    //   setShowModal(false);
-    //   history.push("/TbList");
-    // }, 1500);
-  };
-
   return (
     <>
       <TbModalThree showModal={showModal} setShowModal={setShowModal} />
-      <ErrorModal errorModal={errorModal} setErrorModal={setErrorModal} />
       <Container>
         <Heads
           is_anoter
