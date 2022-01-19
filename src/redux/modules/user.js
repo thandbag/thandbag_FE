@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
-import { produce } from 'immer'
+import { produce } from 'immer';
 import api from "../../shared/Api";
+import Swal from "sweetalert2";
 
 
 // **** Action type **** //
@@ -30,10 +31,18 @@ const joinDB = (email, password, nickname, mbti) => {
     }
     await api.post('/api/user/signup',user).then(function(response){
       history.push('/login')
-      window.alert('회원가입 성공!')
+      Swal.fire({
+        icon: 'success',
+        title: '와우!',
+        text: '회원가입에 성공했습니다.'
+      })
     })
     .catch((err) => {
-      window.alert('회원가입에 문제가 생겼습니다')
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '회원가입에 문제가 발생했습니다.'
+      })
     })
     };
 };
@@ -63,7 +72,11 @@ const logInDB = (email, password) => {
 
     })
     .catch((err) => {
-      window.alert('로그인에 문제가 생겼습니다')
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '로그인에 문제가 발생했습니다.'
+      })
     })
   };
 };
@@ -87,7 +100,11 @@ const kakaoLogin = (code) => {
       history.replace('/main')
     })
     .catch((err) => {
-      window.alert('소셜로그인 에러', err);
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '소셜로그인 에러!'
+      })
       history.replace('/login');
     })
   };
@@ -109,8 +126,6 @@ const editDB = (nickname, mbti, imgfile) => {
       headers : {Authorization:token,
         'Content-Type': 'application/json;charset=UTF-8'}
     }).then(function(response){
-      console.log(response)
-      // return;
       sessionStorage.removeItem('nickname')
       sessionStorage.removeItem('mbti')
       sessionStorage.removeItem('profile')
@@ -121,7 +136,11 @@ const editDB = (nickname, mbti, imgfile) => {
       history.push('/MyPage')
     })
     .catch((err) => {
-      window.alert(err.response.data.errorMessage)
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '회원정보를 수정하는데 문제가 발생했습니다.'
+      })
     })
   }
 }

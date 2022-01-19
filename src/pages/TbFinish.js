@@ -7,13 +7,14 @@ import thandbagend from "../static/images/thandbag/one_thandbagend.png";
 import thandbagend2 from "../static/images/thandbag/two_thandbagend.png";
 import thandbagend3 from "../static/images/thandbag/three_thandbagend.png";
 import api from "../shared/Api";
+import Swal from "sweetalert2";
 
 const TbFinish = (props) => {
   const token = sessionStorage.getItem("token");
   const postid = props.match.params.postid;
   const [user, setUsers] = React.useState("");
   const is_level = history.location.state.level;
-  console.log(history)
+  
   React.useEffect(() => {
     api
       .post(
@@ -30,7 +31,11 @@ const TbFinish = (props) => {
         setUsers(response.data);
       })
       .catch((err) => {
-        window.alert("유저정보를 불러오는데 문제가 발생했습니다");
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '유저정보를 불러오는데 문제가 발생했습니다.'
+        })
       });
   }, []);
   return (

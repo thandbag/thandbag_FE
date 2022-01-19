@@ -15,7 +15,6 @@ const TbList = (props) => {
   const is_loaded = useSelector((state) => state.card.is_loaded);
   const card_list = useSelector((state) => state.card.card_list);
   const is_append_loaded = useSelector((state) => state.card.is_append_loaded);
-  console.log(card_list);
   const dispatch = useDispatch();
 
   const scrollCardList = (e) => {

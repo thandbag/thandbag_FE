@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { actionCreators as commentActions } from "./comment";
 import { produce } from "immer";
 import api from "../../shared/Api";
+import Swal from "sweetalert2";
 
 // **** Action type **** //
 const SEARCH_CARD = "SEARCH_CARD";
@@ -19,7 +20,6 @@ const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
 const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
 const getTwoDetailCard = createAction(TWO_DETAIL_CARD, (card) => ({ card }));
-const getOneDetailCard = createAction(ONE_DETAIL_CARD, (card) => ({ card }));
 const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
 const setMyList = createAction(SET_MY_LIST, (my_list) => ({ my_list }));
 const getThankUser = createAction(GET_THANK_USER, (user) => ({ user }));
@@ -47,10 +47,13 @@ const initialState = {
   pageNumber: 1,
 };
 
+
+
 // **** Middleware **** //
 
 const getCardListDB = (pageNo = 0, sizeNo = 5) => {
   return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
     await api
       .get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`)
       .then(function (response) {
@@ -58,7 +61,14 @@ const getCardListDB = (pageNo = 0, sizeNo = 5) => {
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
+        
       });
   };
 };
@@ -67,7 +77,6 @@ const appendCardListDB = (sizeNo = 5) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     dispatch(setIsAppendLoaded(false));
-    console.log(getState());
     await api
       .get(
         `/api/thandbagList?page=${getState().card.pageNumber}&size=${sizeNo}`,
@@ -81,7 +90,13 @@ const appendCardListDB = (sizeNo = 5) => {
         dispatch(setIsAppendLoaded(true));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 추가하는데 문제가 발생했습니다.'
+          })
+        }
         dispatch(setIsAppendLoaded(true));
       });
   };
@@ -103,7 +118,14 @@ const getMyCardListDB = () => {
 
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
+        
       });
   };
 };
@@ -121,7 +143,13 @@ const getCardTwoDetailDB = (postid) => {
         dispatch(commentActions.setComment(response.data.comments));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -133,11 +161,15 @@ const getCardOneDetailDB = (postid) => {
     await api
       .get(`api/visitor/thandbag/${postid}`)
       .then(function (response) {
-        console.log(response)
-        dispatch(getOneDetailCard(response.data));
+        dispatch(getTwoDetailCard(response.data));
+        dispatch(commentActions.setComment(response.data.comments));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.");
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '생드백을 불러오는데 문제가 발생했습니다.'
+        })
       });
   };
 };
@@ -152,7 +184,11 @@ const findCardDB = (keyword) => {
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.");
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '생드백을 불러오는데 문제가 발생했습니다.'
+        })
       });
   };
 };
@@ -174,7 +210,13 @@ const postHitCountDB = (postid, hitcount, pastHitcount) => {
       .then(function (response) {
       })
       .catch((err) => {
-        window.alert("문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -208,7 +250,13 @@ const sendCardDB = (category, title, content, img, share) => {
       })
 
       .catch((err) => {
-        window.alert("생드백 작성 실패!");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백 작성실패!'
+          })
+        }
       });
   };
 };

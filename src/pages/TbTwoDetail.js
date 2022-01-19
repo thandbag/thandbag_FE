@@ -20,13 +20,10 @@ const TbTwoDetail = (props) => {
 
   React.useEffect(() => {
     if(token){
-      window.alert('로그인이다')
-      // dispatch(cardActions.getCardTwoDetailDB(postid));
+      dispatch(cardActions.getCardTwoDetailDB(postid));
     } else {
-      window.alert('로그인 아니다')
-      // dispatch(cardActions.getCardOneDetailDB(postid))
+      dispatch(cardActions.getCardOneDetailDB(postid))
     }
-    
     
   }, []);
 

@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
 import { useSpring, animated } from "@react-spring/web";
+import Swal from "sweetalert2";
 
 const Join = (props) => {
   const dispatch = useDispatch();
@@ -84,7 +85,11 @@ const Join = (props) => {
       nickname == "" ||
       mbti === 0
     ) {
-      window.alert("Please fill in all blanks");
+      Swal.fire({
+        icon: 'warning',
+        title: '앗!',
+        text: '빈값을 다 채워주세요'
+      })
       return;
     } else {
       dispatch(

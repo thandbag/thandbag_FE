@@ -33,6 +33,7 @@
     "stompjs": "^2.3.3",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4",
+    "sweetalert2": "^11.3.6",
     "swiper": "^7.3.4",
     "web-vitals": "^2.1.0"
   },

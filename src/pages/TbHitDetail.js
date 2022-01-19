@@ -20,6 +20,7 @@ import effect1 from "../static/images/thandbag/effect1.svg";
 import effect2 from "../static/images/thandbag/effect2.svg";
 import hit from "../static/images/Hit.svg";
 import api from "../shared/Api";
+import Swal from "sweetalert2";
 
 const TbHitDetail = (props) => {
   const token = sessionStorage.getItem("token");
@@ -76,7 +77,11 @@ const TbHitDetail = (props) => {
         setCounts(response.data.totalHitCount);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '생드백 Hit수를 불러오는데 문제가 발생했습니다.'
+        })
       });
   }, []);
 

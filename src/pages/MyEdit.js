@@ -4,6 +4,7 @@ import Heads from "../components/Heads";
 import { useDispatch } from "react-redux";
 import { Grid, Text, Image, Input, Button, Select } from "../elements/TbIndex";
 import { actionCreators as userActions } from "../redux/modules/user";
+import Swal from "sweetalert2";
 
 const MyEdit = (props) => {
   const profile = sessionStorage.getItem("profile");
@@ -55,7 +56,11 @@ const MyEdit = (props) => {
 
   const clickEdit = () => {
     if (mbti == 0 || nickname == "") {
-      window.alert("빈칸을 채워주세요");
+      Swal.fire({
+        icon: 'warning',
+        title: '앗!',
+        text: '빈값을 다 채워주세요'
+      })
       return;
     } else {
       dispatch(userActions.editDB(nickname, mbti, fileInput.current.files[0]));
