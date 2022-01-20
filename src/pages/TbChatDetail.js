@@ -14,7 +14,7 @@ const TbChatDetail = (props) => {
 
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.chat.message);
-  const sock = new SockJs("http://3.38.7.220/ws-stomp");
+  const sock = new SockJs("https://todays-table.shop/ws-stomp");
   const stomp = StompJs.over(sock);
   const token = {Authorization: sessionStorage.getItem("token")};
   const roomId = props.match.params.roomid;

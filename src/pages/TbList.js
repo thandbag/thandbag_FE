@@ -14,18 +14,7 @@ import { actionCreators as cardActions } from "../redux/modules/card";
 const TbList = (props) => {
   const is_loaded = useSelector((state) => state.card.is_loaded);
   const card_list = useSelector((state) => state.card.card_list);
-  const is_append_loaded = useSelector((state) => state.card.is_append_loaded);
   const dispatch = useDispatch();
-
-  const scrollCardList = (e) => {
-    if (!is_append_loaded) return;
-    const scrollTop = e.target.scrollTop;
-    const cardListHeight = e.target.scrollHeight;
-    const contentsHeight = e.target.offsetHeight;
-    if ((cardListHeight - contentsHeight) * 0.99 < scrollTop) {
-      dispatch(cardActions.appendCardListDB());
-    }
-  };
 
   return (
     <Container>
@@ -52,7 +41,7 @@ const TbList = (props) => {
           <TbListModal />
         </Grid>
       </Grid>
-      <CardList onScroll={scrollCardList}>
+      <CardList>
         <TbCardAll></TbCardAll>
       </CardList>
       <Grid

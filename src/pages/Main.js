@@ -14,7 +14,7 @@ import { useSpring, animated } from "@react-spring/web";
 const Main = (props) => {
   const dispatch = useDispatch();
   const alarm = useSelector((state) => state.chat.alarm);
-  const sock = new SockJs("http://3.38.7.220/ws-stompAlarm");
+  const sock = new SockJs("https://todays-table.shop/ws-stompAlarm");
   const stomp = StompJs.over(sock);
   const userId = sessionStorage.getItem("userId");
   const token = {
