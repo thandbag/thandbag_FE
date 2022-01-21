@@ -87,7 +87,6 @@ const likeCommentDB = (bool, commentId) => {
         }
       )
       .then(function (response) {
-        console.log(response)
         dispatch(plusLike(response.data));
       })
       .catch((err) => {
@@ -112,7 +111,6 @@ export default handleActions(
       }),
     [SEARCH_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.search)
         const my_mbti = sessionStorage.getItem("mbti");
         const mbti_find = draft.comment_list.filter((c) => {
           return c.mbti == my_mbti

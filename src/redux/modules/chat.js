@@ -13,7 +13,6 @@ const GET_ALARM = "GET_ALARM";
 const DELETE_ALARM = "DELETE_ALARM";
 const INCREASE_PAGE_NUM = "INCREASE_PAGE_NUM";
 const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
-const SET_IS_CARD_LIST_LOAD_COMPLETE = "SET_IS_CARD_LIST_LOAD_COMPLETE";
 const APPEND_NOTICE_LIST = "APPEND_NOTICE_LIST";
 
 // **** Action creator **** //
@@ -30,10 +29,6 @@ const increasePageNum = createAction(INCREASE_PAGE_NUM);
 const setIsAppendLoaded = createAction(
   SET_IS_APPEND_LOADED,
   (is_append_loaded) => ({ is_append_loaded })
-);
-const setIsCardListLoadComplete = createAction(
-  SET_IS_CARD_LIST_LOAD_COMPLETE,
-  (is_card_list_load_complete) => ({ is_card_list_load_complete })
 );
 const appendNoticeList = createAction(APPEND_NOTICE_LIST, (notice) => ({
   notice,
@@ -150,13 +145,11 @@ const appendNoticeListDB = (sizeNo = 8) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     dispatch(setIsAppendLoaded(false));
-    console.log("api 시작!");
     await api
       .get(`/api/alarm?page=${getState().chat.pageNumber}&size=${sizeNo}`, {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log("notice : ", response.data);
         dispatch(appendNoticeList(response.data));
         dispatch(increasePageNum());
         dispatch(setIsAppendLoaded(true));
@@ -204,7 +197,6 @@ export default handleActions(
       }),
     [SET_CHAT_MSG]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.chats);
         draft.message = action.payload.chats;
         draft.is_loaded = true;
       }),
@@ -219,7 +211,6 @@ export default handleActions(
       }),
     [APPEND_NOTICE_LIST]: (state, action) =>
       produce(state, (draft) => {
-        console.log("notice : ", action.payload.notice);
         if (action.payload.notice.length === 0) {
           draft.is_card_list_load_complete = true;
           return;
@@ -228,7 +219,6 @@ export default handleActions(
       }),
     [INCREASE_PAGE_NUM]: (state, action) =>
       produce(state, (draft) => {
-        console.log(draft.pageNumber);
         draft.pageNumber += 1;
       }),
     [SET_IS_APPEND_LOADED]: (state, action) =>

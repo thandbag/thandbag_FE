@@ -14,7 +14,7 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const API_key = "2bbe979f5fff3c4ab9f79ad6a7be6729";
   const Redirect_URI =
-    "http://junmyung.site.s3-website.ap-northeast-2.amazonaws.com/user/kakao/callback";
+    "https://thandbag.com/user/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_key}&redirect_uri=${Redirect_URI}&response_type=code`;
 
   // 이메일, 비밀번호 상태관리//

@@ -25,6 +25,7 @@ const TbList = (props) => {
     from: { opacity: 0 },
   });
 
+
   return (
     <animated.div style={fadeIn}>
     <Container>
@@ -51,17 +52,29 @@ const TbList = (props) => {
           <TbListModal />
         </Grid>
       </Grid>
-        <CardList>
-          <TbCardAll></TbCardAll>
-        </CardList>
-        <WriteBox
-          onClick={() => {
-            history.push("/TbWrite");
-          }}
-        >
-          <Write className="write_icon" width="27" height="27" />
-        </WriteBox>
-        {!is_loaded && <TbLoading />}
+      <CardList>
+        <TbCardAll></TbCardAll>
+      </CardList>
+      <Grid
+        width="60px"
+        height="60px"
+        radius="100%"
+        bg="#fff"
+        shadow="0px 4px 12px rgb(0, 0, 0, 0.3)"
+        position="absolute"
+        right="20px"
+        bottom="60px"
+        flex="flex"
+        cursor="pointer"
+        zIndex="7"
+        _onClick={() => {
+          history.push("/TbWrite");
+        }}
+      >
+        <Write width="27" height="27" />
+      </Grid>
+      {!is_loaded && <TbLoading />}
+
     </Container>
     </animated.div>
   );

@@ -3,8 +3,6 @@ import styled from "styled-components";
 import gimoling from "../static/images/strike_effect.gif";
 
 const Effect = ({ cursorPosition, isVisible }) => {
-  console.log(isVisible);
-  console.log(cursorPosition);
   return (
     <EffectStyle
       cursorPosition={cursorPosition}

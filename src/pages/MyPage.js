@@ -28,7 +28,6 @@ const MyPage = (props) => {
     const cardListHeight = e.target.scrollHeight;
     const contentsHeight = e.target.offsetHeight;
     if ((cardListHeight - contentsHeight) * 0.99 < scrollTop) {
-      console.log("무한스크롤 시작!");
       dispatch(cardActions.appendMyCardListDB());
     }
   };

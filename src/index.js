@@ -7,6 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'; 
+
+
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,5 +17,9 @@ ReactDOM.render(
     <App />
   </Provider>,
   document.getElementById("root")
+  
 );
+
+serviceWorkerRegistration.register();
+
 reportWebVitals();

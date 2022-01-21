@@ -19,7 +19,6 @@ const TbTwoDetail = (props) => {
   const is_loaded = useSelector((state) => state.card.is_loaded);
   const token = sessionStorage.getItem("token");
 
-  console.log(card);
   React.useEffect(() => {
     if (token) {
       dispatch(cardActions.getCardTwoDetailDB(postid));
