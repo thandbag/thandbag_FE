@@ -110,7 +110,6 @@ const TbWrite = (props) => {
             size="24px"
             padding=" 0 20px"
           />
-        </Grid>
         <Grid width="100%" height="auto">
           <TbTextEditor
             checkState={checkState}
