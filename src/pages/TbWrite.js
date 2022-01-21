@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 import { history } from "../redux/configureStore";
 import Swal from "sweetalert2";
+import { useSpring, animated } from "react-spring";
+
 
 const TbWrite = (props) => {
   const dispatch = useDispatch();
@@ -25,7 +27,6 @@ const TbWrite = (props) => {
     const currentTitle = e.target.value;
     setTitle(currentTitle);
   };
-
 
   //모달
   const [showModal, setShowModal] = useState(false);
@@ -58,6 +59,16 @@ const TbWrite = (props) => {
     }
   };
 
+  const fadeIn = useSpring({
+    config: {
+      duration: 300,
+    },
+    width: "100%",
+    opacity: 1,
+    from: { opacity: 0 },
+  });
+
+
   return (
     <>
       <TbModalThree showModal={showModal} setShowModal={setShowModal} />
@@ -69,13 +80,30 @@ const TbWrite = (props) => {
           color="#333"
           text="생드백 만들기"
         />
-        <Grid width="100%" height="auto" margin="70px 0 0 0">
-          <TbWriteSelect category={category} setCategory={setCategory} />
-        </Grid>
-        <Grid width="100%" height="59px">
-          <Input
-            _onChange={getTitle}
-            value={title}
+        <animated.div style={fadeIn}>
+          <Grid width="100%" height="auto" margin="70px 0 0 0">
+            <TbWriteSelect category={category} setCategory={setCategory} />
+          </Grid>
+          <Grid width="100%" height="59px">
+            <Input
+              _onChange={getTitle}
+              value={title}
+              width="100%"
+              height="100%"
+              placeholder="제목"
+              size="24px"
+              padding=" 0 20px"
+            />
+          </Grid>
+          <Grid width="100%" height="auto">
+            <TbTextEditor
+              checkState={checkState}
+              setCheckState={setCheckState}
+              content={content}
+              setContent={setContent}
+            />
+          </Grid>
+          <Grid
             width="100%"
             height="100%"
             placeholder="제목"
@@ -127,6 +155,7 @@ const TbWrite = (props) => {
             }}
           />
         </Grid>
+        </animated.div>
       </Container>
     </>
   );

@@ -307,9 +307,9 @@ const CardLv = styled.div`
 
 const BgBox = styled.div`
   width: 100%;
-  height: 100%;
+  height: 90vh;
   position: absolute;
-  top: 4%;
+  top: 5%;
   left: 0;
   background-color: #fbf7f7;
   background-image: url(${NoThandBag});

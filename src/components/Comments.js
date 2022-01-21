@@ -98,12 +98,12 @@ const Comments = (props) => {
     return (
       <React.Fragment>
         <Grid width="100%" flex="flex" borderB bg="#fff" padding="0 20px">
-          <Grid width="50%" padding="16px 0" flex="flex" justify="flex-start">
+          <Grid width="20%" padding="16px 0" flex="flex" justify="flex-start">
             <Comment width="20" height="20" />
             <Text margin="0 0 0 5px">{count}</Text>
           </Grid>
-          <Grid width="50%" padding="16px 0" flex="flex" justify="flex-end">
-            <Text margin="0 10px 0 0" width="auto">
+          <Grid width="80%" padding="16px 0" flex="flex" justify="flex-end">
+            <Text margin="0 10px 0 0" width="auto" size="1.2rem">
               나와 같은 MBTI만 보기
             </Text>
             <input

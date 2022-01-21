@@ -8,6 +8,7 @@ import { ReactComponent as KakaoBtn } from "../static/images/kakao_btn.svg";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
 import { useSpring, animated } from "@react-spring/web";
 import Swal from "sweetalert2";
+import "../shared/style.css";
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -198,6 +199,5 @@ const JoinLink = styled.p`
     color: #111111;
   }
 `;
-
 
 export default Login;

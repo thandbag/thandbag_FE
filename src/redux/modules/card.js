@@ -52,10 +52,7 @@ const initialState = {
   is_card_list_load_complete: false,
 };
 
-
-
 // **** Middleware **** //
-
 const getCardListDB = (pageNo = 0, sizeNo = 1000) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
@@ -72,10 +69,10 @@ const getCardListDB = (pageNo = 0, sizeNo = 1000) => {
             text: '생드백을 불러오는데 문제가 발생했습니다.'
           })
         }
-        
       });
   };
 };
+
 
 
 const getMyCardListDB = () => {
