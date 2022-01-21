@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Grid, Text, Image, Button } from "../elements/TbIndex";
+import React from "react";
+import { Grid, Text, Image } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
 import TbModalTwoButton from "./TbModals/TbModalTwoButton";
 import { ReactComponent as SettingButton } from "../static/icons/setting_button.svg";
@@ -50,7 +50,7 @@ import { ReactComponent as CLevelThree } from "../static/icons/lv icons_comment/
 const UserProfile = (props) => {
   const nickname = sessionStorage.getItem("nickname");
   const mbti = sessionStorage.getItem("mbti");
-  const level = sessionStorage.getItem("level");
+  // const level = sessionStorage.getItem("level");
   const profile = sessionStorage.getItem("profile");
 
   
@@ -69,6 +69,8 @@ const UserProfile = (props) => {
     chat_user,
     mypage_user,
   } = props;
+
+  console.log(mypage_user)
 
   const styles = {
     size: size,
@@ -106,25 +108,57 @@ const UserProfile = (props) => {
                   >
                     <Grid
                       width="auto"
-                      padding="3px 8px"
-                      bg="#FF5454"
-                      flex="flex"
-                      radius="20px"
                       margin="0 4px 0 0"
                     >
                       <Text color="#fff" size="0.9rem" bold="400">
-                        {mbti}
+                        {mypage_user[1] === "ENFJ" ? (
+                          <ENFJ />
+                        ) : mypage_user[1] === "INFP" ? (
+                          <INFP />
+                        ) : mypage_user[1] === "ENFP" ? (
+                          <ENFP />
+                        ) : mypage_user[1] === "ENTJ" ? (
+                          <ENTJ />
+                        ) : mypage_user[1] === "ESFP" ? (
+                          <ESFP />
+                        ) : mypage_user[1] === "ESTJ" ? (
+                          <ESTJ />
+                        ) : mypage_user[1] === "ESTP" ? (
+                          <ESTP />
+                        ) : mypage_user[1] === "INFJ" ? (
+                          <INFJ />
+                        ) : mypage_user[1] === "INTJ" ? (
+                          <INTJ />
+                        ) : mypage_user[1] === "INTP" ? (
+                          <INTP />
+                        ) : mypage_user[1] === "ISFJ" ? (
+                          <ISFJ />
+                        ) : mypage_user[1] === "ISFP" ? (
+                          <ISFP />
+                        ) : mypage_user[1] === "ISTJ" ? (
+                          <ISTJ />
+                        ) : mypage_user[1] === "ISTP" ? (
+                          <ISTP />
+                        ) : mypage_user[1] === "맞춰보셈" ? (
+                          <NoMbti />
+                        ) : mypage_user[1] === "ESFJ" ? (
+                          <ESFJ />
+                        ) : mypage_user[1] === "ENTP" ? (
+                          <ENTP />
+                        ) : null}
                       </Text>
                     </Grid>
                     <Grid
                       width="auto"
-                      padding="3px 8px"
-                      bg="#333"
-                      flex="flex"
-                      radius="20px"
                     >
                       <Text color="#fff" size="0.9rem" bold="400">
-                        LV {level}
+                        {mypage_user[0] === '1' ? (
+                          <LevelOne />
+                        ) : mypage_user[0] === '2' ? (
+                          <LevelTwo />
+                        ) : mypage_user[0] === '3' ? (
+                          <LevelThree />
+                        ) : null}
                       </Text>
                     </Grid>
                   </Grid>

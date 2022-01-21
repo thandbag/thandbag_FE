@@ -16,8 +16,11 @@ const MyPage = (props) => {
   const is_card_list_load_complete = useSelector(
     (state) => state.card.is_card_list_load_complete
   );
-
+  const level = sessionStorage.getItem("level");
+  const mbti = sessionStorage.getItem("mbti");
   const dispatch = useDispatch();
+
+  const userList = [ level, mbti ];
 
   const scrollCardList = (e) => {
     if (!is_append_loaded || is_card_list_load_complete) return;
@@ -60,7 +63,7 @@ const MyPage = (props) => {
             position="absolute"
             zIndex="9"
           >
-            <UserProfile mypage_user size="26px" />
+            <UserProfile mypage_user={userList} size="26px" />
           </Grid>
           {/* 기본 리스트 없는 초기상태 */}
           <Grid

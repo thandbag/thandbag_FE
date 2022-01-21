@@ -69,14 +69,7 @@ const ThandDetail = (props) => {
                 </Grid>
               </Grid>
             ) : (
-              <Grid
-                width="20%"
-                height="50px"
-                padding="2px 0 0 0"
-                flex="flex"
-                justify="center"
-                is_align="flex-start"
-              />
+              <></>
             )}
           </Grid>
 

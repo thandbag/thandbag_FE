@@ -57,11 +57,8 @@ const initialState = {
   is_card_list_load_complete: false,
 };
 
-
-
 // **** Middleware **** //
-
-const getCardListDB = (pageNo = 0, sizeNo = 5) => {
+const getCardListDB = (pageNo = 0, sizeNo = 1000) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     await api
@@ -78,37 +75,6 @@ const getCardListDB = (pageNo = 0, sizeNo = 5) => {
             text: '생드백을 불러오는데 문제가 발생했습니다.'
           })
         }
-        
-      });
-  };
-};
-
-//전체 리스트 무한스크롤
-const appendCardListDB = (sizeNo = 1000) => {
-  return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
-    dispatch(setIsAppendLoaded(false));
-    await api
-      .get(
-        `/api/thandbagList?page=${getState().card.pageNumber}&size=${sizeNo}`,
-        {
-          headers: { Authorization: token },
-        }
-      )
-      .then(function (response) {
-        dispatch(appendCardList(response.data));
-        // dispatch(increasePageNum());
-        // dispatch(setIsAppendLoaded(true));
-      })
-      .catch((err) => {
-        if(token){
-          Swal.fire({
-            icon: 'error',
-            title: '앗!',
-            text: '생드백을 추가하는데 문제가 발생했습니다.'
-          })
-        }
-        dispatch(setIsAppendLoaded(true));
       });
   };
 };
@@ -418,7 +384,6 @@ const actionCreators = {
   postHitCountDB,
   getThankUser,
   appendMyCardListDB,
-  appendCardListDB,
   deleteCardDB,
 };
 

@@ -5,10 +5,10 @@ import TbTextEditor from "../components/TbTextEditor";
 import { Grid, Button, Input } from "../elements/TbIndex";
 import styled from "styled-components";
 import { TbModalThree } from "../components/TbModals/TbModalThree";
-import { ErrorModal } from "../components/TbModals/ErrorModal";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 import { history } from "../redux/configureStore";
+import { useSpring, animated } from "react-spring";
 
 const TbWrite = (props) => {
   const dispatch = useDispatch();
@@ -25,11 +25,6 @@ const TbWrite = (props) => {
     setTitle(currentTitle);
   };
 
-  const getContent = (e) => {
-    const currentContent = e.target.value;
-    setContent(currentContent);
-  };
-
   //모달
   const [showModal, setShowModal] = useState(false);
 
@@ -40,6 +35,15 @@ const TbWrite = (props) => {
       history.push("/TbList");
     }, 1500);
   };
+
+  const fadeIn = useSpring({
+    config: {
+      duration: 300,
+    },
+    width: "100%",
+    opacity: 1,
+    from: { opacity: 0 },
+  });
 
   return (
     <>
@@ -52,73 +56,75 @@ const TbWrite = (props) => {
           color="#333"
           text="생드백 만들기"
         />
-        <Grid width="100%" height="auto" margin="70px 0 0 0">
-          <TbWriteSelect category={category} setCategory={setCategory} />
-        </Grid>
-        <Grid width="100%" height="59px">
-          <Input
-            _onChange={getTitle}
-            value={title}
+        <animated.div style={fadeIn}>
+          <Grid width="100%" height="auto" margin="70px 0 0 0">
+            <TbWriteSelect category={category} setCategory={setCategory} />
+          </Grid>
+          <Grid width="100%" height="59px">
+            <Input
+              _onChange={getTitle}
+              value={title}
+              width="100%"
+              height="100%"
+              placeholder="제목"
+              size="24px"
+              padding=" 0 20px"
+            />
+          </Grid>
+          <Grid width="100%" height="auto">
+            <TbTextEditor
+              checkState={checkState}
+              setCheckState={setCheckState}
+              content={content}
+              setContent={setContent}
+            />
+          </Grid>
+          <Grid
             width="100%"
-            height="100%"
-            placeholder="제목"
-            size="24px"
-            padding=" 0 20px"
-          />
-        </Grid>
-        <Grid width="100%" height="auto">
-          <TbTextEditor
-            checkState={checkState}
-            setCheckState={setCheckState}
-            content={content}
-            setContent={setContent}
-          />
-        </Grid>
-        <Grid
-          width="100%"
-          height="15%"
-          flex="flex"
-          bg="#fff"
-          position="absolute"
-          bottom="0"
-        >
-          <Button
-            login
-            width="158px"
-            height="50px"
-            bg="#333"
-            text="취소"
-            radius="12px"
-            size="24px"
-            color="#fff"
-            margin="0 20px 0 0"
-            _onClick={() => {
-              history.goBack();
-            }}
-          />
-          <Button
-            login
-            width="158px"
-            height="50px"
-            bg="#333"
-            text="저장"
-            radius="12px"
-            size="24px"
-            color="#fff"
-            _onClick={() => {
-              dispatch(
-                cardActions.sendCardDB(
-                  category,
-                  title,
-                  content,
-                  null,
-                  checkState
-                )
-              );
-              openModal();
-            }}
-          />
-        </Grid>
+            height="15%"
+            flex="flex"
+            bg="#fff"
+            position="absolute"
+            bottom="0"
+          >
+            <Button
+              login
+              width="158px"
+              height="50px"
+              bg="#333"
+              text="취소"
+              radius="12px"
+              size="24px"
+              color="#fff"
+              margin="0 20px 0 0"
+              _onClick={() => {
+                history.goBack();
+              }}
+            />
+            <Button
+              login
+              width="158px"
+              height="50px"
+              bg="#333"
+              text="저장"
+              radius="12px"
+              size="24px"
+              color="#fff"
+              _onClick={() => {
+                dispatch(
+                  cardActions.sendCardDB(
+                    category,
+                    title,
+                    content,
+                    null,
+                    checkState
+                  )
+                );
+                openModal();
+              }}
+            />
+          </Grid>
+        </animated.div>
       </Container>
     </>
   );

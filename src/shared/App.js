@@ -24,6 +24,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import GlobalStyles from "../components/GlobalStyles";
 import Auth from "../shared/auth";
+import FeedBackBtn from "../components/FeedBackBtn";
 
 ReactGA.event({
   category: 'User',
@@ -75,6 +76,7 @@ function App() {
             </Switch>
           </ConnectedRouter>
         </div>
+        <FeedBackBtn />
       </Container>
     </div>
   );

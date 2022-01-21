@@ -24,7 +24,6 @@ export default (Page, checkAuth) => {
                 history.push("/main");
             }
         }, []);
-
         return <Page {...props} />
     };
     return AuthCheck;

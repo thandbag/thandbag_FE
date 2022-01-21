@@ -4,11 +4,11 @@ import { Grid, Text, Input, Button, Image } from "../elements/TbIndex";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
-import kakao from "../static/icons/kakao.svg";
 import { ReactComponent as KakaoBtn } from "../static/images/kakao_btn.svg";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
 import { useSpring, animated } from "@react-spring/web";
 import Swal from "sweetalert2";
+import "../shared/style.css";
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -159,17 +159,6 @@ const Login = (props) => {
               >
                 <KakaoBtn onClick={clickSocial} height="60px" width="220px" />
               </Grid>
-
-              {/* <Button
-                social
-                _onClick={clickSocial}
-                margin="20px 0 0 0"
-                height="60px"
-                width="220px"
-              >
-                <Icon />
-                &nbsp;카카오톡으로 로그인
-              </Button> */}
             </Grid>
             <Grid flex="flex" align="center" margin="30px 0 0 0">
               <Text color="#C4C4C4">생드백 회원이 아니신가요?&nbsp;</Text>
@@ -209,18 +198,6 @@ const JoinLink = styled.p`
   &:hover {
     color: #111111;
   }
-`;
-
-const Icon = styled.div`
-  display: inline-block;
-  position: absolute;
-  left: 115px;
-  width: 27px;
-  height: 27px;
-  background-image: url(${kakao});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 90%;
 `;
 
 export default Login;
