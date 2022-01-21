@@ -8,6 +8,7 @@ import { TbModalThree } from "../components/TbModals/TbModalThree";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 import { history } from "../redux/configureStore";
+import Swal from "sweetalert2";
 
 const TbWrite = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const TbWrite = (props) => {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("카테고리를 선택하세요");
   const [checkState, setCheckState] = useState(true);
+
 
   //제목 내용 가져오기
   const getTitle = (e) => {
@@ -34,6 +36,26 @@ const TbWrite = (props) => {
       setShowModal(false);
       history.push("/TbList");
     }, 1500);
+  };
+
+  const clickTB = () => {
+    if (
+      title === "" ||
+      content === "<p><br></p>" ||
+      category === "카테고리를 선택하세요"
+    ) {
+      Swal.fire({
+        icon: 'warning',
+        title: '앗!',
+        text: '빈값을 다 채워주세요'
+      })
+      return;
+    } else {
+      dispatch(
+        cardActions.sendCardDB(category, title, content, null, checkState)
+      );
+      openModal();
+    }
   };
 
   return (
@@ -101,16 +123,7 @@ const TbWrite = (props) => {
             size="24px"
             color="#fff"
             _onClick={() => {
-              dispatch(
-                cardActions.sendCardDB(
-                  category,
-                  title,
-                  content,
-                  null,
-                  checkState
-                )
-              );
-              openModal();
+              clickTB()
             }}
           />
         </Grid>

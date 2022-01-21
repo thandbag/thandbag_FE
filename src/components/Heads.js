@@ -83,20 +83,22 @@ const Heads = (props) => {
             left="10px"
             flex="flex"
           >
+            {modal === true ? <></>:
             <BackIcon
-              onClick={() => {
-                history.replace("/main");
-              }}
-            >
-              <Arrow {...styles} width="26" height="26" />
-            </BackIcon>
+            onClick={() => {
+              history.replace("/main");
+            }}
+          >
+            <Arrow {...styles} width="26" height="26" />
+          </BackIcon>
+            }
           </Grid>
           <Grid
             width="10%"
             height="70px"
             position="absolute"
             top="0"
-            left="370px"
+            right="0"
             flex="flex"
           >
             <SearchWrap>
@@ -211,7 +213,8 @@ const Heads = (props) => {
 };
 
 const HeadBox = styled.div`
-  width: 420px;
+  max-width: 420px;
+  width: 100%;
   margin: 0 auto;
   height: auto;
   position: absolute;

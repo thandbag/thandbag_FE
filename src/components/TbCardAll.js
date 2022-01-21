@@ -82,7 +82,7 @@ const TbCardAll = (props) => {
                 <CardBottom>
                   <CardBottomNameArea>
                     <TbText Wspace="nowrap" color="#333">
-                      {c.nickname}님
+                      {c.nickname}
                     </TbText>
                   </CardBottomNameArea>
                   <CardBottomLvArea>

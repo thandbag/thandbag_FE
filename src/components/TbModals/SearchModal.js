@@ -62,14 +62,14 @@ const SearchWrap = styled.div`
 `;
 
 const SearchArea = styled.div`
-  width: 395px;
+  width: 375px;
   height: 50px;
   position: absolute;
   right: 2px;
 `;
 
 const SearchInput = styled.input`
-  width: 80%;
+  width: 70%;
   height: 60%;
   position: absolute;
   left: 10%;
