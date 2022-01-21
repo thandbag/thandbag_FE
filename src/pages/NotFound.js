@@ -41,6 +41,7 @@ const NotFoundBox = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: 999;
 `;
 
 const NotBox = styled.div`

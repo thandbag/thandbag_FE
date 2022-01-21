@@ -19,6 +19,7 @@ import { ReactComponent as NewThand } from "../static/icons/notice_icons/newthan
 import { ReactComponent as LevelUp } from "../static/icons/notice_icons/lelvelup_icon.svg";
 import { ReactComponent as WirteSelect } from "../static/icons/notice_icons/writerselect_icon.svg";
 import { actionCreators as noticeActions } from "../redux/modules/chat";
+import { Link } from "react-router-dom";
 
 const TbNotice = (props) => {
   const dispatch = useDispatch();
@@ -68,13 +69,15 @@ const TbNotice = (props) => {
             borderT
             justify="space-between"
             bg="#FBF7F7"
+            cursor="pointer"
+            _onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd9yXC3p_4yJGu5XdiBnpJFMDJGT0alrIvRt3AEx2n2pViNTQ/viewform', '_blank')}
           >
             <Grid width="10%" height="auto" flex="flex" justify="flex-start">
               <NoticeIcon />
             </Grid>
-            <Grid align="center" width="60%">
-              <Text size="15px" spacing="1px">
-                아직 등록된 공지가 없어요!
+            <Grid align="center" width="auto%">
+              <Text size="1rem" spacing="1px">
+                피드백 남기고 "스타벅스 기프티콘" 받아가세요!
               </Text>
             </Grid>
             <Grid flex="flex" justify="flex-end" width="10%">
@@ -192,9 +195,9 @@ const TbNoticeBox = styled.div`
 
 const BgBox = styled.div`
   width: 100%;
-  height: 100%;
+  height: 90vh;
   position: absolute;
-  top: 4%;
+  top: 5%;
   left: 0;
   background-color: #fbf7f7;
   background-image: url(${NoTbNotice});

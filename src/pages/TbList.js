@@ -10,13 +10,23 @@ import { ReactComponent as Write } from "../static/icons/write.svg";
 import { useDispatch, useSelector } from "react-redux";
 import TbLoading from "./TbLoading";
 import { actionCreators as cardActions } from "../redux/modules/card";
+import { useSpring, animated } from "react-spring";
 
 const TbList = (props) => {
   const is_loaded = useSelector((state) => state.card.is_loaded);
   const card_list = useSelector((state) => state.card.card_list);
   const dispatch = useDispatch();
+  const fadeIn = useSpring({
+    config: {
+      duration: 300,
+    },
+    width: "100%",
+    opacity: 1,
+    from: { opacity: 0 },
+  });
 
   return (
+    <animated.div style={fadeIn}>
     <Container>
       <Heads
         list
@@ -41,29 +51,19 @@ const TbList = (props) => {
           <TbListModal />
         </Grid>
       </Grid>
-      <CardList>
-        <TbCardAll></TbCardAll>
-      </CardList>
-      <Grid
-        width="60px"
-        height="60px"
-        radius="100%"
-        bg="#fff"
-        shadow="0px 4px 12px rgb(0, 0, 0, 0.3)"
-        position="absolute"
-        right="20px"
-        bottom="60px"
-        flex="flex"
-        cursor="pointer"
-        zIndex="7"
-        _onClick={() => {
-          history.push("/TbWrite");
-        }}
-      >
-        <Write width="27" height="27" />
-      </Grid>
-      {!is_loaded && <TbLoading />}
+        <CardList>
+          <TbCardAll></TbCardAll>
+        </CardList>
+        <WriteBox
+          onClick={() => {
+            history.push("/TbWrite");
+          }}
+        >
+          <Write className="write_icon" width="27" height="27" />
+        </WriteBox>
+        {!is_loaded && <TbLoading />}
     </Container>
+    </animated.div>
   );
 };
 
@@ -77,17 +77,46 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Line = styled.div`
-  width: 2px;
-  height: 16px;
-  background: #eee;
-`;
-
 const CardList = styled.div`
   width: 100%;
   height: auto;
   max-height: 100vh;
   overflow-y: scroll;
+`;
+
+const WriteBox = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background-color: #fff;
+  box-shadow: 0px 4px 12px rgb(0, 0, 0, 0.3);
+  position: absolute;
+  right: 20px;
+  bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 7;
+
+  &:hover {
+    background-color: #ff5454;
+    transition: 0.3s;
+  }
+  &:not(:hover) {
+    background-color: #fff;
+    transition: 0.3s;
+  }
+
+  &:hover > .write_icon {
+    fill: #fff !important;
+    transition: 0.3s;
+  }
+
+  &:not(:hover) > .write_icon {
+    fill: #555;
+    transition: 0.3s;
+  }
 `;
 
 export default TbList;

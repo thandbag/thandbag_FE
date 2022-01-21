@@ -96,6 +96,16 @@ const Nav1 = styled.div`
   flex-direction: column;
   cursor: pointer;
 
+  &:hover > .icon{
+    fill: #FF5454;
+    transition: 0.3s;
+  }
+
+  &:not(:hover) > .icon{
+    fill: #333;
+    transition: 0.3s;
+  }
+
   .icon {
     fill: #333;
   }
