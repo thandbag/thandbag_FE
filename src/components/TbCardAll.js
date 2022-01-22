@@ -50,12 +50,12 @@ const TbCardAll = (props) => {
       ) : (
         cardList.map((c) => {
           return (
-            <ListBox
+            <ListBox>
+              <CardWrap
               onClick={() => {
-                history.push(`/TbTwoDetail/${c.postId}`);
+                history.push(`/TbTwoDetail/${c.postId}`)
               }}
-            >
-              <CardWrap>
+              >
                 <CardTop>
                   <TbText bold>{c.category}</TbText>
                 </CardTop>
@@ -70,22 +70,19 @@ const TbCardAll = (props) => {
                 </Grid>
                 <CardMiddle>
                   <CardContent>
-                    <CardContentTop>
-                      <TbText bold size="20px">
-                        {c.title}
-                      </TbText>
-                    </CardContentTop>
+                    <CardContentTop>{c.title}</CardContentTop>
                     <CardContentBottom>
                       <div
+                        className="text_edit_view"
                         dangerouslySetInnerHTML={{ __html: c.content }}
-                      ></div>
+                      />
                     </CardContentBottom>
                   </CardContent>
                 </CardMiddle>
                 <CardBottom>
                   <CardBottomNameArea>
                     <TbText Wspace="nowrap" color="#333">
-                      {c.nickname}님
+                      {c.nickname}
                     </TbText>
                   </CardBottomNameArea>
                   <CardBottomLvArea>
@@ -140,8 +137,13 @@ const TbCardAll = (props) => {
                     <Grid width="1px" height="40%" bg="#eee" />
                   </Grid>
                   <CardBottomCommentArea>
-                    <Comment width="20" height="20" />
-                    <TbText margin="0px 0px 0px 5px" color="#333">
+                    <Comment width="18" height="18" />
+                    <TbText
+                      margin="0px 0px 4px 5px"
+                      color="#333"
+                      size="1rem"
+                      family="NotoSansCJK"
+                    >
                       {c.commentCount}
                     </TbText>
                   </CardBottomCommentArea>
@@ -151,6 +153,7 @@ const TbCardAll = (props) => {
                       size="12px"
                       bold="bold"
                       family="NotoSansCJK"
+                      spacing="-1px"
                     >
                       {c.createdAt}
                     </TbText>
@@ -180,6 +183,7 @@ const CardWrap = styled.div`
   margin: 20px auto;
   margin-bottom: 40px;
   position: relative;
+  cursor: pointer;
 `;
 
 const CardTop = styled.div`
@@ -204,20 +208,39 @@ const CardMiddle = styled.div`
 const CardContent = styled.div`
   width: 90%;
   height: 80%;
+  overflow: hidden;
   background-color: #fff;
 `;
 
 const CardContentTop = styled.div`
-  width: 100%;
+  width: 80%;
   height: 30%;
+  font-size: 18px;
+  padding-top: 1%;
   background-color: #fff;
-  text-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const CardContentBottom = styled.div`
   width: 100%;
   height: 70%;
+  line-height: 1.4rem;
+  letter-spacing: -0.5px;
+  font-size: 1rem;
+  font-family: "NotoSansCJK" !important;
   background-color: #fff;
+  word-break: break-all;
+
+  .text_edit_view {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-top: 2%;
+  }
 `;
 
 const CardBottom = styled.div`
@@ -260,12 +283,13 @@ const CardBottomCommentArea = styled.div`
 `;
 
 const CardBottomTimeArea = styled.div`
-  width: auto;
+  width: 40px;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 6px;
+  white-space: nowrap;
 `;
 
 const CardMbti = styled.div`

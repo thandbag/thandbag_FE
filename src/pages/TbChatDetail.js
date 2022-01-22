@@ -9,20 +9,22 @@ import Message from "../components/Message";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
+import { useSpring, animated } from "react-spring";
 
 const TbChatDetail = (props) => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.chat.message);
-  const sock = new SockJs("http://3.38.7.220/ws-stomp");
+  const sock = new SockJs("https://todays-table.shop/ws-stomp");
   const stomp = StompJs.over(sock);
-  const token = {
-    Authorization: sessionStorage.getItem("token"),
-  };
+  const token = { Authorization: sessionStorage.getItem("token") };
   const roomId = props.match.params.roomid;
   const sender_nick = sessionStorage.getItem("nickname");
   const now = moment().format("hh:mm A");
 
   const [message, setMessage] = React.useState("");
+  const messageScroll = React.useRef();
+  const now_message = React.useRef("");
+  const msg = now_message.current;
 
   React.useEffect(() => {
     if (!token) {
@@ -53,14 +55,13 @@ const TbChatDetail = (props) => {
           `/sub/chat/room/${roomId}`,
           (data) => {
             const newMessage = JSON.parse(data.body);
+            console.log(newMessage);
             dispatch(chatActions.addMessage(newMessage));
           },
           token
         );
       });
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   };
 
   const stompDisConnect = () => {
@@ -70,17 +71,15 @@ const TbChatDetail = (props) => {
         stomp.unsubscribe("sub-0");
         clearTimeout(waitForConnect);
       }, token);
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   };
 
-  const waitForConnect = (stomp, callback) => {
+  const waitForConnect = (ws, callback) => {
     setTimeout(() => {
-      if (stomp.stomp.readyState === 1) {
+      if (stomp.ws.readyState === 1) {
         callback();
       } else {
-        waitForConnect(stomp, callback);
+        waitForConnect(ws, callback);
       }
     }, 0.1);
   };
@@ -91,19 +90,47 @@ const TbChatDetail = (props) => {
 
   const SendMessage = () => {
     stomp.debug = null;
+    if (message === "") {
+      return;
+    }
     const data = {
       type: "TALK",
       roomId: roomId,
       sender: sender_nick,
-      message: message,
+      message: msg.defaultValue,
       createdAt: now,
     };
     waitForConnect(stomp, () => {
       stomp.debug = null;
+      stomp.send("/pub/chat/message", token, JSON.stringify(data));
     });
-    stomp.send("/pub/chat/message", token, JSON.stringify(data));
     setMessage("");
   };
+
+  const onEnterPress = (e) => {
+    if (e.key === "Enter") {
+      SendMessage();
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (messageScroll.current) {
+      messageScroll.current.scrollTop = messageScroll.current.scrollHeight;
+    }
+  };
+
+  React.useEffect(() => {
+    scrollToBottom();
+  }, [contents.length]);
+
+  const fadeIn = useSpring({
+    config: {
+      duration: 300,
+    },
+    width: "100%",
+    opacity: 1,
+    from: { opacity: 0 },
+  });
 
   return (
     <>
@@ -114,50 +141,55 @@ const TbChatDetail = (props) => {
           bg="#fff"
           stroke="#333"
           color="#333"
-          text="닉네임"
+          text={history.location.state}
         />
-        <Container>
-          <Grid>
-            {contents?.map((m, idx) => {
-              return <Message messageInfo={m} />;
-            })}
+        <animated.div style={fadeIn}>
+          <Container ref={messageScroll}>
+            <Grid>
+              {contents?.map((m, idx) => {
+                return <Message messageInfo={m} />;
+              })}
+            </Grid>
+          </Container>
+          <Grid
+            position="fixed"
+            bottom="0"
+            borderB
+            borderT
+            padding="26px 20px"
+            width="100%"
+            maXwidth="420px"
+            flex="flex"
+            bg="#fff"
+            justify="space-between"
+          >
+            <Input
+              ref={now_message}
+              _onKeyDown={onEnterPress}
+              value={message}
+              _onChange={addMessage}
+              placeholder="채팅을 남겨주세요"
+              boxSizing="border-box"
+              size="17px"
+              bg="#FBF7F7"
+              color="#FF5454"
+              radius="10px"
+              padding="10px 15px"
+              width="75%"
+            />
+            <Button
+              _onClick={SendMessage}
+              bg="#333"
+              size="20px"
+              padding="0 0 3px 0"
+              color="#fff"
+              radius="10px"
+              height="40px"
+              width="20%"
+              text="전송"
+            />
           </Grid>
-        </Container>
-        <Grid
-          position="fixed"
-          bottom="0"
-          borderB
-          borderT
-          padding="26px 20px"
-          width="420px"
-          flex="flex"
-          bg="#fff"
-          justify="space-between"
-        >
-          <Input
-            value={message}
-            _onChange={addMessage}
-            placeholder="채팅을 남겨주세요"
-            boxSizing="border-box"
-            size="17px"
-            bg="#FBF7F7"
-            color="#FF5454"
-            radius="10px"
-            padding="10px 15px"
-            width="300px"
-          />
-          <Button
-            _onClick={SendMessage}
-            bg="#333"
-            size="20px"
-            padding="0 0 3px 0"
-            color="#fff"
-            radius="10px"
-            height="40px"
-            width="60px"
-            text="전송"
-          />
-        </Grid>
+        </animated.div>
       </Grid>
     </>
   );

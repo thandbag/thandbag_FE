@@ -6,7 +6,7 @@ import { ReactComponent as Arrow } from "../static/icons/arrow.svg";
 import { ReactComponent as SearchIcon } from "../static/icons/icon_search.svg";
 import { ReactComponent as SearchIconBlack } from "../static/icons/icon_search_black.svg";
 import { ReactComponent as ThandbagLogo } from "../static/icons/thandbag_logo.svg";
-import SearchModal from "../components/SearchModal";
+import SearchModal from "./TbModals/SearchModal";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 const Heads = (props) => {
@@ -16,6 +16,7 @@ const Heads = (props) => {
     is_anoter,
     list,
     post_id,
+    pastHitcount,
     hitcount,
     hit,
     chat,
@@ -49,7 +50,7 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
             <BackIcon
@@ -60,26 +61,6 @@ const Heads = (props) => {
               <Arrow {...styles} width="26" height="26" />
             </BackIcon>
           </Grid>
-          <Grid
-            width="10%"
-            height="70px"
-            position="absolute"
-            top="0"
-            left="370px"
-            flex="flex"
-          >
-            <SearchWrap {...styles}>
-              <SearchIcon
-                {...styles}
-                width="26"
-                height="26"
-                onClick={() => {
-                  setModal(true);
-                }}
-              />
-            </SearchWrap>
-            {modal === true ? <SearchModal setModal={setModal} /> : null}
-          </Grid>
           <Grid width="100%" height="70px" flex="flex">
             <Text size="1.4rem" {...styles}>
               {props.text}
@@ -89,6 +70,7 @@ const Heads = (props) => {
       </React.Fragment>
     );
   }
+
   if (list) {
     return (
       <React.Fragment>
@@ -98,23 +80,25 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
+            {modal === true ? <></>:
             <BackIcon
-              onClick={() => {
-                history.replace("/main");
-              }}
-            >
-              <Arrow {...styles} width="26" height="26" />
-            </BackIcon>
+            onClick={() => {
+              history.replace("/main");
+            }}
+          >
+            <Arrow {...styles} width="26" height="26" />
+          </BackIcon>
+            }
           </Grid>
           <Grid
             width="10%"
             height="70px"
             position="absolute"
             top="0"
-            left="370px"
+            right="0"
             flex="flex"
           >
             <SearchWrap>
@@ -148,7 +132,7 @@ const Heads = (props) => {
             height="70px"
             position="absolute"
             top="0"
-            left="20px"
+            left="10px"
             flex="flex"
           >
             <BackIcon
@@ -184,7 +168,9 @@ const Heads = (props) => {
           >
             <BackIcon
               onClick={() => {
-                dispatch(cardActions.postHitCountDB(post_id, hitcount));
+                dispatch(
+                  cardActions.postHitCountDB(post_id, hitcount, pastHitcount)
+                );
                 history.goBack();
               }}
             >
@@ -227,7 +213,8 @@ const Heads = (props) => {
 };
 
 const HeadBox = styled.div`
-  width: 420px;
+  max-width: 420px;
+  width: 100%;
   margin: 0 auto;
   height: auto;
   position: absolute;

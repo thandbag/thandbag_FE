@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Grid, Text, Image, Button } from "../elements/TbIndex";
+import React from "react";
+import { Grid, Text, Image } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
-import TbModalTwoButton from "./TbModalTwoButton";
+import TbModalTwoButton from "./TbModals/TbModalTwoButton";
 import { ReactComponent as SettingButton } from "../static/icons/setting_button.svg";
 import styled from "styled-components";
 
@@ -48,12 +48,12 @@ import { ReactComponent as CLevelTwo } from "../static/icons/lv icons_comment/Pr
 import { ReactComponent as CLevelThree } from "../static/icons/lv icons_comment/Property 1=Default_3.svg";
 
 const UserProfile = (props) => {
-  const userId = sessionStorage.getItem("userId");
   const nickname = sessionStorage.getItem("nickname");
   const mbti = sessionStorage.getItem("mbti");
-  const level = sessionStorage.getItem("level");
+  // const level = sessionStorage.getItem("level");
   const profile = sessionStorage.getItem("profile");
 
+  
   const {
     one_user,
     two_user,
@@ -70,6 +70,8 @@ const UserProfile = (props) => {
     mypage_user,
   } = props;
 
+  console.log(mypage_user)
+
   const styles = {
     size: size,
     Isize: Isize,
@@ -78,7 +80,7 @@ const UserProfile = (props) => {
     chat_user: chat_user,
     mypage_user: mypage_user,
   };
-
+  
   if (mypage_user) {
     return (
       <React.Fragment>
@@ -106,25 +108,57 @@ const UserProfile = (props) => {
                   >
                     <Grid
                       width="auto"
-                      padding="3px 8px"
-                      bg="#FF5454"
-                      flex="flex"
-                      radius="20px"
                       margin="0 4px 0 0"
                     >
                       <Text color="#fff" size="0.9rem" bold="400">
-                        {mbti}
+                        {mypage_user[1] === "ENFJ" ? (
+                          <ENFJ />
+                        ) : mypage_user[1] === "INFP" ? (
+                          <INFP />
+                        ) : mypage_user[1] === "ENFP" ? (
+                          <ENFP />
+                        ) : mypage_user[1] === "ENTJ" ? (
+                          <ENTJ />
+                        ) : mypage_user[1] === "ESFP" ? (
+                          <ESFP />
+                        ) : mypage_user[1] === "ESTJ" ? (
+                          <ESTJ />
+                        ) : mypage_user[1] === "ESTP" ? (
+                          <ESTP />
+                        ) : mypage_user[1] === "INFJ" ? (
+                          <INFJ />
+                        ) : mypage_user[1] === "INTJ" ? (
+                          <INTJ />
+                        ) : mypage_user[1] === "INTP" ? (
+                          <INTP />
+                        ) : mypage_user[1] === "ISFJ" ? (
+                          <ISFJ />
+                        ) : mypage_user[1] === "ISFP" ? (
+                          <ISFP />
+                        ) : mypage_user[1] === "ISTJ" ? (
+                          <ISTJ />
+                        ) : mypage_user[1] === "ISTP" ? (
+                          <ISTP />
+                        ) : mypage_user[1] === "맞춰보셈" ? (
+                          <NoMbti />
+                        ) : mypage_user[1] === "ESFJ" ? (
+                          <ESFJ />
+                        ) : mypage_user[1] === "ENTP" ? (
+                          <ENTP />
+                        ) : null}
                       </Text>
                     </Grid>
                     <Grid
                       width="auto"
-                      padding="3px 8px"
-                      bg="#333"
-                      flex="flex"
-                      radius="20px"
                     >
                       <Text color="#fff" size="0.9rem" bold="400">
-                        LV {level}
+                        {mypage_user[0] === '1' ? (
+                          <LevelOne />
+                        ) : mypage_user[0] === '2' ? (
+                          <LevelTwo />
+                        ) : mypage_user[0] === '3' ? (
+                          <LevelThree />
+                        ) : null}
                       </Text>
                     </Grid>
                   </Grid>
@@ -172,15 +206,14 @@ const UserProfile = (props) => {
                 >
                   <Grid width="80%" height="auto">
                     <React.Fragment>
-                      <Grid width="auto" {...styles} flex="flex" bg="fff">
+                      <Grid width="auto" flex="flex" bg="fff">
                         {/* 유저 프로필 사진 */}
                         <Grid
-                          {...styles}
                           width="auto"
                           height="auto"
                           flex="flex"
                         >
-                          <Image {...styles} />
+                          <Image shape="circle" Isize="60" src={u.profileImgUrl}/>
                         </Grid>
                         {/* mbti // 레벨 */}
                         <Grid
@@ -249,10 +282,10 @@ const UserProfile = (props) => {
   if (comment) {
     return (
       <React.Fragment>
-        <Grid width="auto" {...styles} flex="flex" bg="fff">
+        <Grid width="auto" {...styles} flex="flex" bg="#fff">
           {/* 유저 프로필 사진 */}
           <Grid {...styles} width="auto" height="auto" flex="flex">
-            <Image {...styles} src={comment_user.profileImgUrl} />
+            <Image {...styles} src={comment_user.profileImgUrl}  />
           </Grid>
           {/* mbti // 레벨 */}
           <Grid
@@ -265,7 +298,6 @@ const UserProfile = (props) => {
             <Grid width="100%" height="50%" flex="flex" justify="flex-start">
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
                 margin="0 4px 0 0"
@@ -310,7 +342,6 @@ const UserProfile = (props) => {
               </Grid>
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
               >
@@ -325,7 +356,7 @@ const UserProfile = (props) => {
                 </Text>
               </Grid>
             </Grid>
-            <Grid width="100%" height="50%" margin="5px 0 0 0">
+            <Grid width="100%" height="50%" margin="3px 0 0 0">
               <Text {...styles}>{comment_user.nickname}</Text>
             </Grid>
           </Grid>
@@ -352,7 +383,6 @@ const UserProfile = (props) => {
             <Grid width="100%" height="50%" flex="flex" justify="flex-start">
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
                 margin="0 4px 0 0"
@@ -397,7 +427,6 @@ const UserProfile = (props) => {
               </Grid>
               <Grid
                 width="auto"
-                padding="10px 0px 0px 0px"
                 flex="flex"
                 radius="20px"
               >
@@ -412,7 +441,7 @@ const UserProfile = (props) => {
                 </Text>
               </Grid>
             </Grid>
-            <Grid width="100%" height="50%" margin="5px 0 0 0">
+            <Grid width="100%" height="50%" margin="3px 0 0 0">
               <Text {...styles}>{two_user.nickname}</Text>
             </Grid>
           </Grid>
@@ -462,7 +491,7 @@ const UserProfile = (props) => {
                 </Text>
               </Grid>
             </Grid>
-            <Grid width="100%" height="50%" margin="5px 0 0 0">
+            <Grid width="100%" height="50%" margin="3px 0 0 0">
               <Text {...styles}>{one_user.nickname}</Text>
             </Grid>
           </Grid>

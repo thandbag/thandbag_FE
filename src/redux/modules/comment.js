@@ -1,9 +1,11 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import api from "../../shared/Api";
+import Swal from "sweetalert2";
 
 // **** Action type **** //
 const SET_COMMENT = "SET_COMMENT";
+const SEARCH_COMMENT = "SEARCH_COMMENT";
 const ADD_COMMENT = "ADD_COMMENT";
 const DELETE_COMMENT = "DELETE_COMMNET";
 const PLUS_LIKE = "PLUS_LIKE";
@@ -17,10 +19,12 @@ const deleteComment = createAction(DELETE_COMMENT, (commentId) => ({
   commentId,
 }));
 const plusLike = createAction(PLUS_LIKE, (like) => ({ like }));
+const searchComment = createAction(SEARCH_COMMENT, (search) => ({ search }));
 
 // **** Initial data **** //
 const initialState = {
   comment_list: [],
+  search_list: [],
 };
 
 // **** Middleware **** /
@@ -38,7 +42,13 @@ const sendCommentDB = (postId, comment) => {
         dispatch(addComment(response.data));
       })
       .catch((err) => {
-        window.alert("댓글작성에 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '댓글을 작성하는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -54,7 +64,13 @@ const deleteCommentDB = (commentId) => {
         dispatch(deleteComment(commentId));
       })
       .catch((err) => {
-        window.alert("댓글 삭제에 문제가 발생했습니다.");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '댓글을 삭제하는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -74,7 +90,13 @@ const likeCommentDB = (bool, commentId) => {
         dispatch(plusLike(response.data));
       })
       .catch((err) => {
-        window.alert("좋아요에 문제가 발생했습니다.")
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '좋아요에 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
@@ -85,10 +107,26 @@ export default handleActions(
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.comment_list = action.payload.comment_list;
+        draft.search_list = action.payload.comment_list;
+      }),
+    [SEARCH_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        const my_mbti = sessionStorage.getItem("mbti");
+        const mbti_find = draft.comment_list.filter((c) => {
+          return c.mbti == my_mbti
+        })
+
+        if(action.payload.search == true) {
+          draft.search_list = mbti_find;
+        } else {
+          draft.search_list = draft.comment_list
+        }
+        
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.comment_list.push(action.payload.comment);
+        draft.search_list.push(action.payload.comment);
       }),
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -96,6 +134,7 @@ export default handleActions(
           (c) => c.commentId !== action.payload.commentId
         );
         draft.comment_list = new_comment;
+        draft.search_list = new_comment;
       }),
     [PLUS_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -106,6 +145,11 @@ export default handleActions(
           ...draft.comment_list[idx],
           ...action.payload.like,
         };
+        draft.search_list[idx] = {
+          ...draft.search_list[idx],
+          ...action.payload.like,
+        };
+        
       }),
   },
   initialState
@@ -117,6 +161,7 @@ const actionCreators = {
   deleteCommentDB,
   likeCommentDB,
   setComment,
+  searchComment
 };
 
 export { actionCreators };

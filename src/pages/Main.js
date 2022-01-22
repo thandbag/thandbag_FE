@@ -14,7 +14,7 @@ import { useSpring, animated } from "@react-spring/web";
 const Main = (props) => {
   const dispatch = useDispatch();
   const alarm = useSelector((state) => state.chat.alarm);
-  const sock = new SockJs("http://3.38.7.220/ws-stompAlarm");
+  const sock = new SockJs("https://todays-table.shop/ws-stompAlarm");
   const stomp = StompJs.over(sock);
   const userId = sessionStorage.getItem("userId");
   const token = {
@@ -34,8 +34,7 @@ const Main = (props) => {
           token
         );
       });
-    } catch (e) {
-    }
+    } catch (e) {}
   }, [dispatch, alarm]);
 
   const fadeIn = useSpring({
@@ -75,7 +74,7 @@ const Main = (props) => {
             />
           </MainBodyBottom>
         </animated.div>
-        <TbNavgation />
+        <TbNavgation main={"main"} />
       </Container>
     </>
   );
@@ -103,6 +102,15 @@ const MainBodyTop = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+
+  @media all and (min-height: 944px) {
+    margin-top: 3.4vh;
+  }
+
+  @media all and (min-width: 1920px) {
+    margin-top: 3.4vh;
+  }
 `;
 
 const MainBodyBottom = styled.div`

@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { actionCreators as commentActions } from "./comment";
 import { produce } from "immer";
 import api from "../../shared/Api";
+import Swal from "sweetalert2";
 
 // **** Action type **** //
 const SEARCH_CARD = "SEARCH_CARD";
@@ -11,16 +12,28 @@ const ONE_DETAIL_CARD = "ONE_DETAIL_CARD";
 const SET_CARD_LIST = "SET_CARD_LIST";
 const SET_MY_LIST = "SET_MY_LIST";
 const GET_THANK_USER = "GET_THANK_USER";
+const APPEND_CARD_LIST = "APPEND_CARD_LIST";
+const INCREASE_PAGE_NUM = "INCREASE_PAGE_NUM";
+const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
+const DELETE_CARD = "DELETE_CARD";
 
 
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
 const getTwoDetailCard = createAction(TWO_DETAIL_CARD, (card) => ({ card }));
-const getOneDetailCard = createAction(ONE_DETAIL_CARD, (card) => ({ card }));
 const setCardList = createAction(SET_CARD_LIST, (card_list) => ({ card_list }));
 const setMyList = createAction(SET_MY_LIST, (my_list) => ({ my_list }));
-const getThankUser = createAction(GET_THANK_USER, (user) => ({user}));
+const getThankUser = createAction(GET_THANK_USER, (user) => ({ user }));
+const appendCardList = createAction(APPEND_CARD_LIST, (card_list) => ({
+  card_list,
+}));
+const increasePageNum = createAction(INCREASE_PAGE_NUM);
+const setIsAppendLoaded = createAction(
+  SET_IS_APPEND_LOADED,
+  (is_append_loaded) => ({ is_append_loaded })
+);
+const deleteCard = createAction(DELETE_CARD, (postId) => ({ postId }));
 
 
 // **** Initial data **** //
@@ -34,47 +47,93 @@ const initialState = {
   hit_count: "",
   thank_users: [],
   is_loaded: false,
-
+  is_append_loaded: true,
+  pageNumber: 1,
+  is_card_list_load_complete: false,
 };
 
 // **** Middleware **** //
-
-const getCardListDB = () => {
+const getCardListDB = (pageNo = 0, sizeNo = 1000) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
-    const pageNo = 0;
-    const sizeNo = 1000;
     await api
-      .get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`, {
-        headers: { Authorization: token },
-      })
+      .get(`/api/thandbagList?page=${pageNo}&size=${sizeNo}`)
       .then(function (response) {
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
+
+
 
 const getMyCardListDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
     const pageNo = 0;
-    const sizeNo = 10;
+    const sizeNo = 5;
     await api
       .get(`/api/myThandbag?pageNo=${pageNo}&sizeNo=${sizeNo}`, {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        dispatch(setMyList(response.data.content));
+        sessionStorage.removeItem("level");
+        sessionStorage.setItem("level", response.data.level);
+        dispatch(setMyList(response.data.myPostList));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
 
+//마이페이지 무한스크롤
+const appendMyCardListDB = (sizeNo = 5) => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    dispatch(setIsAppendLoaded(false));
+    await api
+      .get(
+        `/api/myThandbag?pageNo=${getState().card.pageNumber}&sizeNo=${sizeNo}`,
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then(function (response) {
+        dispatch(appendCardList(response.data.myPostList));
+        dispatch(increasePageNum());
+        dispatch(setIsAppendLoaded(true));
+      })
+      .catch((err) => {
+
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
+        dispatch(setIsAppendLoaded(true));
+
+      });
+  };
+};
+
+//로그인 한 유저가 보는 디테일
 const getCardTwoDetailDB = (postid) => {
   return async function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
@@ -84,61 +143,106 @@ const getCardTwoDetailDB = (postid) => {
       })
       .then(function (response) {
         dispatch(getTwoDetailCard(response.data));
-        dispatch(commentActions.setComment(response.data.comments))
+        dispatch(commentActions.setComment(response.data.comments));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백을 불러오는데 문제가 발생했습니다.'
+          })
+        }
       });
   };
 };
 
+
+//로그인 안한 유저가 보는 디테일
 const getCardOneDetailDB = (postid) => {
   return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
     await api
-      .get(`api/thandbag/${postid}`, {
-        headers: { Authorization: token },
-      })
+      .get(`api/visitor/thandbag/${postid}`)
       .then(function (response) {
-        dispatch(getOneDetailCard(response.data));
+        dispatch(getTwoDetailCard(response.data));
+        dispatch(commentActions.setComment(response.data.comments));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '생드백을 불러오는데 문제가 발생했습니다.'
+        })
       });
   };
 };
 
 const findCardDB = (keyword) => {
   return async function (dispatch, getState, { history }) {
-    const token = sessionStorage.getItem("token");
     const pageNo = 0;
     const sizeNo = 1000;
     await api
-      .get(`/api/thandbag?keyword=${keyword}&page=${pageNo}&size=${sizeNo}`, {
-        headers: { Authorization: token },
-      })
+      .get(`/api/thandbag?keyword=${keyword}&page=${pageNo}&size=${sizeNo}`)
       .then(function (response) {
         dispatch(setCardList(response.data));
       })
       .catch((err) => {
-        window.alert("생드백을 불러오는데 문제가 발생했습니다.")
+        Swal.fire({
+          icon: 'error',
+          title: '앗!',
+          text: '생드백을 불러오는데 문제가 발생했습니다.'
+        })
       });
   };
 };
 
-const postHitCountDB = (postid, hitcount) => {
+const postHitCountDB = (postid, hitcount, pastHitcount) => {
   return async function (dispatch, getState, { history }) {
-    // return;
-    const token = sessionStorage.getItem("token")
-    await api.post(`/api/thandbag/punch/${postid}`, hitcount,{
-      headers: { Authorization: token ,
-        'Content-Type': 'application/json;charset=UTF-8'},
-    })
-    .then(function (response) {
-    })
-    .catch((err) => {
-      window.alert("문제가 발생했습니다.")
-    })
+    const token = sessionStorage.getItem("token");
+    await api
+      .post(
+        `/api/thandbag/punch/${postid}`,
+        { newHitCount: hitcount, prevHitCount: pastHitcount },
+        {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      )
+      .then(function (response) {})
+      .catch((err) => {
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '문제가 발생했습니다.'
+          })
+        }
+      });
+  };
+};
+
+const deleteCardDB = (postid) => {
+  return async function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    await api
+      .delete(`/api/thandbag/${postid}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) { 
+        dispatch(deleteCard(postid));
+        history.push('/TbList')
+      })
+      .catch((err) => {
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '문제가 발생했습니다.'
+          })
+        }
+      });
   };
 };
 
@@ -167,10 +271,16 @@ const sendCardDB = (category, title, content, img, share) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        
+        dispatch(addCard(response.data));
       })
       .catch((err) => {
-        window.alert("생드백 작성 실패!");
+        if(token){
+          Swal.fire({
+            icon: 'error',
+            title: '앗!',
+            text: '생드백 작성실패!'
+          })
+        }
       });
   };
 };
@@ -182,6 +292,25 @@ export default handleActions(
         draft.card_list = action.payload.card_list;
         draft.search_list = action.payload.card_list;
         draft.is_loaded = true;
+      }),
+    [APPEND_CARD_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        if (action.payload.card_list.length === 0) {
+          draft.is_card_list_load_complete = true;
+          return;
+        }
+        draft.card_list = [...draft.card_list, ...action.payload.card_list];
+        draft.search_list = [...draft.card_list, ...action.payload.card_list];
+        draft.my_list = [...draft.my_list, ...action.payload.card_list];
+      }),
+    [INCREASE_PAGE_NUM]: (state, action) =>
+      produce(state, (draft) => {
+        draft.pageNumber += 1;
+      }),
+
+    [SET_IS_APPEND_LOADED]: (state, action) =>
+      produce(state, (draft) => {
+        draft.is_append_loaded = action.payload.is_append_loaded;
       }),
     [SET_MY_LIST]: (state, action) =>
       produce(state, (draft) => {
@@ -202,23 +331,23 @@ export default handleActions(
     [SEARCH_CARD]: (state, action) =>
       produce(state, (draft) => {
         const thand_end = draft.card_list.filter((c) => {
-          return c.closed == true;
+          return c.closed === true;
         });
         const thand_not_end = draft.card_list.filter((c) => {
-          return c.closed == false;
+          return c.closed === false;
         });
         const all_search = draft.card_list.filter((c) => {
-          return c.share == true;
+          return c.share === true;
         });
         const new_search = draft.card_list.filter((c) => {
-          return c.category == action.payload.search;
+          return c.category === action.payload.search;
         });
 
-        if (action.payload.search == "전체") {
+        if (action.payload.search === "전체") {
           draft.search_list = all_search;
-        } else if(action.payload.search == true) {
+        } else if (action.payload.search == true) {
           draft.search_list = thand_end;
-        } else if(action.payload.search == false){
+        } else if (action.payload.search == false) {
           draft.search_list = thand_not_end;
         } else {
           draft.search_list = new_search;
@@ -229,10 +358,17 @@ export default handleActions(
       produce(state, (draft) => {
         draft.card_list.unshift(action.payload.card);
       }),
+    [DELETE_CARD]: (state, action) =>
+      produce(state, (draft) => {
+        const delete_post = draft.card_list.filter(
+          (c) => c.postId !== action.payload.postId
+        );
+        draft.card_list = delete_post;
+      }),
     [GET_THANK_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.thank_users = action.payload.user
-      })
+        draft.thank_users = action.payload.user;
+      }),
   },
   initialState
 );
@@ -247,7 +383,9 @@ const actionCreators = {
   getMyCardListDB,
   findCardDB,
   postHitCountDB,
-  getThankUser
+  getThankUser,
+  appendMyCardListDB,
+  deleteCardDB,
 };
 
 export { actionCreators };

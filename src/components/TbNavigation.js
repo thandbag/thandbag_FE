@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Main } from "../static/icons/nav_main.svg";
 import { ReactComponent as TbChatList } from "../static/icons/nav_chat.svg";
@@ -21,50 +21,48 @@ const TbNavgation = (props) => {
     }
   }, [alarm]);
 
-  const [color, setColor] = useState("red");
-
-  function toggleColor() {
-    setColor(color === "red" ? "black" : "red");
-  }
-
   return (
     <React.Fragment>
       <NavBox>
         <Nav1
-          onClick={() => {
-            toggleColor();
-            history.push("/main");
-          }}
+        onClick={() => {
+          history.push("/main");
+        }}
         >
-          <Main className={`icon ${color}`} />
-        </Nav1>
-        <Nav1>
-          <TbChatList
-            fill="#333"
-            onClick={() => {
-              history.push("/TbChatList");
-            }}
+          <Main
+            className={props.main === "main" ? "active main" : "icon main"}
           />
         </Nav1>
-        <Nav1>
+        <Nav1
+          onClick={() => {
+            history.push("/TbChatList");
+          }}
+        >
+          <TbChatList
+            className={props.TbChatList === "TbChatList" ? "active TbChatList" : "icon TbChatList"}
+          />
+        </Nav1>
+        <Nav1
+          onClick={() => {
+            history.push("/TbNotice");
+            dispatch(chatActions.deleteAlarm());
+            setNewRings(false);
+          }}
+        >
           {newRing === true && (
             <Image position="absolute" right="137px" shape="alarm" Isize="10" />
           )}
           <TbNotice
-            fill="#333"
-            onClick={() => {
-              history.push("/TbNotice");
-              dispatch(chatActions.deleteAlarm());
-              setNewRings(false);
-            }}
+            className={props.TbNotice === "TbNotice" ? "active TbNotice" : "icon TbNotice"}
           />
         </Nav1>
-        <Nav1>
+        <Nav1
+          onClick={() => {
+            history.push("/MyPage");
+          }}
+        >
           <MyPage
-            fill="#333"
-            onClick={() => {
-              history.push("/MyPage");
-            }}
+            className={props.MyPage === "MyPage" ? "active MyPage" : "icon MyPage"}
           />
         </Nav1>
       </NavBox>
@@ -97,6 +95,24 @@ const Nav1 = styled.div`
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+
+  &:hover > .icon{
+    fill: #FF5454;
+    transition: 0.3s;
+  }
+
+  &:not(:hover) > .icon{
+    fill: #333;
+    transition: 0.3s;
+  }
+
+  .icon {
+    fill: #333;
+  }
+
+  .active {
+    fill: #FF5454;
+  }
 `;
 
 export default TbNavgation;

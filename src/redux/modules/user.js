@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
-import { produce } from 'immer'
+import { produce } from 'immer';
 import api from "../../shared/Api";
+import Swal from "sweetalert2";
 
 
 // **** Action type **** //
@@ -10,7 +11,7 @@ const LOG_OUT = 'LOG_OUT'
 
 // **** Action creator **** //
 const logIn = createAction(LOG_IN, (user) => ({ user }))
-const logOut = createAction(LOG_OUT, (user) => ({ user }))
+const logOut = createAction(LOG_OUT, () => ({}))
 
 
 // **** Initial data **** //
@@ -30,10 +31,18 @@ const joinDB = (email, password, nickname, mbti) => {
     }
     await api.post('/api/user/signup',user).then(function(response){
       history.push('/login')
-      window.alert('회원가입 성공!')
+      Swal.fire({
+        icon: 'success',
+        title: '와우!',
+        text: '회원가입에 성공했습니다.'
+      })
     })
     .catch((err) => {
-      window.alert('회원가입에 문제가 생겼습니다')
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '회원가입에 문제가 발생했습니다.'
+      })
     })
     };
 };
@@ -53,37 +62,35 @@ const logInDB = (email, password) => {
       sessionStorage.setItem('mbti', response.data.mbti);
       sessionStorage.setItem('level', response.data.level);
       sessionStorage.setItem('profile', response.data.profileImgUrl);
-      dispatch(logIn({user_email:email, user_id: response.data.userId,
-         nickname:response.data.nickname}))
-      history.push('/main')
+      dispatch(logIn({
+        user_id: response.data.userId,
+        nickname:response.data.nickname,
+        mbti: response.data.mbti,
+        profile: response.data.profileImgUrl,
+        level: response.data.level}))
+      history.replace('/main')
 
     })
     .catch((err) => {
-      window.alert('로그인에 문제가 생겼습니다')
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '로그인에 문제가 발생했습니다.'
+      })
     })
-  };
-};
-
-const logOutDB = () => {
-  return async function (dispatch, getState, { history }) {
-    localStorage.removeItem('userId')
-    localStorage.removeItem('nickname')
-    localStorage.removeItem('token')
-    history.replace("/login")
-    dispatch(logOut())
   };
 };
 
 const kakaoLogin = (code) => {
   return async function(dispatch, getState, { history }){
     await api.get(`/user/kakao/callback?code=${code}`).then(function(response){
-      console.log(response)
       sessionStorage.setItem('userId', response.data.userId)
       sessionStorage.setItem('nickname', response.data.nickname)
       sessionStorage.setItem("token", response.headers.authorization);
       sessionStorage.setItem('mbti', response.data.mbti);
       sessionStorage.setItem('level', response.data.level);
       sessionStorage.setItem('profile', response.data.profileImgUrl);
+
       dispatch(logIn({ 
         user_id: response.data.userId,
         nickname:response.data.nickname,
@@ -93,32 +100,46 @@ const kakaoLogin = (code) => {
       history.replace('/main')
     })
     .catch((err) => {
-      window.alert('소셜로그인 에러', err);
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '소셜로그인 에러!'
+      })
       history.replace('/login');
     })
   };
 };
 
-const editDB = (nickname, mbti) => {
+const editDB = (nickname, mbti, imgfile) => {
   return async function(dispatch, getState, { history }){
     const token = sessionStorage.getItem('token')
+    const addFormData = new FormData()
     const user_info = {
       nickname: nickname,
       mbti: mbti
     }
-    await api.post('/mypage/profile', user_info, {
+
+    addFormData.append('file', imgfile)
+    addFormData.append('updateDto',new Blob([JSON.stringify(user_info)], { type: 'application/json' }))
+    await api.post('/mypage/profile', addFormData, {
       headers : {Authorization:token,
         'Content-Type': 'application/json;charset=UTF-8'}
     }).then(function(response){
-      console.log(response)
       sessionStorage.removeItem('nickname')
       sessionStorage.removeItem('mbti')
+      sessionStorage.removeItem('profile')
+
+      sessionStorage.setItem('profile', response.data.profileImgUrl)
       sessionStorage.setItem('nickname', response.data.nickname)
       sessionStorage.setItem('mbti', response.data.mbti)
       history.push('/MyPage')
     })
     .catch((err) => {
-      window.alert(err.response.data.errorMessage)
+      Swal.fire({
+        icon: 'error',
+        title: '앗!',
+        text: '회원정보를 수정하는데 문제가 발생했습니다.'
+      })
     })
   }
 }
@@ -132,7 +153,9 @@ export default handleActions(
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
+        sessionStorage.clear()
         draft.user = ""
+        window.location.replace("/login")
       }),
   },
   initialState
@@ -142,7 +165,6 @@ export default handleActions(
 const actionCreators = {
   joinDB,
   logInDB,
-  logOutDB,
   editDB,
   logOut,
   logIn,

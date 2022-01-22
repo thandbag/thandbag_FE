@@ -2,6 +2,7 @@ import React from "react";
 import ReactQuill from "react-quill";
 import TbEditorToolbar, { modules, formats } from "./TbEditorToolbar";
 import "react-quill/dist/quill.snow.css";
+import { Grid } from "../elements/TbIndex";
 import styled from "styled-components";
 import "../shared/style.css";
 
@@ -19,17 +20,21 @@ export const TbTextEditor = ({
     <div className="text-editor">
       <Box>
         <EboxOne>
-          <input
-            onChange={(e) => {
-              setCheckState(!e.target.checked);
-            }}
-            type="checkbox"
-            id="check"
-            className="checkcss"
-          ></input>
-          <label htmlFor="check" className="labelcss">
-            나만 볼래요
-          </label>
+          <Grid width="20%" height="100%" flex="flex">
+            <input
+              onChange={(e) => {
+                setCheckState(!e.target.checked);
+              }}
+              type="checkbox"
+              id="check"
+              className="checkcss"
+            />
+          </Grid>
+          <Grid width="80%" height="100%" flex="flex">
+            <label htmlFor="check" className="labelcss">
+              나만 볼래요
+            </label>
+          </Grid>
         </EboxOne>
         <EboxTwo>
           <TbEditorToolbar />
@@ -54,6 +59,7 @@ const Box = styled.div`
   height: 52px;
   display: flex;
   justify-content: center;
+  padding: 0 20px;
   align-items: center;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -65,15 +71,13 @@ const EboxOne = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 20px;
-  margin-right: 10px;
 `;
 
 const EboxTwo = styled.div`
   width: 70%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `;
 

@@ -14,8 +14,13 @@ const Message = (props) => {
         flex="flex"
         justify="flex-end"
       >
-        <Grid marginT="auto" width="auto" margin="0 6px 0 0">
-          <Text size="0.5rem" color="#878787" bold="bold" family="NotoSansCJK">
+        <Grid marginT="auto" width="auto" margin="0 6px 4px 0">
+          <Text
+            size="0.5rem"
+            color="#878787"
+            family="NotoSansCJK"
+            spacing="-0.3px"
+          >
             {messageInfo.createdAt}
           </Text>
         </Grid>
@@ -99,11 +104,15 @@ const Message = (props) => {
                 {messageInfo.message}
               </Text>
             </Grid>
-            <Grid width="auto" margin="0 0 0 6px">
-              <Text size="0.5rem" color="#878787" bold="bold" family="NotoSansCJK">
+            <Grid width="auto" margin="0 0 4px 6px">
+              <Text
+                size="0.5rem"
+                color="#878787"
+                family="NotoSansCJK"
+                spacing="-0.3px"
+              >
                 {messageInfo.createdAt}
               </Text>
-
             </Grid>
           </Grid>
         </Grid>

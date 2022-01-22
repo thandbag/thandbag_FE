@@ -31,11 +31,13 @@ const TbGrid = (props) => {
     cursor,
     shadow,
     _onClick,
+    _onKeyDown,
     overFlowY,
     hover,
-    hover2,
     maXwidth,
     miNwidth,
+    miNheight,
+    overFlow,
   } = props;
 
   const styles = {
@@ -68,17 +70,9 @@ const TbGrid = (props) => {
     overFlowY: overFlowY,
     maXwidth: maXwidth,
     miNwidth: miNwidth,
+    miNheight: miNheight,
+    overFlow: overFlow,
   };
-
-  if (hover2) {
-    return (
-      <>
-        <HoverGrid2 {...styles} onClick={_onClick}>
-          {children}
-        </HoverGrid2>
-      </>
-    );
-  }
 
   if (hover) {
     return (
@@ -92,7 +86,7 @@ const TbGrid = (props) => {
 
   return (
     <>
-      <GridBox {...styles} onClick={_onClick}>
+      <GridBox {...styles} onKeyDown={_onKeyDown} onClick={_onClick}>
         {children}
       </GridBox>
     </>
@@ -122,7 +116,9 @@ TbGrid.defaultProps = {
   radius: "",
   borderT: false,
   borderB: false,
+  _tabIndex: "0",
   _onClick: () => {},
+  _onKeyDown: () => {},
 };
 
 const GridBox = styled.div`
@@ -136,6 +132,7 @@ const GridBox = styled.div`
   margin-top: ${(props) => (props.marginT ? `${props.marginT}` : "")};
   margin-bottom: ${(props) => (props.marginB ? `${props.marginB}` : "")};
   max-height: ${(props) => props.maXheight};
+  min-height: ${(props) => props.miNheight};
   position: ${(props) => (props.position ? `${props.position}` : "")};
   left: ${(props) => (props.left ? `${props.left}` : "")};
   right: ${(props) => (props.right ? `${props.right}` : "")};
@@ -153,53 +150,12 @@ const GridBox = styled.div`
   ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
   ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
+  ${(props) => (props.overFlow ? `overflow: ${props.overFlow};` : "")};
   ${(props) => (props.overFlowY ? `overflow-y: ${props.overFlowY};` : "")};
   cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
 `;
 
 const HoverGrid = styled.div`
-  box-sizing: border-box;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  text-align: ${(props) => props.align};
-  padding: ${(props) => (props.padding ? `${props.padding}` : "")};
-  margin: ${(props) => (props.margin ? `${props.margin}` : "")};
-  margin-top: ${(props) => (props.marginT ? `${props.marginT}` : "")};
-  margin-bottom: ${(props) => (props.marginB ? `${props.marginB}` : "")};
-  max-height: ${(props) => props.maXheight};
-  position: ${(props) => (props.position ? `${props.position}` : "")};
-  left: ${(props) => (props.left ? `${props.left}` : "")};
-  right: ${(props) => (props.right ? `${props.right}` : "")};
-  top: ${(props) => (props.top ? `${props.top}` : "")};
-  bottom: ${(props) => (props.bottom ? `${props.bottom}` : "")};
-  display: ${(props) => (props.flex ? `${props.flex}` : "")};
-  ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")};
-  ${(props) => (props.is_align ? `align-items: ${props.is_align};` : "")};
-  ${(props) => (props.direction ? `flex-direction: ${props.direction};` : "")};
-  ${(props) => (props.wrap ? `flex-wrap: ${props.wrap};` : "")};
-  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
-  ${(props) => (props.border ? `border: ${props.border};` : "")};
-  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
-  ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
-  ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
-  ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")};
-  ${(props) => (props.shadow ? `box-shadow: ${props.shadow};` : "")};
-  ${(props) => (props.overFlowY ? `overflow-y: ${props.overFlowY};` : "")};
-  cursor: ${(props) => (props.cursor ? `${props.cursor}` : "")};
-
-  &:hover: {
-    color: #f7c8c8;
-    background-color: #f7c8c8;
-    transition: 0.555s;
-  }
-  /* &:not(hover) {
-    color: #fff;
-    background: #333;
-    transition: 0.555s;
-  } */
-`;
-
-const HoverGrid2 = styled.div`
   background-color: red;
   box-sizing: border-box;
   width: ${(props) => props.width};
@@ -234,7 +190,7 @@ const HoverGrid2 = styled.div`
     transition: 0.3s;
   }
   &:not(hover) {
-    background-color: #fbf7f7;
+    background-color: #fff;
     transition: 0.3s;
   }
 `;

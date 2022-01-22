@@ -1,7 +1,7 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-const TbInput = (props) => {
+const TbInput = forwardRef((props, ref) => {
   const {
     _onKeyDown,
     boxSizing,
@@ -56,6 +56,7 @@ const TbInput = (props) => {
     <>
       <InputBox
         {...styles}
+        ref={ref}
         type={type}
         value={value}
         placeholder={placeholder}
@@ -65,7 +66,7 @@ const TbInput = (props) => {
       />
     </>
   );
-};
+});
 
 TbInput.defaultProps = {
   _className: "",
