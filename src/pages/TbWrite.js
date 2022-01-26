@@ -103,22 +103,6 @@ const TbWrite = (props) => {
               setContent={setContent}
             />
           </Grid>
-          <Grid
-            width="100%"
-            height="100%"
-            placeholder="제목"
-            size="24px"
-            padding=" 0 20px"
-          />
-        </Grid>
-        <Grid width="100%" height="auto">
-          <TbTextEditor
-            checkState={checkState}
-            setCheckState={setCheckState}
-            content={content}
-            setContent={setContent}
-          />
-        </Grid>
         <Grid
           width="100%"
           height="15%"

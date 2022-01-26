@@ -14,6 +14,7 @@ const DELETE_ALARM = "DELETE_ALARM";
 const INCREASE_PAGE_NUM = "INCREASE_PAGE_NUM";
 const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
 const APPEND_NOTICE_LIST = "APPEND_NOTICE_LIST";
+const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
 
 // **** Action creator **** //
 const setChatList = createAction(SET_CHAT_LIST, (myChatList) => ({
@@ -33,6 +34,7 @@ const setIsAppendLoaded = createAction(
 const appendNoticeList = createAction(APPEND_NOTICE_LIST, (notice) => ({
   notice,
 }));
+const setPageNumber = createAction(SET_PAGE_NUMBER, (pageNumber) => ({ pageNumber }));
 
 // **** Initial data **** //
 const initialState = {
@@ -217,6 +219,11 @@ export default handleActions(
         }
         draft.notice = [...draft.notice, ...action.payload.notice];
       }),
+    [SET_PAGE_NUMBER]: (state, action) => 
+      produce(state, (draft) => { 
+         draft.pageNumber = action.payload.pageNumber; 
+         draft.is_card_list_load_complete = false;
+         }),
     [INCREASE_PAGE_NUM]: (state, action) =>
       produce(state, (draft) => {
         draft.pageNumber += 1;
@@ -256,6 +263,7 @@ const actionCreators = {
   getAlarm,
   deleteAlarm,
   appendNoticeListDB,
+  setPageNumber,
 };
 
 export { actionCreators };

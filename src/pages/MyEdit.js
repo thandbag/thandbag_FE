@@ -89,12 +89,12 @@ const MyEdit = (props) => {
         >
           <Grid
             width="100%"
-            height="auto"
+            miNheight="35vh"
             flex="flex"
             direction="column"
-            padding="40px 0"
+            margin="0 0 5% 0"
           >
-            <Image shape="circle" src={imgfile} Isize="150" />
+            <Image shape="circle" src={imgfile} Isize="130" />
             <label
               style={{
                 margin: "26px 0 20px 0",
@@ -117,7 +117,7 @@ const MyEdit = (props) => {
           </Grid>
           <Grid
             width="100%"
-            height="150px"
+            miNheight="17vh"
             padding="10px 20px"
             bg="#fff"
             border="1px solid #eee"
@@ -175,7 +175,7 @@ const MyEdit = (props) => {
             flex="flex"
             justify="flex-start"
             padding="10px 20px"
-            margin="43px 0 0 0"
+            margin="5% 0 0 0"
             cursor="pointer"
             _onClick={() => {
               dispatch(userActions.logOut());
@@ -187,13 +187,11 @@ const MyEdit = (props) => {
             width="100%"
             height="auto"
             flex="flex"
-            position="absolute"
-            bottom="7vh"
-            left="0"
+            margin="10% 0 0 0 "
           >
             <Button
-              width="223px"
-              height="60px"
+              width="50%"
+              height="50px"
               bg="#333"
               color="#fff"
               size="24px"

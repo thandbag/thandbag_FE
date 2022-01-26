@@ -142,7 +142,7 @@ const TbCardMy = (props) => {
                     </CardBottomCommentArea>
                     <CardBottomTimeArea>
                       <TbText
-                        color="#F7C8C8"
+                        color="#FF5454"
                         bold="600"
                         size="12px"
                         family="NotoSansCJK"

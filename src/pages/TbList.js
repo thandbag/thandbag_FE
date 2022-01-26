@@ -9,13 +9,14 @@ import TbCardAll from "../components/TbCardAll";
 import { ReactComponent as Write } from "../static/icons/write.svg";
 import { useDispatch, useSelector } from "react-redux";
 import TbLoading from "./TbLoading";
-import { actionCreators as cardActions } from "../redux/modules/card";
+import TbNavgation from "../components/TbNavigation";
 import { useSpring, animated } from "react-spring";
 
 const TbList = (props) => {
   const is_loaded = useSelector((state) => state.card.is_loaded);
-  const card_list = useSelector((state) => state.card.card_list);
-  const dispatch = useDispatch();
+  const [scrollY, setScrollY] = React.useState(0)
+  const [barstate, setBarstate] = React.useState(false)
+
   const fadeIn = useSpring({
     config: {
       duration: 300,
@@ -24,6 +25,15 @@ const TbList = (props) => {
     opacity: 1,
     from: { opacity: 0 },
   });
+
+  const handleScroll = (e) => {
+    setScrollY(e.target.scrollTop)
+    if(barstate === false && e.target.scrollTop > scrollY){
+      setBarstate(true)
+    } else if (barstate === true && e.target.scrollTop < scrollY){
+      setBarstate(false)
+    }
+  };
 
 
   return (
@@ -52,30 +62,21 @@ const TbList = (props) => {
           <TbListModal />
         </Grid>
       </Grid>
-      <CardList>
+      <CardList onScroll={handleScroll}>
         <TbCardAll></TbCardAll>
       </CardList>
-      <Grid
-        width="60px"
-        height="60px"
-        radius="100%"
-        bg="#fff"
-        shadow="0px 4px 12px rgb(0, 0, 0, 0.3)"
-        position="absolute"
-        right="20px"
-        bottom="60px"
-        flex="flex"
-        cursor="pointer"
-        zIndex="7"
-        _onClick={() => {
+      <WriteBox
+        style={{bottom: barstate ? "50px":"80px"}}
+        onClick={() => {
           history.push("/TbWrite");
         }}
       >
-        <Write width="27" height="27" />
-      </Grid>
+        <Write className="write_icon" width="27" height="27" />
+      </WriteBox>
       {!is_loaded && <TbLoading />}
 
     </Container>
+    {barstate ? <></> : <TbNavgation/>}
     </animated.div>
   );
 };
@@ -95,6 +96,7 @@ const CardList = styled.div`
   height: auto;
   max-height: 100vh;
   overflow-y: scroll;
+  padding: 0 0 70px 0;
 `;
 
 const WriteBox = styled.div`
@@ -105,7 +107,6 @@ const WriteBox = styled.div`
   box-shadow: 0px 4px 12px rgb(0, 0, 0, 0.3);
   position: absolute;
   right: 20px;
-  bottom: 60px;
   display: flex;
   justify-content: center;
   align-items: center;

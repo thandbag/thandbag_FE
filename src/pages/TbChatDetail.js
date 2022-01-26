@@ -55,7 +55,6 @@ const TbChatDetail = (props) => {
           `/sub/chat/room/${roomId}`,
           (data) => {
             const newMessage = JSON.parse(data.body);
-            console.log(newMessage);
             dispatch(chatActions.addMessage(newMessage));
           },
           token

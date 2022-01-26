@@ -73,7 +73,7 @@ export default function App() {
               bg="#fff"
               radius="30px"
               padding="0 15px"
-              text="인간관계"
+              text="대인관계"
               _onClick={clickFilter}
             />
           </SwiperSlide>

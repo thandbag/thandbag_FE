@@ -547,14 +547,14 @@ svg #main-circ {
 /* 오류모달 */
 
 .swal2-popup {
-    width: 22em !important;
+    width: 24em !important;
     padding: 0px 0 2em !important;
     border-radius: 10px !important;
 }
 
 .swal2-icon {
-  width: 3em !important;
-  height: 3em !important;
+  width: 5em !important;
+  height: 5em !important; 
   margin: 2rem auto 0.3rem auto !important;
 }
 
@@ -577,10 +577,4 @@ svg #main-circ {
   font-weight: bold !important;
   font-size: 1em !important;
   padding: 0.625em 3em !important;
-}
-
-.swal2-icon.swal2-error [class^=swal2-x-mark-line] {
-  top: 1.3125em;
-  width: 0.93125em;
-  height: 0.3125em !important;
 }

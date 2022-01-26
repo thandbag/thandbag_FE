@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Button, Text } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
+import Swal from "sweetalert2";
 
 const ThandStateImg = (props) => {
   const { display, all, id} = props;
   const styles = { display: display };
+  const token = sessionStorage.getItem("token");
  
   return (
     <React.Fragment>
@@ -68,8 +70,16 @@ const ThandStateImg = (props) => {
             size="1.2rem"
             text="생드백 때리러가기 >"
             _onClick={() => {
-              history.push(`/TbHitDetail/${id}`,all)
-              
+              if(token){
+                history.push(`/TbHitDetail/${id}`,all)
+              } else {
+                Swal.fire({
+                  icon: 'warning',
+                  title: '앗!',
+                  text: '로그인이 필요한 페이지입니다'
+                })
+                history.push("/login");
+              }
             }}
           />
         </Grid>

@@ -3,54 +3,54 @@
   "name": "thandbag",
   "icons": [
     {
-      "src": "./thandbag_images/icon-57x57.png",
+      "src": "./thandbag_images/57.png",
       "sizes": "57x57",
       "type": "image/png"
     },
     {
-      "src": "./thandbag_images/icon-60x60.png",
+      "src": "./thandbag_images/60.png",
       "sizes": "60x60",
       "type": "image/png"
     },
     {
-      "src": "./thandbag_images/icon-72x72.png",
+      "src": "./thandbag_images/72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "./thandbag_images/icon-76x76.png",
+      "src": "./thandbag_images/76.png",
       "sizes": "76x76",
       "type": "image/png"
     },
     {
-      "src": "./thandbag_images/icon-114x114.png",
+      "src": "./thandbag_images/114.png",
       "sizes": "114x114",
       "type": "image/png"
     },
     {
-      "src": "./thandbag_images/icon-120x120.png",
+      "src": "./thandbag_images/120.png",
       "sizes": "120x120",
       "type": "image/png"
     },
     {
-      "src": "./thandbag_images/icon-144x144.png",
+      "src": "./thandbag_images/144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "./thandbag_images/icon-192x192.png",
+      "src": "./thandbag_images/192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./thandbag_images/icon-310x310.png",
+      "src": "./thandbag_images/310.png",
       "sizes": "310x310",
       "type": "image/png"
       
     },
     {
-      "src": "./thandbag_images/icon-512x512.png",
+      "src": "./thandbag_images/512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
