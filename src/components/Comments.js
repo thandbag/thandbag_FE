@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import { Grid, Text, Input, Button } from "../elements/TbIndex";
 import { ReactComponent as Comment } from "../static/icons/comment.svg";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import { history } from "../redux/configureStore";
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import LikeButton from "./LikeButton";
 import Effect from "../components/Effect";
 import TbModal from "./TbModals/TbModal";
+import Swal from "sweetalert2";
 
 const getCursorXY = (input, selectionPoint) => {
   const { offsetLeft: inputX, offsetTop: inputY } = input;
@@ -39,6 +41,7 @@ const getCursorXY = (input, selectionPoint) => {
 const Comments = (props) => {
   const { count, is_Comment, is_mbtiFilter, cList } = props;
   const is_me = sessionStorage.getItem("nickname");
+  const token = sessionStorage.getItem("token");
   const dispatch = useDispatch();
   const { postid } = useParams();
 
@@ -270,8 +273,17 @@ const Comments = (props) => {
             text="완료"
             size="1.2rem"
             _onClick={() => {
-              sendComment();
-              setComment("");
+              if(token){
+                sendComment();
+              } else {
+                Swal.fire({
+                  icon: 'warning',
+                  title: '앗!',
+                  text: '로그인이 필요한 페이지입니다'
+                })
+                history.push("/login");
+              }
+                setComment("");
             }}
           />
         </Grid>

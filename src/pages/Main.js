@@ -58,17 +58,17 @@ const Main = (props) => {
               _onClick={() => {
                 history.push("/TbWrite");
               }}
-              height="60px"
+              height="7vh"
               width="220px"
               text="생드백 만들기"
             ></Button>
             <Button
-              margin="5vh 0 0 0"
+              margin="4vh 0 0 0"
               login
               _onClick={() => {
                 history.push("/TbList");
               }}
-              height="60px"
+              height="7vh"
               width="220px"
               text="다른 사람의 생드백 보기"
             />
@@ -93,7 +93,7 @@ const Container = styled.div`
 
 const MainBodyTop = styled.div`
   width: 100%;
-  height: 48vh;
+  min-height: 44vh;
   margin-top: 1vh;
   display: flex;
   justify-content: center;
@@ -117,7 +117,7 @@ const MainBodyBottom = styled.div`
   width: 100%;
   height: auto;
   margin-top: 3vh;
-  padding: 4vh 0;
+  padding: 3vh 0;
   display: flex;
   justify-content: center;
   align-items: center;

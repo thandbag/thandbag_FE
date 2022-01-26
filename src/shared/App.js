@@ -35,8 +35,13 @@ ReactGA.exception({
   fatal: true
 });
 
+
 function App() {
-  
+  const handleResize = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`); 
+  };
+
   React.useEffect(() => {
     ReactGA.initialize("user id");
     history.listen((location) => {
@@ -44,6 +49,9 @@ function App() {
       ReactGA.pageview(location.pathname); // Record a pageview for the given page
     });
     // ReactGA.pageview(window.location.pathname + window.location.search);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   },[])
 
   return (
@@ -102,8 +110,7 @@ const Container = styled.div`
   .wrap {
     width: 100%;
     max-width: 420px;
-    height: 100%;
-    min-height: 100vh;
+    height: calc(var(--vh) * 100);
     margin: 0 auto;
     padding: 0 auto;
     box-sizing: border-box;

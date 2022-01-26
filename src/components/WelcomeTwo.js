@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { Button, Grid, Text } from "../elements/TbIndex";
+import PwaPrompt from "./PwaPrompt";
 
 // images
 import Slide1 from "../static/images/slide_1.png";
@@ -66,18 +67,15 @@ function WelcomeTwo() {
               </Text>
             </Grid>
             <ButtonBox>
-              <Button
-                width="150px"
-                height="50px"
-                radius="12px"
-                bg="#333"
-                color="#fff"
-                size="1.2rem"
-                text="SKIP"
+              <PwaPrompt/>
+              <Text
+                deco="underline"
+                decoP="under"
+                cursor="pointer"
                 _onClick={() => {
                   history.push("/main");
                 }}
-              />
+              >웹으로보기</Text>
             </ButtonBox>
           </SwiperSlide>
         </Swiper>
@@ -117,8 +115,9 @@ const ButtonBox = styled.div`
   width: 100%;
   height: auto;
   position: absolute;
-  bottom: 17vh;
+  bottom: 13vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 9999;

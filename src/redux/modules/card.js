@@ -18,6 +18,7 @@ const SET_IS_APPEND_LOADED = "SET_IS_APPEND_LOADED";
 const DELETE_CARD = "DELETE_CARD";
 
 
+
 // **** Action creator **** //
 const searchCard = createAction(SEARCH_CARD, (search) => ({ search }));
 const addCard = createAction(ADD_CARD, (card) => ({ card }));
@@ -303,6 +304,7 @@ export default handleActions(
         draft.search_list = [...draft.card_list, ...action.payload.card_list];
         draft.my_list = [...draft.my_list, ...action.payload.card_list];
       }),
+    
     [INCREASE_PAGE_NUM]: (state, action) =>
       produce(state, (draft) => {
         draft.pageNumber += 1;
@@ -386,6 +388,7 @@ const actionCreators = {
   getThankUser,
   appendMyCardListDB,
   deleteCardDB,
+  
 };
 
 export { actionCreators };

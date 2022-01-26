@@ -119,6 +119,7 @@ const TbNotice = (props) => {
                       history.push(`/MyPage`);
                     }
                     dispatch(chatActions.postNoticeDB(n.alarmId));
+                    dispatch(chatActions.setPageNumber(0));
                   }}
                 >
                   <Grid width="10%" height="auto" flex="flex">
@@ -194,9 +195,9 @@ const TbNoticeBox = styled.div`
 
 const BgBox = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 81vh;
   position: absolute;
-  top: 5%;
+  top: 12%;
   left: 0;
   background-color: #fbf7f7;
   background-image: url(${NoTbNotice});

@@ -8,7 +8,10 @@ import TbNavigation from "../components/TbNavigation";
 import TbLoading from "./TbLoading";
 import styled from "styled-components";
 import NoChatList from "../static/images/no_chatlist.png";
+import { ReactComponent as NoticeIcon } from "../static/icons/notice_icons/notice_icon.svg";
 import { useSpring, animated } from "@react-spring/web";
+import Swal from "sweetalert2";
+
 
 const TbChatList = (props) => {
   const dispatch = useDispatch();
@@ -34,6 +37,46 @@ const TbChatList = (props) => {
       <Heads none bg="#fff" stroke="#fff" color="#333" text="채팅" borderB />
       <animated.div style={fadeIn}>
         <TbChatListBox>
+        <Grid
+            width="100%"
+            height="50px"
+            padding="0 20px"
+            flex="flex"
+            borderB
+            borderT
+            justify="space-between"
+            bg="#FBF7F7"
+            cursor="pointer"
+            _onClick={() => {
+              Swal.fire({
+                icon: 'question',
+                html: '1. 생드백을 작성해주세요. <br><br> 2. 마음에 드는 댓글에 "좋아요"를 눌러주세요. <br><br> 3. 생드백을 신나게 때린 다음, ‘터뜨리기’ 버튼을 <br> 눌러주세요. <br><br> 4. ‘터뜨리기 완료’ 페이지에서, ‘좋아요‘를 누르신<br> 댓글의 사용자를확인하고, ‘편지’ 모양을<br> 눌러 채팅을 시작해보세요! ',
+                
+              })
+            }}
+          >
+            <Grid width="10%" height="auto" flex="flex" justify="flex-start">
+              <NoticeIcon />
+            </Grid>
+            <Grid align="center" width="auto%">
+              <Text size="1rem" spacing="1px">
+                ❓ 채팅을 어떻게 시작하는지 모르시겠다구요?
+              </Text>
+            </Grid>
+            <Grid flex="flex" justify="flex-end" width="10%">
+              <Grid
+                width="23px"
+                height="23px"
+                bg="#FF5454"
+                flex="flex"
+                radius="100%"
+              >
+                <Text color="#fff" size="11px">
+                  N
+                </Text>
+              </Grid>
+            </Grid>
+          </Grid>
           {chatList.length == 0 ? (
            <BgBox />
           ) : (
@@ -126,9 +169,9 @@ const TbChatListBox = styled.div`
 
 const BgBox = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   position: absolute;
-  top: 5%;
+  top: 12%;
   left: 0;
   background-color: #fbf7f7;
   background-image: url(${NoChatList});
