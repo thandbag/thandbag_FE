@@ -1,14 +1,19 @@
 import React from "react";
+
 import styled from "styled-components";
+import "../shared/style.css";
+
 import { Grid, Text, Input, Button, Image } from "../elements/TbIndex";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
+
 import { ReactComponent as KakaoBtn } from "../static/images/kakao_btn.svg";
 import thandbag_logo from "../static/icons/thandbag_logo.svg";
+
 import { useSpring, animated } from "@react-spring/web";
 import Swal from "sweetalert2";
-import "../shared/style.css";
+
 
 const Login = (props) => {
   const dispatch = useDispatch();

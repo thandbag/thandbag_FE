@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+
 import Heads from "../components/Heads";
 import ThandDetail from "../components/ThandDetail";
 import Comments from "../components/Comments";
 import UserProfile from "../components/UserProfile";
 import ThandStateImg from "../components/ThandStateImg";
 import { Grid, Text } from "../elements/TbIndex";
+import TbLoading from "./TbLoading";
+
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
-import TbLoading from "./TbLoading";
 import { useSpring, animated } from "react-spring";
 
 const TbTwoDetail = (props) => {

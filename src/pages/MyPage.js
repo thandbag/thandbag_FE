@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+
 import TbNavigation from "../components/TbNavigation";
 import UserProfile from "../components/UserProfile";
-import { Grid, Text } from "../elements/TbIndex";
 import TbCardMy from "../components/TbCardMy";
-import { useDispatch, useSelector } from "react-redux";
 import TbLoading from "./TbLoading";
-import { useSpring, animated } from "@react-spring/web";
+import { Grid, Text } from "../elements/TbIndex";
+
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
+import { useSpring, animated } from "@react-spring/web";
 
 const MyPage = (props) => {
   const cardList = useSelector((state) => state.card.my_list);

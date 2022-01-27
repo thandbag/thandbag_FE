@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
 import Heads from "../components/Heads";
 import TbWriteSelect from "../components/TbModals/TbWriteSelect";
 import TbTextEditor from "../components/TbTextEditor";
 import { Grid, Button, Input } from "../elements/TbIndex";
-import styled from "styled-components";
 import { TbModalThree } from "../components/TbModals/TbModalThree";
+
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
 import { history } from "../redux/configureStore";
-import Swal from "sweetalert2";
 import { useSpring, animated } from "react-spring";
+import Swal from "sweetalert2";
+
 
 
 const TbWrite = (props) => {
