@@ -92,24 +92,64 @@
 <br/>
 
 ```
-1. 무한스크롤시 전체 데이터가 불러와진 상태에서 페이지 이동 후 해당 무한스크롤 페이지로 돌아왔을때 무한스크롤이 동작하지 않는 현상
+1. 무한스크롤시 데이터를 다 불러왔음에도 지속적으로 dispatch가 일어나는 현상
 ```
+> 문제점 : 해당 api 호출을 onScroll에 걸어놨기 때문에 데이터를 다 불러와도 스크롤이 일어날때마다 의미없는 api호출(빈배열)이 지속적으로 일어남.
+>
+> ❓ As-Is  
+> ![image](https://user-images.githubusercontent.com/93691859/151382936-c7e6599d-8294-4343-9f10-295f4094c29c.png)
+> 
+> 💡 To-Be  
+> ![image](https://user-images.githubusercontent.com/93691859/151383020-0dccd112-a3f3-463c-b1af-4ba5fe795629.png)
+>
+> !![image](https://user-images.githubusercontent.com/93691859/151383713-453f5c64-d737-4238-bb44-71bcd1892012.png)
+
+>❗️ 해결 : is_card_list_load_complete액션을 만들어 다 불러오지 않은 상태를 false로 기본값 지정 후 if문을 사용해 (action.payload.notice.length === 0)
+>          즉 더이상 호출할 데이터가 없을경우 상태값을 true로 바꿔줌. 후 해당 컴포넌트에서 useSelector를 활용해 is_card_list_load_complete 상태를 불러온 후
+>          해당값이 true일 경우 아무것도 리턴하지 않도록 수정해서 문제를 해결.
+
+<br />
+<br />
+
+```
+2. 무한스크롤시 전체 데이터가 불러와진 상태에서 페이지 이동 후 해당 무한스크롤 페이지로 돌아왔을때 무한스크롤이 동작하지 않는 현상
+```
+> 문제점 : 데이터를 다 불러온 상태에서 추가적인 api호출을 막아주는 상태값(is_card_list_load_complete)의 문제.
+>
+> ❓ As-Is  
+> ![image](https://user-images.githubusercontent.com/93691859/151380276-44afd21d-cd14-41e2-ad75-2ba3e8b391b9.png)
+> 
+> 💡 To-Be  
+> ![image](https://user-images.githubusercontent.com/93691859/151380568-65818e92-1fa1-47be-be3b-3711a0a15320.png)
+>
+> ![image](https://user-images.githubusercontent.com/93691859/151380770-e268d497-5d47-4c08-ae06-f6c354da020d.png)
+
+>❗️ 해결 : 해당 카드를 클릭할때마다 setPageNumber 액션을 일으켜 무한 스크롤을 초기화(pageNumber를 다시 0으로, 데이터를 다 불러왔을시 더이상의 추가적인 디스패치가 일어나지 않게
+>          해주는 is_card_list_load_complete를 다시 flase로 바꿔줌) 시켜주어서 다시 동작할 수 있도록 함.
 
 <br/>
 <br />
 
 ```
-2. 무한스크롤시 데이터를 다 불러왔음에도 지속적으로 dispatch가 일어나는 현상
-```
-
-<br />
-<br />
-
-```
 3. 댓글 애니메이션이 Input박스의 크기를 벗어나는 현상
 ```
+> 문제점 : 해당 애니메이션을 input cursor를 따라가도록 해서 cursor가 input의 크기를 벗어나더라도 애니메이션이 지속적으로 발생.
+>
+> ❓ As-Is  
+> ![image](https://user-images.githubusercontent.com/93691859/151387904-188c0989-3997-4ea3-a61a-ca05af6fb41a.png)
+> ![image](https://user-images.githubusercontent.com/93691859/151386592-682910e5-748e-44ce-92e2-a511db7b88ce.png)
+
+> 
+> 💡 To-Be  
+> ![image](https://user-images.githubusercontent.com/93691859/151386685-ec295c60-7984-4780-accf-1b4a9b8b0655.png)
+>
+> 
+>❗️ 해결 : 먼저 input의 크기(offsetWidth)를 구해서 커서의 위치가 input의 크기보다 작을경우엔 애니메이션이 커서의 위치를 따라가도록 하고
+>          그게 아닐경우 애니메이션이 input의 최대 크기 위치에 멈춰 있도록 수정함. 
+
 
 <br />
+
 
 ## 👀 유저 피드백  
 >  \* 피드백 수집일자 : 2022년 1월 22일 ~ 2022년 1월 25일  
