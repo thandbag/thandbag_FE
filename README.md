@@ -64,23 +64,28 @@
 
 ## ⛔️ Trouble Shooting
 
-```
-1. 무한스크롤시 전체 데이터가 불러와진 상태에서 페이지 이동 후 해당 무한스크롤 페이지로 돌아왔을때 무한스크롤이 동작하지 않는 현상
-```
+### 1. 웹소켓 간헐적 끊김현상
+> **문제** - 사용자가 채팅을 작성시 연속적으로 데이터를 보낼경우 간헐적으로 소켓이 끊기는 현상을 발견. => 데이터 흐름이 원할하지 않음
 
-<br/>
-<br />
+> **해결책** - websocket.readystate 와 callback 함수를 사용하여 소켓의 연결상태를 주기적으로 확인하고, 웹소켓 연결이 끊어질때 빠르게 소켓연결이 될수 있도록 한다.
 
-```
-2. 무한스크롤시 데이터를 다 불러왔음에도 지속적으로 dispatch가 일어나는 현상
-```
 
-<br />
-<br />
+<img width="350px" src="https://github.com/Leejunmyung/image/blob/master/%EC%B1%84%ED%8C%85_%EC%A0%81%EC%9A%A9%EC%A0%84.gif?raw=true"/> <img width="350px" src="https://github.com/Leejunmyung/image/blob/master/%EC%B1%84%ED%8C%85_%EC%A0%81%EC%9A%A9%ED%9B%84.gif?raw=true"/>
+#### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Before &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;After
 
-```
-3. 댓글 애니메이션이 Input박스의 크기를 벗어나는 현상
-```
+### 2. 애니메이션 타격 효과 적용문제
+> **문제** - 사용자가 샌드백을 클릭하면 타격을 하는 느낌으로 애니메이션이 움직이는 모션을 취하는데 모션만 있을경우 타격효과를 내는 것이 부족하다고 판단  
+
+> **해결책** - 타격효과를 내는 애니메이션을 샌드백이 움직이는 순간에만 보이도록 하여 사용자가 직접 타격한다는 느낌을 준다. => 클릭시 샌드백이 움직이는 찰나의 순간을 useState를 통해 상태값을 저장 후 settimeout 함수를 이용해 샌드백이 움직이는 시간을 계산하고 그 시간만큼 타격효과 애니메이션이 보이도록 해준다.
+
+
+<img width="350px" src="https://github.com/Leejunmyung/image/blob/master/before.gif?raw=true"/> <img width="350px" src="https://github.com/Leejunmyung/image/blob/master/after.gif?raw=true"/>
+#### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Before &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;After
+
+### 3. 실시간 알림소켓 연결문제
+> **문제** - 사용자가 어느 페이지에 있던 실시간알림이 전달되어야하는데 알림페이지에 진입하지 않으면 알림이 오지 않는 현상 => 소켓 연결 x
+
+> **해결책** - 알림페이지에 웹소켓을 위치시키지 않고 따로 분리한뒤 사용자가 처음 웹페이지에 진입함과 동시에 알림 소켓이 연결되도록 설계
 
 
 <br />
