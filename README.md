@@ -23,7 +23,7 @@
 - Back-end: [고성범](https://github.com/SeongBeomKo), [오규화(조장)](https://github.com/59-devv)
 - Front-end: [이준명](https://github.com/Leejunmyung), [전용태](https://github.com/yong313), [정상일](https://github.com/jsni94)
 - Design : 정서윤, 황지현
-- [\[Front-End Github\]](https://github.com/thandbag/thandbag_FE)
+- [\[Back-End Github\]](https://github.com/thandbag/thandbag_BE)
 
 <br />
 
