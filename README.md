@@ -23,7 +23,7 @@
 - Back-end: [고성범](https://github.com/SeongBeomKo), [오규화(조장)](https://github.com/59-devv)
 - Front-end: [이준명](https://github.com/Leejunmyung), [전용태](https://github.com/yong313), [정상일](https://github.com/jsni94)
 - Design : 정서윤, 황지현
-- [\[Front-End Github\]](https://github.com/thandbag/thandbag_FE)
+- [\[Back-End Github\]](https://github.com/thandbag/thandbag_BE)
 
 <br />
 
@@ -70,7 +70,7 @@
 > **해결책** - websocket.readystate 와 callback 함수를 사용하여 소켓의 연결상태를 주기적으로 확인하고, 웹소켓 연결이 끊어질때 빠르게 소켓연결이 될수 있도록 한다.
 
 
-<img width="350px" src="https://github.com/Leejunmyung/image/blob/master/%EC%B1%84%ED%8C%85_%EC%A0%81%EC%9A%A9%EC%A0%84.gif?raw=true"/> <img width="350px" src="https://github.com/Leejunmyung/image/blob/master/%EC%B1%84%ED%8C%85_%EC%A0%81%EC%9A%A9%ED%9B%84.gif?raw=true"/>
+<img width="350px" src="https://user-images.githubusercontent.com/61734933/151477426-397abc83-c3d8-4e66-9c45-8e1e53efe8f6.gif"/> <img width="350px" src="https://user-images.githubusercontent.com/61734933/151477422-738753df-2e11-4ef9-a25c-886ba877c576.gif"/>
 #### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Before &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;After
 
 ### 2. 애니메이션 타격 효과 적용문제
@@ -79,7 +79,7 @@
 > **해결책** - 타격효과를 내는 애니메이션을 샌드백이 움직이는 순간에만 보이도록 하여 사용자가 직접 타격한다는 느낌을 준다. => 클릭시 샌드백이 움직이는 찰나의 순간을 useState를 통해 상태값을 저장 후 settimeout 함수를 이용해 샌드백이 움직이는 시간을 계산하고 그 시간만큼 타격효과 애니메이션이 보이도록 해준다.
 
 
-<img width="350px" src="https://github.com/Leejunmyung/image/blob/master/before.gif?raw=true"/> <img width="350px" src="https://github.com/Leejunmyung/image/blob/master/after.gif?raw=true"/>
+<img width="350px" src="https://user-images.githubusercontent.com/61734933/151477396-16a355f6-77b5-49cf-a031-0a7470896ed3.gif"/> <img width="350px" src="https://user-images.githubusercontent.com/61734933/151477408-98cd88fb-02c8-44d6-8f7a-a8b5203818c3.gif"/>
 #### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Before &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;After
 
 ### 3. 실시간 알림소켓 연결문제
@@ -87,8 +87,69 @@
 
 > **해결책** - 알림페이지에 웹소켓을 위치시키지 않고 따로 분리한뒤 사용자가 처음 웹페이지에 진입함과 동시에 알림 소켓이 연결되도록 설계
 
+<br/>
+<br/>
+<br/>
+
+
+### 4. 무한스크롤시 데이터를 다 불러왔음에도 지속적으로 dispatch가 일어나는 현상
+
+> 문제점 : 해당 api 호출을 onScroll에 걸어놨기 때문에 데이터를 다 불러와도 스크롤이 일어날때마다 의미없는 api호출(빈배열)이 지속적으로 일어남.
+>
+> ❓ As-Is  
+> ![image](https://user-images.githubusercontent.com/93691859/151382936-c7e6599d-8294-4343-9f10-295f4094c29c.png)
+> 
+> 💡 To-Be  
+> ![image](https://user-images.githubusercontent.com/93691859/151383020-0dccd112-a3f3-463c-b1af-4ba5fe795629.png)
+>
+> !![image](https://user-images.githubusercontent.com/93691859/151383713-453f5c64-d737-4238-bb44-71bcd1892012.png)
+
+>❗️ 해결 : is_card_list_load_complete액션을 만들어 다 불러오지 않은 상태를 false로 기본값 지정 후 if문을 사용해 (action.payload.notice.length === 0)
+>          즉 더이상 호출할 데이터가 없을경우 상태값을 true로 바꿔줌. 후 해당 컴포넌트에서 useSelector를 활용해 is_card_list_load_complete 상태를 불러온 후
+>          해당값이 true일 경우 아무것도 리턴하지 않도록 수정해서 문제를 해결.
 
 <br />
+<br />
+
+
+### 5. 무한스크롤시 전체 데이터가 불러와진 상태에서 페이지 이동 후 해당 무한스크롤 페이지로 돌아왔을때 무한스크롤이 동작하지 않는 현상
+
+> 문제점 : 데이터를 다 불러온 상태에서 추가적인 api호출을 막아주는 상태값(is_card_list_load_complete)의 문제.
+>
+> ❓ As-Is  
+> ![image](https://user-images.githubusercontent.com/93691859/151380276-44afd21d-cd14-41e2-ad75-2ba3e8b391b9.png)
+> 
+> 💡 To-Be  
+> ![image](https://user-images.githubusercontent.com/93691859/151380568-65818e92-1fa1-47be-be3b-3711a0a15320.png)
+>
+> ![image](https://user-images.githubusercontent.com/93691859/151380770-e268d497-5d47-4c08-ae06-f6c354da020d.png)
+
+>❗️ 해결 : 해당 카드를 클릭할때마다 setPageNumber 액션을 일으켜 무한 스크롤을 초기화(pageNumber를 다시 0으로, 데이터를 다 불러왔을시 더이상의 추가적인 디스패치가 일어나지 않게
+>          해주는 is_card_list_load_complete를 다시 flase로 바꿔줌) 시켜주어서 다시 동작할 수 있도록 함.
+
+<br/>
+<br />
+
+
+### 6. 댓글 애니메이션이 Input박스의 크기를 벗어나는 현상
+
+> 문제점 : 해당 애니메이션을 input cursor를 따라가도록 해서 cursor가 input의 크기를 벗어나더라도 애니메이션이 지속적으로 발생.
+>
+> ❓ As-Is  
+> ![image](https://user-images.githubusercontent.com/93691859/151387904-188c0989-3997-4ea3-a61a-ca05af6fb41a.png)
+> ![image](https://user-images.githubusercontent.com/93691859/151386592-682910e5-748e-44ce-92e2-a511db7b88ce.png)
+
+> 
+> 💡 To-Be  
+> ![image](https://user-images.githubusercontent.com/93691859/151386685-ec295c60-7984-4780-accf-1b4a9b8b0655.png)
+>
+> 
+>❗️ 해결 : 먼저 input의 크기(offsetWidth)를 구해서 커서의 위치가 input의 크기보다 작을경우엔 애니메이션이 커서의 위치를 따라가도록 하고
+>          그게 아닐경우 애니메이션이 input의 최대 크기 위치에 멈춰 있도록 수정함. 
+
+
+<br />
+
 
 ## 👀 유저 피드백  
 >  \* 피드백 수집일자 : 2022년 1월 22일 ~ 2022년 1월 25일  
