@@ -70,7 +70,7 @@
 > **해결책** - websocket.readystate 와 callback 함수를 사용하여 소켓의 연결상태를 주기적으로 확인하고, 웹소켓 연결이 끊어질때 빠르게 소켓연결이 될수 있도록 한다.
 
 
-<img width="350px" src="https://github.com/Leejunmyung/image/blob/master/%EC%B1%84%ED%8C%85_%EC%A0%81%EC%9A%A9%EC%A0%84.gif?raw=true"/> <img width="350px" src="https://github.com/Leejunmyung/image/blob/master/%EC%B1%84%ED%8C%85_%EC%A0%81%EC%9A%A9%ED%9B%84.gif?raw=true"/>
+<img width="350px" src="https://user-images.githubusercontent.com/61734933/151477426-397abc83-c3d8-4e66-9c45-8e1e53efe8f6.gif"/> <img width="350px" src="https://user-images.githubusercontent.com/61734933/151477422-738753df-2e11-4ef9-a25c-886ba877c576.gif"/>
 #### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Before &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;After
 
 ### 2. 애니메이션 타격 효과 적용문제
@@ -79,7 +79,7 @@
 > **해결책** - 타격효과를 내는 애니메이션을 샌드백이 움직이는 순간에만 보이도록 하여 사용자가 직접 타격한다는 느낌을 준다. => 클릭시 샌드백이 움직이는 찰나의 순간을 useState를 통해 상태값을 저장 후 settimeout 함수를 이용해 샌드백이 움직이는 시간을 계산하고 그 시간만큼 타격효과 애니메이션이 보이도록 해준다.
 
 
-<img width="350px" src="https://github.com/Leejunmyung/image/blob/master/before.gif?raw=true"/> <img width="350px" src="https://github.com/Leejunmyung/image/blob/master/after.gif?raw=true"/>
+<img width="350px" src="https://user-images.githubusercontent.com/61734933/151477396-16a355f6-77b5-49cf-a031-0a7470896ed3.gif"/> <img width="350px" src="https://user-images.githubusercontent.com/61734933/151477408-98cd88fb-02c8-44d6-8f7a-a8b5203818c3.gif"/>
 #### &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Before &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;After
 
 ### 3. 실시간 알림소켓 연결문제
