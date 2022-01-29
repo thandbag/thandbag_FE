@@ -15,7 +15,6 @@
 
 - [\[사이트 바로가기\]](https://thandbag.com)
 - [\[시연영상 바로가기\]](https://youtu.be/TDr55gjFYGs)
-- [\[팀노션 바로가기\]](https://typical-guanaco-54b.notion.site/ThandBag-Thinking-Sandbag-2af14456a5e4442889f1ebf0900dc65e)
 
 <br />
 
