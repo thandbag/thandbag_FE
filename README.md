@@ -176,7 +176,7 @@
 - 3일간 인스타그램 광고 진행을 통해 약 2만명에게 도달하였으며 이 중, 182명이 사이트에 방문하였음
 - 방문자 중 약 67%는 여성이었음
 - 방문자 중 약 91%는 13-17세의 연령층이었음  
-  ![image](https://user-images.githubusercontent.com/87135478/150996596-5a31264d-0eef-4ad4-8d77-9170158c42ea.png)
+  [image](https://user-images.githubusercontent.com/87135478/150996596-5a31264d-0eef-4ad4-8d77-9170158c42ea.png)
 
 <br />
 
