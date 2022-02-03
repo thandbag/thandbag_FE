@@ -27,9 +27,20 @@
 
 <br />
 
-## 🗓 프로젝트 기간
+## 🗓 프로젝트 설명
 
-- 2021년 12월 18일 ~ 2022년 01월 28일
+- 개발기간: 2021년 12월 18일 ~ 2022년 01월 28일
+- 개발언어: JavaScript
+- 개발 라이브러리:
+	- React.js v17.0.2
+		-자바스크립트 라이브러리, 웹 인터페이스를 만들기 위해 사용됨
+- 배포 환경:
+	- Amazon S3, CloundFront
+- Yarn v1.22.10 / npm v6.14.13 / npx v6.14.13
+	- 자바스크립트 패키지 매니저
+    
+- 협업 툴: git / notion / figma / slack
+- 프로젝트 취지: 일상생활에서 사람들이 받는 스트레스, 고민들을 다른 사람들과 공유하고 공감을 받고 스트레스를 해소할 수 있는 커뮤니티를 만들고자 하였습니다.
 
 <br />
 
@@ -55,22 +66,32 @@
 
 ## ⚙️ Front-End 기술 스택
 
-|       분류        | 기술                                                                                                                                                                                                                  |
-| :---------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     Language      | <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"> <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">                                                                                                                    |
-|     Framework     | <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"> |
-|      Server       | <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=white"> <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">   |
-|        VCS        | <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">                                                                                                                |
-<br />
+- Styled-Component
+   * CSS-in-JS 라이브러리
+   * CSS 파일을 밖에 두지 않고, 컴포넌트 내부에 넣기 때문에, CSS가 전역으로 중첩되지 않도록 만들어주는 장점이 있다.
+- Redux, redux-actions, immer, redux-thunk / redux-logger
+   * state 관리를 전역으로 할 수 있고, 무분별한 prop-drilling을 방지한다.
+   * 데이터가 집중화 되어있어 예측가능하며 데이터 흐름이 단방향이라서 디버깅하기 쉽다는 장점이 있다.
+   * 미들웨어로 서버와의 비동기 액션보다 편하게 다루기 위해 redux-thunk, 개발환경에서 state / action 등 쉽게 추적하고 관리하기 위해 redux-logger사용
+- react-spring
+   * 기존의 애니메이션 라이브러리 하면 animated 와 react-motion 이 많이 나오는데, animated의 쉬운 사용과 react-motion의 간결한 구조의 장점을 합친것이 react-spring이다.
+   * 훅을 이용한 사용법이 간결하고 쉬웠던 장점이 있었고, 애니메이션 움직임 또한 부드러웠다.
+- sockjs
+   * sockjs는 WebSocket과 유사한 객체를 제공하는 브라우저 JavaScript 라이브러리입니다. sockjs는 브라우저와 웹 서버간에 낮은 대기 시간, 전이중, 도메인 간 통신 채널을 생성하는 일관된 크로스 브라우저 Javascript API를 제공합니다.
+- stomp
+   * stomp는 단순 텍스트 지향 메시징 프로토콜이다. spring에 종속적이고, 웹소켓 위에서 동작하는 프로토콜로써, 클라이언트가 서버와 전송할 메시지 유형, 형식, 내용들을 정의하는 메커니즘이다.
+- react-ga
+   * 구글 애널리틱스를 사용하기위한 리액트 패키지
+- axios
+   * 서버와 통신을 위한 라이브러리
 
-### 사용 패키지 - 1. React Quill
-**사용이유** 
+- React Quill
 
-* 생드백 작성 시 사용자의 감정을 텍스트 에디터의 글자 색상변경, 밑줄 등으로 좀 더 다채로운 감정표현이 가능하게 하기 위해 사용
-* API 기반 디자인 덕분에 다른 텍스트 편집기 에서처럼 HTML이나 다른 DOM 트리를 구문 분석 할 필요가 없다.
-* 편집기 스타일링을위한 사전 설정으로 사용자 정의 콘텐츠 및 서식 지원.
-* 크로스 플랫폼 및 크로스 브라우저 지원을 제공
-* 쉬운 설정.
+   * 생드백 작성 시 사용자의 감정을 텍스트 에디터의 글자 색상변경, 밑줄 등으로 좀 더 다채로운 감정표현이 가능하게 하기 위해 사용
+   * API 기반 디자인 덕분에 다른 텍스트 편집기 에서처럼 HTML이나 다른 DOM 트리를 구문 분석 할 필요가 없다.
+   * 편집기 스타일링을위한 사전 설정으로 사용자 정의 콘텐츠 및 서식 지원.
+   * 크로스 플랫폼 및 크로스 브라우저 지원을 제공
+   * 쉬운 설정.
 
 <br />
 
@@ -78,13 +99,12 @@
 
 <br />
 
-### 사용 패키지 - 2. swiper.js
-**사용이유** 
+- swiper.js
 
-* 모바일 환경에서의 터치 이벤트(스와이프에)에 잘 반응하는 Slider를 표현하기 위해 선택
-* PC, 모바일 상당히 부드럽고 안정적
-* 옵션들을 쉽게 조작 할 수 있다
-* 효과, 기능이 많음 (수직 슬라이드, 수평 슬라이드, 수직수평 슬라이드, 동영상 슬라이드, 3D, 패럴랙스 효과 등등)
+   * 모바일 환경에서의 터치 이벤트(스와이프에)에 잘 반응하는 Slider를 표현하기 위해 선택
+   * PC, 모바일 상당히 부드럽고 안정적
+   * 옵션들을 쉽게 조작 할 수 있다
+   * 효과, 기능이 많음 (수직 슬라이드, 수평 슬라이드, 수직수평 슬라이드, 동영상 슬라이드, 3D, 패럴랙스 효과 등등)
 
 <br />
 
