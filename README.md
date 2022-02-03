@@ -62,10 +62,40 @@
 |      Server       | <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=white"> <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">   |
 |        VCS        | <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">                                                                                                                |
 <br />
-⚙️ 사용 패키지 - 1. React Quill
-<br />
+
+### 사용 패키지 - 1. React Quill
+
 <br />
 
+**사용이유** 
+
+* 생드백 작성 시 사용자의 감정을 텍스트 에디터의 글자 색상변경, 밑줄 등으로 좀 더 다채로운 감정표현이 가능하게 하기 위해 사용
+* API 기반 디자인 덕분에 다른 텍스트 편집기 에서처럼 HTML이나 다른 DOM 트리를 구문 분석 할 필요가 없다.
+* 편집기 스타일링을위한 사전 설정으로 사용자 정의 콘텐츠 및 서식 지원.
+* 크로스 플랫폼 및 크로스 브라우저 지원을 제공
+* 쉬운 설정.
+
+<br />
+
+<img width="350px" src=https://user-images.githubusercontent.com/85574104/152324423-dcd1eed5-7a1d-4183-bd2b-6073224eb3a0.gif>
+
+<br />
+
+### 사용 패키지 - 2. swiper.js
+
+<br />
+
+**사용이유** 
+
+* 모바일 환경에서의 터치 이벤트(스와이프에)에 잘 반응하는 Slider를 표현하기 위해 선택
+* PC, 모바일 상당히 부드럽고 안정적
+* 옵션들을 쉽게 조작 할 수 있다
+* 효과, 기능이 많음 (수직 슬라이드, 수평 슬라이드, 수직수평 슬라이드, 동영상 슬라이드, 3D, 패럴랙스 효과 등등)
+
+<br />
+
+<img width="350px" src=https://user-images.githubusercontent.com/85574104/152328500-104a1e9b-5a49-484b-a79f-6dcb494d429c.gif>
+<br />
 
 ## ⛔️ Trouble Shooting
 
