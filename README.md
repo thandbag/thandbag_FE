@@ -88,7 +88,7 @@
 
 <br />
 
-<img width="350px" src=https://user-images.githubusercontent.com/85574104/152328500-104a1e9b-5a49-484b-a79f-6dcb494d429c.gif>
+<img width="450px" src=https://user-images.githubusercontent.com/85574104/152328500-104a1e9b-5a49-484b-a79f-6dcb494d429c.gif>
 <br />
 
 ## ⛔️ Trouble Shooting
