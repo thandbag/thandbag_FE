@@ -45,6 +45,14 @@
 
 <br />
 
+<br />
+
+## 📌 API 명세서
+
+- [\[API 명세서 바로가기\]](https://typical-guanaco-54b.notion.site/API-bda198d1807e4eff8de732ebe02f3134)
+
+<br />
+
 ## ⚙️ Front-End 기술 스택
 
 |       분류        | 기술                                                                                                                                                                                                                  |
@@ -53,13 +61,34 @@
 |     Framework     | <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"> |
 |      Server       | <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=white"> <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">   |
 |        VCS        | <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">                                                                                                                |
+<br />
+
+### 사용 패키지 - 1. React Quill
+**사용이유** 
+
+* 생드백 작성 시 사용자의 감정을 텍스트 에디터의 글자 색상변경, 밑줄 등으로 좀 더 다채로운 감정표현이 가능하게 하기 위해 사용
+* API 기반 디자인 덕분에 다른 텍스트 편집기 에서처럼 HTML이나 다른 DOM 트리를 구문 분석 할 필요가 없다.
+* 편집기 스타일링을위한 사전 설정으로 사용자 정의 콘텐츠 및 서식 지원.
+* 크로스 플랫폼 및 크로스 브라우저 지원을 제공
+* 쉬운 설정.
 
 <br />
 
-## 📌 API 명세서
+<img width="350px" src=https://user-images.githubusercontent.com/85574104/152324423-dcd1eed5-7a1d-4183-bd2b-6073224eb3a0.gif>
 
-- [\[API 명세서 바로가기\]](https://typical-guanaco-54b.notion.site/API-bda198d1807e4eff8de732ebe02f3134)
+<br />
 
+### 사용 패키지 - 2. swiper.js
+**사용이유** 
+
+* 모바일 환경에서의 터치 이벤트(스와이프에)에 잘 반응하는 Slider를 표현하기 위해 선택
+* PC, 모바일 상당히 부드럽고 안정적
+* 옵션들을 쉽게 조작 할 수 있다
+* 효과, 기능이 많음 (수직 슬라이드, 수평 슬라이드, 수직수평 슬라이드, 동영상 슬라이드, 3D, 패럴랙스 효과 등등)
+
+<br />
+
+<img width="450px" src=https://user-images.githubusercontent.com/85574104/152328500-104a1e9b-5a49-484b-a79f-6dcb494d429c.gif>
 <br />
 
 ## ⛔️ Trouble Shooting
@@ -164,19 +193,45 @@
     * 일부 페이지에서 하단 네비게이션 바가 보여지지 않아 불편했다. (네비게이션 바를 모든 페이지에서 볼 수 있도록 개선 완료)  
     * 채팅을 어떨 때 이용할 수 있는지 모르겠다. (채팅 메뉴에서 이용안내 가이드를 볼 수 있도록 개선 완료)  
     * 첫 화면이 로그인이라서, 로그인을 하지 않으면 아무것도 할 수 없다. (게시글 조회는 로그인을 하지 않아도 되도록 개선 완료)  
+
 <br />
 
 ## 👣 런칭 성과
-
-> \* 런칭일자 : 2022년 01월 22일(토)  
->  \* 성과 집계일자 : 2022년 01월 25일(화) 16:00
+>  \* 런칭일자 : 2022년 01월 22일(토)  
+>  \* 성과 집계일자 : 2022년 01월 27일(목) 15:00
 
 ### 1. 인스타그램 광고 진행 성과 요약
+* 3일간 인스타그램 광고 진행을 통해 약 2만명에게 도달하였으며 이 중, 182명이 사이트에 방문하였음  
+* 방문자 중 약 67%는 여성이었음  
+* 방문자 중 약 91%는 13-17세의 연령층이었음  
+![image](https://user-images.githubusercontent.com/87135478/150996596-5a31264d-0eef-4ad4-8d77-9170158c42ea.png)
 
-- 3일간 인스타그램 광고 진행을 통해 약 2만명에게 도달하였으며 이 중, 182명이 사이트에 방문하였음
-- 방문자 중 약 67%는 여성이었음
-- 방문자 중 약 91%는 13-17세의 연령층이었음  
-  ![image](https://user-images.githubusercontent.com/87135478/150996596-5a31264d-0eef-4ad4-8d77-9170158c42ea.png)
+<br />
+
+### 2. 개발자 커뮤니티/포럼 홍보 성과 요약
+* Okky, 뽐뿌 개발자포럼을 통해 서비스 홍보를 진행하였음
+* 사용자, 세션수 등에서 인스타그램 광고를 통한 성과 지표보다 높은 성과를 얻었음
+![image](https://user-images.githubusercontent.com/87135478/150999046-b5c3e854-37fe-4dfa-b2c9-20cce48e975d.png)
+
+
+<br />
+
+### 3. 런칭 이후 누적 데이터 분석 (DataBase)
+* 가입 회원 수 : 141명
+* 작성된 생드백(게시글) 수 : 총 86개 
+* 터트린 생드백 수 : 36개 (전체 대비 41.8%)
+* 작성된 잽(댓글) 수 : 총 93개
+* 가장 많은 생드백이 작성된 고민 카테고리 Top3 : 기타(27개), 공부(13개), 진로고민(13개)
+* 기간동안 생드백이 맞은 횟수 : 총 6,995대 (1인 평균 49.6대)
+
+<br />
+
+### 4. 런칭 이후 누적 데이터 분석 (Google Analytics)
+* 사용자 : 741명 (First Visit 기준)
+* Page View : 1만
+* 이벤트 수 : 1.5만
+* 모바일 / PC 비율 : 6.5 / 3.5
+* 사용자 재방문 : 12.6%
 
 <br />
 
@@ -198,9 +253,4 @@
 - 기간동안 생드백이 맞은 횟수 : 총 4,869대 (1인 평균 46.3대)
 
 <br />
-
-
-
 <br />
-<br />
-
