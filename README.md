@@ -45,6 +45,14 @@
 
 <br />
 
+<br />
+
+## 📌 API 명세서
+
+- [\[API 명세서 바로가기\]](https://typical-guanaco-54b.notion.site/API-bda198d1807e4eff8de732ebe02f3134)
+
+<br />
+
 ## ⚙️ Front-End 기술 스택
 
 |       분류        | 기술                                                                                                                                                                                                                  |
@@ -55,11 +63,6 @@
 |        VCS        | <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">                                                                                                                |
 
 <br />
-
-## 📌 API 명세서
-
-- [\[API 명세서 바로가기\]](https://typical-guanaco-54b.notion.site/API-bda198d1807e4eff8de732ebe02f3134)
-
 <br />
 
 ## ⛔️ Trouble Shooting
