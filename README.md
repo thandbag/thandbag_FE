@@ -61,6 +61,7 @@
 ## 📌 API 명세서
 
 - [\[API 명세서 바로가기\]](https://typical-guanaco-54b.notion.site/API-bda198d1807e4eff8de732ebe02f3134)
+
 <br />
 
 ## ⚙️ Front-End 기술 스택
@@ -72,6 +73,7 @@
    * state 관리를 전역으로 할 수 있고, 무분별한 prop-drilling을 방지한다.
    * 데이터가 집중화 되어있어 예측가능하며 데이터 흐름이 단방향이라서 디버깅하기 쉽다는 장점이 있다.
    * 미들웨어로 서버와의 비동기 액션보다 편하게 다루기 위해 redux-thunk, 개발환경에서 state / action 등 쉽게 추적하고 관리하기 위해 redux-logger사용
+
 - sockjs
    * sockjs는 WebSocket과 유사한 객체를 제공하는 브라우저 JavaScript 라이브러리입니다. sockjs는 브라우저와 웹 서버간에 낮은 대기 시간, 전이중, 도메인 간 통신 채널을 생성하는 일관된 크로스 브라우저 Javascript API를 제공합니다.
 - stomp
@@ -87,6 +89,7 @@
    * 훅을 이용한 사용법이 간결하고 쉬웠던 장점이 있었고, 애니메이션 움직임 또한 부드러웠다.
 
 <img width="350px" src="https://user-images.githubusercontent.com/85574104/152375860-bc0e2f30-b07f-45c9-81cb-140543d40623.gif"/><img width="350px" src="https://user-images.githubusercontent.com/85574104/152375826-d705b1ca-38b8-45c4-bd47-f086e2398bb2.gif"/>
+
 
 - React Quill
 
