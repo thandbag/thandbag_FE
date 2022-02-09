@@ -1,10 +1,13 @@
 import React from "react";
-import { useSpring, animated } from "react-spring";
+
 import { Grid, Text, Button } from "../elements/TbIndex";
 import Heads from "../components/Heads";
-import { ReactComponent as UserGloveLv1 } from "../static/images/userglove/user_ glove_lv1.svg";
-import { ReactComponent as UserGloveLv2 } from "../static/images/userglove/user_ glove_lv2.svg";
+
 import { history } from "../redux/configureStore";
+import { useSpring, animated } from "react-spring";
+import api from "../shared/Api";
+import Swal from "sweetalert2";
+
 import thandbag_frame from "../static/images/thandbag/one_thand_frame.png";
 import thandbag_frame2 from "../static/images/thandbag/two_thand_frame.png";
 import one_thandbag1 from "../static/images/thandbag/one_thandbag_1.png";
@@ -19,8 +22,7 @@ import three_thandbag3 from "../static/images/thandbag/three_thandbag_3.png";
 import effect1 from "../static/images/thandbag/effect1.svg";
 import effect2 from "../static/images/thandbag/effect2.svg";
 import hit from "../static/images/Hit.svg";
-import api from "../shared/Api";
-import Swal from "sweetalert2";
+
 
 const TbHitDetail = (props) => {
   const token = sessionStorage.getItem("token");
@@ -56,14 +58,6 @@ const TbHitDetail = (props) => {
     clickCount();
     clickTarget();
     
-  }
-
-  const onEnterPress = (e) => {
-    if(e.key === 'Enter') {
-      toggle(!state);
-      clickCount();
-      clickTarget();
-    }
   }
 
   React.useEffect(() => {

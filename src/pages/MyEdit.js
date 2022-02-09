@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+
 import Heads from "../components/Heads";
-import { useDispatch } from "react-redux";
 import { Grid, Text, Image, Input, Button, Select } from "../elements/TbIndex";
+
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Swal from "sweetalert2";
 import { useSpring, animated } from "react-spring";

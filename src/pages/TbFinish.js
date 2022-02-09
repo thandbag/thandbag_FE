@@ -1,14 +1,18 @@
 import React from "react";
+import styled from "styled-components";
+
 import UserProfile from "../components/UserProfile";
 import { Grid, Button } from "../elements/TbIndex";
-import styled from "styled-components";
+
 import { history } from "../redux/configureStore";
-import thandbagend from "../static/images/thandbag/one_thandbagend.png";
-import thandbagend2 from "../static/images/thandbag/two_thandbagend.png";
-import thandbagend3 from "../static/images/thandbag/three_thandbagend.png";
 import api from "../shared/Api";
 import Swal from "sweetalert2";
 import { useSpring, animated } from "react-spring";
+
+import thandbagend from "../static/images/thandbag/one_thandbagend.png";
+import thandbagend2 from "../static/images/thandbag/two_thandbagend.png";
+import thandbagend3 from "../static/images/thandbag/three_thandbagend.png";
+
 
 const TbFinish = (props) => {
   const token = sessionStorage.getItem("token");

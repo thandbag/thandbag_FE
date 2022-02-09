@@ -1,16 +1,20 @@
 import React from "react";
+import styled from "styled-components";
+
+import TbNavigation from "../components/TbNavigation";
+import TbLoading from "./TbLoading";
 import Heads from "../components/Heads";
 import { Grid, Image, Text } from "../elements/TbIndex";
+
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
-import TbNavigation from "../components/TbNavigation";
-import TbLoading from "./TbLoading";
-import styled from "styled-components";
-import NoChatList from "../static/images/no_chatlist.png";
-import { ReactComponent as NoticeIcon } from "../static/icons/notice_icons/notice_icon.svg";
 import { useSpring, animated } from "@react-spring/web";
 import Swal from "sweetalert2";
+
+import NoChatList from "../static/images/no_chatlist.png";
+import { ReactComponent as NoticeIcon } from "../static/icons/notice_icons/notice_icon.svg";
+
 
 
 const TbChatList = (props) => {

@@ -18,8 +18,6 @@ import { ReactComponent as ChatOpen } from "../static/icons/notice_icons/chatope
 import { ReactComponent as NewThand } from "../static/icons/notice_icons/newthand_icon.svg";
 import { ReactComponent as LevelUp } from "../static/icons/notice_icons/lelvelup_icon.svg";
 import { ReactComponent as WirteSelect } from "../static/icons/notice_icons/writerselect_icon.svg";
-import { actionCreators as noticeActions } from "../redux/modules/chat";
-import { Link } from "react-router-dom";
 
 const TbNotice = (props) => {
   const dispatch = useDispatch();

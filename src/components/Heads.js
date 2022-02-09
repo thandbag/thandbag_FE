@@ -9,6 +9,7 @@ import { ReactComponent as ThandbagLogo } from "../static/icons/thandbag_logo.sv
 import SearchModal from "./TbModals/SearchModal";
 import { useDispatch } from "react-redux";
 import { actionCreators as cardActions } from "../redux/modules/card";
+
 const Heads = (props) => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState("false");

@@ -1,11 +1,15 @@
 import React from "react";
+import styled from "styled-components";
+
 import { Button, Grid, Input } from "../elements/TbIndex";
-import moment from "moment";
+import Message from "../components/Message";
 import Heads from "../components/Heads";
+
+//소켓 import
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
-import styled from "styled-components";
-import Message from "../components/Message";
+import moment from "moment";
+
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";

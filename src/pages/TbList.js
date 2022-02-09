@@ -1,15 +1,17 @@
 import React from "react";
-import { history } from "../redux/configureStore";
-import Heads from "../components/Heads";
-import SwipeCategory from "../components/SwipeCategory";
-import { Grid } from "../elements/TbIndex";
 import styled from "styled-components";
+
+import { Grid } from "../elements/TbIndex";
+import Heads from "../components/Heads";
 import TbListModal from "../components/TbModals/TbListModal";
 import TbCardAll from "../components/TbCardAll";
-import { ReactComponent as Write } from "../static/icons/write.svg";
-import { useDispatch, useSelector } from "react-redux";
+import SwipeCategory from "../components/SwipeCategory";
 import TbLoading from "./TbLoading";
 import TbNavgation from "../components/TbNavigation";
+import { ReactComponent as Write } from "../static/icons/write.svg";
+
+import { useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 import { useSpring, animated } from "react-spring";
 
 const TbList = (props) => {

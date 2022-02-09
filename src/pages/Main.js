@@ -1,15 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+
+//소켓 import 
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
-import TbNavgation from "../components/TbNavigation";
+
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as chatActions } from "../redux/modules/chat";
-import { Button } from "../elements/TbIndex";
 import { history } from "../redux/configureStore";
+import { useSpring, animated } from "@react-spring/web";
+
+import { Button } from "../elements/TbIndex";
+import TbNavgation from "../components/TbNavigation";
 import Heads from "../components/Heads";
 import thandbag_main from "../static/images/thandbag_main.png";
-import { useSpring, animated } from "@react-spring/web";
+
 
 const Main = (props) => {
   const dispatch = useDispatch();
@@ -22,19 +27,22 @@ const Main = (props) => {
   };
 
   React.useEffect(() => {
-    try {
-      stomp.debug = null;
-      stomp.connect(token, () => {
-        stomp.subscribe(
-          `/sub/alarm/${userId}`,
-          (data) => {
-            const newData = JSON.parse(data.body);
-            dispatch(chatActions.getAlarm(newData));
-          },
-          token
-        );
-      });
-    } catch (e) {}
+    if(userId){
+      try {
+        stomp.debug = null;
+        stomp.connect(token, () => {
+          stomp.subscribe(
+            `/sub/alarm/${userId}`,
+            (data) => {
+              const newData = JSON.parse(data.body);
+              dispatch(chatActions.getAlarm(newData));
+            },
+            token
+          );
+        });
+      } catch (e) {}
+    }
+    
   }, [dispatch, alarm]);
 
   const fadeIn = useSpring({

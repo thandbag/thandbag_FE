@@ -1,30 +1,24 @@
 import React from "react";
+
+//스타일
+import GlobalStyles from "../components/GlobalStyles";
 import styled from "styled-components";
-import ReactGA from 'react-ga';
-import WebImg from "../static/images/web.png";
 import "./App.css";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Wlecome from "../pages/Welcome";
-import Main from "../pages/Main";
-import Login from "../pages/Login";
-import Join from "../pages/Join";
-import TbWrite from "../pages/TbWrite";
-import TbList from "../pages/TbList";
-import TbTwoDetail from "../pages/TbTwoDetail";
-import TbNotice from "../pages/TbNotice";
-import TbChatList from "../pages/TbChatList";
-import TbChatDetail from "../pages/TbChatDetail";
-import MyPage from "../pages/MyPage";
-import MyEdit from "../pages/MyEdit";
-import AuthRedirect from "../pages/AuthRedirect";
-import TbFinish from "../pages/TbFinish";
-import TbHitDetail from "../pages/TbHitDetail";
-import NotFound from "../pages/NotFound";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-import GlobalStyles from "../components/GlobalStyles";
+
+import Welcome from "../pages/Welcome";
+import { Main, Login, Join, TbWrite, 
+  TbList, TbTwoDetail, TbNotice, TbChatList, TbChatDetail, MyPage, 
+  MyEdit, AuthRedirect, TbFinish, TbHitDetail, NotFound} from "../pages/Index";
 import Auth from "../shared/auth";
 import FeedBackBtn from "../components/FeedBackBtn";
+import WebImg from "../static/images/web.png";
+
+//ga 적용
+import ReactGA from 'react-ga';
 
 ReactGA.event({
   category: 'User',
@@ -61,13 +55,9 @@ function App() {
         <div className="wrap">
           <ConnectedRouter history={history}>
             <Switch>
-              <Route path={"/"} exact component={Wlecome} />
+              <Route path={"/"} exact component={Welcome} />
               <Route path={"/login"} exact component={Auth(Login, false)} />
-              <Route
-                path={"/user/kakao/callback"}
-                exact
-                component={Auth(AuthRedirect, false)}
-              />
+              <Route path={"/user/kakao/callback"} exact component={Auth(AuthRedirect, false)}/>
               <Route path={"/join"} exact component={Auth(Join, false)} />
               <Route path={"/main"} exact component={Main} />
               <Route path={"/TbWrite"} exact component={Auth(TbWrite, true)} />
