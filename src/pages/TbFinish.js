@@ -14,7 +14,6 @@ import thandbagend2 from "../static/images/thandbag/two_thandbagend.png";
 import thandbagend3 from "../static/images/thandbag/three_thandbagend.png";
 
 
-
 const TbFinish = (props) => {
   const token = sessionStorage.getItem("token");
   const postid = props.match.params.postid;

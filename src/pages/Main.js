@@ -27,19 +27,22 @@ const Main = (props) => {
   };
 
   React.useEffect(() => {
-    try {
-      stomp.debug = null;
-      stomp.connect(token, () => {
-        stomp.subscribe(
-          `/sub/alarm/${userId}`,
-          (data) => {
-            const newData = JSON.parse(data.body);
-            dispatch(chatActions.getAlarm(newData));
-          },
-          token
-        );
-      });
-    } catch (e) {}
+    if(userId){
+      try {
+        stomp.debug = null;
+        stomp.connect(token, () => {
+          stomp.subscribe(
+            `/sub/alarm/${userId}`,
+            (data) => {
+              const newData = JSON.parse(data.body);
+              dispatch(chatActions.getAlarm(newData));
+            },
+            token
+          );
+        });
+      } catch (e) {}
+    }
+    
   }, [dispatch, alarm]);
 
   const fadeIn = useSpring({

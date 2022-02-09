@@ -1,5 +1,4 @@
 import React from "react";
-import { Grid, Image, Text } from "../elements/TbIndex";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import TbLoading from "./TbLoading";
